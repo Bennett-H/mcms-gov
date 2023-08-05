@@ -1,0 +1,1452 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>{ms:global.name/}</title>
+    <#include "head-file.htm" />
+    <#include "component/ms-comment.htm" />
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <#include "header.htm" />
+        <div class="panel">
+            <div class="body">
+                <!--软件内容-start-->
+                <div class="left">
+                    <div class="download-header">
+                        <img title="" alt="" src="${global.host}/{@ms:file field.litpic/}" class="download-header-logo" />
+                        <span class="download-header-title">
+                            ${field.title}
+                        </span>
+                    </div>
+                    <div class="download-desc">
+                        <div class="desc-item">
+                            <span class="label">
+                                下载次数：
+                            </span>
+                            <span class="value">
+                                ${field.hit}
+                            </span>
+                        </div>
+                        <div class="desc-item">
+                            <span class="label">
+                                软件语言：
+                            </span>
+                            <span class="value">
+                                简体中文
+                            </span>
+                        </div>
+                        <div class="desc-item">
+                            <span class="label">
+                                更新时间：
+                            </span>
+                            <span class="value">
+                                ${field.date?string("yyyy-MM-dd")}
+                            </span>
+                        </div>
+                        <div class="desc-item">
+                            <span class="label">
+                                软件厂商：
+                            </span>
+                            <span class="value">
+                                ${field.source}
+                            </span>
+                        </div>
+                        <div class="desc-item">
+                            <span class="label">
+                                软件授权：
+                            </span>
+                            <span class="value">
+                                免费
+                            </span>
+                        </div>
+                        <div class="desc-item">
+                            <span class="label">
+                                应用平台：
+                            </span>
+                            <span class="value">
+                                MStore
+                            </span>
+                        </div>
+                        <div class="download-btn-row">
+                            <div class="download-btn">
+                                立即下载
+                            </div>
+                        </div>
+                    </div>
+                    <span class="download-desc-title">
+                        软件介绍
+                    </span>
+                    <div class="download-desc-body">
+                        ${field.content}
+                    </div>
+                    <span class="download-desc-title">
+                        软件评价
+                    </span>
+                    <div class="download-comment-body">
+                        <!--评论-start-->
+                        <ms-comment :data-id="dataId" :page-no="pageNo"></ms-comment>
+                        <!--评论-end-->
+                    </div>
+                </div>
+                <!--软件内容-end-->
+                <!--热门软件-start-->
+                <div class="right">
+                    {ms:channel typeid='1497925356017020929' type='self'}
+                    <div class="hot-app">
+                        <a href="{ms:global.url/}${field.typelink}" class="title">
+                            热门软件
+                        </a>
+                    </div>
+                    {/ms:channel}
+                    {ms:arclist size=5 typeid='1497925356017020929'}
+                    <div class="download-item">
+                        <span class="download-item-num">
+                            ${field.index}
+                        </span>
+                        <img title="" alt="" src="${global.host}/{@ms:file field.litpic/}" class="download-item-img" />
+                        <div class="download-item-desc">
+                            <a href="{ms:global.url/}${field.link}" class="download-item-title">
+                                ${field.title}
+                            </a>
+                            <a href="#" class="download-item-link">
+                                立即下载
+                            </a>
+                        </div>
+                    </div>
+                    {/ms:arclist}
+                </div>
+                <!--热门软件-end-->
+            </div>
+        </div>
+        <#include "footer.htm" />
+    </div>
+</body>
+
+</html>
+<script>
+    var app = new Vue({
+        el: '#app',
+        component(){
+        },
+        data: {
+            searchForm: {
+                      keyword: ""
+            },
+            hotSearchKeywords: [],//文章商品id
+            dataId: "${field.id}",
+            //当前页数
+            pageNo: ${(page.cur)!1},
+        },
+        watch: {
+        },
+        methods: {
+
+            switchShow:function(arr){
+                var that = this
+                arr.forEach(function(x){
+                    let e = that.$el.querySelector("#key_"+x)
+                    if(e){
+                        e.style.display=getComputedStyle(e,null).display=='none'?'flex':'none'
+                    }
+                })
+            },
+            show:function(arr){
+                var that = this
+                arr.forEach(function(x){
+                    let e = that.$el.querySelector("#key_"+x)
+                    if(e){
+                        e.style.display='flex'
+                    }
+                })
+            },
+            hide:function(arr){
+                var that = this
+                arr.forEach(function(x){
+                    let e = that.$el.querySelector("#key_"+x)
+                    if(e){
+                        e.style.display='none'
+                    }
+                })
+            }
+        },
+        computed(){
+        },
+        created(){
+        }
+    })
+</script>
+<style>
+.panel {
+    flex-direction: row;
+    display: flex;
+    box-sizing: border-box;
+    justify-content: center;
+    border-top-left-radius: 0px;
+    margin-left: 0px;
+    min-height: 50px;
+    margin-right: 0px;
+    padding-bottom: 0px;
+    flex-wrap: nowrap;
+    border-bottom-left-radius: 0px;
+    flex-shrink: 0;
+    width: 100%;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+    margin-bottom: 0px;
+    padding-top: 0px;
+    height: unset60;
+}
+
+
+
+.panel .body {
+    flex-direction: row;
+    display: flex;
+    padding-right: 0px;
+    box-sizing: border-box;
+    justify-content: space-between;
+    border-top-left-radius: 0px;
+    min-height: 50px;
+    margin-right: 0px;
+    padding-bottom: 20px;
+    flex-wrap: nowrap;
+    border-bottom-left-radius: 0px;
+    flex-shrink: 0;
+    width: 1280px;
+    border-bottom-right-radius: 0px;
+    margin-bottom: 0px;
+    border-top-right-radius: 0px;
+    padding-top: 20px;
+    padding-left: 0px;
+    margin-top: 0px;
+    height: 100%;
+}
+
+
+
+.panel .body .left {
+    flex-direction: column;
+    display: flex;
+    box-sizing: border-box;
+    margin-left: 0px;
+    border-top-left-radius: 0px;
+    min-height: 50px;
+    margin-right: 0px;
+    padding-bottom: 0px;
+    flex-wrap: nowrap;
+    border-bottom-left-radius: 0px;
+    flex-shrink: 0;
+    width: 78%;
+    border-bottom-right-radius: 0px;
+    margin-bottom: 0px;
+    border-top-right-radius: 0px;
+    padding-top: 0px;
+    padding-left: 0px;
+    margin-top: 0px;
+    height: 100%;
+}
+
+
+
+.panel .body .left .download-header {
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+    box-sizing: border-box;
+    min-height: 50px;
+    border-bottom-color: #E6E6E6;
+    margin-right: 0px;
+    padding-bottom: 20px;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    width: 100%;
+    border-bottom-style: solid;
+    margin-bottom: 0px;
+    padding-top: 20px;
+    border-bottom-width: 1px;
+    height: 100px;
+}
+
+
+
+.panel .body .left .download-header .download-header-logo {
+    margin-right: 30px;
+    vertical-align: top;
+    padding-bottom: 0px;
+    border-bottom-left-radius: 0px;
+    width: 60px;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+    padding-top: 0px;
+    height: 50px;
+    border-top-left-radius: 0px;
+}
+
+
+
+.panel .body .left .download-header .download-header-title {
+    margin-right: 0px;
+    padding-bottom: 0px;
+    border-bottom-left-radius: 0px;
+    flex-direction: row;
+    word-wrap: break-word;
+    display: inline-block;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+    font-size: 28PX;
+    padding-top: 0px;
+    border-top-left-radius: 0px;
+    margin-left: 0px;
+}
+
+
+
+.panel .body .left .download-desc {
+    min-height: 50px;
+    padding-bottom: 20px;
+    flex-wrap: wrap;
+    flex-direction: row;
+    display: flex;
+    flex-shrink: 0;
+    width: unset;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    padding-top: 20px;
+    padding-left: 0px;
+    height: unset;
+}
+
+
+
+.panel .body .left .download-desc .desc-item {
+    min-height: 0px;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    display: flex;
+    flex-shrink: 0;
+    width: 50%;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    margin-top: 0px;
+    height: 20px;
+    margin-left: 0px;
+}
+
+
+
+.panel .body .left .download-desc .desc-item .label {
+    font-family: 微软雅黑;
+    color: #C1C1C1;
+    flex-direction: row;
+    word-wrap: break-word;
+    display: inline-block;
+    font-size: 14PX;
+    margin-bottom: 0px;
+}
+
+
+
+.panel .body .left .download-desc .desc-item .value {
+    font-family: 微软雅黑;
+    flex-direction: row;
+    word-wrap: break-word;
+    display: inline-block;
+    font-size: 14PX;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+
+
+.panel .body .left .download-desc .download-btn-row {
+    flex-direction: column;
+    display: flex;
+    box-sizing: border-box;
+    justify-content: space-between;
+    margin-left: 0px;
+    min-height: 50px;
+    padding-bottom: 0px;
+    flex-shrink: 0;
+    width: 100%;
+    margin-bottom: 20px;
+    padding-top: 0px;
+    padding-left: 0px;
+    margin-top: 20px;
+    height: 100%;
+}
+
+
+
+.panel .body .left .download-desc .download-btn-row .download-btn {
+    cursor: pointer;
+    background-color: rgba(214, 50, 34, 1);
+    color: #fff;
+    text-align: center;
+    display: inline-block;
+    box-sizing: border-box;
+    margin-left: 0px;
+    border-top-left-radius: 25px;
+    padding-bottom: 0px;
+    border-bottom-left-radius: 25px;
+    width: 200px;
+    border-bottom-right-radius: 25px;
+    line-height: 45px;
+    font-size: 18PX;
+    margin-bottom: 0px;
+    border-top-right-radius: 25px;
+    padding-top: 0px;
+    height: 50px;
+}
+
+
+
+.panel .body .left .download-desc-title {
+    color: #555455;
+    flex-direction: row;
+    word-wrap: break-word;
+    display: inline-block;
+    border-top-left-radius: 0px;
+    border-bottom-color: #E6E6E6;
+    font-family: 宋体;
+    padding-bottom: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+    font-size: 28PX;
+    margin-bottom: 0px;
+    line-height: 56px;
+    border-bottom-style: dashed;
+    padding-top: 0px;
+    border-bottom-width: 1px;
+    padding-left: 0px;
+    font-weight: 600;
+    height: 56px;
+}
+
+
+
+.panel .body .left .download-desc-body {
+    min-height: 50px;
+    padding-bottom: 20px;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    display: flex;
+    flex-shrink: 0;
+    width: 100%;
+    margin-bottom: 0px;
+    box-sizing: border-box;
+    padding-top: 20px;
+    margin-top: 0px;
+    height: 100%;
+}
+
+
+
+.panel .body .left .download-comment-body {
+    min-height: 50px;
+    padding-bottom: 0px;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    display: flex;
+    flex-shrink: 0;
+    width: 130%;
+    box-sizing: border-box;
+    padding-top: 0px;
+    height: 100%;
+}
+
+
+
+.panel .body .left .download-comment-body .w-comments {
+    flex-direction: column;
+    display: flex;
+    padding-right: 0px;
+    box-sizing: border-box;
+    border-top-left-radius: 0px;
+    min-height: 50px;
+    margin-right: 0px;
+    padding-bottom: 0px;
+    flex-wrap: nowrap;
+    border-bottom-left-radius: 0px;
+    flex-shrink: 0;
+    width: 1000px;
+    border-bottom-right-radius: 0px;
+    margin-bottom: 0px;
+    border-top-right-radius: 0px;
+    padding-top: 0px;
+    padding-left: 0px;
+    margin-top: 0px;
+    height: 100%;
+}
+
+
+
+.panel .body .left .download-comment-body .w-comments .w-comments-strips {
+    flex-direction: row;
+    display: flex;
+    box-sizing: border-box;
+    border-top-left-radius: 0px;
+    min-height: 50px;
+    flex-wrap: nowrap;
+    border-bottom-left-radius: 0px;
+    flex-shrink: 0;
+    width: 100%;
+    border-bottom-right-radius: 0px;
+    margin-bottom: 10px;
+    border-top-right-radius: 0px;
+    padding-left: 0px;
+    margin-top: 0px;
+    height: 50px;
+}
+
+
+
+.panel .body .left .download-comment-body .w-comments .w-comments-strips .w-user-pic {
+    margin-right: 10px;
+    vertical-align: top;
+    border-bottom-left-radius: 5px;
+    width: 50px;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    margin-bottom: 0px;
+    padding-left: 0px;
+    height: 50px;
+    border-top-left-radius: 5px;
+}
+
+
+
+.panel .body .left .download-comment-body .w-comments .w-comments-strips .w-comment-input {
+    border-color: #C1C1C1;
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+    box-sizing: border-box;
+    border-top-left-radius: 5px;
+    min-height: 50px;
+    margin-right: 0px;
+    flex-wrap: nowrap;
+    border-bottom-left-radius: 5px;
+    border-width: 1px;
+    flex-shrink: 0;
+    width: calc(100% - 60px);
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    margin-bottom: 0px;
+    border-style: solid;
+    padding-left: 10px;
+    height: 100%;
+}
+
+
+
+.panel .body .left .download-comment-body .w-comments .w-comments-strips .w-comment-input .w-comment-input-prompt {
+    margin-right: 0px;
+    font-family: 微软雅黑;
+    color: #C1C1C1;
+    border-bottom-left-radius: 0px;
+    flex-direction: row;
+    word-wrap: break-word;
+    display: inline-block;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+    font-size: 18PX;
+    padding-left: 0px;
+    border-top-left-radius: 0px;
+}
+
+
+
+.panel .body .left .download-comment-body .w-comments .w-comments-body {
+    border-color: #C1C1C1;
+    flex-direction: column;
+    display: flex;
+    padding-right: 0px;
+    box-sizing: border-box;
+    border-top-left-radius: 5px;
+    min-height: 50px;
+    margin-right: 0px;
+    padding-bottom: 0px;
+    flex-wrap: nowrap;
+    border-bottom-left-radius: 5px;
+    border-width: 1px;
+    flex-shrink: 0;
+    width: 100%;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    padding-top: 0px;
+    border-style: solid;
+    padding-left: 0px;
+    margin-top: 0px;
+    height: unset;
+}
+
+
+
+.panel .body .left .download-comment-body .w-comments .w-comments-body .w-comments-body-header {
+    flex-direction: column;
+    display: flex;
+    padding-right: 0px;
+    box-sizing: border-box;
+    border-top-left-radius: 0px;
+    min-height: 50px;
+    padding-bottom: 0px;
+    flex-wrap: nowrap;
+    border-bottom-left-radius: 0px;
+    flex-shrink: 0;
+    width: 100%;
+    border-bottom-right-radius: 0px;
+    margin-bottom: 0px;
+    border-top-right-radius: 0px;
+    padding-top: 0px;
+    padding-left: 0px;
+    margin-top: 0px;
+    height: unset;
+}
+
+
+
+.panel .body .left .download-comment-body .w-comments .w-comments-body .w-comments-body-header .w-coments-num {
+    flex-direction: row;
+    word-wrap: break-word;
+    display: inline-block;
+    padding-right: 0px;
+    border-top-left-radius: 0px;
+    border-bottom-color: #C1C1C1;
+    padding-bottom: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    line-height: 50px;
+    border-bottom-style: solid;
+    border-top-right-radius: 0px;
+    padding-top: 0px;
+    border-bottom-width: 1px;
+    padding-left: 20px;
+    margin-top: 0px;
+    height: 50px;
+}
+
+
+
+.panel .body .left .download-comment-body .w-comments .w-comments-body .w-comments-item {
+    flex-direction: row;
+    display: flex;
+    padding-right: 20px;
+    box-sizing: border-box;
+    min-height: 50px;
+    margin-right: 0px;
+    padding-bottom: 14px;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    width: 100%;
+    padding-top: 10px;
+    padding-left: 20px;
+    margin-top: 20px;
+    height: unset;
+}
+
+
+
+.panel .body .left .download-comment-body .w-comments .w-comments-body .w-comments-item .w-comments-userpic {
+    margin-right: 10px;
+    vertical-align: top;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    width: 30px;
+    padding-top: 0px;
+    padding-left: 0px;
+    margin-top: 0px;
+    height: 30px;
+}
+
+
+
+.panel .body .left .download-comment-body .w-comments .w-comments-body .w-comments-item .w-comment-user-info {
+    flex-direction: column;
+    display: flex;
+    padding-right: 0px;
+    box-sizing: border-box;
+    min-height: 50px;
+    margin-right: 0px;
+    padding-bottom: 0px;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    width: calc(100% - 40px);
+    padding-top: 0px;
+    padding-left: 0px;
+    margin-top: 0px;
+    height: unset;
+}
+
+
+
+.panel .body .left .download-comment-body .w-comments .w-comments-body .w-comments-item .w-comment-user-info .w-comment-item-header {
+    flex-wrap: nowrap;
+    flex-direction: row;
+    display: flex;
+    flex-shrink: 0;
+    width: 100%;
+    box-sizing: border-box;
+    height: unset;
+}
+
+
+
+.panel .body .left .download-comment-body .w-comments .w-comments-body .w-comments-item .w-comment-user-info .w-comment-item-header .w-comment-username {
+    padding-bottom: 0px;
+    flex-direction: row;
+    word-wrap: break-word;
+    display: inline-block;
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-left: 0px;
+    margin-top: 0px;
+}
+
+
+
+.panel .body .left .download-comment-body .w-comments .w-comments-body .w-comments-item .w-comment-user-info .w-comment-item-mes {
+    flex-direction: row;
+    word-wrap: break-word;
+    display: inline-block;
+}
+
+
+
+.panel .body .left .download-comment-body .w-comments .w-comments-body .w-comments-item .w-comment-user-info .w-comment-item-footer {
+    flex-direction: row;
+    display: flex;
+    padding-right: 0px;
+    box-sizing: border-box;
+    justify-content: space-between;
+    padding-bottom: 0px;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    width: 100%;
+    padding-top: 0px;
+    padding-left: 0px;
+    margin-top: 0px;
+    height: unset;
+}
+
+
+
+.panel .body .left .download-comment-body .w-comments .w-comments-body .w-comments-item .w-comment-user-info .w-comment-item-footer .w-comment-item-time {
+    flex-direction: row;
+    word-wrap: break-word;
+    display: inline-block;
+}
+
+
+
+.panel .body .left .download-comment-body .w-comments .w-comments-body .w-comments-item .w-comment-user-info .w-comment-item-footer .w-comment-item-interact {
+    flex-wrap: nowrap;
+    flex-direction: row;
+    display: flex;
+    flex-shrink: 0;
+    width: unset;
+    box-sizing: border-box;
+    height: unset;
+}
+
+
+
+.panel .body .left .download-comment-body .w-comments .w-comments-body .w-comments-item .w-comment-user-info .w-comment-item-footer .w-comment-item-interact .w-comment-item-icon {
+    margin-right: 5px;
+    cursor: pointer;
+    font-size: 18PX;
+}
+
+
+
+.panel .body .left .download-comment-body .w-comments .w-comments-body .w-comments-item .w-comment-user-info .w-comment-item-footer .w-comment-item-interact .w-comment-item-reply {
+    margin-right: 10px;
+    cursor: pointer;
+    font-family: 微软雅黑;
+    flex-direction: row;
+    word-wrap: break-word;
+    display: inline-block;
+    font-size: 16PX;
+    padding-left: 0px;
+}
+
+
+
+.panel .body .left .download-comment-body .w-comments .w-comments-body .w-comments-item .w-comment-user-info .w-comment-item-footer .w-comment-item-interact .w-comment-item-like {
+    margin-right: 0px;
+    cursor: pointer;
+    font-family: 微软雅黑;
+    flex-direction: row;
+    word-wrap: break-word;
+    display: inline-block;
+}
+
+
+
+.panel .body .left .download-comment-body .w-comments .w-comments-body .w-comments-item .w-comment-user-info .w-comment-reply-body {
+    align-items: center;
+    flex-direction: row;
+    display: none;
+    padding-right: 0px;
+    box-sizing: border-box;
+    justify-content: space-between;
+    border-top-left-radius: 0px;
+    min-height: 50px;
+    margin-right: 0px;
+    padding-bottom: 0px;
+    flex-wrap: nowrap;
+    border-bottom-left-radius: 0px;
+    flex-shrink: 0;
+    width: 100%;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+    padding-top: 0px;
+    padding-left: 0px;
+    margin-top: 0px;
+    height: unset;
+}
+
+
+
+.panel .body .left .download-comment-body .w-comments .w-comments-body .w-comments-item .w-comment-user-info .w-comment-reply-body .w-comment-reply-input {
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+    box-sizing: border-box;
+    justify-content: space-between;
+    border-top-left-radius: 0px;
+    min-height: 50px;
+    margin-right: 0px;
+    flex-wrap: nowrap;
+    border-bottom-left-radius: 0px;
+    flex-shrink: 0;
+    width: unset;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+    padding-left: 10px;
+    height: 50px;
+}
+
+
+
+.panel .body .left .download-comment-body .w-comments .w-comments-body .w-comments-item .w-comment-user-info .w-comment-reply-body .w-comment-reply-input .w-comment-input-prompt {
+    flex-direction: row;
+    word-wrap: break-word;
+    display: inline-block;
+    padding-left: 0px;
+}
+
+
+
+.panel .body .left .download-comment-body .w-comments .w-comments-body .w-comments-item .w-comment-user-info .w-comment-reply-body .w-comment-input-submit {
+    cursor: pointer;
+    background-color: #0099ff;
+    color: #fff;
+    text-align: center;
+    display: inline-block;
+    box-sizing: border-box;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    width: 70px;
+    border-bottom-right-radius: 5px;
+    line-height: 45px;
+    font-size: 16px;
+    border-top-right-radius: 5px;
+    padding-left: 0px;
+    height: 45px;
+}
+
+
+
+.panel .body .right {
+    flex-direction: column;
+    display: flex;
+    padding-right: 0px;
+    box-sizing: border-box;
+    margin-left: 0px;
+    min-height: 50px;
+    padding-bottom: 0px;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    width: 20%;
+    margin-bottom: 0px;
+    padding-top: 0px;
+    padding-left: 0px;
+    margin-top: 0px;
+    height: 100%;
+}
+
+
+
+.panel .body .right .hot-app {
+    min-height: 50px;
+    padding-bottom: 0px;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    display: flex;
+    flex-shrink: 0;
+    width: 100%;
+    box-sizing: border-box;
+    padding-top: 0px;
+    height: 100%;
+}
+
+
+
+.panel .body .right .hot-app .title {
+    white-space: nowrap;
+    flex-direction: row;
+    word-wrap: break-word;
+    display: inline-block;
+    margin-left: 0px;
+    font-family: 微软雅黑;
+    overflow: hidden;
+    padding-bottom: 0px;
+    font-size: 28PX;
+    margin-bottom: 0px;
+    text-overflow: ellipsis;
+    padding-top: 0px;
+    font-weight: 500;
+    margin-top: 0px;
+}
+
+
+
+.panel .body .right .download-item {
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+    padding-right: 0px;
+    box-sizing: border-box;
+    justify-content: flex-start;
+    border-top-left-radius: 0px;
+    min-height: 50px;
+    margin-right: 0px;
+    padding-bottom: 10px;
+    flex-wrap: nowrap;
+    border-bottom-left-radius: 0px;
+    flex-shrink: 0;
+    width: 100%;
+    border-bottom-right-radius: 0px;
+    margin-bottom: 0px;
+    border-top-right-radius: 0px;
+    padding-top: 10px;
+    padding-left: 0px;
+    margin-top: 0px;
+    height: unset;
+}
+
+
+
+.panel .body .right .download-item .download-item-num {
+    align-items: center;
+    color: #C20606;
+    text-align: center;
+    word-wrap: break-word;
+    display: inline-block;
+    padding-right: 0px;
+    line-height: 60px;
+    justify-content: center;
+    margin-right: 10px;
+    font-family: 黑体;
+    padding-bottom: 0px;
+    font-size: 18PX;
+    margin-bottom: 0px;
+    padding-top: 0px;
+    font-weight: 600;
+    margin-top: 0px;
+}
+
+
+
+.panel .body .right .download-item .download-item-img {
+    margin-right: 10px;
+    vertical-align: top;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    width: 50px;
+    margin-bottom: 0px;
+    padding-top: 0px;
+    padding-left: 0px;
+    margin-top: 0px;
+    height: 40px;
+}
+
+
+
+.panel .body .right .download-item .download-item-desc {
+    align-items: flex-start;
+    flex-direction: column;
+    display: flex;
+    padding-right: 0px;
+    box-sizing: border-box;
+    justify-content: space-between;
+    min-height: 50px;
+    margin-right: 0px;
+    padding-bottom: 0px;
+    flex-shrink: 0;
+    width: unset;
+    margin-bottom: 0px;
+    padding-top: 0px;
+    padding-left: 0px;
+    margin-top: 0px;
+    height: 100%;
+}
+
+
+
+.panel .body .right .download-item .download-item-desc .download-item-title {
+    cursor: pointer;
+    margin-right: 0px;
+    flex-direction: row;
+    display: flex;
+    text-decoration: none;
+}
+
+
+
+.panel .body .right .download-item .download-item-desc .download-item-link {
+    cursor: pointer;
+    background-color: rgba(214, 50, 34, 1);
+    color: #FFFFFF;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    display: flex;
+    padding-left: 0px;
+    text-decoration: none;
+    justify-content: center;
+    font-family: 微软雅黑;
+    padding-bottom: 0px;
+    width: unset;
+    font-size: 14PX;
+    margin-bottom: 0px;
+    padding-top: 0px;
+    margin-top: 0px;
+    height: 25px;
+    padding-right: 0px;
+}
+
+
+
+@media (max-width: 768px) {
+    .panel {
+        flex-direction: row;
+        display: flex;
+        box-sizing: border-box;
+        justify-content: center;
+        border-top-left-radius: 0px;
+        margin-left: 0px;
+        min-height: 50px;
+        margin-right: 0px;
+        padding-bottom: 0px;
+        flex-wrap: nowrap;
+        border-bottom-left-radius: 0px;
+        flex-shrink: 0;
+        width: 100%;
+        border-bottom-right-radius: 0px;
+        border-top-right-radius: 0px;
+        margin-bottom: 0px;
+        padding-top: 0px;
+        height: unset60;
+    }
+
+    .panel .body {
+        flex-direction: column;
+        display: flex;
+        padding-right: 0px;
+        box-sizing: border-box;
+        justify-content: space-between;
+        border-top-left-radius: 0px;
+        min-height: 50px;
+        margin-right: 0px;
+        padding-bottom: 20px;
+        flex-wrap: nowrap;
+        border-bottom-left-radius: 0px;
+        flex-shrink: 0;
+        width: 90%;
+        border-bottom-right-radius: 0px;
+        margin-bottom: 0px;
+        border-top-right-radius: 0px;
+        padding-top: 20px;
+        padding-left: 0px;
+        margin-top: 0px;
+        height: 100%;
+    }
+
+    .panel .body .left {
+        flex-direction: column;
+        display: flex;
+        box-sizing: border-box;
+        margin-left: 0px;
+        border-top-left-radius: 0px;
+        min-height: 50px;
+        margin-right: 0px;
+        padding-bottom: 0px;
+        flex-wrap: nowrap;
+        border-bottom-left-radius: 0px;
+        flex-shrink: 0;
+        width: 100%;
+        border-bottom-right-radius: 0px;
+        margin-bottom: 0px;
+        border-top-right-radius: 0px;
+        padding-top: 0px;
+        padding-left: 0px;
+        margin-top: 0px;
+        height: 100%;
+    }
+
+    .panel .body .left .download-header {
+        align-items: center;
+        flex-direction: row;
+        display: flex;
+        box-sizing: border-box;
+        min-height: 50px;
+        border-bottom-color: #E6E6E6;
+        margin-right: 0px;
+        padding-bottom: 20px;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+        width: 100%;
+        border-bottom-style: solid;
+        margin-bottom: 0px;
+        padding-top: 20px;
+        border-bottom-width: 1px;
+        height: 100px;
+    }
+
+    .panel .body .left .download-header .download-header-logo {
+        margin-right: 30px;
+        vertical-align: top;
+        padding-bottom: 0px;
+        border-bottom-left-radius: 0px;
+        width: 60px;
+        border-bottom-right-radius: 0px;
+        border-top-right-radius: 0px;
+        padding-top: 0px;
+        height: 50px;
+        border-top-left-radius: 0px;
+    }
+
+    .panel .body .left .download-header .download-header-title {
+        margin-right: 0px;
+        padding-bottom: 0px;
+        border-bottom-left-radius: 0px;
+        flex-direction: row;
+        word-wrap: break-word;
+        display: inline-block;
+        border-bottom-right-radius: 0px;
+        border-top-right-radius: 0px;
+        font-size: 28PX;
+        padding-top: 0px;
+        border-top-left-radius: 0px;
+        margin-left: 0px;
+    }
+
+    .panel .body .left .download-desc {
+        min-height: 50px;
+        padding-bottom: 20px;
+        flex-wrap: wrap;
+        flex-direction: row;
+        display: flex;
+        flex-shrink: 0;
+        width: unset;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+        padding-top: 20px;
+        padding-left: 0px;
+        height: unset;
+    }
+
+    .panel .body .left .download-desc .desc-item {
+        min-height: 0px;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        display: flex;
+        flex-shrink: 0;
+        width: 50%;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+        margin-top: 0px;
+        height: 20px;
+        margin-left: 0px;
+    }
+
+    .panel .body .left .download-desc .desc-item .label {
+        font-family: 微软雅黑;
+        color: #C1C1C1;
+        flex-direction: row;
+        word-wrap: break-word;
+        display: inline-block;
+        font-size: 14PX;
+        margin-bottom: 0px;
+    }
+
+    .panel .body .left .download-desc .desc-item .value {
+        font-family: 微软雅黑;
+        flex-direction: row;
+        word-wrap: break-word;
+        display: inline-block;
+        font-size: 14PX;
+        margin-bottom: 0px;
+    }
+
+    .panel .body .left .download-desc .download-btn-row {
+        flex-direction: column;
+        display: flex;
+        box-sizing: border-box;
+        justify-content: space-between;
+        margin-left: 0px;
+        min-height: 50px;
+        padding-bottom: 0px;
+        flex-shrink: 0;
+        width: 100%;
+        margin-bottom: 20px;
+        padding-top: 0px;
+        padding-left: 0px;
+        margin-top: 20px;
+        height: 100%;
+    }
+
+    .panel .body .left .download-desc .download-btn-row .download-btn {
+        cursor: pointer;
+        background-color: rgba(214, 50, 34, 1);
+        color: #fff;
+        text-align: center;
+        display: inline-block;
+        box-sizing: border-box;
+        margin-left: 0px;
+        border-top-left-radius: 25px;
+        padding-bottom: 0px;
+        border-bottom-left-radius: 25px;
+        width: 200px;
+        border-bottom-right-radius: 25px;
+        line-height: 45px;
+        font-size: 18PX;
+        margin-bottom: 0px;
+        border-top-right-radius: 25px;
+        padding-top: 0px;
+        height: 50px;
+    }
+
+    .panel .body .left .download-desc-title {
+        color: #555455;
+        flex-direction: row;
+        word-wrap: break-word;
+        display: inline-block;
+        border-top-left-radius: 0px;
+        border-bottom-color: #E6E6E6;
+        font-family: 宋体;
+        padding-bottom: 0px;
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+        border-top-right-radius: 0px;
+        font-size: 18PX;
+        margin-bottom: 0px;
+        line-height: 56px;
+        border-bottom-style: dashed;
+        padding-top: 0px;
+        border-bottom-width: 1px;
+        padding-left: 0px;
+        font-weight: 600;
+        height: 56px;
+    }
+
+    .panel .body .left .download-desc-body {
+        min-height: 50px;
+        padding-bottom: 20px;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        display: flex;
+        flex-shrink: 0;
+        width: 100%;
+        margin-bottom: 0px;
+        box-sizing: border-box;
+        padding-top: 20px;
+        margin-top: 0px;
+        height: 100%;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    .panel .body .right {
+        flex-direction: column;
+        display: flex;
+        padding-right: 0px;
+        box-sizing: border-box;
+        margin-left: 0px;
+        min-height: 50px;
+        padding-bottom: 0px;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+        width: 100%;
+        margin-bottom: 0px;
+        padding-top: 0px;
+        padding-left: 0px;
+        margin-top: 0px;
+        height: 100%;
+    }
+
+
+    .panel .body .right .hot-app .title {
+        flex-direction: row;
+        word-wrap: break-word;
+        display: inline-block;
+        margin-left: 0px;
+        font-family: 微软雅黑;
+        padding-bottom: 0px;
+        width: unset;
+        font-size: 28PX;
+        margin-bottom: 0px;
+        padding-top: 0px;
+        font-weight: 500;
+        margin-top: 0px;
+    }
+
+    .panel .body .right .download-item {
+        align-items: center;
+        flex-direction: row;
+        display: flex;
+        padding-right: 0px;
+        box-sizing: border-box;
+        justify-content: flex-start;
+        border-top-left-radius: 0px;
+        min-height: 50px;
+        margin-right: 0px;
+        padding-bottom: 10px;
+        flex-wrap: nowrap;
+        border-bottom-left-radius: 0px;
+        flex-shrink: 0;
+        width: 100%;
+        border-bottom-right-radius: 0px;
+        margin-bottom: 0px;
+        border-top-right-radius: 0px;
+        padding-top: 10px;
+        padding-left: 0px;
+        margin-top: 0px;
+        height: unset;
+    }
+
+    .panel .body .right .download-item .download-item-num {
+        align-items: center;
+        color: #C20606;
+        text-align: center;
+        word-wrap: break-word;
+        display: inline-block;
+        padding-right: 0px;
+        line-height: 60px;
+        justify-content: center;
+        margin-right: 10px;
+        font-family: 黑体;
+        padding-bottom: 0px;
+        font-size: 18PX;
+        margin-bottom: 0px;
+        padding-top: 0px;
+        font-weight: 600;
+        margin-top: 0px;
+    }
+
+    .panel .body .right .download-item .download-item-img {
+        margin-right: 10px;
+        vertical-align: top;
+        padding-right: 0px;
+        width: 50px;
+        margin-bottom: 0px;
+        padding-left: 0px;
+        margin-top: 0px;
+        height: 40px;
+    }
+
+    .panel .body .right .download-item .download-item-desc {
+        align-items: flex-start;
+        flex-direction: column;
+        display: flex;
+        padding-right: 0px;
+        box-sizing: border-box;
+        justify-content: space-between;
+        border-top-left-radius: 0px;
+        min-height: 50px;
+        margin-right: 0px;
+        padding-bottom: 0px;
+        border-bottom-left-radius: 0px;
+        flex-shrink: 0;
+        width: unset;
+        border-bottom-right-radius: 0px;
+        margin-bottom: 0px;
+        border-top-right-radius: 0px;
+        padding-top: 0px;
+        padding-left: 0px;
+        margin-top: 0px;
+        height: 100%;
+    }
+
+    .panel .body .right .download-item .download-item-desc .download-item-title {
+        cursor: pointer;
+        flex-direction: row;
+        display: flex;
+        text-decoration: none;
+    }
+
+    .panel .body .right .download-item .download-item-desc .download-item-link {
+        cursor: pointer;
+        background-color: rgba(214, 50, 34, 1);
+        color: #FFFFFF;
+        align-items: center;
+        text-align: center;
+        flex-direction: column;
+        display: flex;
+        text-decoration: none;
+        justify-content: center;
+        border-top-left-radius: 0px;
+        margin-right: 0px;
+        font-family: 微软雅黑;
+        padding-bottom: 0px;
+        border-bottom-left-radius: 0px;
+        width: unset;
+        border-bottom-right-radius: 0px;
+        font-size: 14PX;
+        margin-bottom: 0px;
+        border-top-right-radius: 0px;
+        padding-top: 0px;
+        margin-top: 0px;
+        height: 25px;
+    }
+
+
+}
+
+@media (max-width:768px) {
+    .w-header .w-body {
+        display: flex;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        width: 100% !important;
+    }
+}
+</style>

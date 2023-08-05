@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.mingsoft.quartz.dao.IJobDao">
+
+	<resultMap id="resultMap" type="net.mingsoft.quartz.entity.JobEntity">
+			<id column="id" property="id" /><!--编号 -->
+				<result column="qj_name" property="qjName" /><!--任务名称 -->
+				<result column="qj_group" property="qjGroup" /><!--任务组 -->
+				<result column="qj_status" property="qjStatus" /><!--状态 -->
+				<result column="qj_async" property="qjAsync" /><!--开启并发 -->
+				<result column="qj_target" property="qjTarget" /><!--调用目标 -->
+				<result column="qj_cron" property="qjCron" /><!--执行表达式 -->
+				<result column="create_by" property="createBy" /><!--创建人 -->
+				<result column="create_date" property="createDate" /><!--创建时间 -->
+				<result column="update_by" property="updateBy" /><!--修改人 -->
+				<result column="update_date" property="updateDate" /><!--修改时间 -->
+				<result column="del" property="del" /><!--删除标记 -->
+	</resultMap>
+
+	<!--保存-->
+	<insert id="saveEntity" useGeneratedKeys="true" keyProperty="id"
+			parameterType="net.mingsoft.quartz.entity.JobEntity" >
+		insert into quartz_job
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+				<if test="qjName != null and qjName != ''">qj_name,</if>
+				<if test="qjGroup != null and qjGroup != ''">qj_group,</if>
+				<if test="qjStatus != null">qj_status,</if>
+				<if test="qjAsync != null">qj_async,</if>
+				<if test="qjTarget != null and qjTarget != ''">qj_target,</if>
+				<if test="qjCron != null and qjCron != ''">qj_cron,</if>
+				<if test="createBy &gt; 0">create_by,</if>
+				<if test="createDate != null">create_date,</if>
+				<if test="updateBy &gt; 0">update_by,</if>
+				<if test="updateDate != null">update_date,</if>
+				<if test="del != null">del,</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+				<if test="qjName != null and qjName != ''">#{qjName},</if>
+				<if test="qjGroup != null and qjGroup != ''">#{qjGroup},</if>
+				<if test="qjStatus != null">#{qjStatus},</if>
+				<if test="qjAsync != null">#{qjAsync},</if>
+				<if test="qjTarget != null and qjTarget != ''">#{qjTarget},</if>
+				<if test="qjCron != null and qjCron != ''">#{qjCron},</if>
+				<if test="createBy &gt; 0">#{createBy},</if>
+				<if test="createDate != null">#{createDate},</if>
+				<if test="updateBy &gt; 0">#{updateBy},</if>
+				<if test="updateDate != null">#{updateDate},</if>
+				<if test="del != null">#{del},</if>
+		</trim>
+	</insert>
+
+		<!--更新-->
+		<update id="updateEntity" parameterType="net.mingsoft.quartz.entity.JobEntity">
+			update quartz_job
+			<set>
+				<if test="qjName != null and qjName != ''">qj_name=#{qjName},</if>
+				<if test="qjGroup != null and qjGroup != ''">qj_group=#{qjGroup},</if>
+				<if test="qjStatus != null">qj_status=#{qjStatus},</if>
+				<if test="qjAsync != null">qj_async=#{qjAsync},</if>
+				<if test="qjTarget != null and qjTarget != ''">qj_target=#{qjTarget},</if>
+				<if test="qjCron != null and qjCron != ''">qj_cron=#{qjCron},</if>
+				<if test="createBy &gt; 0">create_by=#{createBy},</if>
+				<if test="createDate != null">create_date=#{createDate},</if>
+				<if test="updateBy &gt; 0">update_by=#{updateBy},</if>
+				<if test="updateDate != null">update_date=#{updateDate},</if>
+				<if test="del != null">del=#{del},</if>
+			</set>
+			where id = #{id}
+		</update>
+
+		<!--根据id获取-->
+		<select id="getEntity" resultMap="resultMap" parameterType="int">
+			select * from quartz_job where id=#{id}
+		</select>
+
+		<!--根据实体获取-->
+		<select id="getByEntity" resultMap="resultMap" parameterType="net.mingsoft.quartz.entity.JobEntity">
+			select * from quartz_job
+			<where>
+				<if test="qjName != null and qjName != ''">and  qj_name like CONCAT(CONCAT('%',#{qjName}),'%')</if>
+				<if test="qjGroup != null and qjGroup != ''">and qj_group=#{qjGroup}</if>
+				<if test="qjStatus != null"> and qj_status=#{qjStatus} </if>
+				<if test="qjAsync != null"> and qj_async=#{qjAsync} </if>
+				<if test="qjTarget != null and qjTarget != ''">and qj_target=#{qjTarget}</if>
+				<if test="qjCron != null and qjCron != ''">and qj_cron=#{qjCron}</if>
+				<if test="createBy &gt; 0"> and create_by=#{createBy} </if>
+				<if test="createDate != null"> and create_date=#{createDate} </if>
+				<if test="updateBy &gt; 0"> and update_by=#{updateBy} </if>
+				<if test="updateDate != null"> and update_date=#{updateDate} </if>
+				<if test="del != null"> and del=#{del} </if>
+			</where>
+			limit 0,1
+		</select>
+
+
+		<!--删除-->
+		<delete id="deleteEntity" parameterType="int">
+			delete from quartz_job  where id=#{id}
+		</delete>
+
+		<!--批量删除-->
+		<delete id="delete" >
+			delete from quartz_job
+			<where>
+				id  in <foreach collection="ids" item="item" index="index"
+										 open="(" separator="," close=")">#{item}</foreach>
+			</where>
+		</delete>
+		<!--查询全部-->
+		<select id="queryAll" resultMap="resultMap">
+			select * from quartz_job order by id desc
+		</select>
+	<!--条件查询-->
+	<select id="query" resultMap="resultMap">
+		select * from quartz_job
+		<where>
+			<if test="qjName != null and qjName != ''"> and  qj_name like CONCAT(CONCAT('%',#{qjName}),'%')</if>
+			<if test="qjGroup != null and qjGroup != ''"> and qj_group=#{qjGroup}</if>
+			<if test="qjStatus != null"> and qj_status=#{qjStatus} </if>
+			<if test="qjAsync != null"> and qj_async=#{qjAsync} </if>
+			<if test="qjTarget != null and qjTarget != ''"> and qj_target=#{qjTarget}</if>
+			<if test="qjCron != null and qjCron != ''"> and qj_cron=#{qjCron}</if>
+			<if test="createBy &gt; 0"> and create_by=#{createBy} </if>
+			<if test="createDate != null"> and create_date=#{createDate} </if>
+			<if test="updateBy &gt; 0"> and update_by=#{updateBy} </if>
+			<if test="updateDate != null"> and update_date=#{updateDate} </if>
+			<if test="del != null"> and del=#{del} </if>
+			<include refid="net.mingsoft.base.dao.IBaseDao.sqlWhere"></include>
+		</where>
+		order by id desc
+	</select>
+
+</mapper>

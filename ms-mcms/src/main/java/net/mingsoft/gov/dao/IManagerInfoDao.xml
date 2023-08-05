@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.mingsoft.gov.dao.IManagerInfoDao">
+
+	<resultMap id="resultMap" type="net.mingsoft.gov.entity.ManagerInfoEntity">
+				<result column="SEND_TIME" property="sendTime" /><!--验证码发送时间 -->
+				<result column="MANAGER_CODE" property="managerCode" /><!--验证码 -->
+				<result column="MANAGER_PHONE" property="managerPhone" /><!--手机号 -->
+				<result column="MANAGER_ID" property="managerId" /><!--管理员id -->
+	</resultMap>
+
+	<select id="query" resultMap="resultMap">
+		SELECT * FROM MANAGER_INFO
+		<where>
+			DEL=0
+			<include refid="net.mingsoft.base.dao.IBaseDao.sqlWhere"></include>
+		</where>
+		 ORDER BY ID DESC
+	</select>
+
+</mapper>

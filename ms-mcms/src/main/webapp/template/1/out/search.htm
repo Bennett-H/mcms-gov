@@ -1,0 +1,1677 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>{ms:global.name/}</title>
+    <#include "head-file.htm" />
+    <script>
+    </script>
+</head>
+<body>
+<div id="app" v-cloak>
+
+    <#include "header.htm" />
+    <!--搜索词-start-->
+
+    <!--搜索关键词-start-->
+    <div class="w-search-keyword-warp">
+        <span class="w-search-label"> 搜索关键词：</span>
+        <span class="w-search-keyword"> {ms:search.content_title/} </span>
+    </div>
+    <!--搜索关键词-end-->
+
+    <!--搜索词-end-->
+    <!--父容器-start-->
+
+    <div class="panel">
+        <div class="body">
+            <!--若不使用es搜索仅需要全文检索则放开以下注释代码,并且注释es部分代码即可-->
+<!--            <div class="seach-list">-->
+<!--                {ms:arclist size=10 ispaging=true}-->
+<!--                <div class="search-item">-->
+<!--                    <img-->
+<!--                            title=""-->
+<!--                            alt=""-->
+<!--                            src="${global.host}/{@ms:file field.litpic/}"-->
+<!--                    />-->
+<!--                    &lt;!&ndash;列表元素右侧-start&ndash;&gt;-->
+<!--                    <div class="search-item-info">-->
+<!--                        <a href="{ms:global.url/}${field.link}"-->
+<!--                        >-->
+<!--                            ${field.title}-->
+<!--                        </a>-->
+<!--                        <span >-->
+<!--                        ${field.descrip}-->
+<!--                        </span>-->
+<!--                        &lt;!&ndash;列表元素底部-start&ndash;&gt;-->
+<!--                        <div class="search-info-more">-->
+<!--                            <span>-->
+<!--                                ${field.source}-->
+<!--                            </span>-->
+<!--                            <span class="time" >-->
+<!--                            ${field.date?string('yyyy-MM-dd')}-->
+<!--                            </span>-->
+<!--                        </div> &lt;!&ndash;列表元素底部-end&ndash;&gt;-->
+<!--                    </div> &lt;!&ndash;列表元素右侧-end&ndash;&gt;-->
+<!--                </div>-->
+<!--                {/ms:arclist}-->
+<!--            </div>-->
+            <!--左侧列表-start-->
+            <div class="seach-list">
+                <!--列表项-start-->
+                <#if search.content_title?? && search.content_title>
+                <template v-for="item in contentList">
+                    <div class="search-item">
+                        <img :src="item.litPic" />
+                        <!--列表元素右侧-start-->
+                        <div class="search-item-info">
+                            <!--标题-->
+                            <a :href="<#if isDo?? && isDo>'{ms:global.url/}/mcms/view.do?style=out&id=' + item.id<#else>'{ms:global.url/}' + item.url</#if>" v-html="item.title"></a>
+                            <!--描述-->
+                            <span v-html="item.descrip"></span>
+                            <!--列表元素底部-start-->
+                            <div class="search-info-more">
+                                <span>
+									{{ item.author }}
+								</span>
+                                <span class="time">
+									{{ item.date }}
+                                </span>
+                            </div>
+                            <!--列表元素底部-end-->
+                        </div>
+                        <!--列表元素右侧-end-->
+                    </div>
+                </template>
+                <!--列表项-end-->
+                <!--分页容器-start-->
+                <div class="search-limit-div">
+                    <el-pagination background
+                                   @current-change="handleCurrentChange"
+                                   page-size="10"
+                                   pager-count="3"
+                                   :current-page.sync="pageCur"
+                                   layout="prev, pager, next,jumper,total"
+                                   :total="contentCount">
+                    </el-pagination>
+                </div>
+                <!--分页容器-end-->
+                <#else>
+                <span style="text-align: center;display:block;font-size: 20px;color: red">搜索关键字不可以为空</span>
+                </#if>
+            </div>
+            <!--左侧列表-end-->
+            <div class="search-right">
+                <div class="hot-news">
+							<span class="hot-news-title">
+								热点头条
+							</span>
+                    <div class="hot-rank">
+                        {ms:arclist size=10 orderBy='content_sort' typeid='1458331217420750849' order='desc'}
+                        <div class="hot-rank-item">
+									<span class="rank-num">
+										${field.index}
+									</span>
+                            <a href="{ms:global.url/}${field.link}"
+                               class="news-title" >
+                                ${field.title}
+                            </a>
+                        </div>
+                        {/ms:arclist}
+                    </div>
+                </div>
+                <!--推荐列表-start-->
+                <div class="recommend-list">
+							<span class="hot-news-title">
+								推荐列表
+							</span>
+                    {ms:arclist flag='c' size=10 typeid='1458331217420750849'}
+                    <div class="recommend-item">
+                        <img
+                                src="${global.host}/{@ms:file field.litpic/}" />
+                        <div class="recommend-info">
+                            <a href="{ms:global.url/}${field.link}"
+                               class="recommend-title">
+                                ${field.title}
+                            </a>
+                            <div class="recommend-watch">
+                                <i class="iconfont icon-yan"></i>
+                                <span>
+											${field.hit}
+										</span>
+                            </div>
+                        </div>
+                    </div>
+                    {/ms:arclist}
+                </div>
+                <!--推荐列表-end-->
+            </div>
+        </div>
+    </div>
+    <!--父容器-end-->
+    <#include "footer.htm" />
+</div>
+</body>
+</html>
+<!--es搜索-->
+<script>
+    var app = new Vue({
+        el: '#app',
+        component(){
+        },
+        data: {
+            searchForm: {
+            keyword: ""
+        },
+    hotSearchKeywords: [],    //当前页数
+    pageCur: ${(page.cur)!1},
+    //每页文章条数
+    pageSize: ${(page.size)!20},
+    //页数总数
+    pageTotal: ${(page.total)!0},
+    //内容总数
+    contentCount: ${(page.rcount)!0},
+    // 搜索数据
+    contentList: []
+        },
+        watch: {
+        },
+        methods: {
+// <#if isDo?? && isDo>
+//     handleCurrentChange:function(val) {
+//         if(val==1) {
+//             location.href = "{ms:global.url/}mcms/list.do?style=out&typeid=${field.id}";
+//         } else {
+//             location.href = "{ms:global.url/}mcms/list.do?style=out&typeid=${field.id}"+"&pageNo="+this.pageCur;
+//         }
+//     },
+// <#else>
+//     handleCurrentChange:function(val) {
+//         if(val==1) {
+//             location.href = "{ms:global.url/}/${field.categoryPath}/index.html";
+//         } else {
+//             location.href = "{ms:global.url/}/${field.categoryPath}/list-" + val + ".html";
+//         }
+//     },
+// </#if>
+            handleCurrentChange:function(val) {
+                <!--es通用搜索-->
+                ms.http.post(ms.base+"/es/search.do",{
+                    docName:'文章',
+                    fields: 'title',
+                    keyword: '{ms:search.content_title/}',
+                    pageNo: val
+                }).then(res => {
+                    this.contentList = res.data.rows
+                }).catch(err => {
+                    console.log(err)
+                })
+            },
+            switchShow:function(arr){
+                var that = this
+                arr.forEach(function(x){
+                    let e = that.$el.querySelector("#key_"+x)
+                    if(e){
+                        e.style.display=getComputedStyle(e,null).display=='none'?'flex':'none'
+                    }
+                })
+            },
+            show:function(arr){
+                var that = this
+                arr.forEach(function(x){
+                    let e = that.$el.querySelector("#key_"+x)
+                    if(e){
+                        e.style.display='flex'
+                    }
+                })
+            },
+            hide:function(arr){
+                var that = this
+                arr.forEach(function(x){
+                    let e = that.$el.querySelector("#key_"+x)
+                    if(e){
+                        e.style.display='none'
+                    }
+                })
+            }
+        },
+        computed(){
+        },
+        created(){
+            <!--es通用搜索,支持高亮搜索,不使用es的情况下将下面代码全部注释即可-->
+            //ms.http.post(ms.base+"/cms/es/search/highlightSearch.do",{
+            ms.http.post(ms.base+"/es/search.do",{
+                docName:'文章',
+                fields: 'title',
+                keyword: '{ms:search.content_title/}'
+            }).then(res => {
+                this.contentCount = res.data.total;
+                var content;
+                // 由于在es环境下无法用标签获取文章相关值，在这里预先对文章图片做处理
+                for (var i = 0;i<res.data.rows.length;i++){
+                    content = res.data.rows[i];
+                    if(content.litPic){
+                        content.litPic = JSON.parse(content.litPic);
+                        if(content.litPic.length > 0 ){
+                            res.data.rows[i].litPic = content.litPic[0].url;
+                        }
+                    }
+                }
+                this.contentList = res.data.rows
+            }).catch(err => {
+                console.log(err)
+            })
+        }
+    })
+</script>
+
+<style>
+    .el-form-item__content{
+        width: 50%;
+    }
+    .w-search-keyword-warp 
+    {
+            align-items:flex-end;
+            flex-direction:row;
+            display:flex;
+            padding-right:0px;
+            box-sizing:border-box;
+            justify-content:center;
+            min-height:50px;
+            padding-bottom:0px;
+            flex-wrap:nowrap;
+            flex-shrink:0;
+            width:100%;
+            margin-bottom:0px;
+            padding-top:0px;
+            padding-left:0px;
+            height:15%;
+    }
+
+
+
+    .w-search-keyword-warp .w-search-label 
+    {
+            flex-direction:row;
+            word-wrap:break-word;
+            display:inline-block;
+            font-size:24PX;
+            margin-bottom:40px;
+    }
+
+
+
+    .w-search-keyword-warp .w-search-keyword 
+    {
+            color:#FF0000;
+            flex-direction:row;
+            word-wrap:break-word;
+            display:inline-block;
+            font-size:22PX;
+            margin-bottom:40px;
+    }
+
+
+
+    .panel 
+    {
+            min-height:50px;
+            overflow:hidden;
+            flex-wrap:nowrap;
+            flex-direction:row;
+            display:flex;
+            flex-shrink:0;
+            width:100%;
+            box-sizing:border-box;
+            justify-content:center;
+            height:unset;
+    }
+
+
+
+    .panel .body 
+    {
+            flex-direction:row;
+            display:flex;
+            padding-right:0px;
+            box-sizing:border-box;
+            justify-content:space-between;
+            min-height:50px;
+            padding-bottom:0px;
+            flex-wrap:nowrap;
+            flex-shrink:0;
+            width:1280px;
+            margin-bottom:0px;
+            padding-top:0px;
+            padding-left:0px;
+            height:100%;
+    }
+
+
+
+    .panel .body .seach-list 
+    {
+            flex-direction:column;
+            display:flex;
+            padding-right:0px;
+            box-sizing:border-box;
+            min-height:50px;
+            padding-bottom:0px;
+            flex-wrap:nowrap;
+            flex-shrink:0;
+            width:60%;
+            margin-bottom:0px;
+            padding-top:0px;
+            padding-left:0px;
+            height:100%;
+    }
+
+
+
+    .panel .body .seach-list .search-item 
+    {
+            flex-direction:row;
+            display:flex;
+            padding-right:10px;
+            box-sizing:border-box;
+            justify-content:space-between;
+            margin-left:0px;
+            min-height:50px;
+            border-bottom-color:#C1C1C1;
+            padding-bottom:10px;
+            flex-wrap:nowrap;
+            flex-shrink:0;
+            width:100%;
+            border-bottom-style:solid;
+            margin-bottom:0px;
+            padding-top:10px;
+            border-bottom-width:1px;
+            padding-left:10px;
+            height:unset;
+    }
+
+
+
+    .panel .body .seach-list .search-item img 
+    {
+            vertical-align:top;
+            padding-bottom:0px;
+            padding-right:0px;
+            width:220px;
+            padding-top:0px;
+            padding-left:0px;
+            height:130px;
+    }
+
+
+
+    .panel .body .seach-list .search-item .search-item-info 
+    {
+            flex-direction:column;
+            display:flex;
+            padding-right:0px;
+            box-sizing:border-box;
+            justify-content:space-between;
+            margin-left:0px;
+            min-height:50px;
+            padding-bottom:0px;
+            flex-wrap:nowrap;
+            flex-shrink:0;
+            width:500px;
+            padding-top:0px;
+            padding-left:0px;
+            height:130px;
+    }
+
+
+
+    .panel .body .seach-list .search-item .search-item-info a 
+    {
+            cursor:pointer;
+            flex-direction:row;
+            display:flex;
+            text-decoration:none;
+            font-size:22PX;
+            margin-top:0px;
+    }
+
+
+
+    .panel .body .seach-list .search-item .search-item-info span 
+    {
+            flex-direction:row;
+            word-wrap:break-word;
+            display:inline-block;
+    }
+
+
+
+    .panel .body .seach-list .search-item .search-item-info .search-info-more 
+    {
+            min-height:0px;
+            flex-wrap:nowrap;
+            flex-direction:row;
+            display:flex;
+            flex-shrink:0;
+            width:100%;
+            box-sizing:border-box;
+            height:unset;
+    }
+
+
+
+    .panel .body .seach-list .search-item .search-item-info .search-info-more span 
+    {
+            margin-right:0px;
+            flex-direction:row;
+            word-wrap:break-word;
+            display:inline-block;
+            margin-left:0px;
+    }
+
+
+
+    .panel .body .seach-list .search-item .search-item-info .search-info-more .time 
+    {
+            flex-direction:row;
+            word-wrap:break-word;
+            display:inline-block;
+            margin-left:10px;
+    }
+
+
+
+    .panel .body .seach-list .search-limit-div 
+    {
+            flex-direction:row;
+            display:flex;
+            padding-right:0px;
+            box-sizing:border-box;
+            justify-content:center;
+            min-height:50px;
+            padding-bottom:0px;
+            flex-wrap:nowrap;
+            flex-shrink:0;
+            width:100%;
+            padding-top:0px;
+            padding-left:0px;
+            margin-top:10px;
+            height:100%;
+    }
+
+
+
+    .panel .body .seach-list .search-limit-div .page 
+    {
+            align-items:center;
+            flex-direction:row;
+            display:flex;
+            box-sizing:border-box;
+            justify-content:center;
+            margin-left:0px;
+            border-top-left-radius:0px;
+            margin-right:0px;
+            flex-wrap:nowrap;
+            border-bottom-left-radius:0px;
+            flex-shrink:0;
+            width:unset;
+            border-bottom-right-radius:0px;
+            border-top-right-radius:0px;
+            margin-top:10px;
+            height:50px;
+    }
+
+
+
+    .panel .body .seach-list .search-limit-div .page .btn-prev 
+    {
+            background-color:flex;
+            align-items:center;
+            flex-direction:row;
+            display:flex;
+            box-sizing:border-box;
+            justify-content:center;
+            margin-left:10px;
+            border-top-left-radius:5px;
+            margin-right:10px;
+            flex-wrap:nowrap;
+            border-bottom-left-radius:5px;
+            flex-shrink:0;
+            width:40px;
+            border-bottom-right-radius:5px;
+            border-top-right-radius:5px;
+            margin-top:0px;
+            height:40px;
+    }
+
+
+
+    .panel .body .seach-list .search-limit-div .page .btn-prev span 
+    {
+            flex-direction:row;
+            word-wrap:break-word;
+            display:flex;
+            margin-top:0px;
+    }
+
+
+
+    .panel .body .seach-list .search-limit-div .page .el-page-number-active 
+    {
+            background-color:rgb(64, 158, 255);
+            align-items:center;
+            flex-direction:row;
+            display:flex;
+            box-sizing:border-box;
+            justify-content:center;
+            margin-left:10px;
+            border-top-left-radius:5px;
+            margin-right:10px;
+            flex-wrap:nowrap;
+            border-bottom-left-radius:5px;
+            flex-shrink:0;
+            width:40px;
+            border-bottom-right-radius:5px;
+            border-top-right-radius:5px;
+            margin-top:0px;
+            height:40px;
+    }
+
+
+
+    .panel .body .seach-list .search-limit-div .page .el-page-number-active span 
+    {
+            margin-right:0px;
+            color:#FFFFFF;
+            flex-direction:row;
+            word-wrap:break-word;
+            display:flex;
+            font-weight:600;
+            margin-top:0px;
+            margin-left:0px;
+    }
+
+
+
+    .panel .body .seach-list .search-limit-div .page .el-page-number 
+    {
+            background-color:rgba(244, 244, 245, 1);
+            align-items:center;
+            flex-direction:row;
+            display:flex;
+            box-sizing:border-box;
+            justify-content:center;
+            margin-left:10px;
+            border-top-left-radius:5px;
+            margin-right:10px;
+            flex-wrap:nowrap;
+            border-bottom-left-radius:5px;
+            flex-shrink:0;
+            width:40px;
+            border-bottom-right-radius:5px;
+            border-top-right-radius:5px;
+            margin-top:0px;
+            height:40px;
+    }
+
+
+
+    .panel .body .seach-list .search-limit-div .page .el-page-number span 
+    {
+            flex-direction:row;
+            word-wrap:break-word;
+            display:flex;
+            font-weight:600;
+            margin-top:0px;
+    }
+
+
+
+    .panel .body .seach-list .search-limit-div .page .btn-next 
+    {
+            background-color:rgba(244, 244, 245, 1);
+            align-items:center;
+            flex-direction:row;
+            display:flex;
+            box-sizing:border-box;
+            justify-content:center;
+            margin-left:10px;
+            border-top-left-radius:5px;
+            margin-right:10px;
+            flex-wrap:nowrap;
+            border-bottom-left-radius:5px;
+            flex-shrink:0;
+            width:40px;
+            border-bottom-right-radius:5px;
+            border-top-right-radius:5px;
+            margin-top:0px;
+            height:40px;
+    }
+
+
+
+    .panel .body .seach-list .search-limit-div .page .btn-next span 
+    {
+            margin-right:0px;
+            align-items:center;
+            flex-direction:row;
+            word-wrap:break-word;
+            display:flex;
+            margin-top:0px;
+            justify-content:center;
+            margin-left:0px;
+    }
+
+
+
+    .panel .body .seach-list .search-limit-div .page .jumper 
+    {
+            min-height:50px;
+            align-items:center;
+            flex-wrap:nowrap;
+            flex-direction:row;
+            display:flex;
+            flex-shrink:0;
+            width:unset;
+            box-sizing:border-box;
+            justify-content:center;
+            height:100%;
+    }
+
+
+
+    .panel .body .seach-list .search-limit-div .page .jumper span 
+    {
+            margin-right:0px;
+            color:#606266;
+            flex-direction:row;
+            word-wrap:break-word;
+            display:flex;
+            font-size:14PX;
+            margin-top:0px;
+            margin-left:0px;
+    }
+
+
+
+    .panel .body .seach-list .search-limit-div .page .jumper div 
+    {
+            box-sizing:border-box;
+            border-right-style:solid;
+            border-top-color:#DCDFE6;
+            margin-right:5px;
+            border-bottom-color:#DCDFE6;
+            border-top-style:solid;
+            flex-wrap:nowrap;
+            border-left-width:1px;
+            border-top-width:1px;
+            border-right-width:1px;
+            flex-shrink:0;
+            border-bottom-right-radius:3px;
+            border-bottom-style:solid;
+            border-right-color:#DCDFE6;
+            border-top-right-radius:3px;
+            border-bottom-width:1px;
+            height:25px;
+            border-left-color:#DCDFE6;
+            align-items:center;
+            flex-direction:row;
+            display:flex;
+            border-left-style:solid;
+            justify-content:center;
+            margin-left:5px;
+            border-top-left-radius:3px;
+            border-bottom-left-radius:3px;
+            width:50px;
+            margin-top:0px;
+    }
+
+
+
+    .panel .body .seach-list .search-limit-div .page .jumper div span 
+    {
+            margin-right:0px;
+            color:#606266;
+            flex-direction:row;
+            word-wrap:break-word;
+            display:flex;
+            font-size:14PX;
+            margin-top:0px;
+            margin-left:0px;
+    }
+
+
+
+    .panel .body .seach-list .search-limit-div .page .total 
+    {
+            min-height:50px;
+            align-items:center;
+            flex-wrap:nowrap;
+            flex-direction:row;
+            display:flex;
+            flex-shrink:0;
+            width:unset;
+            box-sizing:border-box;
+            height:100%;
+            margin-left:0px;
+    }
+
+
+
+    .panel .body .seach-list .search-limit-div .page .total span 
+    {
+            margin-right:5px;
+            color:#606266;
+            flex-direction:row;
+            word-wrap:break-word;
+            display:flex;
+            font-size:14PX;
+            margin-top:0px;
+            margin-left:10px;
+    }
+
+
+
+    .panel .body .search-right 
+    {
+            flex-direction:column;
+            display:flex;
+            padding-right:0px;
+            box-sizing:border-box;
+            min-height:50px;
+            margin-right:0px;
+            padding-bottom:0px;
+            flex-wrap:nowrap;
+            flex-shrink:0;
+            width:35%;
+            margin-bottom:0px;
+            padding-top:0px;
+            padding-left:0px;
+            height:100%;
+    }
+
+
+
+    .panel .body .search-right .hot-news 
+    {
+            min-height:50px;
+            flex-wrap:nowrap;
+            flex-direction:column;
+            display:flex;
+            flex-shrink:0;
+            width:100%;
+            margin-bottom:20px;
+            box-sizing:border-box;
+            height:unset;
+    }
+
+
+
+    .panel .body .search-right .hot-news .hot-news-title 
+    {
+            border-bottom-color:#C1C1C1;
+            margin-right:0px;
+            word-wrap:break-word;
+            display:inline-block;
+            border-bottom-style:solid;
+            font-size:18PX;
+            margin-bottom:20px;
+            position:relative;
+            border-bottom-width:1px;
+            font-weight:600;
+            height:35px;
+    }
+    .hot-news-title::before {
+    content:"";
+    display:block;
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:70px;
+    height:2px;
+    background-color:rgb(64,158,255);
+}
+
+
+
+    .panel .body .search-right .hot-news .hot-rank 
+    {
+            min-height:50px;
+            margin-right:0px;
+            flex-wrap:nowrap;
+            flex-direction:column;
+            display:flex;
+            flex-shrink:0;
+            width:100%;
+            box-sizing:border-box;
+            margin-bottom:0px;
+            height:unset;
+    }
+
+
+
+    .panel .body .search-right .hot-news .hot-rank .hot-rank-item 
+    {
+            min-height:0px;
+            flex-wrap:nowrap;
+            flex-direction:row;
+            display:flex;
+            flex-shrink:0;
+            width:100%;
+            margin-bottom:10px;
+            box-sizing:border-box;
+            height:unset;
+    }
+
+
+
+    .panel .body .search-right .hot-news .hot-rank .hot-rank-item .rank-num 
+    {
+            margin-right:10px;
+            font-family:宋体;
+            flex-direction:row;
+            word-wrap:break-word;
+            display:inline-block;
+            font-size:20PX;
+            margin-bottom:0px;
+            font-weight:600;
+    }
+
+
+
+    .panel .body .search-right .hot-news .hot-rank .hot-rank-item .news-title 
+    {
+            cursor:pointer;
+            margin-right:0px;
+            overflow:hidden;
+            white-space:nowrap;
+            flex-direction:row;
+            display:flex;
+            text-decoration:none;
+            margin-bottom:0px;
+            text-overflow:ellipsis;
+    }
+
+
+
+    .panel .body .search-right .recommend-list 
+    {
+            flex-direction:column;
+            display:flex;
+            padding-right:0px;
+            box-sizing:border-box;
+            border-top-left-radius:0px;
+            min-height:50px;
+            margin-right:0px;
+            padding-bottom:0px;
+            flex-wrap:nowrap;
+            border-bottom-left-radius:0px;
+            flex-shrink:0;
+            width:100%;
+            border-bottom-right-radius:0px;
+            margin-bottom:0px;
+            border-top-right-radius:0px;
+            padding-top:0px;
+            padding-left:0px;
+            margin-top:0px;
+            height:unset;
+    }
+
+
+
+    .panel .body .search-right .recommend-list .hot-news-title 
+    {
+            border-bottom-color:#C1C1C1;
+            margin-right:0px;
+            padding-bottom:5px;
+            word-wrap:break-word;
+            display:inline-block;
+            border-bottom-style:solid;
+            font-size:18PX;
+            margin-bottom:20px;
+            position:relative;
+            border-bottom-width:1px;
+            height:unset;
+    }
+    .hot-news-title::before {
+    content:"";
+    display:block;
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:70px;
+    height:2px;
+    background-color:rgb(64,158,255);
+}
+
+
+
+    .panel .body .search-right .recommend-list .recommend-item 
+    {
+            min-height:50px;
+            flex-direction:row;
+            display:flex;
+            flex-shrink:0;
+            width:100%;
+            box-sizing:border-box;
+            margin-bottom:10px;
+            height:100px;
+    }
+
+
+
+    .panel .body .search-right .recommend-list .recommend-item img 
+    {
+            margin-right:16px;
+            vertical-align:top;
+            flex-shrink:0;
+            border-bottom-left-radius:5px;
+            width:160px;
+            border-bottom-right-radius:5px;
+            border-top-right-radius:5px;
+            margin-bottom:0px;
+            height:100px;
+            border-top-left-radius:5px;
+    }
+
+
+
+    .panel .body .search-right .recommend-list .recommend-item .recommend-info 
+    {
+            min-height:50px;
+            margin-right:0px;
+            flex-direction:column;
+            display:flex;
+            flex-shrink:0;
+            width:270px;
+            box-sizing:border-box;
+            margin-bottom:0px;
+            margin-top:0px;
+            height:100px;
+            margin-left:0px;
+    }
+
+
+
+    .panel .body .search-right .recommend-list .recommend-item .recommend-info .recommend-title 
+    {
+            cursor:pointer;
+            word-wrap:break-word;
+            white-space:nowrap;
+            white-space:wrap;
+            display:flex;
+            padding-right:0px;
+            text-decoration:none;
+            margin-right:0px;
+            overflow:hidden;
+            padding-bottom:0px;
+            width:100%;
+            margin-bottom:0px;
+            text-overflow:ellipsis;
+            padding-top:0px;
+            padding-left:0px;
+            height:unset;
+    }
+
+
+
+    .panel .body .search-right .recommend-list .recommend-item .recommend-info .recommend-watch 
+    {
+            min-height:0px;
+            flex-wrap:nowrap;
+            flex-direction:row;
+            display:flex;
+            flex-shrink:0;
+            width:100%;
+            box-sizing:border-box;
+            margin-bottom:0px;
+            margin-top:10px;
+            height:unset;
+    }
+
+
+
+    .panel .body .search-right .recommend-list .recommend-item .recommend-info .recommend-watch i 
+    {
+            width:unset;
+    }
+
+
+
+    .panel .body .search-right .recommend-list .recommend-item .recommend-info .recommend-watch span 
+    {
+            font-family:微软雅黑;
+            flex-direction:row;
+            word-wrap:break-word;
+            display:inline-block;
+            width:unset;
+            margin-bottom:0px;
+            margin-left:5px;
+    }
+
+
+
+@media (max-width: 768px){
+        .w-search-keyword-warp 
+        {
+                min-height:50px;
+                align-items:flex-end;
+                flex-wrap:nowrap;
+                flex-direction:row;
+                display:flex;
+                flex-shrink:0;
+                width:100%;
+                box-sizing:border-box;
+                margin-bottom:0px;
+                justify-content:center;
+                height:15%;
+        }
+        
+        .w-search-keyword-warp .w-search-label 
+        {
+                flex-direction:row;
+                word-wrap:break-word;
+                display:inline-block;
+                font-size:24PX;
+        }
+        
+        .w-search-keyword-warp .w-search-keyword 
+        {
+                color:#FF0000;
+                flex-direction:row;
+                word-wrap:break-word;
+                display:inline-block;
+                font-size:22PX;
+        }
+        
+        .panel 
+        {
+                min-height:50px;
+                overflow:hidden;
+                flex-wrap:nowrap;
+                flex-direction:row;
+                display:flex;
+                flex-shrink:0;
+                width:100%;
+                box-sizing:border-box;
+                justify-content:center;
+                height:unset;
+        }
+        
+        .panel .body 
+        {
+                align-items:center;
+                flex-direction:column;
+                display:flex;
+                padding-right:0px;
+                box-sizing:border-box;
+                min-height:50px;
+                padding-bottom:0px;
+                flex-wrap:nowrap;
+                flex-shrink:0;
+                width:100%;
+                padding-top:0px;
+                padding-left:0px;
+                height:unset;
+        }
+        
+        .panel .body .seach-list 
+        {
+                flex-direction:column;
+                display:flex;
+                padding-right:0px;
+                box-sizing:border-box;
+                min-height:50px;
+                padding-bottom:0px;
+                flex-wrap:nowrap;
+                flex-shrink:0;
+                width:100%;
+                margin-bottom:20px;
+                padding-top:0px;
+                padding-left:0px;
+                height:unset;
+        }
+        
+        .panel .body .seach-list .search-item 
+        {
+                flex-direction:row;
+                display:flex;
+                padding-right:10px;
+                box-sizing:border-box;
+                justify-content:space-between;
+                margin-left:0px;
+                min-height:50px;
+                border-bottom-color:#C1C1C1;
+                padding-bottom:10px;
+                flex-wrap:nowrap;
+                flex-shrink:0;
+                width:100%;
+                border-bottom-style:solid;
+                padding-top:10px;
+                border-bottom-width:1px;
+                padding-left:10px;
+                height:unset;
+        }
+        
+        .panel .body .seach-list .search-item img 
+        {
+                vertical-align:top;
+                padding-bottom:0px;
+                padding-right:0px;
+                width:40%;
+                padding-top:0px;
+                padding-left:0px;
+                height:130px;
+        }
+        
+        .panel .body .seach-list .search-item .search-item-info 
+        {
+                flex-direction:column;
+                display:flex;
+                padding-right:0px;
+                box-sizing:border-box;
+                justify-content:space-between;
+                min-height:50px;
+                padding-bottom:0px;
+                flex-wrap:nowrap;
+                flex-shrink:0;
+                width:60%;
+                padding-top:0px;
+                padding-left:0px;
+                height:130px;
+        }
+        
+        .panel .body .seach-list .search-item .search-item-info a 
+        {
+                cursor:pointer;
+                flex-direction:row;
+                display:flex;
+                text-decoration:none;
+        }
+        
+        .panel .body .seach-list .search-item .search-item-info span 
+        {
+                flex-direction:row;
+                word-wrap:break-word;
+                display:inline-block;
+        }
+        
+        .panel .body .seach-list .search-item .search-item-info .search-info-more 
+        {
+                min-height:0px;
+                flex-wrap:nowrap;
+                flex-direction:row;
+                display:flex;
+                flex-shrink:0;
+                width:100%;
+                box-sizing:border-box;
+                height:unset;
+        }
+        
+        .panel .body .seach-list .search-item .search-item-info .search-info-more span 
+        {
+                margin-right:0px;
+                flex-direction:row;
+                word-wrap:break-word;
+                display:inline-block;
+        }
+        
+        .panel .body .seach-list .search-item .search-item-info .search-info-more .time 
+        {
+                flex-direction:row;
+                word-wrap:break-word;
+                display:inline-block;
+                margin-left:10px;
+        }
+        
+        
+        .panel .body .seach-list .search-limit-div .page 
+        {
+                margin-right:0px;
+                flex-wrap:wrap;
+                border-bottom-left-radius:0px;
+                flex-direction:row;
+                display:flex;
+                width:100%;
+                border-bottom-right-radius:0px;
+                border-top-right-radius:0px;
+                justify-content:flex-start;
+                height:100%;
+                margin-left:0px;
+                border-top-left-radius:0px;
+        }
+        
+        .panel .body .seach-list .search-limit-div .page .btn-prev 
+        {
+                background-color:flex;
+                align-items:center;
+                flex-direction:row;
+                display:flex;
+                box-sizing:border-box;
+                justify-content:center;
+                margin-left:10px;
+                border-top-left-radius:5px;
+                margin-right:10px;
+                flex-wrap:nowrap;
+                border-bottom-left-radius:5px;
+                flex-shrink:0;
+                width:40px;
+                border-bottom-right-radius:5px;
+                border-top-right-radius:5px;
+                margin-top:0px;
+                height:40px;
+        }
+        
+        .panel .body .seach-list .search-limit-div .page .btn-prev span 
+        {
+                flex-direction:row;
+                word-wrap:break-word;
+                display:flex;
+                margin-top:0px;
+        }
+        
+        .panel .body .seach-list .search-limit-div .page .el-page-number-active 
+        {
+                background-color:rgb(64, 158, 255);
+                align-items:center;
+                flex-direction:row;
+                display:flex;
+                box-sizing:border-box;
+                justify-content:center;
+                margin-left:10px;
+                border-top-left-radius:5px;
+                margin-right:10px;
+                flex-wrap:nowrap;
+                border-bottom-left-radius:5px;
+                flex-shrink:0;
+                width:40px;
+                border-bottom-right-radius:5px;
+                border-top-right-radius:5px;
+                margin-top:0px;
+                height:40px;
+        }
+        
+        .panel .body .seach-list .search-limit-div .page .el-page-number-active span 
+        {
+                margin-right:0px;
+                color:#FFFFFF;
+                flex-direction:row;
+                word-wrap:break-word;
+                display:flex;
+                font-weight:600;
+                margin-top:0px;
+                margin-left:0px;
+        }
+        
+        .panel .body .seach-list .search-limit-div .page .el-page-number 
+        {
+                background-color:rgba(244, 244, 245, 1);
+                align-items:center;
+                flex-direction:row;
+                display:flex;
+                box-sizing:border-box;
+                justify-content:center;
+                margin-left:10px;
+                border-top-left-radius:5px;
+                margin-right:10px;
+                flex-wrap:nowrap;
+                border-bottom-left-radius:5px;
+                flex-shrink:0;
+                width:40px;
+                border-bottom-right-radius:5px;
+                border-top-right-radius:5px;
+                margin-top:0px;
+                height:40px;
+        }
+        
+        .panel .body .seach-list .search-limit-div .page .el-page-number span 
+        {
+                flex-direction:row;
+                word-wrap:break-word;
+                display:flex;
+                font-weight:600;
+                margin-top:0px;
+        }
+        
+        .panel .body .seach-list .search-limit-div .page .btn-next 
+        {
+                background-color:rgba(244, 244, 245, 1);
+                align-items:center;
+                flex-direction:row;
+                display:flex;
+                box-sizing:border-box;
+                justify-content:center;
+                margin-left:10px;
+                border-top-left-radius:5px;
+                margin-right:10px;
+                flex-wrap:nowrap;
+                border-bottom-left-radius:5px;
+                flex-shrink:0;
+                width:40px;
+                border-bottom-right-radius:5px;
+                border-top-right-radius:5px;
+                margin-top:0px;
+                height:40px;
+        }
+        
+        .panel .body .seach-list .search-limit-div .page .btn-next span 
+        {
+                margin-right:0px;
+                align-items:center;
+                flex-direction:row;
+                word-wrap:break-word;
+                display:flex;
+                margin-top:0px;
+                justify-content:center;
+                margin-left:0px;
+        }
+        
+        .panel .body .seach-list .search-limit-div .page .jumper 
+        {
+                min-height:50px;
+                align-items:center;
+                flex-wrap:nowrap;
+                flex-direction:row;
+                display:flex;
+                flex-shrink:0;
+                width:unset;
+                box-sizing:border-box;
+                justify-content:center;
+                height:100%;
+        }
+        
+        .panel .body .seach-list .search-limit-div .page .jumper span 
+        {
+                color:#606266;
+                flex-direction:row;
+                word-wrap:break-word;
+                display:flex;
+                font-size:14PX;
+                margin-top:0px;
+                margin-left:0px;
+        }
+        
+        .panel .body .seach-list .search-limit-div .page .jumper div 
+        {
+                box-sizing:border-box;
+                border-right-style:solid;
+                border-top-color:#DCDFE6;
+                margin-right:5px;
+                border-bottom-color:#DCDFE6;
+                border-top-style:solid;
+                flex-wrap:nowrap;
+                border-left-width:1px;
+                border-top-width:1px;
+                border-right-width:1px;
+                flex-shrink:0;
+                border-bottom-right-radius:3px;
+                border-bottom-style:solid;
+                border-right-color:#DCDFE6;
+                border-top-right-radius:3px;
+                border-bottom-width:1px;
+                height:25px;
+                border-left-color:#DCDFE6;
+                align-items:center;
+                flex-direction:row;
+                display:flex;
+                border-left-style:solid;
+                justify-content:center;
+                margin-left:5px;
+                border-top-left-radius:3px;
+                border-bottom-left-radius:3px;
+                width:50px;
+                margin-top:0px;
+        }
+        
+        .panel .body .seach-list .search-limit-div .page .jumper div span 
+        {
+                color:#606266;
+                flex-direction:row;
+                word-wrap:break-word;
+                display:flex;
+                font-size:14PX;
+                margin-top:0px;
+                margin-left:0px;
+        }
+        
+        .panel .body .seach-list .search-limit-div .page .total 
+        {
+                min-height:50px;
+                align-items:center;
+                flex-wrap:nowrap;
+                flex-direction:row;
+                display:flex;
+                flex-shrink:0;
+                width:unset;
+                box-sizing:border-box;
+                height:100%;
+                margin-left:0px;
+        }
+        
+        .panel .body .seach-list .search-limit-div .page .total span 
+        {
+                margin-right:5px;
+                color:#606266;
+                flex-direction:row;
+                word-wrap:break-word;
+                display:flex;
+                font-size:14PX;
+                margin-top:0px;
+                margin-left:10px;
+        }
+        
+        .panel .body .search-right 
+        {
+                flex-direction:column;
+                display:flex;
+                padding-right:0px;
+                box-sizing:border-box;
+                min-height:50px;
+                margin-right:0px;
+                padding-bottom:0px;
+                flex-wrap:nowrap;
+                flex-shrink:0;
+                width:100%;
+                margin-bottom:0px;
+                padding-top:0px;
+                padding-left:0px;
+                height:unset;
+        }
+        
+        .panel .body .search-right .hot-news 
+        {
+                min-height:50px;
+                flex-wrap:nowrap;
+                flex-direction:column;
+                display:flex;
+                flex-shrink:0;
+                width:100%;
+                margin-bottom:20px;
+                box-sizing:border-box;
+                height:unset;
+        }
+        
+        .panel .body .search-right .hot-news .hot-news-title 
+        {
+                border-bottom-color:#C1C1C1;
+                margin-right:0px;
+                word-wrap:break-word;
+                display:inline-block;
+                border-bottom-style:solid;
+                font-size:18PX;
+                margin-bottom:20px;
+                position:relative;
+                border-bottom-width:1px;
+                font-weight:600;
+                height:35px;
+        }
+        
+        .panel .body .search-right .hot-news .hot-rank 
+        {
+                min-height:50px;
+                margin-right:0px;
+                flex-wrap:nowrap;
+                flex-direction:column;
+                display:flex;
+                flex-shrink:0;
+                width:100%;
+                box-sizing:border-box;
+                height:unset;
+        }
+        
+        .panel .body .search-right .hot-news .hot-rank .hot-rank-item 
+        {
+                min-height:0px;
+                flex-wrap:nowrap;
+                flex-direction:row;
+                display:flex;
+                flex-shrink:0;
+                width:100%;
+                margin-bottom:10px;
+                box-sizing:border-box;
+                height:unset;
+        }
+        
+        .panel .body .search-right .hot-news .hot-rank .hot-rank-item .rank-num 
+        {
+                margin-right:10px;
+                font-family:宋体;
+                flex-direction:row;
+                word-wrap:break-word;
+                display:inline-block;
+                font-size:20PX;
+                font-weight:600;
+        }
+        
+        .panel .body .search-right .hot-news .hot-rank .hot-rank-item .news-title 
+        {
+                cursor:pointer;
+                overflow:hidden;
+                white-space:nowrap;
+                flex-direction:row;
+                display:flex;
+                text-decoration:none;
+                margin-bottom:0px;
+                text-overflow:ellipsis;
+        }
+        
+        .panel .body .search-right .recommend-list 
+        {
+                flex-direction:column;
+                display:flex;
+                box-sizing:border-box;
+                border-top-left-radius:0px;
+                min-height:50px;
+                margin-right:0px;
+                flex-wrap:nowrap;
+                border-bottom-left-radius:0px;
+                flex-shrink:0;
+                width:100%;
+                border-bottom-right-radius:0px;
+                margin-bottom:0px;
+                border-top-right-radius:0px;
+                height:unset;
+        }
+        
+        .panel .body .search-right .recommend-list .hot-news-title 
+        {
+                border-bottom-color:#C1C1C1;
+                margin-right:0px;
+                word-wrap:break-word;
+                display:inline-block;
+                border-bottom-style:solid;
+                font-size:18PX;
+                margin-bottom:20px;
+                position:relative;
+                border-bottom-width:1px;
+                height:unset;
+        }
+        
+        .panel .body .search-right .recommend-list .recommend-item 
+        {
+                min-height:50px;
+                flex-direction:row;
+                display:flex;
+                flex-shrink:0;
+                width:100%;
+                box-sizing:border-box;
+                margin-bottom:10px;
+                height:100px;
+        }
+        
+        .panel .body .search-right .recommend-list .recommend-item img 
+        {
+                margin-right:16px;
+                vertical-align:top;
+                flex-shrink:0;
+                border-bottom-left-radius:5px;
+                width:160px;
+                border-bottom-right-radius:5px;
+                border-top-right-radius:5px;
+                height:100px;
+                border-top-left-radius:5px;
+        }
+        
+        .panel .body .search-right .recommend-list .recommend-item .recommend-info 
+        {
+                min-height:50px;
+                margin-right:0px;
+                flex-direction:column;
+                display:flex;
+                flex-shrink:0;
+                width:50%;
+                box-sizing:border-box;
+                margin-bottom:0px;
+                height:100px;
+        }
+        
+        .panel .body .search-right .recommend-list .recommend-item .recommend-info .recommend-title 
+        {
+                cursor:pointer;
+                word-wrap:break-word;
+                overflow:hidden;
+                white-space:nowrap;
+                white-space:wrap;
+                display:flex;
+                width:100%;
+                text-decoration:none;
+                text-overflow:ellipsis;
+                height:unset;
+        }
+        
+        .panel .body .search-right .recommend-list .recommend-item .recommend-info .recommend-watch 
+        {
+                min-height:0px;
+                flex-wrap:nowrap;
+                flex-direction:row;
+                display:flex;
+                flex-shrink:0;
+                width:100%;
+                box-sizing:border-box;
+                height:unset;
+        }
+        
+        .panel .body .search-right .recommend-list .recommend-item .recommend-info .recommend-watch i 
+        {
+                width:unset;
+        }
+        
+        .panel .body .search-right .recommend-list .recommend-item .recommend-info .recommend-watch span 
+        {
+                font-family:微软雅黑;
+                flex-direction:row;
+                word-wrap:break-word;
+                display:inline-block;
+                width:unset;
+        }
+        
+
+}@media (max-width:768px) {
+.w-header .w-body {
+display:flex;
+flex-direction:row !important;
+justify-content:space-between !important;
+width:100% !important;
+}
+}.el-pagination.is-background .el-pager li:not(.disabled).active {
+background-color: ;
+}</style>

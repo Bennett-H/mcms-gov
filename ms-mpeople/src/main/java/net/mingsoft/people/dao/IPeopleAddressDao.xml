@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 用户信息持久层继承IBaseDao -->
+<mapper namespace="net.mingsoft.people.dao.IPeopleAddressDao">
+	<!-- 表字段开始-->
+	<sql id="column_list">
+	 	id,PEOPLE_ID,PA_CONSIGNEE_NAME,PA_PROVINCE,PA_CITY,PA_DISTRICT,
+	 	PA_ADDRESS,PA_MAIL,PA_PHONE,PA_DEFAULT
+	</sql>
+
+	<!-- 表字段结束 -->
+
+	<!-- 将实体属性与表字段对接开始 -->
+	<resultMap  id="resultMap" type="net.mingsoft.people.entity.PeopleAddressEntity">
+		<id column="id" property="id"/><!-- 将实体的ID属性与表的ID字段对接 -->
+		<result column="people_id" property="peopleId"/><!--对应用户基础信息拓展表的id -->
+		<result column="pa_consignee_name" property="peopleAddressConsigneeName"/><!--收货人姓名 -->
+		<result column="pa_province_id" property="peopleAddressProvinceId"/><!--收货人所在的省 -->
+		<result column="pa_province" property="peopleAddressProvince"/><!--收货人所在的省 -->
+		<result column="pa_city_id" property="peopleAddressCityId"/><!--收货人所在的市 -->
+		<result column="pa_city" property="peopleAddressCity"/><!--收货人所在的市 -->
+		<result column="pa_district_id" property="peopleAddressDistrictId"/><!--收货人所在区 -->
+		<result column="pa_district" property="peopleAddressDistrict"/><!--收货人所在区 -->
+		<result column="pa_street_id" property="peopleAddressStreetId"/><!--街道 -->
+		<result column="pa_street" property="peopleAddressStreet"/><!--街道 -->
+		<result column="pa_address" property="peopleAddressAddress"/><!--收货人的详细收货地址-->
+		<result column="pa_mail" property="peopleAddressMail"/><!--收货人邮箱-->
+		<result column="pa_phone" property="peopleAddressPhone"/><!--收货人手机-->
+		<result column="pa_default" property="peopleAddressDefault"/><!--是否是收货人最终收货地址。1代表是，0代表不是，默认为0-->
+	</resultMap>
+	<!-- 将实体属性与表字段对接结束-->
+
+	<!-- 新增用户收货地址开始 -->
+	<insert id="saveEntity" useGeneratedKeys="true"  keyProperty="id" parameterType="net.mingsoft.base.entity.BaseEntity">
+		insert into people_address
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="peopleId != null">people_id,</if>
+			<if test="peopleAddressConsigneeName != null">pa_consignee_name,</if>
+			<if test="peopleAddressProvince != null">pa_province,</if>
+			<if test="peopleAddressProvinceId != null">pa_province_id,</if>
+			<if test="peopleAddressCityId != null">pa_city_id,</if>
+			<if test="peopleAddressCity != null">pa_city,</if>
+			<if test="peopleAddressDistrictId != null">pa_district_id,</if>
+			<if test="peopleAddressDistrict != null">pa_district,</if>
+			<if test="peopleAddressAddress != null">pa_address,</if>
+			<if test="peopleAddressStreetId != null">pa_street_id,</if>
+			<if test="peopleAddressStreet != null">pa_street,</if>
+			<if test="peopleAddressMail != null">pa_mail,</if>
+			<if test="peopleAddressPhone != null">pa_phone,</if>
+			<if test="peopleAddressDefault != null">pa_default,</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="peopleId != null">#{peopleId},</if>
+			<if test="peopleAddressConsigneeName != null">#{peopleAddressConsigneeName},</if>
+			<if test="peopleAddressProvince != null">#{peopleAddressProvince},</if>
+			<if test="peopleAddressProvinceId != null">#{peopleAddressProvinceId},</if>
+			<if test="peopleAddressCityId != null">#{peopleAddressCityId},</if>
+			<if test="peopleAddressCity != null">#{peopleAddressCity},</if>
+			<if test="peopleAddressDistrictId != null">#{peopleAddressDistrictId},</if>
+			<if test="peopleAddressDistrict != null">#{peopleAddressDistrict},</if>
+			<if test="peopleAddressAddress != null">#{peopleAddressAddress},</if>
+			<if test="peopleAddressStreetId != null">#{peopleAddressStreetId},</if>
+			<if test="peopleAddressStreet != null">#{peopleAddressStreet},</if>
+			<if test="peopleAddressMail != null">#{peopleAddressMail},</if>
+			<if test="peopleAddressPhone != null">#{peopleAddressPhone},</if>
+			<if test="peopleAddressDefault != null">#{peopleAddressDefault},</if>
+		</trim>
+	</insert>
+	<!-- 新增用户收货地址结束 -->
+
+	<!-- 更新用户收货地址开始 -->
+	<update id="updateEntity" parameterType="net.mingsoft.people.entity.PeopleAddressEntity">
+		UPDATE people_address
+		SET pa_province = "",
+			pa_province_id = NULL,
+			pa_city = "",
+			pa_city_id = NULL,
+			pa_district = "",
+			pa_district_id = NULL
+		where
+		id = #{id} and people_id=#{peopleId};
+		update people_address
+		<set>
+			<if test="peopleAddressConsigneeName != null">pa_consignee_name=#{peopleAddressConsigneeName},</if>
+			<if test="peopleAddressProvince != null">pa_province=#{peopleAddressProvince},</if>
+			<if test="peopleAddressProvinceId != null">pa_province_id=#{peopleAddressProvinceId},</if>
+			<if test="peopleAddressCity != null">pa_city=#{peopleAddressCity},</if>
+			<if test="peopleAddressCityId != null">pa_city_id=#{peopleAddressCityId},</if>
+			<if test="peopleAddressDistrict != null">pa_district=#{peopleAddressDistrict},</if>
+			<if test="peopleAddressDistrictId != null">pa_district_id=#{peopleAddressDistrictId},</if>
+			<if test="peopleAddressAddress != null">pa_address=#{peopleAddressAddress},</if>
+			<if test="peopleAddressStreet != null">pa_street=#{peopleAddressStreet},</if>
+			<if test="peopleAddressStreetId != null">pa_street_id=#{peopleAddressStreetId},</if>
+			<if test="peopleAddressMail != null">pa_mail=#{peopleAddressMail},</if>
+			<if test="peopleAddressPhone != null">pa_phone=#{peopleAddressPhone},</if>
+			<if test="peopleAddressDefault != null">pa_default=#{peopleAddressDefault},</if>
+		</set>
+		where id = #{id} and people_id=#{peopleId}
+	</update>
+	<update id="setDefault" parameterType="net.mingsoft.people.entity.PeopleAddressEntity">
+		update people_address set  pa_default=0  and people_id=#{peopleId};
+		update people_address set  pa_default=1 and people_id=#{peopleId} and id = #{id};
+	</update>
+	<!-- 更新用户收货地址结束 -->
+
+	<!-- 根据Id查询实体开始 -->
+	<select id="getEntity" resultMap="resultMap" parameterType="net.mingsoft.people.entity.PeopleAddressEntity">
+		select * from people_address
+		<where>
+		  id = #{id}
+		  <if test="peopleAddressDefault &gt; 0">
+		  	and pa_default=#{peopleAddressDefault}
+		  </if>
+		</where>
+	</select>
+	<select id="getByEntity" resultMap="resultMap" parameterType="net.mingsoft.people.entity.PeopleAddressEntity">
+		select * from people_address
+		<where>
+		  id = #{id}
+		  and people_id=#{peopleId}
+		  <if test="peopleAddressDefault &gt; 0">
+		  	and pa_default=#{peopleAddressDefault}
+		  </if>
+		</where>
+	</select>
+	<select id="query" resultMap="resultMap" parameterType="net.mingsoft.people.entity.PeopleAddressEntity">
+		select * from people_address
+		<where>
+			 people_id=#{peopleId}
+		</where>
+	</select>
+	<!-- 根据Id查询实体结束 -->
+
+	<!-- 删除用户收货地址开始 -->
+	<delete id="deleteByEntity" parameterType="net.mingsoft.people.entity.PeopleAddressEntity">
+		delete from people_address where id = #{id} and people_id=#{peopleId}
+	</delete>
+	<!-- 删除用户收货地址结束 -->
+</mapper>

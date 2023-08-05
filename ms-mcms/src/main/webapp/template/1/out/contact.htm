@@ -1,0 +1,624 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>{ms:global.name/}</title>
+    <#include "head-file.htm" />
+    <script>
+    </script>
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <#include "header.htm" />
+        <!--详情-start-->
+        <div class="news-detail">
+            <!--标题-start-->
+            <div class="body">
+                <span class="news-title">
+                    ${field.title}
+                </span>
+            </div>
+            <!--标题-end-->
+            <!--容器-start-->
+            <div class="body boder-bottom">
+                <!--基本内容-start-->
+                <div class="new-detail-info">
+                    <span class="new-detail-info-label">
+                        日期：
+                    </span>
+                    <span class="new-detail-info-text">
+                        ${field.date?string("yyyy-MM-dd")}
+                    </span>
+                    <span class="new-detail-info-label">
+                        来源：
+                    </span>
+                    <span class="new-detail-info-text">
+                        ${field.source}
+                    </span>
+                    <span class="new-detail-info-label">
+                        预览数：
+                    </span>
+                    <span class="new-detail-info-text">
+                        ${field.hit}
+                    </span>
+                </div>
+                <!--基本内容-end-->
+                <!--基本功能-start-->
+                <div class="new-detail-contral">
+                    <!--打印-start-->
+                    <!--打印-end-->
+                    <!--分享-start-->
+                    <div class="new-detail-contral-share">
+                    </div>
+                    <!--分享-end-->
+                </div>
+                <!--基本功能-end-->
+            </div>
+            <!--容器-end-->
+            <!--文章内容-start-->
+            <div class="w-detail-content">
+                ${field.content}
+            </div>
+            <!--文章内容-end-->
+        </div>
+        <!--详情-end-->
+        <#include "footer.htm" />
+    </div>
+</body>
+
+</html>
+<script>
+var app = new Vue({
+    el: '#app',
+    component() {},
+    data: {
+        searchForm: {
+            keyword: ""
+        },
+        hotSearchKeywords: [],
+    },
+    watch: {},
+    methods: {
+
+        switchShow: function(arr) {
+            var that = this
+            arr.forEach(function(x) {
+                let e = that.$el.querySelector("#key_" + x)
+                if (e) {
+                    e.style.display = getComputedStyle(e, null).display == 'none' ? 'flex' : 'none'
+                }
+            })
+        },
+        show: function(arr) {
+            var that = this
+            arr.forEach(function(x) {
+                let e = that.$el.querySelector("#key_" + x)
+                if (e) {
+                    e.style.display = 'flex'
+                }
+            })
+        },
+        hide: function(arr) {
+            var that = this
+            arr.forEach(function(x) {
+                let e = that.$el.querySelector("#key_" + x)
+                if (e) {
+                    e.style.display = 'none'
+                }
+            })
+        }
+    },
+    computed() {},
+    created() {}
+})
+</script>
+<style>
+.news-detail {
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+    padding-right: 0px;
+    box-sizing: border-box;
+    margin-left: 0px;
+    min-height: 50px;
+    margin-right: 0px;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    width: 100%;
+    margin-bottom: 0px;
+    padding-left: 0px;
+    margin-top: 40px;
+    height: unset;
+}
+
+
+
+.news-detail .body {
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+    padding-right: 0px;
+    box-sizing: border-box;
+    justify-content: center;
+    margin-left: 0px;
+    min-height: 50px;
+    margin-right: 0px;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    width: 1280px;
+    margin-bottom: 20px;
+    padding-left: 0px;
+    margin-top: 0px;
+    height: 100%;
+}
+
+
+
+.news-detail .body .news-title {
+    margin-right: 0px;
+    font-family: 微软雅黑;
+    color: #333333;
+    flex-direction: row;
+    word-wrap: break-word;
+    display: inline-block;
+    padding-right: 0px;
+    font-size: 36PX;
+    margin-bottom: 20px;
+    padding-left: 0px;
+    margin-top: 20px;
+}
+
+
+
+.news-detail .body .new-detail-info {
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+    padding-right: 0px;
+    box-sizing: border-box;
+    justify-content: flex-start;
+    min-height: 0px;
+    margin-right: 0px;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    width: 50%;
+    margin-bottom: 0px;
+    padding-left: 0px;
+    margin-top: 0px;
+}
+
+
+
+.news-detail .body .new-detail-info .new-detail-info-label {
+    margin-right: 0px;
+    font-family: 宋体;
+    color: #666666;
+    flex-direction: row;
+    word-wrap: break-word;
+    display: inline-block;
+    padding-right: 0px;
+    font-size: 14PX;
+    padding-left: 0px;
+    margin-top: 0px;
+    margin-left: 0px;
+}
+
+
+
+.news-detail .body .new-detail-info .new-detail-info-text {
+    margin-right: 20px;
+    font-family: 宋体;
+    color: #666666;
+    flex-direction: row;
+    word-wrap: break-word;
+    display: inline-block;
+    font-size: 14PX;
+    margin-top: 0px;
+    margin-left: 0px;
+}
+
+
+
+.news-detail .body .new-detail-contral {
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+    padding-right: 0px;
+    box-sizing: border-box;
+    justify-content: flex-end;
+    margin-left: 0px;
+    min-height: 0px;
+    margin-right: 0px;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    width: 50%;
+    padding-left: 0px;
+    margin-top: 0px;
+}
+
+
+
+.news-detail .body .new-detail-contral .new-detail-contral-size {
+    min-height: 50px;
+    margin-right: 20px;
+    align-items: center;
+    flex-wrap: nowrap;
+    display: flex;
+    flex-shrink: 0;
+    width: unset;
+    box-sizing: border-box;
+    height: unset;
+    margin-left: 0px;
+}
+
+
+
+.news-detail .body .new-detail-contral .new-detail-contral-size .new-detail-contral-label {
+    margin-right: 0px;
+    font-family: 宋体;
+    color: #666666;
+    flex-direction: row;
+    word-wrap: break-word;
+    display: inline-block;
+    width: unset;
+    font-size: 14PX;
+    margin-top: 0px;
+    margin-left: 5px;
+}
+
+
+
+.news-detail .body .new-detail-contral .new-detail-contral-size .new-detail-contral-size-big {
+    color: #666666;
+    flex-direction: row;
+    word-wrap: break-word;
+    display: inline-block;
+    padding-right: 0px;
+    margin-left: 5px;
+    margin-right: 0px;
+    font-family: 宋体;
+    width: unset;
+    font-size: 14PX;
+    margin-bottom: 0px;
+    padding-left: 0px;
+    margin-top: 0px;
+}
+
+
+
+.news-detail .body .new-detail-contral .new-detail-contral-size .new-detail-contral-size-mid {
+    margin-right: 0px;
+    font-family: 宋体;
+    color: #666666;
+    flex-direction: row;
+    word-wrap: break-word;
+    display: inline-block;
+    width: unset;
+    font-size: 14PX;
+    margin-left: 5px;
+}
+
+
+
+.news-detail .body .new-detail-contral .new-detail-contral-size .new-detail-contral-small {
+    margin-right: 0px;
+    font-family: 宋体;
+    color: #666666;
+    flex-direction: row;
+    word-wrap: break-word;
+    display: inline-block;
+    width: unset;
+    font-size: 14PX;
+    margin-left: 5px;
+}
+
+
+
+.news-detail .body .new-detail-contral .new-detail-contral-print {
+    min-height: 50px;
+    margin-right: 20px;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    display: flex;
+    flex-shrink: 0;
+    width: unset;
+    box-sizing: border-box;
+    height: 100%;
+    margin-left: 20px;
+}
+
+
+
+.news-detail .body .new-detail-contral .new-detail-contral-print .new-detail-contral-print-icon {
+    margin-right: 5px;
+    color: #666666;
+    font-size: 20PX;
+    margin-left: 0px;
+}
+
+
+
+.news-detail .body .new-detail-contral .new-detail-contral-print .new-detail-contral-print-text {
+    margin-right: 0px;
+    font-family: 宋体;
+    color: #666666;
+    flex-direction: row;
+    word-wrap: break-word;
+    display: inline-block;
+    font-size: 14PX;
+    margin-left: 0px;
+}
+
+
+
+.news-detail .body .new-detail-contral .new-detail-contral-share {
+    min-height: 50px;
+    margin-right: 0px;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    display: flex;
+    flex-shrink: 0;
+    width: unset;
+    box-sizing: border-box;
+    height: 100%;
+    margin-left: 20px;
+}
+
+
+
+.news-detail .w-detail-content {
+    align-items: flex-start;
+    text-align: left;
+    flex-direction: row;
+    padding-right: 0px;
+    box-sizing: border-box;
+    justify-content: center;
+    margin-left: 0px;
+    min-height: 50px;
+    margin-right: 0px;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+    width: 1280px;
+    margin-bottom: 0px;
+    padding-top: 0px;
+    padding-left: 0px;
+    margin-top: 40px;
+}
+
+
+
+@media (max-width: 768px) {
+    .news-detail {
+        min-height: 50px;
+        align-items: center;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        display: flex;
+        flex-shrink: 0;
+        width: 100%;
+        box-sizing: border-box;
+        padding-left: 0px;
+        justify-content: center;
+        height: unset;
+    }
+
+    .news-detail .body {
+        min-height: 0px;
+        align-items: center;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        display: flex;
+        flex-shrink: 0;
+        width: 100%;
+        box-sizing: border-box;
+        padding-left: 0px;
+        justify-content: center;
+        height: 100%;
+    }
+
+    .news-detail .body .news-title {
+        font-family: 微软雅黑;
+        overflow: hidden;
+        white-space: nowrap;
+        flex-direction: row;
+        word-wrap: break-word;
+        display: inline-block;
+        font-size: 22PX;
+        text-overflow: ellipsis;
+    }
+
+    .news-detail .body .new-detail-info {
+        flex-direction: row;
+        display: flex;
+        padding-right: 0px;
+        box-sizing: border-box;
+        justify-content: center;
+        margin-left: 0px;
+        min-height: 0px;
+        margin-right: 0px;
+        flex-wrap: wrap;
+        flex-shrink: 0;
+        width: 100%;
+        margin-bottom: 0px;
+        padding-left: 0px;
+        height: unset;
+    }
+
+    .news-detail .body .new-detail-info .new-detail-info-label {
+        margin-right: 0px;
+        color: #A0A0A0;
+        flex-direction: row;
+        word-wrap: break-word;
+        display: inline-block;
+        margin-bottom: 5px;
+        font-size: 12PX;
+        margin-left: 5px;
+    }
+
+    .news-detail .body .new-detail-info .new-detail-info-text {
+        margin-right: 0px;
+        color: #A0A0A0;
+        flex-direction: row;
+        word-wrap: break-word;
+        display: flex;
+        margin-bottom: 5px;
+        font-size: 12PX;
+        margin-top: 0px;
+        margin-left: 0px;
+    }
+
+    .news-detail .body .new-detail-contral {
+        align-items: center;
+        flex-direction: row;
+        display: none;
+        padding-right: 0px;
+        box-sizing: border-box;
+        justify-content: space-between;
+        margin-left: 0px;
+        min-height: 0px;
+        margin-right: 0px;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+        width: 100%;
+        margin-bottom: 0px;
+        padding-left: 0px;
+        height: unset;
+    }
+
+    .news-detail .body .new-detail-contral .new-detail-contral-size {
+        align-items: center;
+        flex-direction: row;
+        display: flex;
+        padding-right: 0px;
+        box-sizing: border-box;
+        margin-left: 0px;
+        min-height: 0px;
+        margin-right: 0px;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+        width: unset;
+        padding-left: 0px;
+        height: unset;
+    }
+
+    .news-detail .body .new-detail-contral .new-detail-contral-size .new-detail-contral-label {
+        color: #666666;
+        flex-direction: row;
+        word-wrap: break-word;
+        display: inline-block;
+        padding-right: 0px;
+        width: unset;
+        margin-bottom: 0px;
+        padding-left: 0px;
+        justify-content: flex-start;
+        margin-left: 0px;
+    }
+
+    .news-detail .body .new-detail-contral .new-detail-contral-size .new-detail-contral-size-big {
+        margin-right: 3px;
+        color: #666666;
+        flex-direction: row;
+        word-wrap: break-word;
+        display: inline-block;
+        padding-right: 0px;
+        width: unset;
+        padding-left: 0px;
+        margin-left: 3px;
+    }
+
+    .news-detail .body .new-detail-contral .new-detail-contral-size .new-detail-contral-size-mid {
+        margin-right: 3px;
+        color: #666666;
+        flex-direction: row;
+        word-wrap: break-word;
+        display: inline-block;
+        padding-right: 0px;
+        width: unset;
+        padding-left: 0px;
+        margin-left: 3px;
+    }
+
+    .news-detail .body .new-detail-contral .new-detail-contral-size .new-detail-contral-small {
+        margin-right: 3px;
+        color: #666666;
+        flex-direction: row;
+        word-wrap: break-word;
+        display: inline-block;
+        padding-right: 0px;
+        width: unset;
+        padding-left: 0px;
+        margin-left: 3px;
+    }
+
+    .news-detail .body .new-detail-contral .new-detail-contral-print {
+        min-height: 0px;
+        margin-right: 30px;
+        align-items: center;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        display: none;
+        flex-shrink: 0;
+        width: unset;
+        box-sizing: border-box;
+        height: unset;
+        margin-left: 30px;
+    }
+
+    .news-detail .body .new-detail-contral .new-detail-contral-print .new-detail-contral-print-icon {
+        margin-right: 5px;
+        color: #666666;
+        display: none;
+        font-size: 20PX;
+    }
+
+    .news-detail .body .new-detail-contral .new-detail-contral-print .new-detail-contral-print-text {
+        margin-right: 0px;
+        color: #666666;
+        flex-direction: row;
+        word-wrap: break-word;
+        display: inline-block;
+    }
+
+    .news-detail .body .new-detail-contral .new-detail-contral-share {
+        min-height: 0px;
+        margin-right: 0px;
+        align-items: center;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        display: flex;
+        flex-shrink: 0;
+        width: 100px;
+        box-sizing: border-box;
+        margin-left: 0px;
+    }
+
+    .news-detail .w-detail-content {
+        min-height: 50px;
+        align-items: center;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        display: flex;
+        flex-shrink: 0;
+        padding-right: 0px;
+        width: 90%;
+        box-sizing: border-box;
+        padding-left: 0px;
+        justify-content: center;
+        height: unset;
+    }
+
+
+}
+
+@media (max-width:768px) {
+    .w-header .w-body {
+        display: flex;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        width: 100% !important;
+    }
+}
+</style>

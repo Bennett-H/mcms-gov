@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.mingsoft.progress.dao.IProgressLogDao">
+
+    <resultMap id="resultMap" type="net.mingsoft.progress.entity.ProgressLogEntity">
+        <id column="id" property="id"/><!--编号 -->
+        <result column="scheme_id" property="schemeId"/><!--进度方案关联id -->
+        <result column="progress_id" property="progressId"/><!--进度关联id -->
+        <result column="pl_node_name" property="plNodeName"/><!--进度名称 -->
+        <result column="data_id" property="dataId"/><!--业务编号 -->
+        <result column="pl_operator" property="plOperator"/><!--操作人 -->
+        <result column="pl_number" property="plNumber"/><!--进度数 -->
+        <result column="pl_status" property="plStatus"/><!--状态 -->
+        <result column="pl_finished" property="plFinished"/><!--是否处于完成状态 -->
+        <result column="pl_content" property="plContent"/><!--操作内容 -->
+        <result column="create_by" property="createBy"/><!--创建人 -->
+        <result column="create_date" property="createDate"/><!--创建时间 -->
+        <result column="update_by" property="updateBy"/><!--修改人 -->
+        <result column="update_date" property="updateDate"/><!--修改时间 -->
+        <result column="del" property="del"/><!--删除标记 -->
+    </resultMap>
+
+    <resultMap id="resultBean" type="net.mingsoft.progress.bean.ProgressLogBean">
+        <id column="id" property="id"/><!--编号 -->
+        <result column="scheme_id" property="schemeId"/><!--进度方案关联id -->
+        <result column="progress_id" property="progressId"/><!--进度关联id -->
+        <result column="pl_node_name" property="plNodeName"/><!--进度名称 -->
+        <result column="data_id" property="dataId"/><!--业务编号 -->
+        <result column="pl_operator" property="plOperator"/><!--操作人 -->
+        <result column="pl_number" property="plNumber"/><!--进度数 -->
+        <result column="pl_status" property="plStatus"/><!--状态 -->
+        <result column="pl_finished" property="plFinished"/><!--是否处于完成状态 -->
+        <result column="pl_content" property="plContent"/><!--操作内容 -->
+        <result column="create_by" property="createBy"/><!--创建人 -->
+        <result column="create_date" property="createDate"/><!--创建时间 -->
+        <result column="update_by" property="updateBy"/><!--修改人 -->
+        <result column="update_date" property="updateDate"/><!--修改时间 -->
+        <result column="del" property="del"/><!--删除标记 -->
+        <result column="category_id" property="categoryId"/><!--栏目ID -->
+    </resultMap>
+
+    <!--条件查询-->
+    <select id="query" resultMap="resultBean">
+        select ppl.* from PROGRESS_PROGRESS_LOG ppl
+        left join manager on ppl.update_by=manager.id
+        <where>
+            ppl.del=0
+            <if test="schemeId != null and schemeId != ''">and scheme_id=#{schemeId}</if>
+            <if test="progressId != null and progressId != ''">and progress_id=#{progressId}</if>
+            <if test="plNodeName != null and plNodeName != ''">and pl_node_name=#{plNodeName}</if>
+            <if test="dataId != null and dataId != ''">and data_id=#{dataId}</if>
+        </where>
+        ORDER BY ppl.create_date desc
+    </select>
+
+    <select id="queryDataIdBySchemeNameAndNodeNames" resultType="java.lang.String">
+        select b.data_id FROM (
+            SELECT
+                MAX(ppl.id) as create_id
+            FROM
+                PROGRESS_PROGRESS_LOG ppl
+                LEFT JOIN PROGRESS_SCHEME ON PROGRESS_SCHEME.id = ppl.scheme_id
+            <where>
+                PROGRESS_SCHEME.scheme_name = #{schemeName}
+            </where>
+                GROUP BY data_id)
+            temp LEFT JOIN PROGRESS_PROGRESS_LOG b ON temp.create_id = b.id
+         <where>
+             progress_id IN
+             <foreach collection="progressIds" item="item" index="index" open="(" separator="," close=")">#{item}</foreach>
+             <if test="plStatus != null">
+                 AND pl_status=#{plStatus}
+             </if>
+             <if test="plStatus == null">
+                 AND pl_status is null
+             </if>
+        </where>
+    </select>
+
+    <select id="queryDataByCategoryId" resultMap="resultBean">
+        select * from progress_progress_log ppl left join (select id,category_id from cms_content) cc on ppl.data_id = cc.id
+        <where>
+            category_id IN
+            <foreach collection="categoryIds" item="item" index="index" open="(" separator="," close=")">#{item}</foreach>
+            <if test="plStatus != null">
+                AND pl_status=#{plStatus}
+            </if>
+            <if test="plStatus == null">
+                AND pl_status is null
+            </if>
+        </where>
+    </select>
+
+    <select id="getSumProgress" resultType="java.lang.Integer">
+        SELECT sum(pl_number) FROM progress_progress_log
+        <where>
+            and data_id=#{dataId}
+            and scheme_id=#{schemeId}
+        </where>
+    </select>
+
+</mapper>

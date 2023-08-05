@@ -1,0 +1,330 @@
+<html>
+<head>
+    <title>{ms:global.name/}</title>
+    <#include "/head-file.htm" />
+    <link rel="stylesheet" href="{ms:global.host/}/{ms:global.style/}/css/user-center.css">
+    <#include "people/component/menu.htm" />
+</head>
+<body>
+<div id="app" v-cloak>
+<!--include通用头部-->
+<#include "/header.htm" />
+<div class="user-index">
+    <div class="body">
+        <!--会员管理菜单-start-->
+        <user-menu sel-menu="个人资料"></user-menu>
+        <!--会员管理菜单-end-->
+        <!--数据区域-start-->
+        <div class="data" id="app" v-cloak>
+            <div class="path">
+                <span class="first"> 个人资料 </span>
+            </div>
+            <el-main class="ms-container">
+                <el-form ref="form" :model="form" :rules="rules" label-width="120px" label-position="right"
+                         size="small">
+                    <el-row
+                            :gutter="0"
+                            justify="start" align="top">
+                        <el-col :span="12">
+
+                            <el-form-item label="用户名" prop="peopleName">
+                                <el-input
+                                        v-model="form.peopleName"
+                                        :disabled="true"
+                                        :readonly="false"
+                                        :style="{width:  '100%'}"
+                                        :clearable="true"
+                                        placeholder="请输入用户名">
+                                </el-input>
+                            </el-form-item>
+                        </el-col>
+                        <el-col :span="12">
+                            <el-form-item label="邮箱" prop="peopleMail">
+                                <el-input
+                                        v-model="form.peopleMail"
+                                        :disabled="true"
+                                        :readonly="false"
+                                        :style="{width:  '100%'}"
+                                        :clearable="true"
+                                        placeholder="请输入邮箱">
+                                </el-input>
+                            </el-form-item>
+                        </el-col>
+                    </el-row>
+                    <el-row
+                            :gutter="0"
+                            justify="start" align="top">
+                        <el-col :span="12">
+
+                            <el-form-item label="真实姓名" prop="puRealName">
+                                <el-input
+                                        v-model="form.puRealName"
+                                        :disabled="false"
+                                        :readonly="false"
+                                        :style="{width:  '100%'}"
+                                        :clearable="true"
+                                        placeholder="请输入真实姓名">
+                                </el-input>
+                            </el-form-item>
+                        </el-col>
+                        <el-col :span="12">
+
+                            <el-form-item label="生日" prop="puBirthday">
+                                <el-date-picker
+                                        v-model="form.puBirthday"
+                                        placeholder="请选择生日" :readonly="false"
+                                        :disabled="false"
+                                        :editable="true"
+                                        :clearable="true"
+                                        format="yyyy-MM-dd"
+                                        value-format="yyyy-MM-dd"
+                                        :style="{width:'100%'}"
+                                        type="date">
+                                </el-date-picker>
+                            </el-form-item>
+                        </el-col>
+                    </el-row>
+                    <el-row
+                            :gutter="0"
+                            justify="start" align="top">
+                        <el-col :span="12">
+
+                            <el-form-item label="身份证号" prop="puCard">
+                                <el-input
+                                        v-model="form.puCard"
+                                        :disabled="false"
+                                        :readonly="false"
+                                        :style="{width:  '100%'}"
+                                        :clearable="true"
+                                        placeholder="请输入身份证号">
+                                </el-input>
+                            </el-form-item>
+                        </el-col>
+                        <el-col :span="12">
+
+                        </el-col>
+                    </el-row>
+
+                    <el-form-item label="用户头像" prop="puIcon">
+                        <el-upload
+                                :file-list="form.puIcon"
+                                :action="'{ms:global.contextPath/}/file/upload.do'"
+                                :on-remove="puIconhandleRemove"
+                                :style="{width:''}"
+                                :limit="1"
+                                :disabled="false"
+                                :data="{uploadPath:'/people/user','isRename':true,'appId':true}"
+                                :on-success="puIconBasicPicSuccess"
+                                :on-exceed="puIconhandleExceed"
+                                accept="image/*"
+                                list-type="picture-card">
+                            <i class="el-icon-plus"></i>
+                            <div slot="tip" class="el-upload__tip">最多上传1张头像</div>
+                        </el-upload>
+                    </el-form-item>
+
+                </el-form>
+            </el-main>
+            <el-header class="ms-footer">
+                <el-button type="primary" icon="iconfont icon-baocun" size="mini" @click="save()"
+                           :loading="saveDisabled">保存
+                </el-button>
+            </el-header>
+        </div>
+        <!--数据区域-end-->
+    </div>
+</div>
+<!--include通用底部-->
+</div>
+</body>
+</html>
+<script>
+    var form = new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                loading: false,
+                saveDisabled: false,
+                //表单数据
+                form: {
+                    // 用户名
+                    peopleName: '',
+                    // 密码
+                    peoplePassword: '',
+                    // 真实姓名
+                    puRealName: '',
+                    // 生日
+                    puBirthday: '',
+                    // 身份证号
+                    puCard: '',
+                    // 会员类别
+                    puLevel: '',
+                    // 审核状态
+                    peopleState: 0,
+                    // 用户头像
+                    puIcon: '',
+                    // 介绍
+                    introduce: '',
+                },
+                puIcon: null,
+                puLevelOptions: [],
+                rules: {
+                    // 用户名
+                    peopleName: [{"required": true, "message": "用户名不能为空"}, {
+                        "min": 0,
+                        "max": 20,
+                        "message": "用户名长度必须为0-20"
+                    }],
+                    // 密码
+                    peoplePassword: [],
+                    // 真实姓名
+                    puRealName: [{"min": 0, "max": 20, "message": "真实姓名长度必须为0-20"}],
+
+                },
+
+            }
+        },
+  
+        watch: {},
+        computed: {},
+        methods: {
+   switchShow:function(arr){
+                var that = this
+                arr.forEach(function(x){
+                    let e = that.$el.querySelector("#key_"+x)
+                    if(e){
+                        e.style.display=getComputedStyle(e,null).display=='none'?'flex':'none'
+                    }
+                })
+            },
+            show:function(arr){
+                var that = this
+                arr.forEach(function(x){
+                    let e = that.$el.querySelector("#key_"+x)
+                    if(e){
+                        e.style.display='flex'
+                    }
+                })
+            },
+            hide:function(arr){
+                var that = this
+                arr.forEach(function(x){
+                    let e = that.$el.querySelector("#key_"+x)
+                    if(e){
+                        e.style.display='none'
+                    }
+                })
+            },
+            //上传超过限制
+            puIconhandleExceed: function (files, fileList) {
+                this.$notify({
+                    title: '提示',
+                    message: '当前最多上传1张头像',
+                    type: 'warning'
+                });
+            },
+            //puIcon文件上传完成回调
+            puIconBasicPicSuccess: function (response, file, fileList) {
+                if (response.result) {
+                    this.puIcon = response.data;
+                    this.form.puIcon = [];
+                    this.form.puIcon.push({url: file.url, path: response.data, uid: file.uid});
+                } else {
+                    this.$notify({
+                        title: '提示',
+                        message: response.msg,
+                        type: 'warning'
+                    });
+                }
+            },
+            puIconhandleRemove: function (file, files) {
+                var index = -1;
+                index = this.form.puIcon.findIndex(function (text) {
+                    return text == file;
+                });
+
+                if (index != -1) {
+                    this.form.puIcon.splice(index, 1);
+                }
+                this.puIcon = null
+            },
+            save: function () {
+                var that = this;
+                var url = ms.base + "/people/user/update.do"
+                this.$refs.form.validate(function (valid) {
+                    if (valid) {
+                        that.saveDisabled = true;
+                        var data = JSON.parse(JSON.stringify(that.form));
+                        data.puIcon = that.puIcon;
+                        for (key in data) {
+                            if (!data[key]) {
+                                delete data[key];
+                            }
+                        }
+                        ms.http.post(url, data).then(function (data) {
+                            if (data.result) {
+                                that.$notify({
+                                    title: "成功",
+                                    message: "保存成功",
+                                    type: 'success'
+                                });
+                            } else {
+                                that.$notify({
+                                    title: "错误",
+                                    message: data.msg,
+                                    type: 'warning'
+                                });
+                            }
+                            that.saveDisabled = false;
+                        });
+                    } else {
+                        return false;
+                    }
+                })
+            },
+
+            //获取当前用户
+            get: function () {
+                var that = this;
+                this.loading = true
+                ms.http.get( ms.base + "/people/user/info.do").then(function (res) {
+                    that.loading = false
+                    if (res.result && res.data) {
+                        that.form = res.data;
+                        that.puIcon = that.form.puIcon;
+                        if (that.puIcon) {
+                            that.form.puIcon = [{url: that.puIcon, path: that.puIcon, uid: ""}];
+                        }
+                    }
+                }).catch(function (err) {
+                    console.log(err);
+                });
+            },
+            //获取puLevel数据源
+            puLevelOptionsGet: function () {
+                var that = this;
+                ms.http.get( ms.base + '/mdiy/dict/list.do', {dictType: '用户等级类型', pageSize: 99999}).then(function (res) {
+                    that.puLevelOptions = res.data.rows;
+                }).catch(function (err) {
+                    console.log(err);
+                });
+            }
+        },
+        created: function () {
+            var that = this;
+            this.puLevelOptionsGet();
+            this.get();
+
+        },
+        mounted: function () {
+        }
+    });
+
+</script>
+<style>
+    .el-upload {
+        justify-content: center;
+        align-items: center;
+        display: flex;
+    }
+</style>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.mingsoft.msend.dao.ILogDao">
+
+	<resultMap id="resultMap" type="net.mingsoft.msend.entity.LogEntity">
+		<id column="id" property="id" /><!-- -->
+		<result column="log_datetime" property="logDatetime" /><!--时间 -->
+		<result column="log_content" property="logContent" /><!--接收内容 -->
+		<result column="log_receive" property="logReceive" /><!--接收人 -->
+		<result column="log_type" property="logType" /><!--日志类型0邮件1短信 -->
+	</resultMap>
+
+	<!--保存-->
+	<insert id="saveEntity" useGeneratedKeys="true" keyProperty="id"
+		parameterType="net.mingsoft.msend.entity.LogEntity" >
+		insert into msend_log
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			template_id.
+			<if test="logDatetime != null">log_datetime,</if>
+			<if test="logContent != null and logContent != ''">log_content,</if>
+			<if test="logReceive != null and logReceive != ''">log_receive,</if>
+			<if test="logType != null">log_type,</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{templateId},
+			<if test="logDatetime != null">#{logDatetime},</if>
+			<if test="logContent != null and logContent != ''">#{logContent},</if>
+			<if test="logReceive != null and logReceive != ''">#{logReceive},</if>
+			<if test="logType != null">#{logType},</if>
+		</trim>
+	</insert>
+
+	<!--更新-->
+	<update id="updateEntity" parameterType="net.mingsoft.msend.entity.LogEntity">
+		update msend_log
+		<set>
+			<if test="logDatetime != null">log_datetime=#{logDatetime},</if>
+			<if test="logContent != null and logContent != ''">log_content=#{logContent},</if>
+			<if test="logReceive != null and logReceive != ''">log_receive=#{logReceive},</if>
+			<if test="logType != null">log_type=#{logType},</if>
+		</set>
+		where id = #{id}
+	</update>
+
+	<!--根据id获取-->
+	<select id="getEntity" resultMap="resultMap" parameterType="int">
+		select * from msend_log where id=#{id}
+	</select>
+
+	<!--根据实体获取-->
+	<select id="getByEntity" resultMap="resultMap" parameterType="net.mingsoft.msend.entity.LogEntity">
+		select * from msend_log
+		<where>
+			<if test="logDatetime != null"> and log_datetime=#{logDatetime} </if>
+			<if test="logContent != null and logContent != ''"> and log_content=#{logContent} </if>
+			<if test="logReceive != null and logReceive != ''"> and log_receive=#{logReceive} </if>
+			<if test="logType != null and logType != ''"> and log_type=#{logType} </if>
+		</where>
+		limit 0,1
+	</select>
+
+
+	<!--删除-->
+	<delete id="deleteEntity" parameterType="int">
+		delete from msend_log  where id=#{id}
+	</delete>
+
+	<!--批量删除-->
+	<delete id="delete" >
+		delete from msend_log
+		<where>
+			id in <foreach collection="ids" item="item" index="index"
+			open="(" separator="," close=")">#{item}</foreach>
+		</where>
+	</delete>
+	<!--查询全部-->
+	<select id="queryAll" resultMap="resultMap">
+		select * from msend_log order by id desc
+	</select>
+	<!--条件查询-->
+	<select id="query" resultMap="resultMap">
+		select * from msend_log
+		<where>
+				<if test="logDatetime != null"> and log_datetime=#{logDatetime} </if>
+				<if test="logContent != null and logContent != ''"> and log_content=#{logContent} </if>
+				<if test="logReceive != null and logReceive != ''"> and log_receive  like CONCAT(CONCAT('%',#{logReceive}),'%')</if>
+				<if test="logType != null and logType != ''"> and log_type=#{logType} </if>
+		</where>
+		order by id desc
+	</select>
+
+</mapper>

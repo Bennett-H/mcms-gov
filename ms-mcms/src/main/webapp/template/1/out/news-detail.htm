@@ -1,0 +1,1452 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>{ms:global.name/}</title>
+    <#include "head-file.htm" />
+    <#include "component/ms-mattention.htm" />
+    <#include "component/ms-comment.htm" />
+</head>
+<body>
+    <div id="app" v-cloak>
+        <#include "header.htm" />
+        <!--详情-start-->
+        <div class="news-detail">
+            <!--标题-start-->
+            <div class="body">
+                <span class="news-title">
+                    ${field.title}
+                </span>
+            </div>
+            <!--标题-end-->
+            <div class="body boder-bottom">
+                <div class="new-detail-info">
+                    <span class="new-detail-info-label">
+                        日期：
+                    </span>
+                    <span class="new-detail-info-text">
+                        ${field.date?string("yyyy-MM-dd")}
+                    </span>
+                    <span class="new-detail-info-label">
+                        来源：
+                    </span>
+                    <span class="new-detail-info-text">
+                        ${field.source}
+                    </span>
+                    <span class="new-detail-info-label">
+                        预览数：
+                    </span>
+                    <span class="new-detail-info-text">
+                        ${field.hit}
+                    </span>
+                </div>
+                <div class="new-detail-contral">
+                    <div class="w-font-box">
+                        <span class="w-font-size-label">
+                            【字体：
+                        </span>
+                        <a href="#" class="w-font-size" @click.prevent="changeFontsize(24)">
+                            大
+                        </a>
+                        <a href="#" class="w-font-size" @click.prevent="changeFontsize(18)">
+                            中
+                        </a>
+                        <a href="#" class="w-font-size" @click.prevent="changeFontsize(12)">
+                            小
+                        </a>
+                        <span class="w-font-size-label">
+                            】
+                        </span>
+                    </div>
+                    <!--打印-start-->
+                    <div class="w-print">
+                        <i class="iconfont icon-dayinji w-print-icon"></i>
+                        <a href="#" class="w-print-text" @click.prevent="print">
+                            打印
+                        </a>
+                    </div>
+                    <!--打印-end-->
+                    <!--分享-start-->
+                    <div class="new-detail-contral-share">
+                    </div>
+                    <!--分享-end-->
+                </div>
+            </div>
+            <!--文章内容-start-->
+            <div id="content" class="w-detail-content">
+                ${field.content}
+            </div>
+            <!--文章内容-end-->
+            <!--文章底部交互-start-->
+            <div class="detail-bottom-interaction">
+                <ms-mattention :data-id="${field.id}" data-type="文章点赞" icon="icon-zan" label="${field.title}"></ms-mattention>
+                <ms-mattention :data-id="${field.id}" data-type="文章点踩" icon="icon-cai" label="${field.title}"></ms-mattention>
+                <div class="bdsharebuttonbox" data-tag="share_1" style="display: flex;align-items: center">
+                    <!--百度一键分享-->
+                    <a class="bds_mshare" data-cmd="mshare"></a>
+                    <a class="bds_weixin" data-cmd="weixin"></a>
+                    <a class="bds_sqq" data-cmd="sqq"></a>
+                    <a class="bds_more" data-cmd="more">更多</a>
+                </div>
+                <script>
+                window._bd_share_config = {
+                    common: {
+                        bdText: document.getElementById('content').innerText, // "自定义分享内容',
+                        bdDesc: '${field.descrip}', // '自定义分享摘要',
+                        bdUrl: '${field.source}', // '自定义分享url地址',
+                        bdPic: '<img src="{ms:global.host/}/{@ms:file field.litpic/}"/>', // '自定义分享图片'
+                    },
+                    share: [{
+                        "bdSize": 16
+                    }],
+                    slide: [{
+                        bdImg: 0,
+                        bdPos: "right",
+                        bdTop: 100
+                    }],
+                    image: [{
+                        viewType: 'list',
+                        viewPos: 'top',
+                        viewColor: 'black',
+                        viewSize: '16',
+                        viewList: ['qzone', 'tsina', 'huaban', 'tqq', 'renren']
+                    }],
+                    selectShare: [{
+                        "bdselectMiniList": ['qzone', 'tqq', 'kaixin001', 'bdxc', 'tqf']
+                    }]
+                }
+                with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion=' + ~(-new Date() / 36e5)];
+                </script>
+            </div>
+            <!--文章底部交互-end-->
+            <!--上一篇下一篇-start-->
+            <div class="w-next-pre">
+                <div class="w-body">
+                    <!--上一页-start-->
+                    <div class="w-pre">
+                        <span class="w-pre-label">
+                            上一篇：
+                        </span>
+                        <a href="{ms:global.url/}${pre.link}" class="w-pre-link">
+                            ${pre.title}
+                        </a>
+                    </div>
+                    <!--上一页-end-->
+                    <!--下一页-start-->
+                    <div class="w-next">
+                        <span class="w-next-label">
+                            下一篇：
+                        </span>
+                        <a href="{ms:global.url/}${next.link}" class="w-next-link">
+                            ${next.title?default("暂无")}
+                        </a>
+                    </div>
+                    <!--下一页-end-->
+                </div>
+            </div>
+            <!--上一篇下一篇-end-->
+            <!--评论容器-start-->
+            <div class="w-comment-div">
+                <!--评论-start-->
+                <ms-comment :data-id="dataId" :page-no="pageNo" :data-type="dataType" :data-title="dataTitle"></ms-comment>
+                <!--评论-end-->
+            </div>
+            <!--评论容器-end-->
+        </div>
+        <!--详情-end-->
+        <#include "footer.htm" />
+    </div>
+</body>
+
+</html>
+<script>
+    var app = new Vue({
+        el: '#app',
+        component(){
+        },
+        data: {
+            searchForm: {
+                keyword: ""
+            },
+            hotSearchKeywords: [],//文章商品id
+            dataId: "${field.id}",
+            //当前页数
+            pageNo: ${(page.cur)!1},
+            //文章商品id
+            dataId: "${field.id}",
+            //当前页数
+            pageNo: ${(page.cur)!1},
+            //文章商品id
+            dataId: "${field.id}",
+            //当前页数
+            pageNo: ${(page.cur)!1},
+            // 业务名称(文章标题)
+            dataTitle: "${field.title}",
+            // 业务类型
+            dataType: "文章",
+        },
+        methods: {
+            //改变字体大小
+             changeFontsize:function(value){
+                    var detailContent = document.getElementsByClassName('w-detail-content')
+                    detailContent[0].style.fontSize = value + "px"
+            },
+            //打印
+            print:function(){
+                window.print();
+            },
+            switchShow:function(arr){
+                var that = this
+                arr.forEach(function(x){
+                    let e = that.$el.querySelector("#key_"+x)
+                    if(e){
+                        e.style.display=getComputedStyle(e,null).display=='none'?'flex':'none'
+                    }
+                })
+            },
+            show:function(arr){
+                var that = this
+                arr.forEach(function(x){
+                    let e = that.$el.querySelector("#key_"+x)
+                    if(e){
+                        e.style.display='flex'
+                    }
+                })
+            },
+            hide:function(arr){
+                var that = this
+                arr.forEach(function(x){
+                    let e = that.$el.querySelector("#key_"+x)
+                    if(e){
+                        e.style.display='none'
+                    }
+                })
+            }
+        },
+        computed(){
+        },
+        created(){
+        }
+    })
+</script>
+<style>
+.news-detail {
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+    padding-right: 0px;
+    box-sizing: border-box;
+    margin-left: 0px;
+    min-height: 50px;
+    margin-right: 0px;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    width: 100%;
+    margin-bottom: 0px;
+    padding-left: 0px;
+    margin-top: 40px;
+    height: unset;
+}
+
+
+
+.news-detail .body {
+    background-color: rgba(255, 255, 255, 1);
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+    padding-right: 0px;
+    box-sizing: border-box;
+    justify-content: center;
+    margin-left: 0px;
+    min-height: 50px;
+    margin-right: 0px;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    width: 1280px;
+    margin-bottom: 20px;
+    padding-left: 0px;
+    margin-top: 0px;
+    height: 100%;
+}
+
+
+
+.news-detail .body .news-title {
+    margin-right: 0px;
+    font-family: 微软雅黑;
+    color: #333333;
+    flex-direction: row;
+    word-wrap: break-word;
+    display: inline-block;
+    padding-right: 0px;
+    font-size: 36PX;
+    margin-bottom: 20px;
+    padding-left: 0px;
+    margin-top: 20px;
+}
+
+
+
+.news-detail .body .new-detail-info {
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+    padding-right: 0px;
+    box-sizing: border-box;
+    justify-content: flex-start;
+    min-height: 0px;
+    margin-right: 0px;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    width: 50%;
+    margin-bottom: 0px;
+    padding-left: 0px;
+    margin-top: 0px;
+}
+
+
+
+.news-detail .body .new-detail-info .new-detail-info-label {
+    margin-right: 0px;
+    font-family: 宋体;
+    color: #666666;
+    flex-direction: row;
+    word-wrap: break-word;
+    display: inline-block;
+    padding-right: 0px;
+    font-size: 14PX;
+    padding-left: 0px;
+    margin-top: 0px;
+    margin-left: 0px;
+}
+
+
+
+.news-detail .body .new-detail-info .new-detail-info-text {
+    margin-right: 20px;
+    font-family: 宋体;
+    color: #666666;
+    flex-direction: row;
+    word-wrap: break-word;
+    display: inline-block;
+    font-size: 14PX;
+    margin-top: 0px;
+    margin-left: 0px;
+}
+
+
+
+.news-detail .body .new-detail-contral {
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+    padding-right: 0px;
+    box-sizing: border-box;
+    justify-content: flex-end;
+    margin-left: 0px;
+    min-height: 0px;
+    margin-right: 0px;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    width: 50%;
+    padding-left: 0px;
+    margin-top: 0px;
+}
+
+
+
+.news-detail .body .new-detail-contral .w-font-box {
+    min-height: 50px;
+    margin-right: 20px;
+    cursor: pointer;
+    align-items: center;
+    flex-wrap: nowrap;
+    display: flex;
+    flex-shrink: 0;
+    width: unset;
+    box-sizing: border-box;
+    height: unset;
+    margin-left: 0px;
+}
+
+
+
+.news-detail .body .new-detail-contral .w-font-box .w-font-size-label {
+    margin-right: 0px;
+    font-family: 宋体;
+    color: #666666;
+    flex-direction: row;
+    word-wrap: break-word;
+    display: inline-block;
+    width: unset;
+    font-size: 14PX;
+    margin-top: 0px;
+    margin-left: 0px;
+}
+
+
+
+.news-detail .body .new-detail-contral .w-font-box .w-font-size {
+    cursor: pointer;
+    margin-right: 0px;
+    font-family: 宋体;
+    color: #666666;
+    flex-direction: row;
+    display: flex;
+    font-size: 14PX;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+
+
+.news-detail .body .new-detail-contral .w-print {
+    min-height: 50px;
+    margin-right: 20px;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    display: flex;
+    flex-shrink: 0;
+    width: unset;
+    box-sizing: border-box;
+    height: unset;
+    margin-left: 20px;
+}
+
+
+
+.news-detail .body .new-detail-contral .w-print .w-print-icon {
+    margin-right: 5px;
+    color: #666666;
+    font-size: 18PX;
+    margin-left: 0px;
+}
+
+
+
+.news-detail .body .new-detail-contral .w-print .w-print-text {
+    cursor: pointer;
+    margin-right: 0px;
+    font-family: 宋体;
+    color: #666666;
+    flex-direction: row;
+    display: flex;
+    font-size: 14PX;
+    text-decoration: none;
+    margin-left: 0px;
+}
+
+
+
+.news-detail .body .new-detail-contral .new-detail-contral-share {
+    min-height: 50px;
+    margin-right: 0px;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    display: flex;
+    flex-shrink: 0;
+    width: unset;
+    box-sizing: border-box;
+    height: 100%;
+    margin-left: 20px;
+}
+
+
+
+.news-detail .w-detail-content {
+    align-items: flex-start;
+    text-align: left;
+    flex-direction: row;
+    padding-right: 0px;
+    box-sizing: border-box;
+    justify-content: center;
+    margin-left: 0px;
+    min-height: 50px;
+    margin-right: 0px;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+    width: 1280px;
+    margin-bottom: 0px;
+    padding-top: 0px;
+    padding-left: 0px;
+    margin-top: 40px;
+}
+
+
+
+.news-detail .detail-bottom-interaction {
+    text-align: left;
+    flex-direction: row;
+    padding-right: 0px;
+    display: flex;
+    box-sizing: border-box;
+    margin-left: 0px;
+    min-height: 50px;
+    margin-right: 0px;
+    flex-shrink: 0;
+    width: 1280px;
+    margin-bottom: 0px;
+    padding-top: 0px;
+    padding-left: 0px;
+    margin-top: 40px;
+}
+
+
+
+.news-detail .detail-bottom-interaction .interaction-like {
+    min-height: 50px;
+    margin-right: 20px;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    display: flex;
+    flex-shrink: 0;
+    width: unset;
+    box-sizing: border-box;
+    margin-top: 0px;
+    height: 100%;
+}
+
+
+
+.news-detail .detail-bottom-interaction .interaction-like .label {
+    margin-right: 5px;
+    font-size: 28PX;
+    margin-top: 0px;
+}
+
+
+
+.news-detail .detail-bottom-interaction .interaction-like .value {
+    margin-right: 0px;
+    flex-direction: row;
+    word-wrap: break-word;
+    display: inline-block;
+}
+
+
+
+.news-detail .w-next-pre {
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+    padding-right: 0px;
+    box-sizing: border-box;
+    justify-content: center;
+    min-height: 50px;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    width: 100%;
+    margin-bottom: 0px;
+    position: relative;
+    padding-left: 0px;
+    margin-top: 0px;
+    height: unset;
+}
+
+
+
+.news-detail .w-next-pre .w-body {
+    align-items: flex-start;
+    flex-direction: row;
+    display: flex;
+    box-sizing: border-box;
+    justify-content: space-between;
+    margin-left: 0px;
+    min-height: 50px;
+    margin-right: 0px;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    width: 1280px;
+    margin-bottom: 0px;
+    position: relative;
+    margin-top: 0px;
+    height: 100%;
+}
+
+
+
+.news-detail .w-next-pre .w-body .w-pre {
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+    padding-right: 0px;
+    box-sizing: border-box;
+    justify-content: flex-start;
+    min-height: 50px;
+    padding-bottom: 0px;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    width: unset;
+    padding-top: 0px;
+    padding-left: 0px;
+    margin-top: 0px;
+    height: 100%;
+}
+
+
+
+.news-detail .w-next-pre .w-body .w-pre .w-pre-label {
+    color: #909399;
+    flex-direction: row;
+    word-wrap: break-word;
+    display: inline-block;
+    width: 65px;
+    font-weight: 600;
+}
+
+
+
+.news-detail .w-next-pre .w-body .w-pre .w-pre-link {
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+    padding-bottom: 0px;
+    flex-direction: row;
+    display: flex;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    padding-top: 0px;
+}
+
+
+
+.news-detail .w-next-pre .w-body .w-next {
+    min-height: 50px;
+    margin-right: 0px;
+    align-items: center;
+    flex-wrap: nowrap;
+    display: flex;
+    flex-shrink: 0;
+    width: unset;
+    box-sizing: border-box;
+    justify-content: flex-start;
+    height: 100%;
+    margin-left: 0px;
+}
+
+
+
+.news-detail .w-next-pre .w-body .w-next .w-next-label {
+    color: #909399;
+    flex-direction: row;
+    word-wrap: break-word;
+    display: inline-block;
+    padding-right: 0px;
+    width: 65px;
+    padding-left: 0px;
+    font-weight: 600;
+}
+
+
+
+.news-detail .w-next-pre .w-body .w-next .w-next-link {
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+    flex-direction: row;
+    display: flex;
+    text-decoration: none;
+    text-overflow: ellipsis;
+}
+
+
+
+.news-detail .w-comment-div {
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+    padding-right: 0px;
+    box-sizing: border-box;
+    justify-content: center;
+    min-height: 50px;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    width: 100%;
+    margin-bottom: 0px;
+    position: relative;
+    padding-left: 0px;
+    margin-top: 0px;
+    height: unset;
+}
+
+
+
+.news-detail .w-comment-div .w-comments {
+    flex-direction: column;
+    display: flex;
+    padding-right: 0px;
+    box-sizing: border-box;
+    border-top-left-radius: 0px;
+    min-height: 50px;
+    margin-right: 0px;
+    padding-bottom: 0px;
+    flex-wrap: nowrap;
+    border-bottom-left-radius: 0px;
+    flex-shrink: 0;
+    width: 1000px;
+    border-bottom-right-radius: 0px;
+    margin-bottom: 0px;
+    border-top-right-radius: 0px;
+    padding-top: 0px;
+    padding-left: 0px;
+    margin-top: 0px;
+    height: 100%;
+}
+
+
+
+.news-detail .w-comment-div .w-comments .w-comments-strips {
+    flex-direction: row;
+    display: flex;
+    box-sizing: border-box;
+    border-top-left-radius: 0px;
+    min-height: 50px;
+    flex-wrap: nowrap;
+    border-bottom-left-radius: 0px;
+    flex-shrink: 0;
+    width: 100%;
+    border-bottom-right-radius: 0px;
+    margin-bottom: 10px;
+    border-top-right-radius: 0px;
+    padding-left: 0px;
+    margin-top: 0px;
+    height: 50px;
+}
+
+
+
+.news-detail .w-comment-div .w-comments .w-comments-strips .w-user-pic {
+    margin-right: 10px;
+    vertical-align: top;
+    border-bottom-left-radius: 5px;
+    width: 50px;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    margin-bottom: 0px;
+    padding-left: 0px;
+    height: 50px;
+    border-top-left-radius: 5px;
+}
+
+
+
+.news-detail .w-comment-div .w-comments .w-comments-strips .w-comment-input {
+    border-color: #C1C1C1;
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+    box-sizing: border-box;
+    border-top-left-radius: 5px;
+    min-height: 50px;
+    margin-right: 0px;
+    flex-wrap: nowrap;
+    border-bottom-left-radius: 5px;
+    border-width: 1px;
+    flex-shrink: 0;
+    width: calc(100% - 60px);
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    margin-bottom: 0px;
+    border-style: solid;
+    padding-left: 10px;
+    height: 100%;
+}
+
+
+
+.news-detail .w-comment-div .w-comments .w-comments-strips .w-comment-input .w-comment-input-prompt {
+    margin-right: 0px;
+    font-family: 微软雅黑;
+    color: #C1C1C1;
+    border-bottom-left-radius: 0px;
+    flex-direction: row;
+    word-wrap: break-word;
+    display: inline-block;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+    font-size: 18PX;
+    padding-left: 0px;
+    border-top-left-radius: 0px;
+}
+
+
+
+.news-detail .w-comment-div .w-comments .w-comments-body {
+    border-color: #C1C1C1;
+    flex-direction: column;
+    display: flex;
+    padding-right: 0px;
+    box-sizing: border-box;
+    border-top-left-radius: 5px;
+    min-height: 50px;
+    margin-right: 0px;
+    padding-bottom: 0px;
+    flex-wrap: nowrap;
+    border-bottom-left-radius: 5px;
+    border-width: 1px;
+    flex-shrink: 0;
+    width: 100%;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    padding-top: 0px;
+    border-style: solid;
+    padding-left: 0px;
+    margin-top: 0px;
+    height: unset;
+}
+
+
+
+.news-detail .w-comment-div .w-comments .w-comments-body .w-comments-body-header {
+    flex-direction: column;
+    display: flex;
+    padding-right: 0px;
+    box-sizing: border-box;
+    border-top-left-radius: 0px;
+    min-height: 50px;
+    padding-bottom: 0px;
+    flex-wrap: nowrap;
+    border-bottom-left-radius: 0px;
+    flex-shrink: 0;
+    width: 100%;
+    border-bottom-right-radius: 0px;
+    margin-bottom: 0px;
+    border-top-right-radius: 0px;
+    padding-top: 0px;
+    padding-left: 0px;
+    margin-top: 0px;
+    height: unset;
+}
+
+
+
+.news-detail .w-comment-div .w-comments .w-comments-body .w-comments-body-header .w-coments-num {
+    flex-direction: row;
+    word-wrap: break-word;
+    display: inline-block;
+    padding-right: 0px;
+    border-top-left-radius: 0px;
+    border-bottom-color: #C1C1C1;
+    padding-bottom: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    line-height: 50px;
+    border-bottom-style: solid;
+    border-top-right-radius: 0px;
+    padding-top: 0px;
+    border-bottom-width: 1px;
+    padding-left: 20px;
+    margin-top: 0px;
+    height: 50px;
+}
+
+
+
+.news-detail .w-comment-div .w-comments .w-comments-body .w-comments-item {
+    flex-direction: row;
+    display: flex;
+    padding-right: 20px;
+    box-sizing: border-box;
+    min-height: 50px;
+    margin-right: 0px;
+    padding-bottom: 14px;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    width: 100%;
+    padding-top: 10px;
+    padding-left: 20px;
+    margin-top: 20px;
+    height: unset;
+}
+
+
+
+.news-detail .w-comment-div .w-comments .w-comments-body .w-comments-item .w-comments-userpic {
+    margin-right: 10px;
+    vertical-align: top;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    width: 30px;
+    padding-top: 0px;
+    padding-left: 0px;
+    margin-top: 0px;
+    height: 30px;
+}
+
+
+
+.news-detail .w-comment-div .w-comments .w-comments-body .w-comments-item .w-comment-user-info {
+    flex-direction: column;
+    display: flex;
+    padding-right: 0px;
+    box-sizing: border-box;
+    min-height: 50px;
+    margin-right: 0px;
+    padding-bottom: 0px;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    width: calc(100% - 40px);
+    padding-top: 0px;
+    padding-left: 0px;
+    margin-top: 0px;
+    height: unset;
+}
+
+
+
+.news-detail .w-comment-div .w-comments .w-comments-body .w-comments-item .w-comment-user-info .w-comment-item-header {
+    flex-wrap: nowrap;
+    flex-direction: row;
+    display: flex;
+    flex-shrink: 0;
+    width: 100%;
+    box-sizing: border-box;
+    height: unset;
+}
+
+
+
+.news-detail .w-comment-div .w-comments .w-comments-body .w-comments-item .w-comment-user-info .w-comment-item-header .w-comment-username {
+    padding-bottom: 0px;
+    flex-direction: row;
+    word-wrap: break-word;
+    display: inline-block;
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-left: 0px;
+    margin-top: 0px;
+}
+
+
+
+.news-detail .w-comment-div .w-comments .w-comments-body .w-comments-item .w-comment-user-info .w-comment-item-mes {
+    flex-direction: row;
+    word-wrap: break-word;
+    display: inline-block;
+}
+
+
+
+.news-detail .w-comment-div .w-comments .w-comments-body .w-comments-item .w-comment-user-info .w-comment-item-footer {
+    flex-direction: row;
+    display: flex;
+    padding-right: 0px;
+    box-sizing: border-box;
+    justify-content: space-between;
+    padding-bottom: 0px;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    width: 100%;
+    padding-top: 0px;
+    padding-left: 0px;
+    margin-top: 0px;
+    height: unset;
+}
+
+
+
+.news-detail .w-comment-div .w-comments .w-comments-body .w-comments-item .w-comment-user-info .w-comment-item-footer .w-comment-item-time {
+    flex-direction: row;
+    word-wrap: break-word;
+    display: inline-block;
+}
+
+
+
+.news-detail .w-comment-div .w-comments .w-comments-body .w-comments-item .w-comment-user-info .w-comment-item-footer .w-comment-item-interact {
+    flex-wrap: nowrap;
+    flex-direction: row;
+    display: flex;
+    flex-shrink: 0;
+    width: unset;
+    box-sizing: border-box;
+    height: unset;
+}
+
+
+
+.news-detail .w-comment-div .w-comments .w-comments-body .w-comments-item .w-comment-user-info .w-comment-item-footer .w-comment-item-interact .w-comment-item-icon {
+    margin-right: 5px;
+    cursor: pointer;
+    font-size: 18PX;
+}
+
+
+
+.news-detail .w-comment-div .w-comments .w-comments-body .w-comments-item .w-comment-user-info .w-comment-item-footer .w-comment-item-interact .w-comment-item-reply {
+    margin-right: 10px;
+    cursor: pointer;
+    font-family: 微软雅黑;
+    flex-direction: row;
+    word-wrap: break-word;
+    display: inline-block;
+    font-size: 16PX;
+    padding-left: 0px;
+}
+
+
+
+.news-detail .w-comment-div .w-comments .w-comments-body .w-comments-item .w-comment-user-info .w-comment-item-footer .w-comment-item-interact .w-comment-item-like {
+    margin-right: 0px;
+    cursor: pointer;
+    font-family: 微软雅黑;
+    flex-direction: row;
+    word-wrap: break-word;
+    display: inline-block;
+}
+
+
+
+.news-detail .w-comment-div .w-comments .w-comments-body .w-comments-item .w-comment-user-info .w-comment-reply-body {
+    align-items: center;
+    flex-direction: row;
+    display: none;
+    padding-right: 0px;
+    box-sizing: border-box;
+    justify-content: space-between;
+    border-top-left-radius: 0px;
+    min-height: 50px;
+    margin-right: 0px;
+    padding-bottom: 0px;
+    flex-wrap: nowrap;
+    border-bottom-left-radius: 0px;
+    flex-shrink: 0;
+    width: 100%;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+    padding-top: 0px;
+    padding-left: 0px;
+    margin-top: 0px;
+    height: unset;
+}
+
+
+
+.news-detail .w-comment-div .w-comments .w-comments-body .w-comments-item .w-comment-user-info .w-comment-reply-body .w-comment-reply-input {
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+    box-sizing: border-box;
+    justify-content: space-between;
+    border-top-left-radius: 0px;
+    min-height: 50px;
+    margin-right: 0px;
+    flex-wrap: nowrap;
+    border-bottom-left-radius: 0px;
+    flex-shrink: 0;
+    width: unset;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+    padding-left: 10px;
+    height: 50px;
+}
+
+
+
+.news-detail .w-comment-div .w-comments .w-comments-body .w-comments-item .w-comment-user-info .w-comment-reply-body .w-comment-reply-input .w-comment-input-prompt {
+    flex-direction: row;
+    word-wrap: break-word;
+    display: inline-block;
+    padding-left: 0px;
+}
+
+
+
+.news-detail .w-comment-div .w-comments .w-comments-body .w-comments-item .w-comment-user-info .w-comment-reply-body .w-comment-input-submit {
+    cursor: pointer;
+    background-color: #0099ff;
+    color: #fff;
+    text-align: center;
+    display: inline-block;
+    box-sizing: border-box;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    width: 70px;
+    border-bottom-right-radius: 5px;
+    line-height: 45px;
+    font-size: 16px;
+    border-top-right-radius: 5px;
+    padding-left: 0px;
+    height: 45px;
+}
+
+
+
+@media (max-width: 768px) {
+    .news-detail {
+        min-height: 50px;
+        align-items: center;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        display: flex;
+        flex-shrink: 0;
+        width: 100%;
+        box-sizing: border-box;
+        padding-left: 0px;
+        justify-content: center;
+        height: unset;
+    }
+
+    .news-detail .body {
+        min-height: 0px;
+        align-items: center;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        display: flex;
+        flex-shrink: 0;
+        width: 100%;
+        box-sizing: border-box;
+        padding-left: 0px;
+        justify-content: center;
+        height: 100%;
+    }
+
+    .news-detail .body .news-title {
+        font-family: 微软雅黑;
+        overflow: hidden;
+        white-space: nowrap;
+        flex-direction: row;
+        word-wrap: break-word;
+        display: inline-block;
+        font-size: 22PX;
+        text-overflow: ellipsis;
+    }
+
+    .news-detail .body .new-detail-info {
+        flex-direction: row;
+        display: flex;
+        padding-right: 0px;
+        box-sizing: border-box;
+        justify-content: center;
+        margin-left: 0px;
+        min-height: 0px;
+        margin-right: 0px;
+        flex-wrap: wrap;
+        flex-shrink: 0;
+        width: 100%;
+        margin-bottom: 0px;
+        padding-left: 0px;
+        height: unset;
+    }
+
+    .news-detail .body .new-detail-info .new-detail-info-label {
+        margin-right: 0px;
+        color: #A0A0A0;
+        flex-direction: row;
+        word-wrap: break-word;
+        display: inline-block;
+        margin-bottom: 5px;
+        font-size: 12PX;
+        margin-left: 5px;
+    }
+
+    .news-detail .body .new-detail-info .new-detail-info-text {
+        margin-right: 0px;
+        color: #A0A0A0;
+        flex-direction: row;
+        word-wrap: break-word;
+        display: flex;
+        margin-bottom: 5px;
+        font-size: 12PX;
+        margin-top: 0px;
+        margin-left: 0px;
+    }
+
+    .news-detail .body .new-detail-contral {
+        align-items: center;
+        flex-direction: row;
+        display: none;
+        padding-right: 0px;
+        box-sizing: border-box;
+        justify-content: space-between;
+        margin-left: 0px;
+        min-height: 0px;
+        margin-right: 0px;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+        width: 100%;
+        margin-bottom: 0px;
+        padding-left: 0px;
+        height: unset;
+    }
+
+    .news-detail .body .new-detail-contral .w-font-box {
+        align-items: center;
+        flex-direction: row;
+        display: flex;
+        padding-right: 0px;
+        box-sizing: border-box;
+        margin-left: 0px;
+        min-height: 0px;
+        margin-right: 0px;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+        width: unset;
+        padding-left: 0px;
+        height: unset;
+    }
+
+    .news-detail .body .new-detail-contral .w-font-box .w-font-size-label {
+        color: #666666;
+        flex-direction: row;
+        word-wrap: break-word;
+        display: inline-block;
+        padding-right: 0px;
+        width: unset;
+        margin-bottom: 0px;
+        padding-left: 0px;
+        justify-content: flex-start;
+        margin-left: 0px;
+    }
+
+    .news-detail .body .new-detail-contral .w-font-box .w-font-size {
+        cursor: pointer;
+        margin-right: 0px;
+        font-family: 宋体;
+        color: #666666;
+        flex-direction: row;
+        display: flex;
+        font-size: 14PX;
+        text-decoration: none;
+        margin-left: 5px;
+    }
+
+    .news-detail .body .new-detail-contral .w-print {
+        min-height: 0px;
+        margin-right: 30px;
+        align-items: center;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        display: none;
+        flex-shrink: 0;
+        width: unset;
+        box-sizing: border-box;
+        height: unset;
+        margin-left: 30px;
+    }
+
+    .news-detail .body .new-detail-contral .w-print .w-print-icon {
+        margin-right: 5px;
+        color: #666666;
+        display: none;
+        font-size: 20PX;
+    }
+
+    .news-detail .body .new-detail-contral .w-print .w-print-text {
+        cursor: pointer;
+        margin-right: 0px;
+        font-family: 宋体;
+        color: #666666;
+        flex-direction: row;
+        display: flex;
+        font-size: 14PX;
+        text-decoration: none;
+        margin-left: 0px;
+    }
+
+    .news-detail .body .new-detail-contral .new-detail-contral-share {
+        min-height: 0px;
+        margin-right: 0px;
+        align-items: center;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        display: flex;
+        flex-shrink: 0;
+        width: 100px;
+        box-sizing: border-box;
+        margin-left: 0px;
+    }
+
+    .news-detail .w-detail-content {
+        min-height: 50px;
+        align-items: center;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        display: flex;
+        flex-shrink: 0;
+        padding-right: 0px;
+        width: 90%;
+        box-sizing: border-box;
+        padding-left: 0px;
+        justify-content: center;
+        height: unset;
+    }
+
+
+
+
+
+    .news-detail .w-next-pre {
+        align-items: center;
+        flex-direction: row;
+        display: flex;
+        padding-right: 0px;
+        box-sizing: border-box;
+        justify-content: center;
+        min-height: 50px;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+        width: 100%;
+        margin-bottom: 0px;
+        position: relative;
+        padding-left: 0px;
+        margin-top: 0px;
+        height: unset;
+    }
+
+    .news-detail .w-next-pre .w-body {
+        align-items: flex-start;
+        flex-direction: column;
+        display: flex;
+        box-sizing: border-box;
+        justify-content: space-between;
+        margin-left: 0px;
+        min-height: 50px;
+        margin-right: 0px;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+        width: 90%;
+        margin-bottom: 0px;
+        position: relative;
+        margin-top: 0px;
+        height: unset;
+    }
+
+    .news-detail .w-next-pre .w-body .w-pre {
+        align-items: center;
+        display: flex;
+        padding-right: 0px;
+        box-sizing: border-box;
+        min-height: 50px;
+        padding-bottom: 0px;
+        overflow: hidden;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+        width: 100%;
+        padding-top: 0px;
+        padding-left: 0px;
+        margin-top: 0px;
+        height: 100%;
+    }
+
+    .news-detail .w-next-pre .w-body .w-pre .w-pre-label {
+        color: #909399;
+        flex-direction: row;
+        word-wrap: break-word;
+        display: inline-block;
+        width: 20%;
+        font-weight: 600;
+    }
+
+    .news-detail .w-next-pre .w-body .w-pre .w-pre-link {
+        cursor: pointer;
+        overflow: hidden;
+        white-space: nowrap;
+        padding-bottom: 0px;
+        flex-direction: row;
+        display: flex;
+        width: 70%;
+        text-decoration: none;
+        text-overflow: ellipsis;
+        padding-top: 0px;
+        height: unset;
+    }
+
+    .news-detail .w-next-pre .w-body .w-next {
+        min-height: 50px;
+        margin-right: 0px;
+        align-items: center;
+        flex-wrap: nowrap;
+        display: flex;
+        flex-shrink: 0;
+        width: 100%;
+        box-sizing: border-box;
+        justify-content: flex-start;
+        height: 100%;
+        margin-left: 0px;
+    }
+
+    .news-detail .w-next-pre .w-body .w-next .w-next-label {
+        color: #909399;
+        flex-direction: row;
+        word-wrap: break-word;
+        display: inline-block;
+        padding-right: 0px;
+        width: 20%;
+        padding-left: 0px;
+        font-weight: 600;
+    }
+
+    .news-detail .w-next-pre .w-body .w-next .w-next-link {
+        cursor: pointer;
+        overflow: hidden;
+        white-space: nowrap;
+        flex-direction: row;
+        display: flex;
+        width: 75%;
+        text-decoration: none;
+        text-overflow: ellipsis;
+    }
+
+    .news-detail .w-comment-div {
+        align-items: center;
+        flex-direction: row;
+        display: flex;
+        padding-right: 0px;
+        box-sizing: border-box;
+        justify-content: center;
+        min-height: 50px;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+        width: 100%;
+        margin-bottom: 0px;
+        position: relative;
+        padding-left: 0px;
+        margin-top: 0px;
+        height: unset;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+@media (max-width:768px) {
+    .w-header .w-body {
+        display: flex;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        width: 100% !important;
+    }
+}
+
+.w-print {
+    cursor: pointer;
+}
+</style>

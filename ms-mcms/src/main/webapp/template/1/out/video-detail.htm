@@ -1,0 +1,944 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>{ms:global.name/}</title>
+    <#include "head-file.htm" />
+    <script>
+    </script>
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <#include "header.htm" />
+        <div class="panel">
+            <div class="body">
+                <!--视频详情-start-->
+                <div class="video-info">
+                    <!--视频标题-start-->
+                    <span class="video-info-title">
+                        ${field.title}
+                    </span>
+                    <!--视频标题-end-->
+                    <div class="video-info-playsnum">
+                        <i class="iconfont icon-shipin1 label"></i>
+                        <span class="value">
+                            ${field.hit}
+                        </span>
+                        <i class="iconfont icon-pinglun label"></i>
+                        <span class="value">
+                            ${field.hit}
+                        </span>
+                        <span class="time">
+                            ${field.date?string("yyyy-MM-dd")}
+                        </span>
+                    </div>
+                    <!--视频播放区-start-->
+                    <div class="video-play-box">
+                        ${field.content}
+                    </div>
+                    <!--视频播放区-end-->
+                </div>
+                <!--视频详情-end-->
+                <div class="video-right">
+                    <div class="video-right-title">
+                        <a href="javascript:void(0)">
+                            热门视频
+                        </a>
+                    </div>
+                    <!--热门视频-start-->
+                    <div class="video-rank-item">
+                        {ms:arclist size=8 typeid='1458331339823124482'}
+                        <a href="{ms:global.url/}${field.link}" class="video-list-item">
+                            <div class="video-item-playsbox">
+                                <span class="w-txt-rank-item-num">
+                                    ${field.index}
+                                </span>
+                                <div class="video-item-content-info">
+                                    <i class="iconfont icon-shipin1 label"></i>
+                                    <span class="value">
+                                        ${field.hit}
+                                    </span>
+                                    <i class="iconfont icon-pinglun label-margin"></i>
+                                    <span class="value">
+                                        ${field.hit}
+                                    </span>
+                                </div>
+                                <img title="" alt="" src="${global.host}/{@ms:file field.litpic/}" class="video-list-item-img" />
+                            </div>
+                            <span class="video-list-item-title">
+                                ${field.title}
+                            </span>
+                            <div class="video-list-item-author">
+                                <span class="video-item-time">
+                                    ${field.date?string('yyyy-MM-dd')}
+                                </span>
+                                <span class="video-item-author-name">
+                                    ${field.author}
+                                </span>
+                            </div>
+                        </a>
+                        {/ms:arclist}
+                    </div>
+                    <!--热门视频-end-->
+                </div>
+            </div>
+        </div>
+        <#include "footer.htm" />
+    </div>
+</body>
+
+</html>
+<script>
+var app = new Vue({
+    el: '#app',
+    component() {},
+    data: {
+        searchForm: {
+            keyword: ""
+        },
+        hotSearchKeywords: [],
+    },
+    watch: {},
+    methods: {
+
+        switchShow: function(arr) {
+            var that = this
+            arr.forEach(function(x) {
+                let e = that.$el.querySelector("#key_" + x)
+                if (e) {
+                    e.style.display = getComputedStyle(e, null).display == 'none' ? 'flex' : 'none'
+                }
+            })
+        },
+        show: function(arr) {
+            var that = this
+            arr.forEach(function(x) {
+                let e = that.$el.querySelector("#key_" + x)
+                if (e) {
+                    e.style.display = 'flex'
+                }
+            })
+        },
+        hide: function(arr) {
+            var that = this
+            arr.forEach(function(x) {
+                let e = that.$el.querySelector("#key_" + x)
+                if (e) {
+                    e.style.display = 'none'
+                }
+            })
+        }
+    },
+    computed() {},
+    created() {}
+})
+</script>
+<style>
+.panel {
+    flex-direction: row;
+    display: flex;
+    padding-right: 0px;
+    box-sizing: border-box;
+    justify-content: center;
+    margin-left: 0px;
+    min-height: 50px;
+    margin-right: 0px;
+    padding-bottom: 0px;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    width: 100%;
+    margin-bottom: 0px;
+    padding-top: 0px;
+    padding-left: 0px;
+    margin-top: 0px;
+    height: unset;
+}
+
+
+
+.panel .body {
+    flex-direction: row;
+    display: flex;
+    padding-right: 0px;
+    box-sizing: border-box;
+    justify-content: space-between;
+    min-height: 50px;
+    padding-bottom: 0px;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    width: 1280px;
+    margin-bottom: 0px;
+    padding-top: 0px;
+    padding-left: 0px;
+    margin-top: 0px;
+    height: unset;
+}
+
+
+
+.panel .body .video-info {
+    flex-direction: column;
+    display: flex;
+    padding-right: 0px;
+    box-sizing: border-box;
+    justify-content: flex-start;
+    border-top-left-radius: 0px;
+    min-height: 0px;
+    margin-right: 0px;
+    padding-bottom: 20px;
+    flex-wrap: wrap;
+    border-bottom-left-radius: 0px;
+    flex-shrink: 0;
+    width: 70%;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+    margin-bottom: 0px;
+    padding-top: 20px;
+    padding-left: 0px;
+    margin-top: 0px;
+    height: unset;
+}
+
+
+
+.panel .body .video-info .video-info-title {
+    font-family: 微软雅黑;
+    padding-bottom: 0px;
+    flex-direction: row;
+    word-wrap: break-word;
+    display: inline-block;
+    padding-right: 0px;
+    font-size: 22PX;
+    margin-bottom: 10px;
+    padding-top: 0px;
+    padding-left: 0px;
+}
+
+
+
+.panel .body .video-info .video-info-playsnum {
+    display: flex;
+    padding-right: 0px;
+    box-sizing: border-box;
+    min-height: 0px;
+    margin-right: 0px;
+    padding-bottom: 0px;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    width: 100%;
+    margin-bottom: 10px;
+    padding-top: 0px;
+    padding-left: 0px;
+    height: unset;
+}
+
+
+
+.panel .body .video-info .video-info-playsnum .label {
+    margin-right: 5px;
+    margin-bottom: 0px;
+}
+
+
+
+.panel .body .video-info .video-info-playsnum .value {
+    margin-right: 5px;
+    font-family: 微软雅黑;
+    flex-direction: row;
+    word-wrap: break-word;
+    display: inline-block;
+    font-size: 14PX;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+
+
+.panel .body .video-info .video-info-playsnum .time {
+    margin-right: 0px;
+    font-family: 微软雅黑;
+    flex-direction: row;
+    word-wrap: break-word;
+    display: inline-block;
+    font-size: 14PX;
+    margin-bottom: 0px;
+    margin-left: 10px;
+}
+
+
+
+.panel .body .video-info .video-play-box {
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+    box-sizing: border-box;
+    justify-content: center;
+    margin-left: 0px;
+    min-height: 50px;
+    margin-right: 0px;
+    padding-bottom: 0px;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    width: 100%;
+    margin-bottom: 0px;
+    padding-top: 0px;
+    position: relative;
+    margin-top: 0px;
+    height: 500px;
+}
+
+
+
+.panel .body .video-right {
+    min-height: 50px;
+    padding-bottom: 0px;
+    flex-wrap: wrap;
+    flex-direction: column;
+    display: flex;
+    flex-shrink: 0;
+    width: 25%;
+    margin-bottom: 0px;
+    box-sizing: border-box;
+    padding-top: 0px;
+    margin-top: 0px;
+    height: unset;
+}
+
+
+
+.panel .body .video-right .video-right-title {
+    min-height: 50px;
+    padding-bottom: 0px;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    display: flex;
+    flex-shrink: 0;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 0px;
+    padding-top: 0px;
+    height: 80px;
+}
+
+
+
+.panel .body .video-right .video-right-title a {
+    margin-right: 0px;
+    cursor: pointer;
+    font-family: 微软雅黑;
+    padding-bottom: 0px;
+    color: #333333;
+    flex-direction: row;
+    word-wrap: break-word;
+    display: inline-block;
+    font-size: 28PX;
+    margin-bottom: 0px;
+    padding-top: 0px;
+    margin-left: 0px;
+}
+
+
+
+.panel .body .video-right .video-rank-item {
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+    box-sizing: border-box;
+    margin-left: 0px;
+    min-height: 50px;
+    margin-right: 0px;
+    padding-bottom: 0px;
+    flex-shrink: 0;
+    width: 100%;
+    margin-bottom: 0px;
+    padding-top: 0px;
+    height: unset;
+}
+
+.video-rank-item:hover .video-rank-item-thumbnail {
+    display: block !important;
+}
+
+
+
+.panel .body .video-right .video-rank-item .video-list-item {
+    cursor: pointer;
+    align-items: flex-start;
+    flex-direction: column;
+    display: flex;
+    padding-right: 0px;
+    text-decoration: none;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-bottom: 0px;
+    width: 100%;
+    margin-bottom: 10px;
+    padding-top: 0px;
+    margin-top: 0px;
+    height: unset;
+}
+
+
+
+.panel .body .video-right .video-rank-item .video-list-item .video-item-playsbox {
+    flex-direction: column;
+    display: flex;
+    padding-right: 0px;
+    box-sizing: border-box;
+    min-height: 50px;
+    margin-right: 0px;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    width: 100%;
+    margin-bottom: 0px;
+    position: relative;
+    padding-left: 0px;
+    height: unset;
+}
+
+
+
+.panel .body .video-right .video-rank-item .video-list-item .video-item-playsbox .w-txt-rank-item-num {
+    background-color: rgba(236, 93, 91, 1);
+    z-index: 1;
+    color: #FFFFFF;
+    text-align: center;
+    word-wrap: break-word;
+    display: flex;
+    line-height: 25px;
+    justify-content: center;
+    margin-right: 10px;
+    padding-bottom: 0px;
+    width: 30px;
+    font-size: 18PX;
+    margin-bottom: 0px;
+    padding-top: 0px;
+    position: absolute;
+    height: 25px;
+}
+
+
+
+.panel .body .video-right .video-rank-item .video-list-item .video-item-playsbox .video-item-content-info {
+    z-index: 1;
+    align-items: flex-end;
+    flex-direction: row;
+    bottom: 0px;
+    display: flex;
+    padding-right: 10px;
+    box-sizing: border-box;
+    min-height: 0px;
+    margin-right: 0px;
+    padding-bottom: 0px;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    width: 100%;
+    margin-bottom: 5px;
+    position: absolute;
+    padding-top: 0px;
+    padding-left: 10px;
+    margin-top: 0px;
+    height: 10%;
+}
+
+
+
+.panel .body .video-right .video-rank-item .video-list-item .video-item-playsbox .video-item-content-info .label {
+    color: #FFFFFF;
+    padding-right: 0px;
+    font-size: 16PX;
+    padding-left: 0px;
+}
+
+
+
+.panel .body .video-right .video-rank-item .video-list-item .video-item-playsbox .video-item-content-info .value {
+    font-family: 微软雅黑;
+    padding-bottom: 0px;
+    color: #FFFFFF;
+    word-wrap: break-word;
+    display: inline-block;
+    font-size: 14PX;
+    padding-top: 0px;
+    margin-left: 0px;
+}
+
+
+
+.panel .body .video-right .video-rank-item .video-list-item .video-item-playsbox .video-item-content-info .label-margin {
+    margin-right: 0px;
+    padding-bottom: 0px;
+    color: #FFFFFF;
+    font-size: 16PX;
+    padding-top: 0px;
+    margin-left: 10px;
+}
+
+
+
+.panel .body .video-right .video-rank-item .video-list-item .video-item-playsbox .video-list-item-img {
+    margin-right: 0px;
+    vertical-align: top;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    width: 100%;
+    margin-bottom: 0px;
+    padding-top: 0px;
+    padding-left: 0px;
+    margin-top: 0px;
+    height: 200px;
+}
+
+
+
+.panel .body .video-right .video-rank-item .video-list-item .video-list-item-title {
+    white-space: nowrap;
+    flex-direction: row;
+    word-wrap: break-word;
+    display: flex;
+    padding-right: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    font-family: 微软雅黑;
+    padding-bottom: 0px;
+    overflow: hidden;
+    width: 100%;
+    font-size: 16PX;
+    margin-bottom: 10px;
+    padding-top: 0px;
+    text-overflow: ellipsis;
+    padding-left: 0px;
+    margin-top: 10px;
+}
+
+
+
+.panel .body .video-right .video-rank-item .video-list-item .video-list-item-author {
+    min-height: 0px;
+    margin-right: 0px;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    display: flex;
+    flex-shrink: 0;
+    width: 100%;
+    margin-bottom: 0px;
+    box-sizing: border-box;
+    margin-top: 0px;
+    height: unset;
+}
+
+
+
+.panel .body .video-right .video-rank-item .video-list-item .video-list-item-author .video-item-time {
+    margin-right: 10px;
+    padding-bottom: 0px;
+    flex-direction: row;
+    word-wrap: break-word;
+    display: inline-block;
+    font-size: 12PX;
+    padding-top: 0px;
+    margin-left: 0px;
+}
+
+
+
+.panel .body .video-right .video-rank-item .video-list-item .video-list-item-author .video-item-author-name {
+    margin-right: 0px;
+    flex-direction: row;
+    word-wrap: break-word;
+    display: inline-block;
+    padding-right: 0px;
+    font-size: 12PX;
+    margin-bottom: 0px;
+    padding-left: 0px;
+    margin-top: 0px;
+    margin-left: 0px;
+}
+
+
+
+@media (max-width: 768px) {
+    .panel {
+        flex-direction: row;
+        display: flex;
+        padding-right: 0px;
+        box-sizing: border-box;
+        justify-content: center;
+        margin-left: 0px;
+        min-height: 50px;
+        margin-right: 0px;
+        padding-bottom: 0px;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+        width: 100%;
+        margin-bottom: 0px;
+        padding-top: 0px;
+        padding-left: 0px;
+        margin-top: 0px;
+        height: unset;
+    }
+
+    .panel .body {
+        flex-direction: column;
+        display: flex;
+        padding-right: 0px;
+        box-sizing: border-box;
+        justify-content: space-between;
+        min-height: 50px;
+        padding-bottom: 0px;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+        width: 90%;
+        margin-bottom: 0px;
+        padding-top: 0px;
+        padding-left: 0px;
+        margin-top: 0px;
+        height: unset;
+    }
+
+    .panel .body .video-info {
+        flex-direction: column;
+        display: flex;
+        padding-right: 0px;
+        box-sizing: border-box;
+        justify-content: flex-start;
+        border-top-left-radius: 0px;
+        min-height: 0px;
+        margin-right: 0px;
+        padding-bottom: 20px;
+        flex-wrap: wrap;
+        border-bottom-left-radius: 0px;
+        flex-shrink: 0;
+        width: 100%;
+        border-bottom-right-radius: 0px;
+        border-top-right-radius: 0px;
+        margin-bottom: 0px;
+        padding-top: 20px;
+        padding-left: 0px;
+        margin-top: 0px;
+        height: unset;
+    }
+
+    .panel .body .video-info .video-info-title {
+        font-family: 微软雅黑;
+        padding-bottom: 0px;
+        flex-direction: row;
+        word-wrap: break-word;
+        display: inline-block;
+        padding-right: 0px;
+        font-size: 22PX;
+        margin-bottom: 10px;
+        padding-top: 0px;
+        padding-left: 0px;
+    }
+
+    .panel .body .video-info .video-info-playsnum {
+        display: flex;
+        padding-right: 0px;
+        box-sizing: border-box;
+        min-height: 0px;
+        margin-right: 0px;
+        padding-bottom: 0px;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+        width: 100%;
+        margin-bottom: 10px;
+        padding-top: 0px;
+        padding-left: 0px;
+        height: unset;
+    }
+
+    .panel .body .video-info .video-info-playsnum .label {
+        margin-right: 5px;
+        margin-bottom: 0px;
+    }
+
+    .panel .body .video-info .video-info-playsnum .value {
+        margin-right: 5px;
+        font-family: 微软雅黑;
+        flex-direction: row;
+        word-wrap: break-word;
+        display: inline-block;
+        font-size: 14PX;
+        margin-bottom: 0px;
+        margin-left: 0px;
+    }
+
+    .panel .body .video-info .video-info-playsnum .time {
+        margin-right: 0px;
+        font-family: 微软雅黑;
+        flex-direction: row;
+        word-wrap: break-word;
+        display: inline-block;
+        font-size: 14PX;
+        margin-bottom: 0px;
+        margin-left: 10px;
+    }
+
+    .panel .body .video-info .video-play-box {
+        align-items: center;
+        flex-direction: column;
+        display: flex;
+        box-sizing: border-box;
+        justify-content: center;
+        margin-left: 0px;
+        min-height: 50px;
+        margin-right: 0px;
+        padding-bottom: 0px;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+        width: 100%;
+        margin-bottom: 0px;
+        padding-top: 0px;
+        position: relative;
+        margin-top: 0px;
+        height: 250px;
+    }
+
+    .panel .body .video-right {
+        min-height: 50px;
+        flex-wrap: wrap;
+        flex-direction: column;
+        display: flex;
+        flex-shrink: 0;
+        width: 100%;
+        margin-bottom: 0px;
+        box-sizing: border-box;
+        margin-top: 0px;
+        height: unset;
+    }
+
+    .panel .body .video-right .video-right-title {
+        align-items: center;
+        flex-direction: row;
+        display: flex;
+        box-sizing: border-box;
+        min-height: 50px;
+        padding-bottom: 0px;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+        width: 100%;
+        margin-bottom: 0px;
+        padding-top: 0px;
+        margin-top: 0px;
+        height: 80px;
+    }
+
+    .panel .body .video-right .video-right-title a {
+        margin-right: 0px;
+        cursor: pointer;
+        font-family: 微软雅黑;
+        padding-bottom: 0px;
+        color: #333333;
+        flex-direction: row;
+        word-wrap: break-word;
+        display: inline-block;
+        font-size: 28PX;
+        margin-bottom: 0px;
+        padding-top: 0px;
+        margin-left: 0px;
+    }
+
+    .panel .body .video-right .video-rank-item {
+        align-items: center;
+        flex-direction: column;
+        display: flex;
+        box-sizing: border-box;
+        margin-left: 0px;
+        min-height: 50px;
+        margin-right: 0px;
+        padding-bottom: 0px;
+        flex-shrink: 0;
+        width: 100%;
+        margin-bottom: 0px;
+        padding-top: 0px;
+        height: unset;
+    }
+
+    .panel .body .video-right .video-rank-item .video-list-item {
+        cursor: pointer;
+        align-items: flex-start;
+        flex-direction: column;
+        display: flex;
+        padding-right: 0px;
+        text-decoration: none;
+        margin-left: 0px;
+        margin-right: 0px;
+        padding-bottom: 0px;
+        width: 100%;
+        margin-bottom: 10px;
+        padding-top: 0px;
+        margin-top: 0px;
+        height: unset;
+    }
+
+    .panel .body .video-right .video-rank-item .video-list-item .video-item-playsbox {
+        flex-direction: column;
+        display: flex;
+        padding-right: 0px;
+        box-sizing: border-box;
+        min-height: 50px;
+        margin-right: 0px;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+        width: 100%;
+        margin-bottom: 0px;
+        position: relative;
+        padding-left: 0px;
+        height: unset;
+    }
+
+    .panel .body .video-right .video-rank-item .video-list-item .video-item-playsbox .w-txt-rank-item-num {
+        background-color: rgba(236, 93, 91, 1);
+        z-index: 1;
+        color: #FFFFFF;
+        text-align: center;
+        word-wrap: break-word;
+        display: flex;
+        line-height: 25px;
+        justify-content: center;
+        margin-right: 10px;
+        padding-bottom: 0px;
+        width: 30px;
+        font-size: 18PX;
+        margin-bottom: 0px;
+        padding-top: 0px;
+        position: absolute;
+        height: 25px;
+    }
+
+    .panel .body .video-right .video-rank-item .video-list-item .video-item-playsbox .video-item-content-info {
+        z-index: 1;
+        align-items: flex-end;
+        flex-direction: row;
+        bottom: 0px;
+        display: flex;
+        padding-right: 10px;
+        box-sizing: border-box;
+        min-height: 0px;
+        margin-right: 0px;
+        padding-bottom: 0px;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+        width: 100%;
+        margin-bottom: 5px;
+        position: absolute;
+        padding-top: 0px;
+        padding-left: 10px;
+        margin-top: 0px;
+        height: 10%;
+    }
+
+    .panel .body .video-right .video-rank-item .video-list-item .video-item-playsbox .video-item-content-info .label {
+        color: #FFFFFF;
+        padding-right: 0px;
+        font-size: 16PX;
+        padding-left: 0px;
+    }
+
+    .panel .body .video-right .video-rank-item .video-list-item .video-item-playsbox .video-item-content-info .value {
+        font-family: 微软雅黑;
+        padding-bottom: 0px;
+        color: #FFFFFF;
+        word-wrap: break-word;
+        display: inline-block;
+        font-size: 14PX;
+        padding-top: 0px;
+        margin-left: 0px;
+    }
+
+    .panel .body .video-right .video-rank-item .video-list-item .video-item-playsbox .video-item-content-info .label-margin {
+        margin-right: 0px;
+        padding-bottom: 0px;
+        color: #FFFFFF;
+        font-size: 16PX;
+        padding-top: 0px;
+        margin-left: 10px;
+    }
+
+    .panel .body .video-right .video-rank-item .video-list-item .video-item-playsbox .video-list-item-img {
+        margin-right: 0px;
+        vertical-align: top;
+        padding-bottom: 0px;
+        padding-right: 0px;
+        width: 100%;
+        margin-bottom: 0px;
+        padding-top: 0px;
+        padding-left: 0px;
+        margin-top: 0px;
+        height: 200px;
+    }
+
+    .panel .body .video-right .video-rank-item .video-list-item .video-list-item-title {
+        white-space: nowrap;
+        flex-direction: row;
+        word-wrap: break-word;
+        display: flex;
+        padding-right: 0px;
+        justify-content: center;
+        margin-left: 0px;
+        margin-right: 0px;
+        font-family: 微软雅黑;
+        padding-bottom: 0px;
+        overflow: hidden;
+        width: 100%;
+        font-size: 16PX;
+        margin-bottom: 10px;
+        padding-top: 0px;
+        text-overflow: ellipsis;
+        padding-left: 0px;
+        margin-top: 10px;
+    }
+
+    .panel .body .video-right .video-rank-item .video-list-item .video-list-item-author {
+        min-height: 0px;
+        margin-right: 0px;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        display: flex;
+        flex-shrink: 0;
+        width: 100%;
+        margin-bottom: 0px;
+        box-sizing: border-box;
+        margin-top: 0px;
+        height: unset;
+    }
+
+    .panel .body .video-right .video-rank-item .video-list-item .video-list-item-author .video-item-time {
+        margin-right: 10px;
+        padding-bottom: 0px;
+        flex-direction: row;
+        word-wrap: break-word;
+        display: inline-block;
+        font-size: 12PX;
+        padding-top: 0px;
+        margin-left: 0px;
+    }
+
+    .panel .body .video-right .video-rank-item .video-list-item .video-list-item-author .video-item-author-name {
+        margin-right: 0px;
+        flex-direction: row;
+        word-wrap: break-word;
+        display: inline-block;
+        padding-right: 0px;
+        font-size: 12PX;
+        margin-bottom: 0px;
+        padding-left: 0px;
+        margin-top: 0px;
+        margin-left: 0px;
+    }
+
+
+}
+
+@media (max-width:768px) {
+    .w-header .w-body {
+        display: flex;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        width: 100% !important;
+    }
+}
+</style>

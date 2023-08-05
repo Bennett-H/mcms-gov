@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.mingsoft.people.dao.IPeopleLogDao">
+
+    <resultMap id="resultMap" type="net.mingsoft.people.entity.PeopleLogEntity">
+        <result column="LOG_TITLE" property="logTitle" /><!--标题 -->
+        <result column="PEOPLE_ID" property="peopleId" /><!--会员编号 -->
+        <result column="LOG_IP" property="logIp" /><!--IP -->
+        <result column="LOG_ADDR" property="logAddr" /><!--所在地区 -->
+        <result column="LOG_TYPE" property="logType" /><!--日志类型 -->
+        <result column="LOG_STATUS" property="logStatus" /><!--日志状态 -->
+        <result column="LOG_PARAM" property="logParam" /><!--请求参数 -->
+        <result column="LOG_RESULT" property="logResult" /><!--返回参数 -->
+        <result column="LOG_INFO" property="logInfo" /><!--日志信息 -->
+        <result column="LOG_ERROR_MSG" property="logErrorMsg" /><!--错误消息 -->
+    </resultMap>
+
+    <select id="query" resultMap="resultMap">
+        SELECT * FROM PEOPLE_LOG
+        <where>
+            <if test="peopleId != null and peopleId != ''"> and people_id=#{peopleId}</if>
+            <if test="logTitle != null and logTitle != ''"> and log_title=#{logTitle}</if>
+            <if test="logType != null and logType != ''"> and log_type=#{logType}</if>
+            <if test="logIp != null and logIp != ''"> and log_addr=#{logIp}</if>
+            <if test="logAddr != null and logAddr != ''"> and log_ip=#{logAddr}</if>
+            <if test="logStatus != null and logStatus != ''"> and log_status=#{logStatus}</if>
+            <if test="logParam != null and logParam != ''"> and log_param=#{logParam}</if>
+            <if test="logResult != null and logResult != ''"> and log_result=#{logResult}</if>
+            <if test="logErrorMsg != null and logErrorMsg != ''"> and log_error_msg=#{logErrorMsg}</if>
+            <if test="createBy &gt; 0"> and create_by=#{createBy} </if>
+            <if test="createDate != null">
+                <if test="_databaseId == 'mysql'">
+                    and TO_DAYS(create_date) = TO_DAYS(#{createDate})
+                </if>
+                <if test="_databaseId == 'oracle'">
+                    and TO_CHAR(create_date,'yyyy-mm-dd') = TO_CHAR(#{createDate},'yyyy-mm-dd')
+                </if>
+            </if>
+            <if test="updateBy &gt; 0"> and update_by=#{updateBy} </if>
+            <if test="updateDate != null"> and update_date=#{updateDate} </if>
+            <if test="del != null"> and del=#{del} </if>
+            <if test="_databaseId == 'mysql'">
+                <if test="startTime != null and endTime != null">
+                    and date_format(create_date,'%Y-%m-%d %H:%i:%s') BETWEEN date_format(#{startTime},'%Y-%m-%d %H:%i:%s') AND date_format(#{endTime},'%Y-%m-%d %H:%i:%s')
+                </if>
+            </if>
+            <if test="_databaseId == 'oracle'">
+                <if test="startTime != null and endTime != null">
+                    and create_date BETWEEN to_date(#{startTime},'yyyy-mm-dd hh24:mi:ss') AND to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')
+                </if>
+            </if>
+            AND DEL=0
+            <include refid="net.mingsoft.base.dao.IBaseDao.sqlWhere"></include>
+        </where>
+        ORDER BY ID DESC
+    </select>
+
+</mapper>

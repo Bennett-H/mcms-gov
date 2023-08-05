@@ -1,0 +1,137 @@
+<!--导航-start-->
+<div class="w-header">
+    <div class="w-body">
+        <!--logo-start-->
+        <div class="w-logo">
+            <a href="{ms:global.url/}">
+                <img src="{ms:global.contextPath/}{@ms:file global.logo/}" />
+            </a>
+        </div>
+        <!--logo-end-->
+        <!--导航-start-->
+        <div class="w-nav">
+            <!-- 定义typeid变量 field为当前栏目对象-->
+            <#assign typeid=field.typeid>
+            <#assign ids=field.parentids>
+            <#if field.typetitle=="首页" || field.typetitle=="">
+            <a href="{ms:global.host/}" class="hvr-underline-reveal sel">首页</a>
+            <#else>
+            <a href="{ms:global.host/}" class="hvr-underline-reveal">首页</a>
+        </#if>
+        {ms:channel type="nav" flag="n"}
+        <!-- if标签中直接使用typeid-->
+        <#if field.typeid==typeid || (ids?has_content && ids?index_of('${field.typeid}') gt -1)>
+        <a href="<#if field.type == 3>{ms:global.url/}${field.typeurl}<#else>{ms:global.url/}${field.typelink}</#if>" class="hvr-underline-reveal sel">${field.typetitle}</a>
+        <#else>
+        <a href="<#if field.type == 3>{ms:global.url/}${field.typeurl}<#else>{ms:global.url/}${field.typelink}</#if>" class="hvr-underline-reveal">${field.typetitle}</a>
+    </#if>
+    {/ms:channel}
+</div>
+<!--导航-end-->
+<!--导航图标-start-->
+<div class="w-nav-icon">
+    <!--无障碍-start-->
+    <i id="wuzhangai" class="iconfont icon-aixin hvr-bob"></i>
+    <!--无障碍-end-->
+    <!--搜索-start-->
+    <i @click='switchShow(["1655368080000_75551"]);' class="iconfont icon-fangdajing hvr-bob"></i>
+    <!--搜索-end-->
+    <!--会员-start-->
+    <a href="{ms:global.host/}/people/{ms:global.template/}/peopleInfo.do">
+        <i class="iconfont icon-wode hvr-bob"></i>
+    </a>
+    <!--会员-end-->
+    <!--移动端菜单-start-->
+    <i id="key_1646118885000_83566" @click='show(["1657178605000_77829","1655367064000_16215"]);hide(["1646118885000_83566"]);' class="iconfont icon-caidan w-h5-show"></i>
+    <!--移动端菜单-end-->
+    <!--移动端菜单-start-->
+    <i id="key_1657178605000_77829" @click='hide(["1657178605000_77829","1655367064000_16215"]);show(["1646118885000_83566"]);' class="iconfont icon-guanbi w-h5-hide"></i>
+    <!--移动端菜单-end-->
+</div>
+<!--导航图标-end-->
+</div>
+<!--h5菜单-start-->
+<div id="key_1655367064000_16215" class="w-h5-menu">
+    <div class="w-h5-menu-box">
+        <a href="{ms:global.host/}" class="w-h5-menu-item">
+            首页
+        </a>
+        {ms:channel flag='n' type='nav'}
+        <a href="<#if field.type == 3>{ms:global.url/}${field.typeurl}<#else>{ms:global.url/}${field.typelink}</#if>" class="w-h5-menu-item">
+            ${field.typetitle}
+        </a>
+        {/ms:channel}
+    </div>
+</div>
+<!--h5菜单-end-->
+</div>
+<!--导航-end-->
+
+<!--搜索-start-->
+<div id="key_1655368080000_75551" class="search">
+    <div class="body">
+        <!--全文检索部分-->
+        <!--<el-form id="searchDataForm" action="{ms:global.host/}/mcms/search.do" method="post" class="search-row flex">
+            <el-form-item class="search-box" style="display: flex; width: 100%;justify-content: center;">
+                &lt;!&ndash;输入框&ndash;&gt;
+                <input type="text" style="display: none;" name="style" value="{ms:global.template/}">
+                <input class="search-input" name="content_title" placeholder="输入搜索关键字" />
+                &lt;!&ndash; <div class="search-submit"> &ndash;&gt;
+                &lt;!&ndash;搜索-start&ndash;&gt;
+                &lt;!&ndash; <i class="iconfont icon-fangdajing hvr-bob" onclick="document.getElementById('searchDataForm').submit();"></i> &ndash;&gt;
+                &lt;!&ndash;搜索-end&ndash;&gt;
+                &lt;!&ndash; </div> &ndash;&gt;
+                <el-button icon="el-icon-search" @click="document.getElementById('searchDataForm').submit();"></el-button>
+            </el-form-item>
+
+            &lt;!&ndash;热搜关键字&ndash;&gt;
+            <el-form-item class="search-keyword">
+        <span onclick="document.getElementById('searchDataForm').submit();" style="cursor: pointer">
+          中国
+        </span>
+            </el-form-item>
+        </el-form>-->
+        <!--es搜索部分-->
+        <!--动态静态化查看需要在地址后拼接isDo=true参数，例如/mcms/search.do?isDo=true-->
+        <el-form id="searchDataForm" action="{ms:global.host/}/mcms/search.do" method="post" class="search-row flex">
+            <el-form-item class="search-box" style="display: flex; width: 100%;justify-content: center;">
+                <!--输入框-->
+                <input type="text" style="display: none;" name="style" value="{ms:global.template/}">
+                <input id="content_title" class="search-input" name="content_title" placeholder="输入搜索关键字" />
+                <el-button icon="el-icon-search" @click="document.getElementById('searchDataForm').submit();"></el-button>
+            </el-form-item>
+            <!--热搜关键字-->
+            <el-form-item id="search-keyword" style="justify-content: center;display: flex">
+                <div style="width: 639px" id="search-div">
+                    <span onclick="searchSubmit('中国')" style="cursor: pointer;">
+                        中国
+                    </span>
+                </div>
+            </el-form-item>
+        </el-form>
+    </div>
+</div>
+<script>
+    /*不需要es搜索将下面代码注释即可*/
+    <!--es的热词-->
+    ms.http.post(ms.base+"/es/hotSearch.do", {
+        field: 'title'
+    }).then(res => {
+        if(res.data && res.data.length>0){
+            //先清空默认的伪数据
+            document.getElementById('search-div').innerHTML = "";
+            res.data.forEach(data => {
+                document.getElementById('search-div').innerHTML =  document.getElementById('search-div').innerHTML + "<span onclick=\"searchSubmit('"+data.key+"("+data.count+")"+"')\" style='cursor: pointer;margin-right: 20px'>"+data.key+"("+data.count+")"+"</span>";
+            })
+        }
+    }).catch(err => {
+        console.log(err)
+    })
+
+    // 点击热词后需要为content_title赋值
+    function searchSubmit(data) {
+        document.getElementById('content_title').value = data;
+        document.getElementById('searchDataForm').submit();
+    }
+</script>
+<!--搜索-end-->

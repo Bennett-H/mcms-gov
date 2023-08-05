@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.mingsoft.attention.dao.ICollectionLogDao">
+
+	<resultMap id="resultMap" type="net.mingsoft.attention.entity.CollectionLogEntity">
+		<result column="DATA_COUNT" property="dataCount" /><!--关注数 -->
+		<result column="DATA_TYPE" property="dataType" /><!--业务类型 -->
+		<result column="DATA_ID" property="dataId" /><!--数据id -->
+	</resultMap>
+
+	<resultMap id="resultMapBean" type="net.mingsoft.attention.bean.CollectionLogBean">
+		<result column="DATA_COUNT" property="dataCount" /><!--关注数 -->
+		<result column="DATA_TYPE" property="dataType" /><!--业务类型 -->
+		<result column="DATA_ID" property="dataId" /><!--数据id -->
+		<result column="COLLECTION_DATA_TITLE" property="collectionDataTitle" /><!--数据标题 -->
+		<result column="create_by" property="createBy"/><!--创建人 -->
+		<result column="create_date" property="createDate"/><!--创建时间 -->
+		<result column="update_by" property="updateBy"/><!--修改人 -->
+		<result column="update_date" property="updateDate"/><!--修改时间 -->
+		<result column="del" property="del"/><!--删除标记 -->
+	</resultMap>
+
+	<resultMap id="collectionBean" type="net.mingsoft.attention.bean.CollectionBean">
+		<result column="DATA_COUNT" property="dataCount" /><!--关注数 -->
+		<result column="DATA_TYPE" property="dataType" /><!--业务类型 -->
+		<result column="is_like" property="isLike" /><!--是否关注 -->
+		<result column="collection_ip" property="collectionIp" /><!--是否关注 -->
+	</resultMap>
+
+	<select id="query" resultMap="resultMapBean" parameterType="net.mingsoft.attention.bean.CollectionLogBean">
+		SELECT
+			collection_log.*,
+			collection.COLLECTION_DATA_TITLE
+		FROM
+			collection_log
+		LEFT JOIN collection ON collection_log.DATA_ID = collection.DATA_ID AND collection_log.DATA_TYPE = collection.DATA_TYPE
+		<where>
+			<if test="dataType != null and dataType != ''">AND collection_log.DATA_TYPE = #{dataType}</if>
+			<if test="dataId != null and dataId != ''">AND collection_log.DATA_ID = #{dataId}</if>
+			<if test="collectionDataTitle != null and collectionDataTitle != ''">AND collection.COLLECTION_DATA_TITLE
+			 LIKE CONCAT(CONCAT('%',#{collectionDataTitle}),'%')</if>
+		</where>
+		GROUP BY collection_log.DATA_ID
+	</select>
+
+	<select id="queryCollectionCount" resultMap="collectionBean">
+		SELECT
+			collection_log.DATA_ID,
+			collection_log.DATA_COUNT,
+			COUNT( collection.DATA_ID ) AS is_like,
+			collection.COLLECTION_IP
+		FROM
+			collection_log
+				LEFT JOIN collection ON collection.DATA_ID = collection_log.DATA_ID
+				AND collection_log.DATA_TYPE = collection.DATA_TYPE
+		<if test="peopleId != null and peopleId!=''">AND collection.PEOPLE_ID = #{peopleId}</if>
+		<where>
+			collection_log.DATA_ID IN <foreach collection="dataIds" item="item" index="index"
+		open="(" separator="," close=")">#{item}
+		</foreach>
+			<if test="dataType != null and dataType != ''">AND collection_log.DATA_TYPE = #{dataType}</if>
+		</where>
+		GROUP BY collection_log.DATA_ID
+	</select>
+</mapper>

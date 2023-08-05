@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.mingsoft.comment.dao.ICommentDao">
+    <resultMap id="resultMap" type="net.mingsoft.comment.entity.CommentEntity">
+        <id column="id" property="id" /><!--编号 -->
+        <result column="people_id" property="peopleId" /><!--评论者id -->
+        <result column="comment_ip" property="commentIp"/><!--评论ip-->
+        <result column="people_name" property="peopleName"/><!--评论者昵称-->
+        <result column="people_info" property="peopleInfo"/><!--评论用户扩展信息 例如头像、住址、邮箱等-->
+        <result column="data_id" property="dataId" /><!--文章、商品 id -->
+        <result column="data_info" property="dataInfo" /><!--文章、商品 业务扩展信息 -->
+        <result column="comment_id" property="commentId" /><!--父评论id -->
+        <result column="top_id" property="topId" /><!--顶级id -->
+        <result column="data_title" property="dataTitle" /><!--文章、商品 标题 -->
+        <result column="comment_time" property="commentTime" /><!--评论时间 -->
+        <result column="comment_like" property="commentLike" /><!--点赞字段 -->
+        <result column="comment_audit" property="commentAudit" /><!--0默认 显示 1:审核不通过 -->
+        <result column="comment_points" property="commentPoints" /><!--评价打分 -->
+        <result column="comment_content" property="commentContent" /><!--评论的内容 -->
+        <result column="comment_picture" property="commentPicture" /><!--图片 -->
+        <result column="comment_is_anonymous" property="commentIsAnonymous" /><!--匿名 -->
+        <result column="comment_file_json" property="commentFileJson" /><!--附件json -->
+        <result column="create_by" property="createBy" /><!--创建人 -->
+        <result column="create_date" property="createDate" /><!--创建时间 -->
+        <result column="update_by" property="updateBy" /><!--修改人 -->
+        <result column="update_date" property="updateDate" /><!--修改时间 -->
+        <result column="data_type" property="dataType"/> <!-- 评论类型 -->
+        <result column="del" property="del" /><!--删除标记 -->
+    </resultMap>
+
+
+
+
+    <!--查询全部结束-->
+    <!--条件查询开始-->
+    <select id="query" resultMap="resultMap">
+        select * from comments c
+        <where>
+            <if test="peopleId != null">and c.people_id=#{peopleId}</if>
+            <if test="commentIp != null and commentIp != ''">and comment_ip=#{commentIp}</if>
+            <if test="peopleName != null and peopleName!=''">and people_name=#{peopleName}</if>
+            <if test="peopleInfo != null and peopleInfo != ''">and people_info=#{peopleInfo}</if>
+            <if test="dataId != null">and data_id=#{dataId}</if>
+            <if test="dataInfo != null and dataInfo!=''">and data_info=#{dataInfo}</if>
+            <if test="commentId != null and commentId != ''">and comment_id=#{commentId}</if>
+            <if test="topId != null and topId != ''">and top_id=#{topId}</if>
+            <if test="dataTitle != null and dataTitle != ''">and data_title like CONCAT('%',#{dataTitle},'%')</if>
+            <if test="commentTime != null">and comment_time=#{commentTime}</if>
+            <if test="commentLike != null">and comment_like=#{commentLike}</if>
+            <if test="commentAudit != null">and comment_audit=#{commentAudit}</if>
+            <if test="commentPoints != null">and comment_points >= #{commentPoints}</if>
+            <if test="commentPoints != null">and #{commentPoints}+1 >= comment_points</if>
+            <if test="commentContent != null and commentContent != ''">and comment_content=#{commentContent}</if>
+            <if test="commentPicture != null and commentPicture != ''">and LENGTH(comment_picture)>=3</if>
+            <if test="commentIsAnonymous != null">and comment_is_anonymous=#{commentIsAnonymous}</if>
+            <if test="commentFileJson != null and commentFileJson != ''">and comment_file_json=#{commentFileJson}</if>
+            <if test="dataType != null and dataType != ''">and data_type=#{dataType}</if>
+            <if test="del != null and del != 0">and c.del=#{del}</if>
+            <!-- 根据评论时间 -->
+            <if test="commentStartTime != null and commentEndTime != null">and (date(COMMENT_TIME) between
+                #{commentStartTime} and #{commentEndTime})
+            </if>
+        </where>
+        order by c.comment_time desc
+    </select>
+
+    <!--批量删除开始-->
+    <delete id="delete" >
+        delete from comments
+        <where>
+            id  in <foreach collection="ids" item="item" index="index"
+                            open="(" separator="," close=")">#{item}</foreach>
+        </where>
+    </delete>
+    <!--批量删除结束-->
+</mapper>

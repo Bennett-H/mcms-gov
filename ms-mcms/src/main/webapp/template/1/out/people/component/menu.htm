@@ -1,0 +1,45 @@
+<script type="text/x-template" id="user-menu">
+    <div id="user-center-menu" class="user-center-menu">
+        <span class="menu-item"> 投稿管理 </span>
+        <a href="{ms:global.contextPath/}/people/{ms:global.template/}/contentList.do" :class="[{'sel':selMenu=='稿件列表'}]"> 稿件列表 </a>
+        <a href="{ms:global.contextPath/}/people/{ms:global.template/}/contentAuditList.do" :class="[{'sel':selMenu=='待审稿件'}]"> 待审稿件</a>
+        <a href="{ms:global.contextPath/}/people/{ms:global.template/}/contentRejectList.do" :class="[{'sel':selMenu=='退回稿件'}]"> 退回稿件</a>
+        <div class="split">
+        </div>
+        <span class="menu-item"> 安全中心 </span>
+        <a href="{ms:global.contextPath/}/people/{ms:global.template/}/peopleInfo.do" :class="[{'sel':selMenu=='个人资料'}]"> 个人资料 </a>
+        <a href="{ms:global.contextPath/}/people/{ms:global.template/}/passwordChange.do" :class="[{'sel':selMenu=='修改密码'}]"> 修改密码 </a>
+        <a @click="loginOut"> 安全退出 </a>
+    </div>
+</script>
+<script>
+    Vue.component('user-menu',{
+        template: "#user-menu",
+        name: "user-menu",
+        props:{
+            selMenu:{
+                type: String
+            },
+        },
+        data: function(){
+            return{
+                selMenu: ''
+            }
+        },
+        methods: {
+            set: function (sel) {
+                this.selMenu = sel
+            },
+            loginOut: function () {
+                ms.http.get(ms.base+'/people/quit.do').then(function (data) {
+                    window.location.href = ms.base + "/mdiyPage/{ms:global.template/}/login.do";
+                })
+            }
+        },
+        created: function () {
+            this.icon = "iconfont "+this.icon+" label"
+        }
+    })
+</script>
+<style scoped>
+</style>

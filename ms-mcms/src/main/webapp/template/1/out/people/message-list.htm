@@ -1,0 +1,257 @@
+<html>
+<head>
+    <title>{ms:global.name/}</title>
+    <#include "/head-file.htm" />
+    <link rel="stylesheet" href="{ms:global.host/}/{ms:global.style/}/css/user-center.css">
+    <#include "people/component/menu.htm" />
+</head>
+<body>
+<div id="app" v-cloak>
+    <#include "/header.htm" />
+
+    <div class="user-index">
+        <div class="body">
+            <!--会员管理菜单-start-->
+            <user-menu sel-menu="审核日志"></user-menu>
+            <!--会员管理菜单-end-->
+            <!--数据区域-start-->
+            <div class="data" id="app" v-cloak>
+                <div class="path">
+                    <a class="first" href="{ms:global.contextPath/}/people/{ms:global.template/}/contentList.do"> 稿件列表 </a>
+                    <span class="tag"> &gt; </span>
+                    <span class="title">审核日志 </span>
+                </div>
+
+                <el-main class="ms-container">
+                    <el-table height="calc(100vh - 288px)" v-loading="loading" ref="multipleTable" border
+                              :data="dataList" tooltip-effect="dark" @selection-change="handleSelectionChange">
+                        <template slot="empty">
+                            {{emptyText}}
+                        </template>
+                        <el-table-column label="审核进度名称" align="left" prop="plNodeName">
+                        </el-table-column>
+                        <el-table-column label="审核人" align="left" prop="plOperator">
+                        </el-table-column>
+                        <el-table-column label="审核时间" align="center" prop="updateDate" :formatter="dateFormat"
+                                         width="120">
+                        </el-table-column>
+                        <el-table-column label="状态" align="left" prop="plStatus" :formatter="plStatusFormat">
+                        </el-table-column>
+                        <el-table-column label="操作内容" align="left" prop="plContent">
+                        </el-table-column>
+                    </el-table>
+                    <el-pagination
+                            background
+                            :page-sizes="[10,20,30,40,50,100]"
+                            layout="total, sizes, prev, pager, next, jumper"
+                            :current-page="currentPage"
+                            :page-size="pageSize"
+                            :total="total"
+                            class="ms-pagination"
+                            @current-change='currentChange'
+                            @size-change="sizeChange">
+                    </el-pagination>
+                </el-main>
+            </div>
+            <!--数据区域-end-->
+        </div>
+    </div>
+    <#include "/footer.htm" />
+</div>
+<script>
+
+    var indexVue = new Vue({
+        el: '#app',
+        data: {
+            dataList: [], //进度日志列表
+            selectionList: [],//进度日志列表选中
+            manager: '/people',
+            total: 0, //总记录数量
+            pageSize: 10, //页面数量
+            currentPage: 1, //初始页
+            loadState: false,
+            loading: true,//加载状态
+            emptyText: '',//提示文字
+            plStatusOptions: [{"value": "adopt", "label": "审核通过"}, {"value": "reject", "label": "审核不通过"}],
+            //搜索表单
+            form: {
+                dataId: "",
+                sqlWhere: null,
+            },
+        },
+        watch: {},
+        methods: {
+   switchShow:function(arr){
+                var that = this
+                arr.forEach(function(x){
+                    let e = that.$el.querySelector("#key_"+x)
+                    if(e){
+                        e.style.display=getComputedStyle(e,null).display=='none'?'flex':'none'
+                    }
+                })
+            },
+            show:function(arr){
+                var that = this
+                arr.forEach(function(x){
+                    let e = that.$el.querySelector("#key_"+x)
+                    if(e){
+                        e.style.display='flex'
+                    }
+                })
+            },
+            hide:function(arr){
+                var that = this
+                arr.forEach(function(x){
+                    let e = that.$el.querySelector("#key_"+x)
+                    if(e){
+                        e.style.display='none'
+                    }
+                })
+            },
+            //查询列表
+            list: function () {
+                var that = this;
+                that.loading = true;
+                that.loadState = false;
+                var page = {
+                    pageNo: that.currentPage,
+                    pageSize: that.pageSize
+                }
+                var form = JSON.parse(JSON.stringify(that.form))
+                for (key in form) {
+                    if (!form[key]) {
+                        delete form[key]
+                    }
+                }
+                history.replaceState({form: form, page: page}, "");
+                ms.http.post(ms.base + this.manager + "/progress/progressLog/list.do", form.sqlWhere ? Object.assign({}, {sqlWhere: form.sqlWhere}, page)
+                    : Object.assign({}, form, page)).then(
+                    function (res) {
+                        if (that.loadState) {
+                            that.loading = false;
+                        } else {
+                            that.loadState = true
+                        }
+                        if (!res.result || res.data.total <= 0) {
+                            that.emptyText = "暂无数据"
+                            that.dataList = [];
+                            that.total = 0;
+                        } else {
+                            that.emptyText = '';
+                            that.total = res.data.total;
+                            that.dataList = res.data.rows;
+                        }
+                    }).catch(function (err) {
+                    console.log(err);
+                });
+                setTimeout(function () {
+                    if (that.loadState) {
+                        that.loading = false;
+                    } else {
+                        that.loadState = true
+                    }
+                }, 500);
+            },
+            //进度日志列表选中
+            handleSelectionChange: function (val) {
+                this.selectionList = val;
+            },
+            dateFormat: function (row, column, cellValue, index) {
+                if (cellValue) {
+                    return ms.util.date.fmt(cellValue, 'yyyy-MM-dd');
+                } else {
+                    return '';
+                }
+            },
+            //删除
+            del: function (row) {
+                var that = this;
+                that.$confirm("此操作将永久删除所选内容, 是否继续", "提示", {
+                    confirmButtonText: "确认",
+                    cancelButtonText: "取消",
+                    type: 'warning'
+                }).then(function () {
+                    ms.http.post( ms.manager +"/progress/progressLog/delete.do", row.length ? row : [row], {
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }).then(
+                        function (res) {
+                            if (res.result) {
+                                that.$notify({
+                                    type: 'success',
+                                    message: "删除成功"
+                                });
+                                //删除成功，刷新列表
+                                that.list();
+                            } else {
+                                that.$notify({
+                                    title: "错误",
+                                    message: res.msg,
+                                    type: 'warning'
+                                });
+                            }
+                        });
+                })
+            },
+            //新增
+            save: function (id) {
+                if (id) {
+                    location.href = ms.base + this.manager + "/progress/progressLog/form.do?id=" + id;
+                } else {
+                    location.href = ms.base + this.manager + "/progress/progressLog/form.do";
+                }
+            },
+            //表格数据转换
+            plStatusFormat: function (row, column, cellValue, index) {
+                var value = "";
+                if (cellValue) {
+                    var data = this.plStatusOptions.find(function (value) {
+                        return value.value == cellValue;
+                    })
+                    if (data && data.label) {
+                        value = data.label;
+                    }
+                }
+                return value;
+            },
+            //pageSize改变时会触发
+            sizeChange: function (pagesize) {
+                this.loading = true;
+                this.pageSize = pagesize;
+                this.list();
+            },
+            //currentPage改变时会触发
+            currentChange: function (currentPage) {
+                this.loading = true;
+                this.currentPage = currentPage;
+                this.list();
+            },
+            search: function (data) {
+                this.form.sqlWhere = JSON.stringify(data);
+                this.list();
+            },
+            //重置表单
+            rest: function () {
+                this.currentPage = 1;
+                this.form.sqlWhere = null;
+                this.$refs.searchForm.resetFields();
+                this.list();
+            },
+        },
+        created: function () {
+            this.form.dataId = ms.util.getParameter("id");
+            if (history.hasOwnProperty("state") && history.state) {
+                this.form = history.state.form;
+                this.currentPage = history.state.page.pageNo;
+                this.pageSize = history.state.page.pageSize;
+            }
+            this.list();
+        },
+    })
+
+
+</script>
+
+</body>
+</html>

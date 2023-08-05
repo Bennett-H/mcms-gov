@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.mingsoft.progress.dao.IProgressDao">
+
+	<resultMap id="resultMap" type="net.mingsoft.progress.entity.ProgressEntity">
+			<id column="id" property="id" /><!--编号 -->
+				<result column="scheme_id" property="schemeId" /><!--关联id -->
+				<result column="progress_id" property="progressId" /><!--父节点 -->
+				<result column="progress_node_name" property="progressNodeName" /><!--进度节点名称 -->
+				<result column="progress_number" property="progressNumber" /><!--进度数 -->
+				<result column="progress_status" property="progressStatus" /><!--进度状态 -->
+				<result column="create_by" property="createBy" /><!--创建人 -->
+				<result column="create_date" property="createDate" /><!--创建时间 -->
+				<result column="update_by" property="updateBy" /><!--修改人 -->
+				<result column="update_date" property="updateDate" /><!--修改时间 -->
+				<result column="del" property="del" /><!--删除标记 -->
+				<result column="leaf" property="leaf" /><!--叶子节点 -->
+				<result column="progress_parent_ids" property="progressParentIds" /><!--父类型编号 -->
+	</resultMap>
+
+	<!--条件查询-->
+	<select id="query" resultMap="resultMap">
+		select * from progress_progress
+		<where>
+			<if test="schemeId != null and schemeId != ''"> and scheme_id=#{schemeId}</if>
+			<if test="progressId != null and progressId != ''">and progress_id=#{progressId}</if>
+			<if test="progressNodeName != null and progressNodeName != ''"> and progress_node_name=#{progressNodeName}</if>
+			<if test="progressNumber != null and progressNumber != ''"> and progress_number=#{progressNumber}</if>
+			<if test="progressStatus != null and progressStatus != ''"> and progress_status=#{progressNumber}</if>
+			<if test="createBy &gt; 0"> and create_by=#{createBy} </if>
+			<if test="createDate != null"> and create_date=#{createDate} </if>
+			<if test="updateBy &gt; 0"> and update_by=#{updateBy} </if>
+			<if test="updateDate != null"> and update_date=#{updateDate} </if>
+			<if test="del != null"> and del=#{del} </if>
+			<if test="leaf != null"> and leaf=#{leaf}</if>
+			<if test="progressParentIds != null and progressParentIds != ''"> and  find_in_set(#{progressParentIds},progress_parent_ids)>0</if>
+			<include refid="net.mingsoft.base.dao.IBaseDao.sqlWhere"></include>
+		</where>
+	</select>
+
+	<select id="queryNotAddLog"  resultMap="resultMap">
+		select pp.* from progress_progress pp
+		left join progress_progress_log ppl on ppl.progress_id = pp.id and ppl.data_id=#{dataId}
+		<where>
+			pp.scheme_id=#{schemeId}
+			<if test="progressNumber != null">and progress_number &gt; #{progressNumber} </if>
+			and ppl.pl_operator is null
+		</where>
+	</select>
+
+	<select id="queryAllNotAddLog" resultType="java.util.List">
+		select pp.* from progress_progress pp
+		left join progress_progress_log ppl on ppl.progress_id = pp.id
+		<where>
+			pp.scheme_id=#{schemeId}
+			and progress_number &gt; 0
+			and ppl.pl_operator is null
+		</where>
+	</select>
+
+	<!-- 查询子节点 -->
+	<select id="queryChildren" resultMap="resultMap">
+		select * from progress_progress
+		<where>
+			(
+			find_in_set('${id}',progress_parent_ids)>0
+			or id=#{id}
+			)
+			and del=0
+		</where>
+	</select>
+
+</mapper>

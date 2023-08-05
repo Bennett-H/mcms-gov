@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.mingsoft.comment.dao.ICommentsLogDao">
+
+	<resultMap id="resultMap" type="net.mingsoft.comment.entity.CommentsLogEntity">
+				<id column="id" property="id" /><!--编号 -->
+				<result column="COMMENTS_COUNT" property="commentsCount" /><!--评论数 -->
+				<result column="DATA_TYPE" property="dataType" /><!--业务类型 -->
+				<result column="DATA_ID" property="dataId" /><!--文章、商品 id -->
+	</resultMap>
+
+
+</mapper>

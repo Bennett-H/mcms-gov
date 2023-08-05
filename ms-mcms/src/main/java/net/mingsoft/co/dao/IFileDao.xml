@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.mingsoft.co.dao.IFileDao">
+
+    <resultMap id="resultMap" type="net.mingsoft.co.entity.FileEntity">
+        <id column="id" property="id" /><!--编号 -->
+        <result column="file_name" property="fileName" /><!--文件名称 -->
+        <result column="file_size" property="fileSize" /><!--文件大小 -->
+        <result column="file_type" property="fileType" /><!--文件类型 -->
+        <result column="file_path" property="filePath" /><!--文件路径 -->
+        <result column="file_identifier" property="fileIdentifier" /><!--文件描述 -->
+        <result column="file_describe" property="fileDescribe" /><!--文件描述 -->
+        <result column="folder_id" property="folderId" /><!--文件夹id -->
+        <result column="create_by" property="createBy" /><!--创建人 -->
+        <result column="create_date" property="createDate" /><!--创建时间 -->
+        <result column="update_by" property="updateBy" /><!--修改人 -->
+        <result column="update_date" property="updateDate" /><!--修改时间 -->
+        <result column="del" property="del" /><!--删除标记 -->
+    </resultMap>
+
+
+
+</mapper>

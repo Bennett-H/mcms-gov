@@ -1,0 +1,1049 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>{ms:global.name/}</title>
+    <#include "head-file.htm" />
+    <script>
+    </script>
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <#include "header.htm" />
+        <div class="panel">
+            <div class="body">
+                {ms:arclist size=10 ispaging=true}
+                <div class="subject-item">
+                    <div class="pic-list">
+                        <a href="${field.outlink}" class="pic-link-box">
+                            <img title="" alt="" src="${global.host}/{@ms:file field.litpic/}" />
+                        </a>
+                        <div>
+                            <a href="${field.outlink}" class="message-title">
+                                ${field.title}
+                            </a>
+                            <div class="pic-info-more">
+                                <span class="pic-create-time">
+                                    ${field.date?string('yyyy-MM-dd')}
+                                </span>
+                                <div class="statistics">
+                                    ${field.descrip}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {/ms:arclist}
+                <div class="pagination">
+                    <el-pagination background @current-change="handleCurrentChange" :page-size="pageSize" pager-count="1" :current-page.sync="pageCur" layout="prev, pager, next,total" :total="contentCount">
+                    </el-pagination>
+                </div>
+            </div>
+        </div>
+        <#include "footer.htm" />
+    </div>
+</body>
+
+</html>
+<script>
+    var app = new Vue({
+        el: '#app',
+        component(){
+        },
+        data: {
+searchForm: {
+          keyword: ""
+},
+hotSearchKeywords: [],    //当前页数
+    pageCur: ${(page.cur)!1},
+    //每页文章条数
+    pageSize: ${(page.size)!20},
+    //页数总数
+    pageTotal: ${(page.total)!0},
+    //内容总数
+    contentCount: ${(page.rcount)!0}
+
+        },
+        watch: {
+        },
+        methods: {
+    <#if isDo?? && isDo>
+        handleCurrentChange:function(val) {
+        if(val==1) {
+            location.href = "{ms:global.url/}mcms/list.do?style=out&typeid=${field.id}";
+        } else {
+            location.href = "{ms:global.url/}mcms/list.do?style=out&typeid=${field.id}"+"&pageNo="+this.pageCur;
+        }
+    },
+    <#else>
+    handleCurrentChange:function(val) {
+        if(val==1) {
+            location.href = "{ms:global.url/}${field.categoryPath}index.html";
+        } else {
+            location.href = "{ms:global.url/}${field.categoryPath}-" + val + ".html";
+        }
+    },
+    </#if>
+
+            switchShow:function(arr){
+                var that = this
+                arr.forEach(function(x){
+                    let e = that.$el.querySelector("#key_"+x)
+                    if(e){
+                        e.style.display=getComputedStyle(e,null).display=='none'?'flex':'none'
+                    }
+                })
+            },
+            show:function(arr){
+                var that = this
+                arr.forEach(function(x){
+                    let e = that.$el.querySelector("#key_"+x)
+                    if(e){
+                        e.style.display='flex'
+                    }
+                })
+            },
+            hide:function(arr){
+                var that = this
+                arr.forEach(function(x){
+                    let e = that.$el.querySelector("#key_"+x)
+                    if(e){
+                        e.style.display='none'
+                    }
+                })
+            }
+        },
+        computed(){
+        },
+        created(){
+        }
+    })
+</script>
+<style>
+.panel {
+    min-height: 50px;
+    padding-bottom: 0px;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    display: flex;
+    flex-shrink: 0;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    height: unset;
+}
+
+
+
+.panel .body {
+    align-items: flex-start;
+    flex-direction: column;
+    display: flex;
+    padding-right: 40px;
+    box-sizing: border-box;
+    justify-content: center;
+    border-top-left-radius: 0px;
+    min-height: 50px;
+    padding-bottom: 40px;
+    flex-wrap: nowrap;
+    border-bottom-left-radius: 0px;
+    flex-shrink: 0;
+    width: 1280px;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+    padding-top: 0px;
+    padding-left: 40px;
+    margin-top: 0px;
+    height: unset;
+}
+
+
+
+.panel .body .subject-item {
+    flex-direction: row;
+    display: flex;
+    padding-right: 0px;
+    box-sizing: border-box;
+    border-top-left-radius: 0px;
+    min-height: 50px;
+    padding-bottom: 0px;
+    flex-wrap: nowrap;
+    border-bottom-left-radius: 0px;
+    flex-shrink: 0;
+    width: 1200px;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+    margin-bottom: 0px;
+    padding-top: 0px;
+    padding-left: 0px;
+    margin-top: 40px;
+    height: unset;
+}
+
+
+
+.panel .body .subject-item .pic-list {
+    border-color: #C1C1C1;
+    flex-direction: row;
+    display: flex;
+    padding-right: 10px;
+    box-sizing: border-box;
+    justify-content: space-between;
+    border-top-left-radius: 5px;
+    min-height: 50px;
+    padding-bottom: 10px;
+    flex-wrap: nowrap;
+    border-bottom-left-radius: 5px;
+    border-width: 1px;
+    flex-shrink: 0;
+    width: 100%;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    margin-bottom: 0px;
+    padding-top: 10px;
+    border-style: solid;
+    padding-left: 10px;
+    margin-top: 0px;
+    height: unset;
+}
+
+
+
+.panel .body .subject-item .pic-list .pic-link-box {
+    cursor: pointer;
+    flex-direction: row;
+    display: flex;
+    padding-right: 0px;
+    text-decoration: none;
+    border-top-left-radius: 5px;
+    padding-bottom: 0px;
+    overflow: hidden;
+    border-bottom-left-radius: 5px;
+    width: 66%;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    padding-top: 0px;
+    padding-left: 0px;
+}
+
+
+
+.panel .body .subject-item .pic-list .pic-link-box img {
+    vertical-align: top;
+    padding-bottom: 0px;
+    border-bottom-left-radius: 0px;
+    padding-right: 0px;
+    width: 100%;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+    padding-top: 0px;
+    padding-left: 0px;
+    margin-top: 0px;
+    height: 370px;
+    border-top-left-radius: 0px;
+}
+
+
+
+.panel .body .subject-item .pic-list div {
+    flex-direction: column;
+    display: flex;
+    padding-right: 0px;
+    box-sizing: border-box;
+    border-top-left-radius: 0px;
+    min-height: 50px;
+    padding-bottom: 0px;
+    flex-wrap: nowrap;
+    border-bottom-left-radius: 0px;
+    flex-shrink: 0;
+    width: 30%;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+    margin-bottom: 0px;
+    padding-top: 0px;
+    padding-left: 0px;
+    height: 100%;
+}
+
+
+
+.panel .body .subject-item .pic-list div .message-title {
+    cursor: pointer;
+    flex-direction: row;
+    display: flex;
+    padding-right: 0px;
+    text-decoration: none;
+    border-top-left-radius: 0px;
+    font-family: 微软雅黑;
+    padding-bottom: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    font-size: 28PX;
+    margin-bottom: 20px;
+    border-top-right-radius: 0px;
+    padding-top: 0px;
+    padding-left: 0px;
+}
+
+
+
+.panel .body .subject-item .pic-list div .pic-info-more {
+    min-height: 50px;
+    padding-bottom: 0px;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    display: flex;
+    flex-shrink: 0;
+    padding-right: 0px;
+    width: 100%;
+    box-sizing: border-box;
+    padding-top: 0px;
+    padding-left: 0px;
+    height: unset;
+}
+
+
+
+.panel .body .subject-item .pic-list div .pic-info-more .pic-create-time {
+    flex-direction: row;
+    word-wrap: break-word;
+    display: inline-block;
+    margin-bottom: 0px;
+}
+
+
+
+.panel .body .subject-item .pic-list div .pic-info-more .statistics {
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+    padding-right: 0px;
+    box-sizing: border-box;
+    justify-content: flex-start;
+    min-height: 50px;
+    padding-bottom: 0px;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    width: 100%;
+    padding-top: 0px;
+    padding-left: 0px;
+    height: 100%;
+}
+
+
+
+.panel .body .pagination {
+    flex-direction: row;
+    display: flex;
+    padding-right: 0px;
+    box-sizing: border-box;
+    justify-content: center;
+    min-height: 50px;
+    padding-bottom: 0px;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    width: 100%;
+    padding-left: 0px;
+    margin-top: 10px;
+    height: unset;
+}
+
+
+
+.panel .body .pagination .page {
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+    box-sizing: border-box;
+    justify-content: center;
+    margin-left: 0px;
+    border-top-left-radius: 0px;
+    margin-right: 0px;
+    flex-wrap: nowrap;
+    border-bottom-left-radius: 0px;
+    flex-shrink: 0;
+    width: unset;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+    margin-top: 10px;
+    height: 50px;
+}
+
+
+
+.panel .body .pagination .page .btn-prev {
+    background-color: flex;
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+    box-sizing: border-box;
+    justify-content: center;
+    margin-left: 10px;
+    border-top-left-radius: 5px;
+    margin-right: 10px;
+    flex-wrap: nowrap;
+    border-bottom-left-radius: 5px;
+    flex-shrink: 0;
+    width: 40px;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    margin-top: 0px;
+    height: 40px;
+}
+
+
+
+.panel .body .pagination .page .btn-prev span {
+    flex-direction: row;
+    word-wrap: break-word;
+    display: flex;
+    margin-top: 0px;
+}
+
+
+
+.panel .body .pagination .page .el-page-number-active {
+    background-color: rgb(64, 158, 255);
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+    box-sizing: border-box;
+    justify-content: center;
+    margin-left: 10px;
+    border-top-left-radius: 5px;
+    margin-right: 10px;
+    flex-wrap: nowrap;
+    border-bottom-left-radius: 5px;
+    flex-shrink: 0;
+    width: 40px;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    margin-top: 0px;
+    height: 40px;
+}
+
+
+
+.panel .body .pagination .page .el-page-number-active span {
+    margin-right: 0px;
+    color: #FFFFFF;
+    flex-direction: row;
+    word-wrap: break-word;
+    display: flex;
+    font-weight: 600;
+    margin-top: 0px;
+    margin-left: 0px;
+}
+
+
+
+.panel .body .pagination .page .el-page-number {
+    background-color: rgba(244, 244, 245, 1);
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+    box-sizing: border-box;
+    justify-content: center;
+    margin-left: 10px;
+    border-top-left-radius: 5px;
+    margin-right: 10px;
+    flex-wrap: nowrap;
+    border-bottom-left-radius: 5px;
+    flex-shrink: 0;
+    width: 40px;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    margin-top: 0px;
+    height: 40px;
+}
+
+
+
+.panel .body .pagination .page .el-page-number span {
+    flex-direction: row;
+    word-wrap: break-word;
+    display: flex;
+    font-weight: 600;
+    margin-top: 0px;
+}
+
+
+
+.panel .body .pagination .page .btn-next {
+    background-color: rgba(244, 244, 245, 1);
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+    box-sizing: border-box;
+    justify-content: center;
+    margin-left: 10px;
+    border-top-left-radius: 5px;
+    margin-right: 10px;
+    flex-wrap: nowrap;
+    border-bottom-left-radius: 5px;
+    flex-shrink: 0;
+    width: 40px;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    margin-top: 0px;
+    height: 40px;
+}
+
+
+
+.panel .body .pagination .page .btn-next span {
+    margin-right: 0px;
+    align-items: center;
+    flex-direction: row;
+    word-wrap: break-word;
+    display: flex;
+    margin-top: 0px;
+    justify-content: center;
+    margin-left: 0px;
+}
+
+
+
+.panel .body .pagination .page .jumper {
+    min-height: 50px;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    display: none;
+    flex-shrink: 0;
+    width: unset;
+    box-sizing: border-box;
+    justify-content: center;
+    height: 100%;
+}
+
+
+
+.panel .body .pagination .page .jumper span {
+    margin-right: 0px;
+    color: #606266;
+    flex-direction: row;
+    word-wrap: break-word;
+    display: flex;
+    font-size: 14PX;
+    margin-top: 0px;
+    margin-left: 0px;
+}
+
+
+
+.panel .body .pagination .page .jumper div {
+    box-sizing: border-box;
+    border-right-style: solid;
+    border-top-color: #DCDFE6;
+    margin-right: 5px;
+    border-bottom-color: #DCDFE6;
+    border-top-style: solid;
+    flex-wrap: nowrap;
+    border-left-width: 1px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    flex-shrink: 0;
+    border-bottom-right-radius: 3px;
+    border-bottom-style: solid;
+    border-right-color: #DCDFE6;
+    border-top-right-radius: 3px;
+    border-bottom-width: 1px;
+    height: 25px;
+    border-left-color: #DCDFE6;
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+    border-left-style: solid;
+    justify-content: center;
+    margin-left: 5px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    width: 50px;
+    margin-top: 0px;
+}
+
+
+
+.panel .body .pagination .page .jumper div span {
+    margin-right: 0px;
+    color: #606266;
+    flex-direction: row;
+    word-wrap: break-word;
+    display: flex;
+    font-size: 14PX;
+    margin-top: 0px;
+    margin-left: 0px;
+}
+
+
+
+.panel .body .pagination .page .total {
+    min-height: 50px;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    display: flex;
+    flex-shrink: 0;
+    width: unset;
+    box-sizing: border-box;
+    height: 100%;
+    margin-left: 0px;
+}
+
+
+
+.panel .body .pagination .page .total span {
+    margin-right: 5px;
+    color: #606266;
+    flex-direction: row;
+    word-wrap: break-word;
+    display: flex;
+    font-size: 14PX;
+    margin-top: 0px;
+    margin-left: 10px;
+}
+
+
+
+@media (max-width: 768px) {
+    .panel {
+        min-height: 50px;
+        margin-right: 0px;
+        padding-bottom: 0px;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        display: flex;
+        flex-shrink: 0;
+        width: 100%;
+        box-sizing: border-box;
+        justify-content: center;
+        height: unset;
+        margin-left: 0px;
+    }
+
+    .panel .body {
+        align-items: center;
+        flex-direction: column;
+        display: flex;
+        padding-right: 0px;
+        box-sizing: border-box;
+        border-top-left-radius: 0px;
+        min-height: 50px;
+        padding-bottom: 0px;
+        flex-wrap: nowrap;
+        border-bottom-left-radius: 0px;
+        flex-shrink: 0;
+        width: 350px;
+        border-bottom-right-radius: 0px;
+        border-top-right-radius: 0px;
+        margin-bottom: 0px;
+        padding-top: 0px;
+        padding-left: 0px;
+        margin-top: 0px;
+        height: unset;
+    }
+
+    .panel .body .subject-item {
+        flex-direction: column;
+        display: flex;
+        padding-right: 0px;
+        box-sizing: border-box;
+        border-top-left-radius: 0px;
+        min-height: 50px;
+        padding-bottom: 0px;
+        flex-wrap: nowrap;
+        border-bottom-left-radius: 0px;
+        flex-shrink: 0;
+        width: 100%;
+        border-bottom-right-radius: 0px;
+        border-top-right-radius: 0px;
+        margin-bottom: 0px;
+        padding-top: 0px;
+        padding-left: 0px;
+        margin-top: 40px;
+        height: unset;
+    }
+
+    .panel .body .subject-item .pic-list {
+        border-color: #C1C1C1;
+        flex-direction: column;
+        display: flex;
+        padding-right: 10px;
+        border-top-left-radius: 5px;
+        padding-bottom: 10px;
+        border-bottom-left-radius: 5px;
+        border-width: 1px;
+        width: 100%;
+        border-bottom-right-radius: 5px;
+        border-top-right-radius: 5px;
+        margin-bottom: 0px;
+        padding-top: 10px;
+        border-style: solid;
+        padding-left: 10px;
+        margin-top: 0px;
+        height: unset;
+    }
+
+    .panel .body .subject-item .pic-list .pic-link-box {
+        cursor: pointer;
+        flex-direction: row;
+        display: flex;
+        padding-right: 0px;
+        text-decoration: none;
+        border-top-left-radius: 5px;
+        padding-bottom: 0px;
+        overflow: hidden;
+        border-bottom-left-radius: 5px;
+        width: 100%;
+        border-bottom-right-radius: 5px;
+        border-top-right-radius: 5px;
+        margin-bottom: 10px;
+        padding-top: 0px;
+        padding-left: 0px;
+        height: 250px;
+    }
+
+    .panel .body .subject-item .pic-list .pic-link-box img {
+        vertical-align: top;
+        padding-bottom: 0px;
+        border-bottom-left-radius: 0px;
+        padding-right: 0px;
+        width: 100%;
+        border-bottom-right-radius: 0px;
+        border-top-right-radius: 0px;
+        padding-top: 0px;
+        padding-left: 0px;
+        margin-top: 0px;
+        height: 370px;
+        border-top-left-radius: 0px;
+    }
+
+    .panel .body .subject-item .pic-list div {
+        flex-direction: column;
+        display: flex;
+        padding-right: 0px;
+        box-sizing: border-box;
+        border-top-left-radius: 0px;
+        min-height: 50px;
+        padding-bottom: 0px;
+        flex-wrap: nowrap;
+        border-bottom-left-radius: 0px;
+        flex-shrink: 0;
+        width: 100%;
+        border-bottom-right-radius: 0px;
+        border-top-right-radius: 0px;
+        margin-bottom: 0px;
+        padding-top: 0px;
+        padding-left: 0px;
+        margin-top: 0px;
+        height: unset;
+    }
+
+    .panel .body .subject-item .pic-list div .message-title {
+        cursor: pointer;
+        flex-direction: row;
+        display: flex;
+        padding-right: 0px;
+        text-decoration: none;
+        border-top-left-radius: 0px;
+        font-family: 微软雅黑;
+        padding-bottom: 0px;
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+        font-size: 28PX;
+        margin-bottom: 10px;
+        border-top-right-radius: 0px;
+        padding-top: 0px;
+        padding-left: 0px;
+    }
+
+    .panel .body .subject-item .pic-list div .pic-info-more {
+        min-height: 50px;
+        padding-bottom: 0px;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        display: flex;
+        flex-shrink: 0;
+        padding-right: 0px;
+        width: 100%;
+        box-sizing: border-box;
+        padding-top: 0px;
+        padding-left: 0px;
+        height: unset;
+    }
+
+    .panel .body .subject-item .pic-list div .pic-info-more .pic-create-time {
+        padding-bottom: 0px;
+        flex-direction: row;
+        word-wrap: break-word;
+        display: inline-block;
+        padding-right: 0px;
+        margin-bottom: 0px;
+        padding-top: 0px;
+        padding-left: 0px;
+    }
+
+    .panel .body .subject-item .pic-list div .pic-info-more .statistics {
+        min-height: 50px;
+        align-items: center;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        display: flex;
+        flex-shrink: 0;
+        width: 100%;
+        box-sizing: border-box;
+        margin-bottom: 0px;
+        justify-content: flex-start;
+        height: unset;
+    }
+
+    .panel .body .pagination {
+        flex-direction: row;
+        display: flex;
+        padding-right: 0px;
+        box-sizing: border-box;
+        border-top-left-radius: 0px;
+        min-height: 50px;
+        padding-bottom: 0px;
+        flex-wrap: nowrap;
+        border-bottom-left-radius: 0px;
+        flex-shrink: 0;
+        width: 100%;
+        border-bottom-right-radius: 0px;
+        border-top-right-radius: 0px;
+        padding-top: 0px;
+        padding-left: 0px;
+        margin-top: 10px;
+        height: unset;
+    }
+
+    .panel .body .pagination .page {
+        flex-direction: row;
+        display: flex;
+        width: 100%;
+        height: 100%;
+    }
+
+    .panel .body .pagination .page .btn-prev {
+        background-color: flex;
+        align-items: center;
+        flex-direction: row;
+        display: flex;
+        box-sizing: border-box;
+        justify-content: center;
+        margin-left: 10px;
+        border-top-left-radius: 5px;
+        margin-right: 10px;
+        flex-wrap: nowrap;
+        border-bottom-left-radius: 5px;
+        flex-shrink: 0;
+        width: 40px;
+        border-bottom-right-radius: 5px;
+        border-top-right-radius: 5px;
+        margin-top: 0px;
+        height: 40px;
+    }
+
+    .panel .body .pagination .page .btn-prev span {
+        flex-direction: row;
+        word-wrap: break-word;
+        display: flex;
+        margin-top: 0px;
+    }
+
+    .panel .body .pagination .page .el-page-number-active {
+        background-color: rgb(64, 158, 255);
+        align-items: center;
+        flex-direction: row;
+        display: flex;
+        box-sizing: border-box;
+        justify-content: center;
+        margin-left: 10px;
+        border-top-left-radius: 5px;
+        margin-right: 10px;
+        flex-wrap: nowrap;
+        border-bottom-left-radius: 5px;
+        flex-shrink: 0;
+        width: 40px;
+        border-bottom-right-radius: 5px;
+        border-top-right-radius: 5px;
+        margin-top: 0px;
+        height: 40px;
+    }
+
+    .panel .body .pagination .page .el-page-number-active span {
+        margin-right: 0px;
+        color: #FFFFFF;
+        flex-direction: row;
+        word-wrap: break-word;
+        display: flex;
+        font-weight: 600;
+        margin-top: 0px;
+        margin-left: 0px;
+    }
+
+    .panel .body .pagination .page .el-page-number {
+        background-color: rgba(244, 244, 245, 1);
+        align-items: center;
+        flex-direction: row;
+        display: flex;
+        box-sizing: border-box;
+        justify-content: center;
+        margin-left: 10px;
+        border-top-left-radius: 5px;
+        margin-right: 10px;
+        flex-wrap: nowrap;
+        border-bottom-left-radius: 5px;
+        flex-shrink: 0;
+        width: 40px;
+        border-bottom-right-radius: 5px;
+        border-top-right-radius: 5px;
+        margin-top: 0px;
+        height: 40px;
+    }
+
+    .panel .body .pagination .page .el-page-number span {
+        flex-direction: row;
+        word-wrap: break-word;
+        display: flex;
+        font-weight: 600;
+        margin-top: 0px;
+    }
+
+    .panel .body .pagination .page .btn-next {
+        background-color: rgba(244, 244, 245, 1);
+        align-items: center;
+        flex-direction: row;
+        display: flex;
+        box-sizing: border-box;
+        justify-content: center;
+        margin-left: 10px;
+        border-top-left-radius: 5px;
+        margin-right: 10px;
+        flex-wrap: nowrap;
+        border-bottom-left-radius: 5px;
+        flex-shrink: 0;
+        width: 40px;
+        border-bottom-right-radius: 5px;
+        border-top-right-radius: 5px;
+        margin-top: 0px;
+        height: 40px;
+    }
+
+    .panel .body .pagination .page .btn-next span {
+        margin-right: 0px;
+        align-items: center;
+        flex-direction: row;
+        word-wrap: break-word;
+        display: flex;
+        margin-top: 0px;
+        justify-content: center;
+        margin-left: 0px;
+    }
+
+    .panel .body .pagination .page .jumper {
+        min-height: 50px;
+        align-items: center;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        display: flex;
+        flex-shrink: 0;
+        width: unset;
+        box-sizing: border-box;
+        justify-content: center;
+        height: 100%;
+    }
+
+    .panel .body .pagination .page .jumper span {
+        color: #606266;
+        flex-direction: row;
+        word-wrap: break-word;
+        display: flex;
+        font-size: 14PX;
+        margin-top: 0px;
+        margin-left: 0px;
+    }
+
+    .panel .body .pagination .page .jumper div {
+        box-sizing: border-box;
+        border-right-style: solid;
+        border-top-color: #DCDFE6;
+        margin-right: 5px;
+        border-bottom-color: #DCDFE6;
+        border-top-style: solid;
+        flex-wrap: nowrap;
+        border-left-width: 1px;
+        border-top-width: 1px;
+        border-right-width: 1px;
+        flex-shrink: 0;
+        border-bottom-right-radius: 3px;
+        border-bottom-style: solid;
+        border-right-color: #DCDFE6;
+        border-top-right-radius: 3px;
+        border-bottom-width: 1px;
+        height: 25px;
+        border-left-color: #DCDFE6;
+        align-items: center;
+        flex-direction: row;
+        display: flex;
+        border-left-style: solid;
+        justify-content: center;
+        margin-left: 5px;
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+        width: 50px;
+        margin-top: 0px;
+    }
+
+    .panel .body .pagination .page .jumper div span {
+        color: #606266;
+        flex-direction: row;
+        word-wrap: break-word;
+        display: flex;
+        font-size: 14PX;
+        margin-top: 0px;
+        margin-left: 0px;
+    }
+
+    .panel .body .pagination .page .total {
+        min-height: 50px;
+        align-items: center;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        display: flex;
+        flex-shrink: 0;
+        width: unset;
+        box-sizing: border-box;
+        height: 100%;
+        margin-left: 0px;
+    }
+
+    .panel .body .pagination .page .total span {
+        margin-right: 5px;
+        color: #606266;
+        flex-direction: row;
+        word-wrap: break-word;
+        display: flex;
+        font-size: 14PX;
+        margin-top: 0px;
+        margin-left: 10px;
+    }
+
+
+}
+
+@media (max-width:768px) {
+    .w-header .w-body {
+        display: flex;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        width: 100% !important;
+    }
+}
+
+.el-pagination.is-background .el-pager li:not(.disabled).active {
+    background-color: ;
+}
+</style>

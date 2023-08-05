@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.mingsoft.datascope.dao.IDataConfigDao">
+
+	<resultMap id="resultMap" type="net.mingsoft.datascope.entity.DataConfigEntity">
+				<result column="CONFIG_DESC" property="configDesc" /><!--配置描述 -->
+				<result column="CONFIG_SUBSQL" property="configSubsql" /><!--子查询 -->
+				<result column="CONFIG_NAME" property="configName" /><!--配置名称 -->
+	</resultMap>
+
+	<select id="query" resultMap="resultMap">
+		SELECT * FROM datascope_DATA_CONFIG
+		<where>
+			DEL=0
+			<include refid="net.mingsoft.base.dao.IBaseDao.sqlWhere"></include>
+		</where>
+		 ORDER BY ID DESC
+	</select>
+
+</mapper>

@@ -1,0 +1,101 @@
+<script type="text/x-template" id="ms-message">
+	<div id="form" v-cloak style="width: 30%; margin: 5% auto">
+		<div id="formModel">
+			<!--会自动渲染代码生成器的表单-->
+		</div>
+		<!--必须包含验证码-->
+		<el-form ref="form" :model="form" :rules="rules" label-position="right" size="large" label-width="120px">
+			<el-row :gutter="0" justify="start" align="top">
+				<el-col :span="12">
+					<el-form-item label="验证码" prop="rand_code">
+						<el-input
+								v-model="form.rand_code"
+								:disabled="false"
+								:readonly="false"
+								:clearable="true"
+								placeholder="请输入验证码">
+						</el-input>
+					</el-form-item>
+				</el-col>
+				<el-col :span="12">
+					<div style="display: flex; height: 38px;margin-left: 1em; align-items: center; cursor: pointer">
+						<img :src="verifCode" class="code-img" @click="code"/>
+						<div @click="code" style="margin-left: 10px">
+							看不清？换一张
+						</div>
+					</div>
+				</el-col>
+			</el-row>
+			<el-form-item label="">
+				<el-button @click="save" type="primary" :loading="isLoading" style="width: 200px">
+					{{isLoading ? '保存中' : '保存'}}
+				</el-button>
+			</el-form-item>
+		</el-form>
+	</div>
+</script>
+<script>
+	Vue.component('ms-message',{
+		template: "#ms-message",
+		name: "ms-message",
+		props:{
+			// 自定义业务名称
+			formName:{
+				type: String
+			}
+		},
+		data: function(){
+			return{
+				formModel: undefined, //自定义业务的vue对象
+				verifCode: ms.base + "/code?t=" + new Date().getTime(),
+				isLoading: false,
+				form: {
+					rand_code: ''
+				},
+				rules: {
+					rand_code: [
+						{required: true, message: '请输入验证码', trigger: 'blur'},
+						{min: 1, max: 4, message: '长度不能超过4个字符', trigger: 'change'}
+					],
+				},
+			}
+		},
+		methods: {
+			save: function () {
+				var that = this;
+				that.isLoading = true;
+				//将验证码值复制到自定义模型
+				form.formModel.form.rand_code = this.form.rand_code;
+				//调用自定义模型的保存
+				that.formModel.save(function (res) {
+					if (res.result) {
+						that.$notify({
+							title: '成功',
+							type: 'success',
+							message: '保存成功!'
+						});
+
+					} else {
+						that.$notify({
+							title: '失败',
+							message: res.msg,
+							type: 'warning'
+						});
+					}
+					that.isLoading = false;
+				});
+			},
+			code: function () {
+				this.verifCode = ms.base + "/code?t=" + (new Date).getTime();
+			}
+		},
+		created: function () {
+			var that = this;
+			ms.mdiy.model.form("formModel", { "modelName": "留言板" }).then(function(obj) {
+				that.formModel = obj;
+			});
+		}
+	})
+</script>
+<style scoped>
+</style>

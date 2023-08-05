@@ -1,0 +1,4 @@
+1、将两个类文件复制到 ms-datascope模块的  src/main/java/net/mingsoft/datascope/dialect 下面
+PermissionDialect.java
+MySqlPermissionDialect.java
+2、将 yml 文件复制到 ms-mcms 下的 resources

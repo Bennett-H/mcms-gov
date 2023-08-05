@@ -1,0 +1,527 @@
+<html>
+<head>
+    <title>{ms:global.name/}</title>
+    <#include "head-file.htm" />
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<!--include通用头部-->
+
+<div id="app" v-cloak>
+
+    <div class="login">
+        <div class="body">
+            <!--   <span class="title"> 用户注册 </span>-->
+            <!--表单位置-start-->
+            <div class="login-from">
+                <el-form ref="form" :model="form" :rules="rules" label-position="right" size="large"
+                         label-width="120px">
+                    <el-row
+                            :gutter="0"
+                            justify="start" align="top">
+                        <el-col :span="12">
+
+                            <el-form-item label="用户名" prop="peopleName">
+                                <el-input
+                                        v-model="form.peopleName"
+                                        :disabled="false"
+                                        :readonly="false"
+                                        :style="{width:  '100%'}"
+                                        :clearable="true"
+                                        placeholder="请输入用户名">
+                                </el-input>
+                            </el-form-item>
+                        </el-col>
+                        <el-col :span="12">
+
+                            <el-form-item label="邮箱" prop="peopleMail">
+                                <el-input
+                                        v-model="form.peopleMail"
+                                        :disabled="false"
+                                        :readonly="false"
+                                        :style="{width:  '100%'}"
+                                        :clearable="true"
+                                        placeholder="请输入邮箱">
+                                </el-input>
+                            </el-form-item>
+                        </el-col>
+
+                    </el-row>
+                    <el-row
+                            :gutter="0"
+                            justify="start" align="top">
+
+                        <el-col :span="12">
+
+                            <el-form-item label="密码" prop="peoplePassword">
+                                <el-input type="password"
+                                          :show-password="true"
+                                          :clearable="true"
+                                          v-model="form.peoplePassword" :style="{width:'100%'}"
+                                          :disabled="false" placeholder="请输入密码"></el-input>
+                            </el-form-item>
+                        </el-col>
+                        <el-col :span="12">
+                            <el-form-item prop="rePeoplePassword" label="确认密码" class="input">
+                                <el-input type="password" v-model="form.rePeoplePassword"
+                                          :show-password="true"
+                                          :clearable="true"
+                                          placeholder="请再次输入新密码">
+                                </el-input>
+                            </el-form-item>
+
+                        </el-col>
+                    </el-row>
+                    <el-row
+                            :gutter="0"
+                            justify="start" align="top">
+
+
+                        <el-col :span="12">
+                            <el-form-item label="验证码" prop="rand_code" class="input">
+                                <el-row
+                                        :gutter="0"
+                                        justify="start" align="top">
+                                    <el-col :span="14">
+                                        <el-input
+                                                v-model="form.rand_code"
+                                                :disabled="false"
+                                                :readonly="false"
+
+                                                :clearable="true"
+                                                placeholder="请输入验证码">
+                                        </el-input>
+                                    </el-col>
+                                    <el-col :span="10">
+
+                                        <div style="display: flex; height: 38px;">
+                                            <img :src="verifCode" class="code-img" @click="code" style="cursor: pointer"
+                                                 alt="点击换一张"/>
+                                            <div @click="code" style="margin-left: 10px">
+                                            </div>
+                                        </div>
+                                    </el-col>
+                                </el-row>
+                            </el-form-item>
+
+                        </el-col>
+                        <el-col :span="12">
+                            <!--邮箱验证start-->
+                            <el-form-item label="短信验证码" prop="peopleCode" class="input">
+                                <el-row
+                                        :gutter="0"
+                                        justify="start" align="top">
+                                    <el-col :span="13">
+                                        <el-input
+                                                v-model="form.peopleCode"
+                                                :disabled="false"
+                                                :readonly="false"
+
+                                                :clearable="true"
+                                                placeholder="请输入验证码">
+                                        </el-input>
+                                    </el-col>
+                                    <el-col :span="11">
+
+                                        <el-button v-text="sendPeopleCodeMsg" :disabled="sendPeopleCodeDisabled"
+                                                   type="info" plain @click="getPeopleCode"
+                                                   style="width: 100px; padding: 12px 0;margin-left: 10px  ">
+                                        </el-button>
+                                    </el-col>
+                                </el-row>
+                            </el-form-item>
+                        </el-col>
+                    </el-row>
+
+                    <el-form-item label="  " class="input">
+                        <el-button @click="register" type="primary" :loading="saveDisabled" style="width: 200px">
+                            {{saveDisabled?'提交中':'立即注册'}}
+                        </el-button>
+                        <div style="display: flex;justify-content: space-between;width: 200px;margin-top: 20px;">
+                            <el-link href="/mdiyPage/{ms:global.template/}/login.do" :underline="false" icon="el-icon-user">账号登录</el-link>
+                        </div>
+                    </el-form-item>
+                </el-form>
+            </div>
+            <!--表单位置-end-->
+        </div>
+    </div>
+
+</div>
+
+<!--include通用底部-->
+</body>
+</html>
+
+<script>
+    var validatePass = function (rule, value, callback) {
+        if (value !== app.form.peoplePassword) {
+            callback(new Error('两次输入密码不一致!'));
+        } else {
+            callback();
+        }
+    };
+    //百度编辑器默认配置
+    var app = new Vue({
+        el: '#app',
+        watch: {},
+        data: {
+            countdown: 0,//验证码计时
+            //发送邮箱验证码按钮
+            sendPeopleCodeDisabled: false,
+            sendPeopleCodeMsg: "发送验证码",
+            saveDisabled: false,
+            verifCode: ms.base + "/code?t=" + new Date().getTime(),
+            organizationIdOptions: [{'id': '0', 'name': '自由创业者'}],
+            puIcon: null,
+
+            //表单数据
+            form: {
+                rePeoplePassword: "",
+                // 用户名
+                peopleName: '',
+                // 密码
+                peoplePassword: '',
+                // 邮箱
+                peopleMail: '',
+                // 邮箱
+                peopleMail: '',
+                // 真实姓名
+                puRealName: '',
+                // 生日
+                puBirthday: '',
+                // 身份证号
+                puCard: '',
+                // 所属机构
+                organizationId: '0',
+                // 用户头像
+                puIcon: '',
+                // 介绍
+                introduce: '',
+            },
+            rules: {
+                rePeoplePassword: [{
+                    required: true,
+                    message: '确认密码不能为空',
+                    trigger: 'blur'
+                },
+                    {
+                        min: 6,
+                        max: 20,
+                        message: '长度在 6 到 20 个字符',
+                        trigger: 'blur'
+                    },
+                    {
+                        validator: validatePass,
+                        trigger: 'blur'
+                    }
+                ],
+                // 登录名
+                peopleName: [{
+                    "required": true,
+                    "message": "登录名不能为空"
+                }, {"pattern": "^[^[!@#$%^&*()_+-/~?！@#￥%…&*（）——+—？》《：“‘’]+$", "message": "登录名格式不匹配"}, {
+                    "min": 6,
+                    "max": 30,
+                    "message": "登录名长度必须为6-30"
+                }],
+                // 登录密码
+                peoplePassword: [{
+                    "required": true,
+                    "message": "登录密码不能为空"
+                }, {"pattern": "^[^[!@#$%^&*()_+-/~?！@#￥%…&*（）——+—？》《：“‘’]+$", "message": "登录密码格式不匹配"}, {
+                    "min": 6,
+                    "max": 30,
+                    "message": "登录密码长度必须为6-30"
+                }],
+                // 邮箱
+                peopleMail: [{"required": true, "message": "邮箱不能为空"}, {
+                    "pattern": /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/,
+                    "message": "邮箱格式不匹配"
+                }],
+                // 所属机构
+                organizationId: [{"required": true, "message": "请选择所属机构"}],
+                //邮箱验证start
+                rand_code: [
+                    {required: true, message: '请输入验证码', trigger: 'blur'},
+                    {min: 1, max: 4, message: '长度不能超过4个字符', trigger: 'change'}
+                ],
+                peopleCode: [
+                    {required: true, message: '请输入短信验证码', trigger: 'blur'},
+                    {min: 1, max: 6, message: '长度不能超过6个字符', trigger: 'change'}
+                ],
+                //邮箱验证end
+
+            },
+        },
+        methods: {
+
+            //邮箱验证start
+            //倒计时
+            countdownSubtract: function () {
+                this.countdown--;
+                this.sendPeopleCodeMsg = "重新发送(" + this.countdown + ")";
+                if (this.countdown == 0) {
+                    this.sendPeopleCodeMsg = "发送验证码";
+                    this.sendPeopleCodeDisabled = false;
+                    this.countdown = 0;
+                    return;
+                }
+                setTimeout(this.countdownSubtract, 1000);
+            },
+            //获取图形验证码
+            code: function () {
+                this.verifCode = ms.base + "/code?t=" + new Date().getTime();
+            },
+            //获取邮箱验证码
+            getPeopleCode: function () {
+                var that = this;
+                // 发送邮箱验证码
+                if (that.countdown > 0) {
+                    return;
+                }
+                var flag = true;
+                this.$refs['form'].validateField(['rand_code', 'peopleMail'], (Error) => {
+                    if (Error) {
+                        //执行
+                        flag = false;
+                    }
+                });
+                if (flag) {
+                    ms.http.post("/isExists.do", {
+                        peopleMail: that.form.peopleMail,
+                    }).then(function (data) {
+                        if (data.result) {
+                            that.$notify({
+                                title: '失败',
+                                message: '该邮箱码已绑定',
+                                type: 'warning'
+                            });
+                        } else {
+
+                            ms.http.post('/sendCode.do', {
+                                receive: that.form.peopleMail,
+                                modelCode: "code",
+                                configType: "邮件配置",
+                                isSession: true,
+                                rand_code: that.form.rand_code,
+                            }).then(function (data) {
+                                if (data.result) {
+                                    that.$notify({
+                                        title: '成功',
+                                        message: '验证码已发出，请注意查收！',
+                                        type: 'success'
+                                    });
+                                    that.countdown = 60;
+                                    that.countdownSubtract();
+                                    that.sendPeopleCodeDisabled = true;
+                                } else {
+                                    if (data.msg) {
+                                        that.$notify({
+                                            title: '失败',
+                                            message: data.msg,
+                                            type: 'warning'
+                                        });
+                                    }
+                                    that.code();
+                                }
+                            })
+                        }
+                    });
+                }
+            },
+            //邮箱验证end
+
+            //注册
+            register: function () {
+                var that = this;
+                that.$refs.form.validate((valid) => {
+                    if (valid) {
+                        that.saveDisabled = true;
+                        //邮箱验证start
+                        ms.http.post("/checkSendCode.do", {
+                            receive: that.form.peopleMail,
+                            code: that.form.peopleCode
+                        }).then(function (res) {
+                            if (!res.result) {
+                                that.saveDisabled = false;
+                                that.$notify({
+                                    title: '失败',
+                                    message: res.msg,
+                                    type: 'warning'
+                                });
+                            } else {
+                                //邮箱验证end
+                                var data = JSON.parse(JSON.stringify(that.form));
+                                data.puIcon = that.puIcon;
+                                data.puRealName = that.form.peopleName;
+                                ms.http.post("/register.do", data).then(function (res) {
+                                    if (res.result != true) {
+                                        that.saveDisabled = false;
+                                        that.$notify({
+                                            title: '失败',
+                                            message: res.msg,
+                                            type: 'warning'
+                                        });
+                                    } else {
+                                        that.$notify({
+                                            title: '成功',
+                                            message: '注册成功！请等待管理员审核',
+                                            type: 'success',
+                                            duration: '1000',
+                                            onClose: function () {
+                                                location.href = '/';
+                                            }
+                                        });
+                                    }
+                                }).catch(function (err) {
+                                    console.log(err);
+                                });
+                            }
+                        }).catch(function (err) {
+                            console.log(err);
+                        });
+                    }
+
+                });
+            }
+        },
+        created: function () {
+            //验证码start
+            this.code();
+        }
+    })
+
+</script>
+<style>
+    body {
+        background-color: #fff;
+        box-sizing: border-box;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Segoe UI", "Helvetica Neue", "PingFang SC", "Noto Sans", "Noto Sans CJK SC", "Microsoft YaHei", 微软雅黑, sans-serif;
+        moz-box-sizing: border-box;
+        webkit-box-sizing: border-box;
+    }
+
+
+    .login {
+        margin-right: 0px;
+        padding-bottom: 20px;
+        align-items: center;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        display: flex;
+        width: 100%;
+        margin-bottom: 0px;
+        box-sizing: border-box;
+        padding-top: 60px;
+        justify-content: center;
+        margin-top: 0px;
+        background-color: #f9fbff;
+
+    }
+
+    .login .body {
+        padding-bottom: 0px;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        display: flex;
+        width: 800px;
+        margin-bottom: 0px;
+        box-sizing: border-box;
+        padding-top: 0px;
+        margin-top: 0px;
+    }
+
+    .login .body .title {
+        padding-bottom: 0px;
+        color: #303030;
+        flex-direction: row;
+        word-wrap: break-word;
+        display: inline-block;
+        font-size: 24PX;
+        margin-bottom: 20px;
+        padding-top: 0px;
+    }
+
+    .login .body .login-from {
+        box-shadow: 0 0 9px 0 rgb(92 128 255 / 17%);
+        background-color: rgba(255, 255, 255, 1);
+        padding-bottom: 0px;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        display: flex;
+        width: 800px;
+        margin-bottom: 0px;
+        box-sizing: border-box;
+        padding-top: 0px;
+        margin-top: 0px;
+        padding: 40px;
+        border-top: 2px solid #1C94DC;
+    }
+
+    @media (max-width: 768px) {
+
+        .login {
+            background-color: rgba(250, 250, 250, 1);
+            align-items: center;
+            flex-direction: column;
+            display: flex;
+            box-sizing: border-box;
+            justify-content: flex-start;
+            min-height: 600px;
+            margin-right: 0px;
+            padding-bottom: 20px;
+            flex-wrap: nowrap;
+            width: 100%;
+            margin-bottom: 0px;
+            padding-top: 40px;
+            margin-top: 0px;
+            height: unset;
+        }
+
+        .login .body {
+            padding-bottom: 0px;
+            align-items: center;
+            flex-wrap: nowrap;
+            flex-direction: column;
+            display: flex;
+            width: 100%;
+            margin-bottom: 0px;
+            box-sizing: border-box;
+            padding-top: 0px;
+            margin-top: 0px;
+            justify-content: center;
+        }
+
+        .login .body .title {
+            padding-bottom: 0px;
+            color: #303030;
+            flex-direction: row;
+            word-wrap: break-word;
+            display: inline-block;
+            font-size: 24PX;
+            margin-bottom: 20px;
+            padding-top: 0px;
+        }
+
+        .login .body .login-from {
+            box-shadow: 0 0 115px -7px rgba(0, 0, 0, 0.2);
+            background-color: rgba(255, 255, 255, 1);
+            flex-direction: row;
+            display: flex;
+            box-sizing: border-box;
+            min-height: 400px;
+            padding-bottom: 0px;
+            flex-wrap: nowrap;
+            width: 98%;
+            margin-bottom: 0px;
+            padding-top: 0px;
+            margin-top: 0px;
+            height: unset;
+        }
+    }
+</style>

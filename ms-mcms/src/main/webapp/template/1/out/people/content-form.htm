@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<head>
+    <title>{ms:global.name/}</title>
+    <#include "/head-file.htm" />
+    <link rel="stylesheet" href="{ms:global.host/}/{ms:global.style/}/css/user-center.css">
+    <script src="{ms:global.host/}static/plugins/tinymce/5.10.2/tinymce.min.js"></script>
+    <script src="{ms:global.host/}static/plugins/tinymce-vue/4.0.6-rc/tinymce-vue.min.js"></script>
+    <script src="/static/plugins/vue-treeselect/0.4.0/vue-treeselect.umd.min.js"></script>
+    <link rel="stylesheet" href="/static/plugins/vue-treeselect/0.4.0/vue-treeselect.min.css">
+    <script>
+        Vue.component('treeselect', VueTreeselect.Treeselect)
+    </script>
+    <#include "people/component/menu.htm" />
+</head>
+<body>
+<div id="app" v-cloak>
+    <#include "/header.htm" />
+
+    <div class="user-index">
+        <div class="body">
+            <!--会员管理菜单-start-->
+            <user-menu sel-menu="投稿"></user-menu>
+            <!--会员管理菜单-end-->
+            <!--数据区域-start-->
+            <div class="data" id="app" v-cloak>
+                <div class="path">
+                    <a class="first" href="{ms:global.contextPath/}/people/{ms:global.template/}/contentList.do"> 稿件列表 </a>
+                    <span class="tag"> &gt; </span>
+                    <span class="title">投稿 </span>
+                </div>
+                <el-main class="ms-container" style="position:relative;">
+                    <el-scrollbar style="height: 100%;">
+                        <el-tabs v-model="activeName" style="height: calc(100% - 10px);">
+                            <el-tab-pane style="position:relative;" v-for="(item, index) in editableTabs" :key="index"
+                                         :label="item.title" :name="item.name">
+                                <el-form v-if="item.title=='文章编辑'" ref="form" :model="form" :rules="rules"
+                                         label-width="120px"
+                                         size="mini">
+                                    <el-row gutter="0" justify="start" align="top">
+                                        <el-col :span="returnIsShow?'12':'24'">
+                                            <el-form-item label="文章标题" prop="contentTitle">
+                                                <el-input v-model="form.contentTitle"
+                                                          :disabled="false"
+                                                          :style="{width:  '100%'}"
+                                                          :clearable="true"
+                                                          placeholder="请输入文章标题">
+                                                </el-input>
+                                            </el-form-item>
+                                        </el-col>
+                                        <el-col span="12" v-if="returnIsShow">
+                                            <el-form-item label="所属栏目" prop="categoryId">
+                                                <template slot='label'>所属栏目
+                                                    <el-popover placement="top-start" title="提示" trigger="hover">
+                                                        不能为链接和封面类型新建文章
+                                                        <i class="el-icon-question" slot="reference"></i>
+                                                    </el-popover>
+                                                </template>
+                                                <el-select  v-model="form.categoryId"
+                                                            :style="{width: '100%'}"
+                                                            :filterable="false"
+                                                            :disabled="false"
+                                                            :multiple="false" :clearable="true"
+                                                            @change="categoryChange"
+                                                            placeholder="请输入内容">
+                                                    <el-option v-for='item in contentCategoryIdOptions' :key="item.value" :value="item.id"
+                                                               :label="item.categoryTitle"></el-option>
+                                                </el-select>
+                                            </el-form-item>
+                                        </el-col>
+                                    </el-row>
+                                    <el-row
+                                            gutter="0"
+                                            justify="start" align="top">
+                                        <el-col span="12">
+                                            <el-form-item label="文章类型" prop="contentType">
+                                                <el-select v-model="form.contentType"
+                                                           :style="{width: '100%'}"
+                                                           :filterable="false"
+                                                           :disabled="false"
+                                                           :multiple="true" :clearable="true"
+                                                           placeholder="请选择文章类型">
+                                                    <el-option v-for='item in contentTypeOptions' :key="item.dictValue"
+                                                               :value="item.dictValue"
+                                                               :label="item.dictLabel"></el-option>
+                                                </el-select>
+                                            </el-form-item>
+                                        </el-col>
+                                        <el-col span="12">
+                                            <el-form-item label="发布时间" prop="contentDatetime">
+                                                <el-date-picker
+                                                        v-model="form.contentDatetime"
+                                                        placeholder="请选择发布时间"
+                                                        start-placeholder=""
+                                                        end-placeholder=""
+                                                        :readonly="false"
+                                                        :disabled="false"
+                                                        :editable="true"
+                                                        :clearable="true"
+                                                        format="yyyy-MM-dd HH:mm:ss"
+                                                        value-format="yyyy-MM-dd HH:mm:ss"
+                                                        :style="{width:'100%'}"
+                                                        type="datetime">
+                                                </el-date-picker>
+                                            </el-form-item>
+                                        </el-col>
+                                    </el-row>
+                                    <el-row
+                                            gutter="0"
+                                            justify="start" align="top">
+                                        <el-col span="12">
+                                            <el-form-item label="文章作者" prop="contentAuthor">
+                                                <el-input v-model="form.contentAuthor"
+                                                          :disabled="false"
+                                                          :style="{width:  '100%'}"
+                                                          :clearable="true"
+                                                          placeholder="请输入文章作者">
+                                                </el-input>
+                                            </el-form-item>
+                                        </el-col>
+                                        <el-col span="12">
+                                            <el-form-item label="文章来源" prop="contentSource">
+                                                <el-input v-model="form.contentSource"
+                                                          :disabled="false"
+                                                          :style="{width:  '100%'}"
+                                                          :clearable="true"
+                                                          placeholder="请输入文章来源">
+                                                </el-input>
+                                            </el-form-item>
+                                        </el-col>
+                                    </el-row>
+                                    <el-row
+                                            gutter="0"
+                                            justify="start" align="top">
+                                        <el-col span="12">
+                                            <el-form-item label="文章发布到" prop="contentStyle">
+                                                <el-select v-model="form.contentStyle" :style="{width: '100%'}"
+                                                           :filterable="false" :disabled="false" :multiple="true" :clearable="true"
+                                                           placeholder="请选择需要发布到的模板">
+                                                    <el-option v-for='item in hasContentStyleOptions' :key="item.dictLabel"
+                                                               :value="item.style" :label="item.dictLabel"></el-option>
+                                                </el-select>
+                                                <div class="ms-form-tip">
+                                                    提示：需要栏目绑定对应的模板，发布到才有数据。<br/>
+                                                    选择后才会在对应的皮肤静态化.例如:内网数据只在内网显示、外网只在外网显示。<br/>
+                                                    数据来源: 自定义字典 - 模板类型
+                                                </div>
+                                            </el-form-item>
+                                        </el-col>
+                                    </el-row>
+                                    <el-form-item label="" prop="contentImg">
+                                        <el-upload
+                                                :file-list="form.contentImg"
+                                                :action="ms.base+'/file/upload.do'"
+                                                :on-remove="contentImghandleRemove"
+                                                :style="{width:''}"
+                                                :limit="1"
+                                                :on-exceed="contentImghandleExceed"
+                                                :disabled="false"
+                                                :data="{uploadPath:'/cms/content','isRename':true ,'appId':true}"
+                                                :on-success="contentImgSuccess"
+                                                accept="image/*"
+                                                list-type="picture-card">
+                                            <i class="el-icon-plus"></i>
+                                            <div slot="tip" class="el-upload__tip">最多上传1张图片，支持jpg格式</div>
+                                        </el-upload>
+                                    </el-form-item>
+                                    <el-form-item label="关键字" prop="contentKeyword">
+                                        <el-input
+                                                type="textarea" :rows="5"
+                                                :disabled="false"
+                                                v-model="form.contentKeyword"
+                                                :style="{width: '100%'}"
+                                                placeholder="请输入文章关键字">
+                                        </el-input>
+                                    </el-form-item>
+                                    <el-form-item label="描述" prop="contentDescription">
+                                        <el-input
+                                                type="textarea" :rows="5"
+                                                :disabled="false"
+                                                v-model="form.contentDescription"
+                                                :style="{width: '100%'}"
+                                                placeholder="请输入对该文章的简短描述，以便用户查看文章简略">
+                                        </el-input>
+                                    </el-form-item>
+                                    <el-form-item label="文章内容" prop="contentDetails">
+                                        <editor v-model="form.contentDetails" ref="editor" :init="tinyInit"></editor>
+                                    </el-form-item>
+                                </el-form>
+                                <div :id="'model'+index" v-else></div>
+                            </el-tab-pane>
+                        </el-tabs>
+                    </el-scrollbar>
+                </el-main>
+                <el-header class="ms-footer">
+                    <el-button type="primary" icon="iconfont icon-baocun" size="mini" @click="save()"
+                               :loading="saveDisabled">保存
+                    </el-button>
+                    <el-button size="mini" icon="iconfont icon-fanhui" plain onclick="javascript:history.go(-1)">返回
+                    </el-button>
+                </el-header>
+            </div>
+            <!--数据区域-end-->
+        </div>
+    </div>
+    <#include "/footer.htm" />
+</div>
+<script>
+    var form = new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                saveDisabled: false,
+                manager: '/people',
+                activeName: 'form',
+                //自定义模型实例
+                model: undefined,
+                editableTabs: [{
+                    title: '文章编辑',
+                    name: 'form'
+                }],
+                //  tiny配置
+                tinyInit: {},
+                // tiny 资源库状态
+                repository: false,
+                contentCategoryIdOptions: [],
+                returnIsShow: true,
+                type: '',
+                //表单数据
+                form: {
+                    // 文章标题
+                    contentTitle: '',
+                    // 所属栏目
+                    categoryId: undefined,
+                    // 文章类型
+                    contentType: [],
+                    // 是否显示
+                    contentDisplay: '0',
+                    // 文章作者
+                    contentAuthor: '',
+                    // 文章来源
+                    contentSource: '',
+                    // 自定义顺序
+                    contentSort: 0,
+                    // 文章模型
+                    contentStyle: [],
+                    // 文章缩略图
+                    contentImg: [],
+                    // 描述
+                    contentDescription: '',
+                    // 关键字
+                    contentKeyword: '',
+                    // 文章内容
+                    contentDetails: '',
+
+                    contentDatetime: ms.util.date.fmt(Date.now(), "yyyy-MM-dd hh:mm:ss"),
+                },
+                contentTypeOptions: [],
+                categoryIdOptions: [],
+                //文章模型选项
+                contentStyleOptions: [],
+                hasContentStyleOptions: [],
+                contentDisplayOptions: [{
+                    "value": "0",
+                    "label": "是"
+                }, {
+                    "value": "1",
+                    "label": "否"
+                }],
+                rules: {
+                    // 文章标题
+                    contentTitle: [{
+                        "required": true,
+                        "message": "请选择文章标题"
+                    }],
+                    // 文章发布到
+                    contentStyle: [{
+                        "required": true,
+                        "message": "请选择需要发布到的站点"
+                    }],
+                    // 发布时间
+                    contentDatetime: [{
+                        "required": true,
+                        "message": "发布时间不能为空"
+                    }],
+                    categoryId: [{
+                        "required": true,
+                        "message": "所属栏目不能为空"
+                    }]
+                }
+            };
+        },
+        watch: {
+            //	监听栏目id变化，主要应用于左侧'全部'进行新增的时候，没有栏目id还未知的情况
+            'form.categoryId': function (n) {
+                var that = this
+                //	初始化表单数据
+                if (n) {
+                    //	调用页面初始化的方法和接口
+                    that.getContentStyle(that.form.categoryId)
+                }
+            },
+            visibleUpload: function (n) {
+                // 把tiny资源库置为关闭状态
+                if (!n) {
+                    this.repository = false
+                }
+            }
+        },
+        components: {
+            'editor': Editor,
+        },
+        computed: {
+            currCategory: function () {
+                var that = this;
+                return this.categoryIdOptions.find(function (value) {
+                    return value.id === that.form.categoryId;
+                });
+            }
+        },
+        methods: {
+   switchShow:function(arr){
+                var that = this
+                arr.forEach(function(x){
+                    let e = that.$el.querySelector("#key_"+x)
+                    if(e){
+                        e.style.display=getComputedStyle(e,null).display=='none'?'flex':'none'
+                    }
+                })
+            },
+            show:function(arr){
+                var that = this
+                arr.forEach(function(x){
+                    let e = that.$el.querySelector("#key_"+x)
+                    if(e){
+                        e.style.display='flex'
+                    }
+                })
+            },
+            hide:function(arr){
+                var that = this
+                arr.forEach(function(x){
+                    let e = that.$el.querySelector("#key_"+x)
+                    if(e){
+                        e.style.display='none'
+                    }
+                })
+            },
+            save: function () {
+                var _this = this;
+
+                var that = this; //自定义模型需要验证
+
+                if (this.model && !this.model.validate()) {
+                    this.activeName = 'custom-name';
+                    return;
+                }
+
+                var url = ms.base + that.manager + "/cms/content/save.do";
+
+                if (that.form.id > 0) {
+                    url = ms.base + that.manager + "/cms/content/update.do";
+                }
+
+                this.$refs.form[0].validate(function (valid) {
+                    if (valid) {
+                        that.saveDisabled = true; //判断
+
+                        var data = JSON.parse(JSON.stringify(that.form));
+
+                        if (data.contentType) {
+                            data.contentType = data.contentType.join(',');
+                        }
+                        if (data.contentStyle) {
+                            data.contentStyle = data.contentStyle.join(',');
+                        }
+
+                        data.contentImg = JSON.stringify(data.contentImg);
+                        ms.http.post(url, data).then(function (data) {
+                            if (data.result) {
+                                //保存时需要赋值关联ID
+                                if (that.model) {
+                                    that.model.form.linkId = data.data.id;
+                                    that.model.save();
+                                }
+                                that.$notify({
+                                    title: '成功',
+                                    message: '保存成功',
+                                    type: 'success',
+                                    duration: 1000,
+                                    onClose: function () {
+                                        if (that.returnIsShow) {
+                                            javascript: history.go(-1);
+                                        } else {
+                                            //如果是顶级封面或封面，则重新加载,避免文章和自定义模型重复保存
+                                            location.reload();
+                                        }
+                                        that.saveDisabled = false;
+                                    }
+                                });
+
+                            } else {
+                                that.$notify({
+                                    title: '失败',
+                                    message: data.msg,
+                                    type: 'warning'
+                                });
+                                that.saveDisabled = false;
+                            }
+
+                        });
+                    } else {
+                        _this.activeName = 'form';
+                        return false;
+                    }
+                });
+            },
+            //获取当前栏目详情绑定模板信息,id为当前栏目id
+            getContentStyle: function (id) {
+                var that = this;
+                that.categoryIdOptions.forEach(function (item) {
+                    //  栏目列表与当前文章栏目id相同
+                    if (item.id == id) {
+                        //  保存文章类型，当前页面调用
+                        that.categoryType = item.categoryType
+                        if (typeof item.categoryUrls == 'string') {
+                            item.categoryUrls = JSON.parse(item.categoryUrls)
+                        }
+                        //	定义有设置的模板数据对象
+                        //	templateInfo为null相关情况下，设置默认数组
+                        if (!item.categoryUrls.length) {
+                            item.categoryUrls = []
+                        }
+                        that.hasContentStyleOptions = []
+                        //	循环是否有配置对应信息模板
+                        item.categoryUrls.forEach(function (ite) {
+                            //	栏目详情配置部门，是否有配置对应文件模板路径
+                            if (ite.file !== '') {
+                                that.hasContentStyleOptions.push(ite)
+                            }
+                        })
+                        //  循环默认接口返回的发布到下拉列表
+                        that.hasContentStyleOptions.forEach(function (ite) {
+                            //  将默认发布到的下拉字典值修改
+                            ite.dictValue = ite.template
+                            ite.dictLabel = ite.name
+                            that.dictList.forEach(function (dict) {
+                                //将模板名替换为字典值
+                                if (ite.dictLabel == dict.dictLabel) {
+                                    ite.style = dict.dictValue
+                                }
+                            })
+                        })
+
+                        //	将过滤的发布到字典的第一项添加到表单展示默认选项，没有匹配则设置为空: (默认展示：当contentStyle有值时不设置默认值)
+                        that.hasContentStyleOptions.length && that.form.contentStyle.length == 0 ? that.form.contentStyle = [that.hasContentStyleOptions[0].style] : null
+                        that.contentStyleOptions = that.hasContentStyleOptions;
+                    }
+                })
+            },
+            removeModel: function () {
+                var that = this;
+                var model = document.getElementById('model1');
+                var custom = document.getElementById('c_model');
+
+                if (custom) {
+                    model.removeChild(custom);
+                }
+
+                that.model = undefined;
+            },
+            categoryChange: function () {
+                this.changeModel();
+            },
+            changeModel: function () {
+                var that = this;
+                that.editableTabs = [that.editableTabs[0]];
+                this.removeModel();
+
+                if (this.currCategory) {
+                    if (this.currCategory.mdiyModelId) {
+                        ms.http.get("/mdiy/model/get.do", {
+                            id: this.currCategory.mdiyModelId
+                        }).then(function (data) {
+                            if (data.data && data.data.id) {
+                                that.rederModel(data.data, JSON.parse(data.data.modelJson));
+                            }
+                        });
+                    }
+                }
+            },
+            rederModel: function (modelEntity, data) {
+                var that = this;
+                that.editableTabs.push({
+                    title: modelEntity.modelName,
+                    name: 'custom-name'
+                });
+                this.removeModel();
+                that.$nextTick(function () {
+                    var div = document.createElement('div');
+                    div.id = 'c_model';
+                    var model = document.getElementById('model1');
+                    model.appendChild(div);
+                    var s = document.createElement('script');
+                    s.innerHTML = data.script;
+                    var con = document.createElement('div');
+                    con.id = 'custom-model';
+                    con.innerHTML = data.html;
+                    div.appendChild(s);
+                    div.appendChild(con); //初始化自定义模型并传入关联参数
+
+                    that.model = new custom_model({
+                        data: {
+                            title: modelEntity.modelName,
+                            modelId: modelEntity.id,
+                            form: {
+                                linkId: that.form.id
+                            }
+                        }
+                    });
+                });
+            },
+            getValue: function (data) {
+                this.form.categoryId = data.id;
+            },
+            //获取当前文章
+            get: function (id) {
+                var that = this;
+                ms.http.get(ms.base + that.manager + "/cms/content/get.do", {
+                    "id": id
+                }).then(function (res) {
+                    if (res.result && res.data) {
+                        if (res.data.contentType && res.data.contentType != '') {
+                            res.data.contentType = res.data.contentType.split(',');
+                        } else {
+                            res.data.contentType = [];
+                        }
+
+                        if (res.data.contentStyle && res.data.contentStyle != '') {
+                            res.data.contentStyle = res.data.contentStyle.split(',');
+                        } else {
+                            res.data.contentStyle = [];
+                        }
+
+                        if (res.data.contentImg) {
+                            res.data.contentImg = JSON.parse(res.data.contentImg);
+                            res.data.contentImg.forEach(function (value) {
+                                value.url = ms.base + value.path;
+                            });
+                        } else {
+                            res.data.contentImg = [];
+                        }
+
+                        that.form = res.data;
+                        var category = that.categoryIdOptions.filter(function (f) {
+                            return f['id'] == that.form.categoryId;
+                        });
+                        // that.form.contentAuthor = infoVue.peopleInfo.peopleName;
+                        if (category.length == 1) {
+                            if (category[0].categoryType == '2') {
+                                that.returnIsShow = false;
+                            }
+                        }
+                        that.changeModel();
+                    }
+                }).catch(function (err) {
+                    console.log(err);
+                });
+            },
+            //根据封面获取当前文章
+            getFromFengMian: function (categoryId) {
+                var that = this;
+                ms.http.get(ms.base + that.manager + "/cms/content/getFromFengMian.do", {
+                    "categoryId": categoryId
+                }).then(function (res) {
+                    if (res.result) {
+                        if (res.data != null) {
+                            if (res.data.contentType && res.data.contentType != '') {
+                                res.data.contentType = res.data.contentType.split(',');
+                            } else {
+                                res.data.contentType = [];
+                            }
+
+                            if (res.data.contentImg) {
+                                res.data.contentImg = JSON.parse(res.data.contentImg);
+                                res.data.contentImg.forEach(function (value) {
+                                    value.url = ms.base + value.path;
+                                });
+                            } else {
+                                res.data.contentImg = [];
+                            }
+
+                            that.form = res.data;
+                            var category = that.categoryIdOptions.filter(function (f) {
+                                return f['id'] == that.form.categoryId;
+                            });
+
+                            if (category.length == 1) {
+                                if (category[0].categoryType == '2') {
+                                    that.returnIsShow = false;
+                                }
+                            }
+                        }
+                        that.changeModel();
+                    } else {
+                        that.$notify({
+                            title: '失败',
+                            message: "获取错误",
+                            type: 'warning'
+                        });
+                    }
+                }).catch(function (err) {
+                    console.log(err);
+                });
+            },
+            //获取contentCategoryId数据源
+            contentCategoryIdOptionsGet: function () {
+                var that = this;
+                ms.http.get(ms.base + that.manager + "/cms/category/list.do", {
+                    pageSize: 9999
+                }).then(function (res) {
+                    if (res.result) {
+                        var categorys = [];
+                        res.data.rows.forEach(function (item) {
+                            if (item.leaf && item.type==1) {
+                                categorys.push(item);
+                            }
+                        });
+                        that.contentCategoryIdOptions = categorys;
+                        that.categoryIdOptions = res.data.rows;
+                        that.getContentStyle(that.form.categoryId);
+                        //获取到栏目数据之后再进行初始化
+                        that.init();
+                    }
+                });
+            },
+            //获取contentType数据源
+            contentTypeOptionsGet: function () {
+                var that = this;
+                ms.http.get( ms.base + '/mdiy/dict/list.do', {
+                    dictType: '文章属性',
+                    pageSize: 99999
+                }).then(function (data) {
+                    if (data.result) {
+                        data = data.data;
+                        that.contentTypeOptions = data.rows;
+                    }
+                }).catch(function (err) {
+                    console.log(err);
+                });
+            },
+            //获取模板类型 字典数据
+            dictListGet: function () {
+                var that = this;
+                //获取  模板类型 字典数据
+                ms.http.get( ms.base + '/mdiy/dict/list.do', {dictType:'模板类型',pageSize:99999}).then(function (res) {
+                    that.dictList = res.data.rows;
+                }).catch(function (err) {
+                    console.log(err);
+                });
+            },
+            //contentImg文件上传完成回调
+            contentImgSuccess: function (response, file, fileList) {
+                if (response.result) {
+                    this.form.contentImg.push({
+                        url: file.url,
+                        name: file.name,
+                        path: response.data,
+                        uid: file.uid
+                    });
+                } else {
+                    this.$notify({
+                        title: response.msg,
+                        type: 'warning'
+                    });
+                }
+
+            },
+            contentImghandleRemove: function (file, files) {
+                var index = -1;
+                index = this.form.contentImg.findIndex(function (text) {
+                    return text == file;
+                });
+
+                if (index != -1) {
+                    this.form.contentImg.splice(index, 1);
+                }
+            },
+            //上传超过限制
+            contentImghandleExceed: function (files, fileList) {
+                this.$notify({
+                    title: '当前最多上传1个文件',
+                    type: 'warning'
+                });
+            },
+            //查询列表
+            list: function (categoryId) {
+                var that = this;
+                ms.http.post(ms.base + that.manager + "/cms/content/list.do", {
+                    categoryId: categoryId
+                }).then(function (res) {
+                    if (res.result && res.data.total > 0) {
+                        if (res.data.rows[0].contentType) {
+                            res.data.rows[0].contentType = res.data.rows[0].contentType.split(',');
+                        }
+
+                        if (res.data.rows[0].contentImg) {
+                            res.data.rows[0].contentImg = JSON.parse(res.data.rows[0].contentImg);
+                            res.data.rows[0].contentImg.forEach(function (value) {
+                                value.url = ms.base + value.path;
+                            });
+                        } else {
+                            res.data.rows[0].contentImg = [];
+                        }
+
+                        that.form = res.data.rows[0];
+                    }
+                }).catch(function (err) {
+                    console.log(err);
+                });
+            },
+            //只有在渲染完栏目数据之后才会初始化
+            init: function () {
+                this.form.id = ms.util.getParameter("id");
+                this.type = ms.util.getParameter("type");
+                // this.form.contentAuthor = infoVue.peopleInfo.peopleName;
+                //在指定栏目下新增或编辑文章时
+                var categoryId = ms.util.getParameter("categoryId");
+                if (categoryId) {
+                    this.form.categoryId = categoryId;
+                    //如果是封面栏目直接跳转
+                    if (this.type) {
+                        this.getFromFengMian(this.form.categoryId);
+                        this.returnIsShow = false;
+                        //指定非封面栏目编辑文章
+                    } else if (this.form.id) {
+                        this.get(this.form.id);
+                        //指定栏目新增文章渲染自定义模型
+                    } else {
+                        this.changeModel();
+                    }
+                    //不指定栏目编辑文章
+                } else if (this.form.id) {
+                    this.get(this.form.id);
+                }//else 如果即不指定栏目新增文章，又不是编辑文章就不渲染自定义模型
+
+            }
+        },
+        created: function () {
+            var that = this;
+            that.contentCategoryIdOptionsGet();
+            that.contentTypeOptionsGet();
+            that.dictListGet();
+            //  编辑器配置挂载，在编辑器实例创建完成后进行
+            that.tinyInit = {
+                //  主程序目录
+                base_url: '${base}/static/plugins/tinymce/5.10.2/',
+                // 关闭路径转换功能
+                convert_urls: false,
+                //  语言包路径
+                language_url: '${base}/static/plugins/tinymce/5.10.2/zh_CN.js',
+                //  语言格式
+                language: 'zh_CN',
+                //  编辑器高度
+                height: 560,
+                //  是否开启头部文字菜单
+                menubar: false,
+                //placeholder（内容预展示文本）
+                placeholder: '在此处编辑内容!',
+                //  工具栏展示工具
+                toolbar: [
+                    'fullscreen  undo redo oneKeyFormat |  fontselect fontsizeselect formatselect | bold italic insertfile underline strikethrough lineheight | forecolor backcolor  | ' +
+                    'alignleft aligncenter alignright alignjustify | outdent indent ltr rtl | numlist bullist | ' +
+                    ' table pagebreak hr  | charmap emoticons removeformat  searchreplace | ' +
+                    'image repository media link  |  code  codesample insertdatetime anchor preview visualblocks wordcount print'
+                ],  //  bdmap
+                //  工具栏依赖插件包
+                plugins: 'print preview paste importcss searchreplace autolink bdmap directionality code visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor insertdatetime advlist lists wordcount textpattern noneditable charmap emoticons',
+
+                //  引入外部样式对编辑器进行样式设置
+                content_css: '${base}/static/plugins/tinymce/5.10.2/skins/content/snow/content.css',
+                //  编辑器内部自定义样式（改动需要联同一键排版功能） (改为自定义配置)
+                //content_style: '.example { text-indent: 2em;width: 100%;overflow: hidden; }' + '.tc {text-align: center}' + 'span {text-indent: initial;}',
+                //  字体格式默认值
+                fontsize_formats: '12px 14px 16px 18px 24px 36px 48px 56px 72px',
+                //  字体风格默认值
+                font_formats: '微软雅黑=Microsoft YaHei,Helvetica Neue,PingFang SC,sans-serif;苹果苹方=PingFang SC,Microsoft YaHei,sans-serif;宋体=simsun,serif;仿宋体=FangSong,serif;黑体=SimHei,sans-serif;Arial=arial,helvetica,sans-serif;Arial Black=arial black,avant garde;Book Antiqua=book antiqua,palatino;Comic Sans MS=comic sans ms,sans-serif;Courier New=courier new,courier;Georgia=georgia,palatino;Helvetica=helvetica;Impact=impact,chicago;Symbol=symbol;Tahoma=tahoma,arial,helvetica,sans-serif;Terminal=terminal,monaco;Times New Roman=times new roman,times;Verdana=verdana,geneva;Webdings=webdings;Wingdings=wingdings,zapf dingbats;知乎配置=BlinkMacSystemFont, Helvetica Neue, PingFang SC, Microsoft YaHei, Source Han Sans SC, Noto Sans CJK SC, WenQuanYi Micro Hei, sans-serif;小米配置=Helvetica Neue,Helvetica,Arial,Microsoft Yahei,Hiragino Sans GB,Heiti SC,WenQuanYi Micro Hei,sans-serif',
+                //  工具栏模式
+                toolbar_mode: 'wrap',
+
+                //  附件标题框的显示
+                link_title: false,
+                //  当前编辑器上传支持上传类型
+                file_picker_types: 'file image media',//   file image media
+
+                //自定义文件选择器的回调内容
+                file_picker_callback: function (callback, value, meta) {
+                    //  创建表单，类型为文件格式
+                    var input = document.createElement('input');
+                    input.setAttribute('type', 'file');
+                    var fileType = '附件'
+                    //  上传类型为图片时，设置控件上传为image格式
+                    if (meta.filetype == 'image') {
+                        input.setAttribute('accept', 'image/*');
+                        fileType = '图片'
+
+                        //  上传类型为media媒体，设置上传格式为video和audio格式
+                    } else if (meta.filetype == 'media') {
+                        input.setAttribute('accept', 'video/*,audio/*');
+                        fileType = '媒体'
+
+                    }
+                    input.onchange = function () {
+                        var file = this.files[0];
+
+                        var reader = new FileReader();
+                        reader.onload = function () {
+
+                            var id = 'blobid' + (new Date()).getTime();
+
+                            var blobCache = tinymce.activeEditor.editorUpload.blobCache;
+                            var base64 = reader.result.split(',')[1];
+                            var blobInfo = blobCache.create(id, file, base64);
+
+                            var formData = new FormData();
+                            formData.append('file', blobInfo.blob(), file.name);
+                            formData.append('uploadPath', '/cms/content/editor');
+                            formData.append('isRename', true);
+                            formData.append('appId', true);
+
+                            //  上传类型为图片
+                            ms.http.post(ms.manager + '/file/upload.do', formData, {
+                                headers: {
+                                    'Content-Type': 'multipart/form-data'
+                                }
+                            }).then(function (res) {
+                                //  成功回调设置图片路径为服务器的路径
+                                callback(res.data, {title: file.name, text: file.name});
+
+                                that.$notify({
+                                    title: '成功',
+                                    message: fileType + '成功上传资源库!',
+                                    type: 'success'
+                                });
+                            }).catch(function (err) {
+                                //  图片同步上传服务器失败，提示并移除插入的本地图片
+                                that.$notify({
+                                    title: '失败',
+                                    message: fileType + '上传资源库失败!',
+                                    type: 'error'
+                                });
+                            })
+                        };
+
+                        reader.readAsDataURL(file);
+                        document.body.removeChild(input)
+                    };
+                    //添加到body
+                    document.body.appendChild(input)
+                    input.click();
+                },
+
+                //  自定义TinyMCE 编辑器实例之前执行的回调
+                setup: function (editor) {
+                    //是否开启一键排版
+
+                    //  添加自定义 (排版) 按钮
+                    editor.ui.registry.addButton('oneKeyFormat', {
+                        //text: '一键排版',
+                        icon: 'brightness',
+                        tooltip: '一键排版',
+                        disabled: false,
+                        onAction: function (api) {
+                            //  全选编辑器的内容
+                            editor.execCommand('selectAll');
+                            //  获取编辑器内选中的信息
+                            var eleDom = editor.selection.getSelectedBlocks()
+                            editor.execCommand('removeFormat');
+
+                            //  调用匹配添加样式的方法，该方法写在addStyleForList中
+                            if (that.oneKeyFormatConfig.oneKeyFormatStart != "true") {
+                                that.$notify({
+                                    title: "提示",
+                                    message: "一键排版没有开启，请开启后再使用。",
+                                    type: "warning"
+                                })
+                            } else {
+                                try {
+                                    var data = JSON.parse(that.oneKeyFormatConfig.oneKeyFormat);
+                                    that.addStyleForList(eleDom, data);
+                                } catch (err) {
+                                    that.$notify({
+                                        title: "警告",
+                                        message: "一键排版配置JSON有误,请修改配置",
+                                        type: "error"
+                                    })
+                                }
+                            }
+
+                        }
+                    })
+
+                    // 资源库上传按钮
+                    editor.ui.registry.addButton('repository', {
+                        icon: 'gallery',
+                        tooltip: '资源库',
+                        onAction: function () {
+                            that.visibleUpload = true
+                            // 把tiny资源库置为开启状态
+                            that.repository = true
+                        }
+                    });
+                },
+            }
+        }
+    });
+
+</script>
+
+</body>
+</html>
+<style>
+    .el-select {
+        width: 100%;
+    }
+    .el-scrollbar__wrap {
+        overflow-x: hidden;
+    }
+</style>
