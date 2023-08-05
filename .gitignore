@@ -4,13 +4,11 @@
 /ms-mcms/log/
 /ms-mcms/lib/
 /ms-mcms/src/main/webapp/html/
-ms-mcms/src/main/resources/application-*.yml
 /log/
 /.idea/
 /*/target/
 *.log
 *.iml
-/pom.xml
 /ms-morganization/
 /ms-mweixin/
 /ms-impexp/
