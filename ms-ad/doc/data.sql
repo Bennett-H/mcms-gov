@@ -1,0 +1,2 @@
+INSERT INTO `ad_position` ( `position_desc`,`position_height`,`position_width`,`position_name`,`del` ) VALUES  ( 'pc端首页限时购展示图',400,400,'pc端首页限时购展示图',0 );
+INSERT INTO `ad_ads` ( `ads_people_email`,`ads_people_phone`,`ads_people_name`,`ads_img`,`ads_state`,`ads_end_time`,`ads_start_time`,`ads_url`,`ads_type`,`ads_name`,`position_id`,`del` ) VALUES  ( '999999@qq.com','15999999','15999999','[]','open','2022-02-10 00:00:00.0','2020-02-13 00:00:00.0','http://imingsoft.cn:4025/ms-mmall/mdiyPage/classification.do?categoryId=2','pic','公告位',10,0 );

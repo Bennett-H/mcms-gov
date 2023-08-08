@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.mingsoft.ad.dao.IAdsDao">
+
+	<resultMap id="resultMap" type="net.mingsoft.ad.bean.AdsBean">
+		<id column="id" property="id" /><!--编号 -->
+			<result column="position_id" property="positionId" /><!--广告位编号 -->
+			<result column="position_name" property="positionName" /><!--广告位编号 -->
+			<result column="ads_name" property="adsName" /><!--广告名称 -->
+			<result column="ads_type" property="adsType" /><!--广告类型 -->
+			<result column="ads_url" property="adsUrl" /><!--广告链接 -->
+			<result column="ads_start_time" property="adsStartTime" /><!--开始时间 -->
+			<result column="ads_end_time" property="adsEndTime" /><!--结束时间 -->
+			<result column="ads_img" property="adsImg" /><!--广告图片 -->
+			<result column="ads_state" property="adsState" /><!--是否开启 -->
+			<result column="ads_people_name" property="adsPeopleName" /><!--广告联系人 -->
+			<result column="ads_people_phone" property="adsPeoplePhone" /><!--广告联系人电话 -->
+			<result column="ads_people_email" property="adsPeopleEmail" /><!--广告联系人邮箱 -->
+			<result column="create_by" property="createBy" /><!--创建人 -->
+			<result column="create_date" property="createDate" /><!--创建时间 -->
+			<result column="update_by" property="updateBy" /><!--修改人 -->
+			<result column="update_date" property="updateDate" /><!--修改时间 -->
+			<result column="del" property="del" /><!--删除标记 -->
+	</resultMap>
+
+	<!--保存-->
+	<insert id="saveEntity" useGeneratedKeys="true" keyProperty="id"
+			parameterType="net.mingsoft.ad.entity.AdsEntity" >
+		insert into ad_ads
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="positionId != null">position_id,</if>
+			<if test="adsName != null and adsName != ''">ads_name,</if>
+			<if test="adsType != null and adsType != ''">ads_type,</if>
+			<if test="adsUrl != null and adsUrl != ''">ads_url,</if>
+			<if test="adsStartTime != null">ads_start_time,</if>
+			<if test="adsEndTime != null">ads_end_time,</if>
+			<if test="adsImg != null and adsImg != ''">ads_img,</if>
+			<if test="adsState != null and adsState != ''">ads_state,</if>
+			<if test="adsPeopleName != null and adsPeopleName != ''">ads_people_name,</if>
+			<if test="adsPeoplePhone != null and adsPeoplePhone != ''">ads_people_phone,</if>
+			<if test="adsPeopleEmail != null and adsPeopleEmail != ''">ads_people_email,</if>
+			<if test="createBy &gt; 0">create_by,</if>
+			<if test="createDate != null">create_date,</if>
+			<if test="updateBy &gt; 0">update_by,</if>
+			<if test="updateDate != null">update_date,</if>
+			<if test="del != null">del,</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="positionId != null">#{positionId},</if>
+			<if test="adsName != null and adsName != ''">#{adsName},</if>
+			<if test="adsType != null and adsType != ''">#{adsType},</if>
+			<if test="adsUrl != null and adsUrl != ''">#{adsUrl},</if>
+			<if test="adsStartTime != null">#{adsStartTime},</if>
+			<if test="adsEndTime != null">#{adsEndTime},</if>
+			<if test="adsImg != null and adsImg != ''">#{adsImg},</if>
+			<if test="adsState != null and adsState != ''">#{adsState},</if>
+			<if test="adsPeopleName != null and adsPeopleName != ''">#{adsPeopleName},</if>
+			<if test="adsPeoplePhone != null and adsPeoplePhone != ''">#{adsPeoplePhone},</if>
+			<if test="adsPeopleEmail != null and adsPeopleEmail != ''">#{adsPeopleEmail},</if>
+			<if test="createBy &gt; 0">#{createBy},</if>
+			<if test="createDate != null">#{createDate},</if>
+			<if test="updateBy &gt; 0">#{updateBy},</if>
+			<if test="updateDate != null">#{updateDate},</if>
+			<if test="del != null">#{del},</if>
+		</trim>
+	</insert>
+
+		<!--更新-->
+		<update id="updateEntity" parameterType="net.mingsoft.ad.entity.AdsEntity">
+			update ad_ads
+			<set>
+				<if test="positionId != null">position_id=#{positionId},</if>
+				<if test="adsName != null and adsName != ''">ads_name=#{adsName},</if>
+				<if test="adsType != null and adsType != ''">ads_type=#{adsType},</if>
+				<if test="adsUrl != null and adsUrl != ''">ads_url=#{adsUrl},</if>
+				<if test="adsStartTime != null">ads_start_time=#{adsStartTime},</if>
+				<if test="adsEndTime != null">ads_end_time=#{adsEndTime},</if>
+				<if test="adsImg != null and adsImg != ''">ads_img=#{adsImg},</if>
+				<if test="adsState != null and adsState != ''">ads_state=#{adsState},</if>
+				<if test="adsPeopleName != null and adsPeopleName != ''">ads_people_name=#{adsPeopleName},</if>
+				<if test="adsPeoplePhone != null and adsPeoplePhone != ''">ads_people_phone=#{adsPeoplePhone},</if>
+				<if test="adsPeopleEmail != null and adsPeopleEmail != ''">ads_people_email=#{adsPeopleEmail},</if>
+				<if test="createBy &gt; 0">create_by=#{createBy},</if>
+				<if test="createDate != null">create_date=#{createDate},</if>
+				<if test="updateBy &gt; 0">update_by=#{updateBy},</if>
+				<if test="updateDate != null">update_date=#{updateDate},</if>
+				<if test="del != null">del=#{del},</if>
+			</set>
+			where id = #{id}
+		</update>
+
+		<!--根据id获取-->
+		<select id="getEntity" resultMap="resultMap" parameterType="int">
+			select * from ad_ads where id=#{id}
+		</select>
+
+		<!--根据实体获取-->
+		<select id="getByEntity" resultMap="resultMap" parameterType="net.mingsoft.ad.entity.AdsEntity">
+			select * from ad_ads
+			<where>
+				<if test="positionId != null"> and position_id=#{positionId} </if>
+				<if test="adsName != null and adsName != ''">and ads_name=#{adsName}</if>
+				<if test="adsType != null and adsType != ''">and ads_type=#{adsType}</if>
+				<if test="adsUrl != null and adsUrl != ''">and ads_url=#{adsUrl}</if>
+				<if test="adsStartTime != null"> and ads_start_time=#{adsStartTime} </if>
+				<if test="adsEndTime != null"> and ads_end_time=#{adsEndTime} </if>
+				<if test="adsImg != null and adsImg != ''">and ads_img=#{adsImg}</if>
+				<if test="adsState != null and adsState != ''">and ads_state=#{adsState}</if>
+				<if test="adsPeopleName != null and adsPeopleName != ''">and  ads_people_name like CONCAT(CONCAT('%',#{adsPeopleName}),'%')</if>
+				<if test="adsPeoplePhone != null and adsPeoplePhone != ''">and ads_people_phone=#{adsPeoplePhone}</if>
+				<if test="adsPeopleEmail != null and adsPeopleEmail != ''">and ads_people_email=#{adsPeopleEmail}</if>
+				<if test="createBy &gt; 0"> and create_by=#{createBy} </if>
+				<if test="createDate != null"> and create_date=#{createDate} </if>
+				<if test="updateBy &gt; 0"> and update_by=#{updateBy} </if>
+				<if test="updateDate != null"> and update_date=#{updateDate} </if>
+				<if test="del != null"> and del=#{del} </if>
+			</where>
+			limit 0,1
+		</select>
+
+
+		<!--删除-->
+		<delete id="deleteEntity" parameterType="int">
+			delete from ad_ads  where id=#{id}
+		</delete>
+
+		<!--批量删除-->
+		<delete id="delete" >
+			delete from ad_ads
+			<where>
+				id  in <foreach collection="ids" item="item" index="index"
+										 open="(" separator="," close=")">#{item}</foreach>
+			</where>
+		</delete>
+		<!--查询全部-->
+		<select id="queryAll" resultMap="resultMap">
+			select * from ad_ads order by id desc
+		</select>
+	<!--条件查询-->
+	<select id="query" resultMap="resultMap">
+		select ad_ads.*,ap.position_name from ad_ads,ad_position ap
+		<where>
+			ad_ads.position_id = ap.id
+			<if test="positionId != null"> and position_id=#{positionId} </if>
+			<if test="positionName != null and positionName != ''"> and  position_name like CONCAT(CONCAT('%',#{positionName}),'%')</if>
+			<if test="adsName != null and adsName != ''"> and ad_ads.ads_name like CONCAT(CONCAT('%',#{adsName}),'%')</if>
+			<if test="adsType != null and adsType != ''"> and ads_type=#{adsType}</if>
+			<if test="adsUrl != null and adsUrl != ''"> and ads_url=#{adsUrl}</if>
+			<if test="adsStartTime != null"> and ads_start_time &lt;= #{adsStartTime} </if>
+			<if test="adsEndTime != null"> and ads_end_time &gt;= #{adsEndTime} </if>
+			<if test="queryDate != null"> and #{queryDate}>=ads_start_time </if>
+			<if test="queryDate != null"> and ads_end_time>=#{queryDate} </if>
+			<if test="adsImg != null and adsImg != ''"> and ads_img=#{adsImg}</if>
+			<if test="adsState != null and adsState != ''"> and ads_state=#{adsState}</if>
+			<if test="adsPeopleName != null and adsPeopleName != ''"> and  ads_people_name like CONCAT(CONCAT('%',#{adsPeopleName}),'%')</if>
+			<if test="adsPeoplePhone != null and adsPeoplePhone != ''"> and ads_people_phone=#{adsPeoplePhone}</if>
+			<if test="adsPeopleEmail != null and adsPeopleEmail != ''"> and ads_people_email=#{adsPeopleEmail}</if>
+			<if test="createBy &gt; 0"> and ad_ads.create_by=#{createBy} </if>
+			<if test="createDate != null"> and ad_ads.create_date=#{createDate} </if>
+			<if test="updateBy &gt; 0"> and ad_ads.update_by=#{updateBy} </if>
+			<if test="updateDate != null"> and ad_ads.update_date=#{updateDate} </if>
+			<if test="del != null"> and ad_ads.del=#{del} </if>
+		</where>
+		order by ap.id desc
+	</select>
+
+</mapper>

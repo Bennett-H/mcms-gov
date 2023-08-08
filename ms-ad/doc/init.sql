@@ -1,0 +1,2 @@
+INSERT INTO `mdiy_tag` ( `tag_name`,`tag_sql`,`tag_type`,`tag_description`,`not_del`,`del` ) VALUES  ( 'ad','<#--2022-02-18 增加广告标签-->\r\n<#macro ms_ad positionName adsName>\r\n<script type=\"text/javascript\" src=\"${contextPath}/ad/ads/getAd.do?positionName=${positionName}&adsName=${adsName}\"></script>\r\n</#macro>','macro','广告',1,0 );
+INSERT INTO `mdiy_dict` ( `dict_value`,`dict_label`,`dict_type`,`del` ) VALUES  ( 'pic','图片','广告类型',0 );
