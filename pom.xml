@@ -29,7 +29,7 @@
 		<module>ms-baidu</module>
 		<module>ms-msend</module>
 		<module>ms-mattention</module>
-		<module>ms-ad</module>
+		<module>ms-plugins</module>
 	</modules>
 
 	<distributionManagement>

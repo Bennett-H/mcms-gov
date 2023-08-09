@@ -9,14 +9,13 @@
 package net.mingsoft.ad.dao;
 
 import net.mingsoft.base.dao.IBaseDao;
-import java.util.*;
-import net.mingsoft.ad.entity.AdsEntity;
+import net.mingsoft.ad.entity.PositionEntity;
 
 /**
- * 广告持久层
+ * 广告位持久层
  * @author 铭飞开发团队
  * 创建日期：2019-11-23 8:49:39<br/>
  * 历史修订：<br/>
  */
-public interface IAdsDao extends IBaseDao<AdsEntity> {
+public interface IPositionDao extends IBaseDao<PositionEntity> {
 }

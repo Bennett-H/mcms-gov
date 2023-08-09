@@ -14,28 +14,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import net.mingsoft.base.biz.impl.BaseBizImpl;
 import net.mingsoft.base.dao.IBaseDao;
-import java.util.*;
-import net.mingsoft.ad.entity.AdsEntity;
-import net.mingsoft.ad.biz.IAdsBiz;
-import net.mingsoft.ad.dao.IAdsDao;
+import net.mingsoft.ad.entity.PositionEntity;
+import net.mingsoft.ad.biz.IPositionBiz;
+import net.mingsoft.ad.dao.IPositionDao;
 
 /**
- * 广告管理持久化层
+ * 广告位管理持久化层
  * @author 铭飞开发团队
  * 创建日期：2019-11-23 8:49:39<br/>
  * 历史修订：<br/>
  */
- @Service("adadsBizImpl")
-public class AdsBizImpl extends BaseBizImpl<IAdsDao,AdsEntity> implements IAdsBiz {
+ @Service("adpositionBizImpl")
+public class PositionBizImpl extends BaseBizImpl<IPositionDao,PositionEntity> implements IPositionBiz {
 
 	
 	@Autowired
-	private IAdsDao adsDao;
+	private IPositionDao positionDao;
 	
 	
 	@Override
 	protected IBaseDao getDao() {
 		// TODO Auto-generated method stub
-		return adsDao;
+		return positionDao;
 	} 
 }
