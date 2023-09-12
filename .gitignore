@@ -7,6 +7,7 @@
 /log/
 /.idea/
 /*/target/
+/*/*/target/
 *.log
 *.iml
 /ms-morganization/
