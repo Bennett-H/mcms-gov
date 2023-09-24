@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.mingsoft.mweixin.dao.IWXArticleDao">
+
+	<resultMap id="resultMap" type="net.mingsoft.mweixin.entity.ArticleEntity">
+			<id column="id" property="id" /><!--编号 -->
+				<result column="article_title" property="articleTitle" /><!--文章标题 -->
+				<result column="article_author" property="articleAuthor" /><!--文章作者 -->
+				<result column="article_description" property="articleDescription" /><!--文章描述 -->
+				<result column="article_source" property="articleSource" /><!--文章来源 -->
+				<result column="article_url" property="articleUrl" /><!--原文链接 -->
+				<result column="article_type" property="articleType" /><!--素材类型 -->
+				<result column="draft_id" property="draftId" /><!--微信素材编号 -->
+				<result column="article_content" property="articleContent" /><!--文章内容 -->
+				<result column="article_display" property="articleDisplay" /><!--是否显示 -->
+				<result column="article_hit" property="articleHit" /><!--文章点击数 -->
+				<result column="article_sort" property="articleSort" /><!--文章排序 -->
+				<result column="article_thumbnails" property="articleThumbnails" /><!--文章图片 -->
+				<result column="content_id" property="contentId" /><!--mcms文章的id -->
+				<result column="create_by" property="createBy" /><!--创建人 -->
+				<result column="create_date" property="createDate" /><!--创建时间 -->
+				<result column="update_by" property="updateBy" /><!--修改人 -->
+				<result column="update_date" property="updateDate" /><!--修改时间 -->
+				<result column="del" property="del" /><!--删除标记 -->
+	</resultMap>
+
+	<!--保存-->
+	<insert id="saveEntity" useGeneratedKeys="true" keyProperty="id"
+			parameterType="net.mingsoft.mweixin.entity.ArticleEntity" >
+		insert into wx_article
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+				<if test="articleTitle != null and articleTitle != ''">article_title,</if>
+				<if test="articleAuthor != null and articleAuthor != ''">article_author,</if>
+				<if test="articleDescription != null and articleDescription != ''">article_description,</if>
+				<if test="articleSource != null and articleSource != ''">article_source,</if>
+				<if test="articleUrl != null and articleUrl != ''">article_url,</if>
+				<if test="articleType != null and articleType != ''">article_type,</if>
+				<if test="draftId != null and draftId != ''">draft_id,</if>
+				<if test="articleContent != null and articleContent != ''">article_content,</if>
+				<if test="articleDisplay != null">article_display,</if>
+				<if test="articleHit != null">article_hit,</if>
+				<if test="articleSort != null">article_sort,</if>
+				<if test="articleThumbnails != null and articleThumbnails != ''">article_thumbnails,</if>
+				<if test="contentId != null and contentId != ''">content_id,</if>
+			<if test="createBy &gt; 0">create_by,</if>
+				<if test="createDate != null">create_date,</if>
+				<if test="updateBy &gt; 0">update_by,</if>
+				<if test="updateDate != null">update_date,</if>
+				<if test="del != null">del,</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+				<if test="articleTitle != null and articleTitle != ''">#{articleTitle},</if>
+				<if test="articleAuthor != null and articleAuthor != ''">#{articleAuthor},</if>
+				<if test="articleDescription != null and articleDescription != ''">#{articleDescription},</if>
+				<if test="articleSource != null and articleSource != ''">#{articleSource},</if>
+				<if test="articleUrl != null and articleUrl != ''">#{articleUrl},</if>
+				<if test="articleType != null and articleType != ''">#{articleType},</if>
+				<if test="draftId != null and draftId != ''">#{draftId},</if>
+				<if test="articleContent != null and articleContent != ''">#{articleContent},</if>
+				<if test="articleDisplay != null">#{articleDisplay},</if>
+				<if test="articleHit != null">#{articleHit},</if>
+				<if test="articleSort != null">#{articleSort},</if>
+				<if test="articleThumbnails != null and articleThumbnails != ''">#{articleThumbnails},</if>
+				<if test="contentId != null and contentId != ''">#{contentId},</if>
+				<if test="createBy &gt; 0">#{createBy},</if>
+				<if test="createDate != null">#{createDate},</if>
+				<if test="updateBy &gt; 0">#{updateBy},</if>
+				<if test="updateDate != null">#{updateDate},</if>
+				<if test="del != null">#{del},</if>
+		</trim>
+	</insert>
+
+		<!--更新-->
+		<update id="updateEntity" parameterType="net.mingsoft.mweixin.entity.ArticleEntity">
+			update wx_article
+			<set>
+				<if test="articleTitle != null and articleTitle != ''">article_title=#{articleTitle},</if>
+				<if test="articleAuthor != null and articleAuthor != ''">article_author=#{articleAuthor},</if>
+				<if test="articleDescription != null and articleDescription != ''">article_description=#{articleDescription},</if>
+				<if test="articleSource != null and articleSource != ''">article_source=#{articleSource},</if>
+				<if test="articleUrl != null and articleUrl != ''">article_url=#{articleUrl},</if>
+				<if test="articleType != null and articleType != ''">article_type=#{articleType},</if>
+				<if test="draftId != null and draftId != ''">draft_id=#{draftId},</if>
+				<if test="articleContent != null and articleContent != ''">article_content=#{articleContent},</if>
+				<if test="articleDisplay != null">article_display=#{articleDisplay},</if>
+				<if test="articleHit != null">article_hit=#{articleHit},</if>
+				<if test="articleSort != null">article_sort=#{articleSort},</if>
+				<if test="articleThumbnails != null and articleThumbnails != ''">article_thumbnails=#{articleThumbnails},</if>
+				<if test="contentId != null and contentId != ''">content_id=#{contentId},</if>
+				<if test="createBy &gt; 0">create_by=#{createBy},</if>
+				<if test="createDate != null">create_date=#{createDate},</if>
+				<if test="updateBy &gt; 0">update_by=#{updateBy},</if>
+				<if test="updateDate != null">update_date=#{updateDate},</if>
+				<if test="del != null">del=#{del},</if>
+			</set>
+			where id = #{id}
+		</update>
+
+		<!--根据id获取-->
+		<select id="getEntity" resultMap="resultMap" parameterType="int">
+			select * from wx_article where id=#{id}
+		</select>
+
+		<!--根据实体获取-->
+		<select id="getByEntity" resultMap="resultMap" parameterType="net.mingsoft.mweixin.entity.ArticleEntity">
+			select * from wx_article
+			<where>
+				<if test="articleTitle != null and articleTitle != ''">and article_title=#{articleTitle}</if>
+				<if test="articleAuthor != null and articleAuthor != ''">and article_author=#{articleAuthor}</if>
+				<if test="articleDescription != null and articleDescription != ''">and article_description=#{articleDescription}</if>
+				<if test="articleSource != null and articleSource != ''">and article_source=#{articleSource}</if>
+				<if test="articleUrl != null and articleUrl != ''">and article_url=#{articleUrl}</if>
+				<if test="articleType != null and articleType != ''">and article_type=#{articleType}</if>
+				<if test="draftId != null and draftId != ''"> and draft_id=#{draftId} </if>
+				<if test="articleContent != null and articleContent != ''">and article_content=#{articleContent}</if>
+				<if test="articleDisplay != null"> and article_display=#{articleDisplay} </if>
+				<if test="articleHit != null"> and article_hit=#{articleHit} </if>
+				<if test="articleSort != null"> and article_sort=#{articleSort} </if>
+				<if test="articleThumbnails != null and articleThumbnails != ''">and article_thumbnails=#{articleThumbnails}</if>
+				<if test="contentId != null and contentId != ''">and content_id=#{contentId}</if>
+				<if test="createBy &gt; 0"> and create_by=#{createBy} </if>
+				<if test="createDate != null"> and create_date=#{createDate} </if>
+				<if test="updateBy &gt; 0"> and update_by=#{updateBy} </if>
+				<if test="updateDate != null"> and update_date=#{updateDate} </if>
+				<if test="del != null"> and del=#{del} </if>
+			</where>
+			limit 0,1
+		</select>
+
+
+		<!--删除-->
+		<delete id="deleteEntity" parameterType="int">
+			delete from wx_article  where id=#{id}
+		</delete>
+
+		<!--批量删除-->
+		<delete id="delete" >
+			delete from wx_article
+			<where>
+				id  in <foreach collection="ids" item="item" index="index"
+										 open="(" separator="," close=")">#{item}</foreach>
+			</where>
+		</delete>
+		<!--查询全部-->
+		<select id="queryAll" resultMap="resultMap">
+			select * from wx_article order by id desc
+		</select>
+	<!--条件查询-->
+	<select id="query" resultMap="resultMap">
+		select * from wx_article
+		<where>
+			<if test="articleTitle != null and articleTitle != ''"> and article_title=#{articleTitle}</if>
+			<if test="articleAuthor != null and articleAuthor != ''"> and article_author=#{articleAuthor}</if>
+			<if test="articleDescription != null and articleDescription != ''"> and article_description=#{articleDescription}</if>
+			<if test="articleSource != null and articleSource != ''"> and article_source=#{articleSource}</if>
+			<if test="articleUrl != null and articleUrl != ''"> and article_url=#{articleUrl}</if>
+			<if test="articleType != null and articleType != ''"> and article_type=#{articleType}</if>
+			<if test="draftId != null and draftId != ''"> and draft_id=#{draftId} </if>
+			<if test="articleContent != null and articleContent != ''"> and article_content=#{articleContent}</if>
+			<if test="articleDisplay != null"> and article_display=#{articleDisplay} </if>
+			<if test="articleHit != null"> and article_hit=#{articleHit} </if>
+			<if test="articleSort != null"> and article_sort=#{articleSort} </if>
+			<if test="articleThumbnails != null and articleThumbnails != ''"> and article_thumbnails=#{articleThumbnails}</if>
+			<if test="contentId != null and contentId != ''">and content_id=#{contentId}</if>
+			<if test="createBy &gt; 0"> and create_by=#{createBy} </if>
+			<if test="createDate != null"> and create_date=#{createDate} </if>
+			<if test="updateBy &gt; 0"> and update_by=#{updateBy} </if>
+			<if test="updateDate != null"> and update_date=#{updateDate} </if>
+			<if test="del != null"> and del=#{del} </if>
+			<include refid="net.mingsoft.base.dao.IBaseDao.sqlWhere"></include>
+		</where>
+		order by id desc
+	</select>
+
+	<!--条件查询不包括主图文-->
+	<select id="queryNewsArticle" resultMap="resultMap">
+		select * from wx_article wa
+		LEFT JOIN wx_news wn on wn.draft_id = wa.draft_id
+		<where>
+			<if test="articleTitle != null and articleTitle != ''">and  article_title like CONCAT(CONCAT('%',#{articleTitle}),'%')</if>
+			<if test="articleAuthor != null and articleAuthor != ''"> and article_author=#{articleAuthor}</if>
+			<if test="articleDescription != null and articleDescription != ''"> and article_description=#{articleDescription}</if>
+			<if test="articleSource != null and articleSource != ''"> and article_source=#{articleSource}</if>
+			<if test="articleUrl != null and articleUrl != ''"> and article_url=#{articleUrl}</if>
+			<if test="articleType != null and articleType != ''"> and article_type=#{articleType}</if>
+			<if test="draftId != null and draftId != ''"> and wa.draft_id=#{draftId} </if>
+			<if test="articleContent != null and articleContent != ''"> and article_content=#{articleContent}</if>
+			<if test="articleDisplay != null"> and article_display=#{articleDisplay} </if>
+			<if test="articleHit != null"> and article_hit=#{articleHit} </if>
+			<if test="articleSort != null"> and article_sort=#{articleSort} </if>
+			<if test="articleThumbnails != null and articleThumbnails != ''"> and article_thumbnails=#{articleThumbnails}</if>
+			<if test="contentId != null and contentId != ''">and content_id=#{contentId}</if>
+			<if test="createBy &gt; 0"> and create_by=#{createBy} </if>
+			<if test="createDate != null"> and create_date=#{createDate} </if>
+			<if test="updateBy &gt; 0"> and update_by=#{updateBy} </if>
+			<if test="updateDate != null"> and update_date=#{updateDate} </if>
+			<if test="del != null"> and del=#{del} </if>
+			<include refid="net.mingsoft.base.dao.IBaseDao.sqlWhere"></include>
+		</where>
+		and wa.id != wn.news_master_article_id
+		order by article_sort asc
+	</select>
+
+</mapper>

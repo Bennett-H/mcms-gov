@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.mingsoft.qa.dao.IQaDao">
+
+	<resultMap id="resultMap" type="net.mingsoft.qa.entity.QaEntity">
+				<result column="MODEL_FIELD" property="modelField" /><!--自定义字段 -->
+				<result column="MODEL_JSON" property="modelJson" /><!--json -->
+				<result column="QA_TYPE" property="qaType" /><!--投票类型 -->
+				<result column="QA_TABLE_NAME" property="qaTableName" /><!--投票表名 -->
+				<result column="QA_NAME" property="qaName" /><!--投票名称 -->
+	</resultMap>
+
+	<select id="query" resultMap="resultMap">
+		SELECT * FROM QA
+		<where>
+			DEL=0
+			<include refid="net.mingsoft.base.dao.IBaseDao.sqlWhere"></include>
+		</where>
+		 ORDER BY ID DESC
+	</select>
+
+</mapper>

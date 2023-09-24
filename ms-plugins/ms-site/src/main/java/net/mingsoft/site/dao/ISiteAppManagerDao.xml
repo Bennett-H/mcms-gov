@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.mingsoft.site.dao.ISiteAppManagerDao">
+
+	<resultMap id="resultMap" type="net.mingsoft.site.entity.SiteAppManagerEntity">
+				<result column="MANAGER_ID" property="managerId" /><!--管理员编号 -->
+				<result column="APP_ID" property="appId" /><!--站点编号 -->
+	</resultMap>
+
+
+	<insert id="insertContentByMap" parameterType="java.util.Map">
+		insert into ${table_name}
+		<foreach item="value" collection="map" index="key" open="("   separator="," close=")">
+			${key}
+		</foreach>
+		values
+		<foreach item="value" collection="map" index="key"  open="("   separator="," close=")">
+			#{value}
+		</foreach>
+	</insert>
+
+	<select id="query" resultMap="resultMap">
+		SELECT * FROM SITE_APP_MANAGER
+		<where>
+			DEL=0
+			<include refid="net.mingsoft.base.dao.IBaseDao.sqlWhere"></include>
+		</where>
+		 ORDER BY ID DESC
+	</select>
+
+	<update id="initAppId" databaseId="mysql">
+		ALTER TABLE ${table_name} ADD COLUMN APP_ID INT NULL
+	</update>
+
+	<update id="initAppId" databaseId="oracle">
+		ALTER TABLE ${table_name} ADD APP_ID NUMBER(11,0)
+	</update>
+
+	<update id="removeAppId" databaseId="mysql">
+		ALTER TABLE ${table_name} DROP COLUMN APP_ID
+	</update>
+
+	<update id="removeAppId" databaseId="oracle">
+		ALTER TABLE ${table_name} DROP APP_ID
+	</update>
+
+</mapper>

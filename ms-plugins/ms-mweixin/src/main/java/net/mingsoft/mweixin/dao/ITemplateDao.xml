@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.mingsoft.mweixin.dao.ITemplateDao">
+
+    <resultMap id="resultMap" type="net.mingsoft.mweixin.entity.TemplateEntity">
+        <result column="WEIXIN_ID" property="weixinId" /><!--微信编号 -->
+        <result column="TEMPLATE_TITLE" property="templateTitle" /><!--标题 -->
+        <result column="TEMPLATE_CODE" property="templateCode" /><!--模板编码 -->
+        <result column="TEMPLATE_ID" property="templateId" /><!--模板ID -->
+        <result column="TEMPLATE_PRIMARY_INDUSTRY" property="templatePrimaryIndustry" /><!--主属行业 -->
+        <result column="TEMPLATE_DEPUTY_INDUSTRY" property="templateDeputyIndustry" /><!--副属行业 -->
+        <result column="TEMPLATE_CONTENT" property="templateContent" /><!--内容 -->
+        <result column="TEMPLATE_EXAMPLE" property="templateExample" /><!--样例 -->
+        <result column="TEMPLATE_KEYWORD" property="templateKeyword" /><!--模板关键词 -->
+    </resultMap>
+
+    <select id="query" resultMap="resultMap">
+        SELECT * FROM WX_TEMPLATE
+        <where>
+            DEL=0
+            <include refid="net.mingsoft.base.dao.IBaseDao.sqlWhere"></include>
+        </where>
+        ORDER BY ID DESC
+    </select>
+
+</mapper>

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.mingsoft.mweixin.dao.IWxFileDao">
+	
+	<resultMap id="resultMap" type="net.mingsoft.mweixin.entity.FileEntity">
+		<id column="ID" property="id" /><!--文件编号 -->
+		<result column="ID" property="fileId" /><!--文件编号 -->
+		<result column="CATEGORY_ID" property="categoryId" /><!--文件分类编号 -->
+		<result column="FILE_NAME" property="fileName" /><!--文件名称 -->
+		<result column="FILE_URL" property="fileUrl" /><!--文件链接 -->
+		<result column="FILE_SIZE" property="fileSize" /><!--文件大小 -->
+		<result column="FILE_JSON" property="fileJson" /><!--文件详情Json数据 -->
+		<result column="FILE_TYPE" property="fileType" /><!--文件类型：图片、音频、视频等 -->
+		<result column="IS_CHILD" property="isChild" /><!--子业务 -->
+		<result column="UPDATE_DATE" property="updateDate" /><!--更新时间 -->
+		<result column="UPDATE_BY" property="updateBy" /><!--更新者 -->
+		<result column="CREATE_BY" property="createBy" /><!--创建者 -->
+		<result column="CREATE_DATE" property="createDate" /><!--创建时间 -->
+		<result column="DEL" property="del" /><!--删除标记 -->
+		<result column="WEIXIN_ID" property="weixinId" /><!--微信编号 -->
+		<result column="FILE_MEDIA_ID" property="fileMediaId" /><!--是否同步至微信 -->
+	</resultMap>
+	<!--保存-->	
+	<insert id="saveEntity" >
+		insert into wx_file
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="categoryId &gt; 0">CATEGORY_ID,</if>
+			<if test="fileName != null and fileName != ''">FILE_NAME,</if>
+			<if test="fileUrl != null and fileUrl != ''">FILE_URL,</if>
+			<if test="fileSize &gt; 0">FILE_SIZE,</if>
+			<if test="fileJson != null and fileJson != ''">FILE_JSON,</if>
+			<if test="fileType != null and fileType != ''">FILE_TYPE,</if>
+			<if test="isChild != null and isChild != ''">IS_CHILD,</if>
+			<if test="updateDate != null">UPDATE_DATE,</if>
+			<if test="updateBy &gt; 0">UPDATE_BY,</if>
+			<if test="createBy &gt; 0">CREATE_BY,</if>
+			<if test="createDate != null">CREATE_DATE,</if>
+			<if test="del &gt; 0">DEL,</if>
+			<if test="weixinId &gt; 0">WEIXIN_ID,</if>
+			<if test="fileMediaId != null and fileMediaId != ''">FILE_MEDIA_ID,</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="categoryId &gt; 0">#{categoryId},</if>
+			<if test="fileName != null and fileName != ''">#{fileName},</if>
+			<if test="fileUrl != null and fileUrl != ''">#{fileUrl},</if>
+			<if test="fileSize &gt; 0">#{fileSize},</if>
+			<if test="fileJson != null and fileJson != ''">#{fileJson},</if>
+			<if test="fileType != null and fileType != ''">#{fileType},</if>
+			<if test="isChild != null and isChild != ''">#{isChild},</if>
+			<if test="updateDate != null">#{updateDate},</if>
+			<if test="updateBy &gt; 0">#{updateBy},</if>
+			<if test="createBy &gt; 0">#{createBy},</if>
+			<if test="createDate != null">#{createDate},</if>
+			<if test="del &gt; 0">#{del},</if>
+			<if test="weixinId &gt; 0">#{weixinId},</if>
+			<if test="fileMediaId != null and fileMediaId != ''">#{fileMediaId},</if>
+		</trim>
+	</insert>
+	
+	<!--更新-->	
+	<update id="updateEntity" parameterType="net.mingsoft.mweixin.entity.FileEntity">
+		update wx_file
+		<set>
+			<if test="categoryId &gt; 0">CATEGORY_ID=#{categoryId},</if>
+			<if test="fileName != null and fileName != ''">FILE_NAME=#{fileName},</if>
+			<if test="fileUrl != null and fileUrl != ''">FILE_URL=#{fileUrl},</if>
+			<if test="fileSize &gt; 0">FILE_SIZE=#{fileSize},</if>
+			<if test="fileJson != null and fileJson != ''">FILE_JSON=#{fileJson},</if>
+			<if test="fileType != null and fileType != ''">FILE_TYPE=#{fileType},</if>
+			<if test="isChild != null and isChild != ''">IS_CHILD=#{isChild},</if>
+			<if test="updateDate != null">UPDATE_DATE=#{updateDate},</if>
+			<if test="updateBy &gt; 0">UPDATE_BY=#{updateBy},</if>
+			<if test="createBy &gt; 0">CREATE_BY=#{createBy},</if>
+			<if test="createDate != null">CREATE_DATE=#{createDate},</if>
+			<if test="del &gt; 0">DEL=#{del},</if>
+			<if test="weixinId &gt; 0">WEIXIN_ID=#{weixinId},</if>
+			<if test="fileMediaId != null and fileMediaId != ''">FILE_MEDIA_ID=#{fileMediaId},</if>
+		</set>
+		where ID = #{fileId}
+	</update>
+	<!--条件查询-->	
+	<select id="query" resultMap="resultMap">
+		SELECT * from wx_file
+		<where>
+			<if test="categoryId &gt; 0"> and CATEGORY_ID=#{categoryId} </if>				
+			<if test="fileName != null and fileName != ''"> and FILE_NAME like CONCAT(CONCAT('%',#{fileName}),'%') </if>
+			<if test="fileUrl != null and fileUrl != ''"> and FILE_URL=#{fileUrl} </if>				
+			<if test="fileSize &gt; 0"> and FILE_SIZE=#{fileSize} </if>				
+			<if test="fileJson != null and fileJson != ''"> and FILE_JSON=#{fileJson} </if>				
+			<if test="fileType != null and fileType != ''"> and FILE_TYPE=#{fileType} </if>				
+			<if test="isChild != null and isChild != ''"> and IS_CHILD=#{isChild} </if>				
+			<if test="updateDate != null"> and UPDATE_DATE=#{updateDate} </if>				
+			<if test="updateBy &gt; 0"> and UPDATE_BY=#{updateBy} </if>				
+			<if test="createBy &gt; 0"> and CREATE_BY=#{createBy} </if>				
+			<if test="createDate != null"> and CREATE_DATE=#{createDate} </if>				
+			<if test="del &gt; 0"> and DEL=#{del} </if>	
+			<if test="weixinId &gt; 0"> and WEIXIN_ID=#{weixinId} </if>				
+			<if test="fileMediaId != null and fileMediaId != ''"> and FILE_MEDIA_ID=#{fileMediaId} </if>
+            <if test="isSync != null and isSync == 'true'.toString()"> and FILE_MEDIA_ID is not null </if>
+            <if test="isSync != null and isSync == 'false'.toString()"> and FILE_MEDIA_ID is null </if>
+		</where>
+		order by id desc
+	</select>
+	<!--批量删除-->	
+	<delete id="delete" >
+		delete from wx_file
+		<where>
+			 id in <foreach collection="ids" item="item" index="index" 
+			open="(" separator="," close=")">#{item}</foreach>
+		</where>
+	</delete>
+
+	<!--根据实体获取-->
+	<select id="getByEntity" resultMap="resultMap" parameterType="net.mingsoft.mweixin.entity.FileEntity">
+		<if test="_databaseId == 'oracle'">
+			SELECT * FROM ( SELECT TMP_PAGE.*, ROWNUM PAGEHELPER_ROW_ID FROM (
+		</if>
+		SELECT * from wx_file
+		<where>
+			<if test="categoryId &gt; 0"> and CATEGORY_ID=#{categoryId} </if>
+			<if test="fileName != null and fileName != ''"> and FILE_NAME like CONCAT(CONCAT('%',#{fileName}),'%') </if>
+			<if test="fileUrl != null and fileUrl != ''"> and FILE_URL=#{fileUrl} </if>
+			<if test="fileSize &gt; 0"> and FILE_SIZE=#{fileSize} </if>
+			<if test="fileJson != null and fileJson != ''"> and FILE_JSON=#{fileJson} </if>
+			<if test="fileType != null and fileType != ''"> and FILE_TYPE=#{fileType} </if>
+			<if test="isChild != null and isChild != ''"> and IS_CHILD=#{isChild} </if>
+			<if test="updateDate != null"> and UPDATE_DATE=#{updateDate} </if>
+			<if test="updateBy &gt; 0"> and UPDATE_BY=#{updateBy} </if>
+			<if test="createBy &gt; 0"> and CREATE_BY=#{createBy} </if>
+			<if test="createDate != null"> and CREATE_DATE=#{createDate} </if>
+			<if test="del &gt; 0"> and DEL=#{del} </if>
+			<if test="weixinId &gt; 0"> and WEIXIN_ID=#{weixinId} </if>
+			<if test="fileMediaId != null and fileMediaId != ''"> and FILE_MEDIA_ID=#{fileMediaId} </if>
+		</where>
+		<if test="_databaseId == 'oracle'">
+			) TMP_PAGE) WHERE
+			PAGEHELPER_ROW_ID = 1
+		</if>
+		<if test="_databaseId == 'mysql'">
+			limit 0,1
+		</if>
+	</select>
+
+	<!--根据id获取-->
+	<select id="getEntity" resultMap="resultMap" parameterType="int">
+		SELECT * from wx_file  where id=#{fileId}
+	</select>
+
+	<!--根据ids获取-->
+	<select id="getEntitys" resultMap="resultMap" parameterType="int">
+		SELECT * from wx_file  <where>
+		id in <foreach collection="ids" item="item" index="index"
+					   open="(" separator="," close=")">#{item}</foreach>
+	</where>
+	</select>
+</mapper>

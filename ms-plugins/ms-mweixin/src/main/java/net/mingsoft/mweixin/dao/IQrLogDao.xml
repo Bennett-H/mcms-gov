@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.mingsoft.mweixin.dao.IQrLogDao">
+
+    <resultMap id="resultMap" type="net.mingsoft.mweixin.entity.QrLogEntity">
+        <result column="OPEN_ID" property="openId"/><!--会员编号 -->
+        <result column="WEIXIN_ID" property="weixinId"/><!--微信编号 -->
+        <result column="QC_ID" property="qcId"/><!--场景二维码编号 -->
+    </resultMap>
+
+    <resultMap id="resultBean" type="net.mingsoft.mweixin.bean.QrLogBean">
+        <result column="OPEN_ID" property="openId"/><!--会员openId -->
+        <result column="PEOPLE_ID" property="peopleId"/><!--会员openId -->
+        <result column="WEIXIN_ID" property="weixinId"/><!--微信编号 -->
+        <result column="QC_ID" property="qcId"/><!--场景二维码编号 -->
+        <result column="QC_SCENE_STR" property="qcSceneStr"/><!--场景二维码昵称 -->
+    </resultMap>
+
+    <select id="query" resultMap="resultBean" parameterType="net.mingsoft.mweixin.bean.QrLogBean">
+        SELECT
+        wql.*,
+        wqc.QC_SCENE_STR,
+        wp.PEOPLE_ID
+        FROM wx_qr_log wql
+        LEFT JOIN wx_qr_code wqc ON wqc.id = wql.QC_ID AND wqc.WEIXIN_ID = wql.WEIXIN_ID
+        LEFT JOIN wx_people wp ON wp.OPEN_ID = wql.OPEN_ID AND wqc.WEIXIN_ID = wp.WEIXIN_ID
+        <where>
+            <if test="weixinId != null and weixinId != ''">and wql.WEIXIN_ID = #{weixinId}</if>
+            <if test="openId != null and openId !=''">and wql.OPEN_ID = #{openId}</if>
+            <if test="peopleId != null and peopleId !=''">and wp.PEOPLE_ID = #{peopleId}</if>
+            <if test="qcId != null and qcId !=''">and wql.QC_ID = #{qcId}</if>
+            <if test="qcSceneStr != null and qcSceneStr !=''">and wqc.QC_SCENE_STR = #{qcSceneStr}</if>
+        </where>
+        ORDER BY ID DESC
+    </select>
+
+</mapper>

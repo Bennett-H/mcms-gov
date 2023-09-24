@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.mingsoft.organization.dao.IEmployeeDao">
+
+	<resultMap id="resultMap" type="net.mingsoft.organization.entity.EmployeeEntity">
+			<id column="id" property="id" /><!--编号 -->
+				<result column="employee_code" property="employeeCode" /><!--员工编号 -->
+				<result column="employee_status" property="employeeStatus" /><!--员工状态 -->
+				<result column="employee_sex" property="employeeSex" /><!--性别 -->
+				<result column="employee_role_ids" property="employeeRoleIds" /><!--所属角色 -->
+				<result column="post_ids" property="postIds" /><!--岗位 -->
+				<result column="organization_id" property="organizationId" /><!--所属部门 -->
+				<result column="employee_politics" property="employeePolitics" /><!--政治面貌 -->
+				<result column="employee_education" property="employeeEducation" /><!--员工学历 -->
+				<result column="employee_birth_date" property="employeeBirthDate" /><!--年龄 -->
+				<result column="employee_phone" property="employeePhone" /><!--手机号 -->
+				<result column="employee_nick_name" property="employeeNickName" />
+				<result column="manager_id" property="managerId" /><!--管理员id -->
+				<result column="create_by" property="createBy" /><!--创建人 -->
+				<result column="create_date" property="createDate" /><!--创建时间 -->
+				<result column="update_by" property="updateBy" /><!--修改人 -->
+				<result column="update_date" property="updateDate" /><!--修改时间 -->
+				<result column="del" property="del" /><!--删除标记 -->
+	</resultMap>
+
+	<resultMap id="modelResultMap" type="net.mingsoft.basic.entity.ModelEntity">
+		<id column="id" property="id" /><!--模块自增长id -->
+		<result column="MODEL_TITLE" property="modelTitle" /><!--模块标题 -->
+		<result column="MODEL_CODE" property="modelCode" /><!--模块编码 -->
+		<result column="MODEL_ID" property="modelId" /><!--模块的父模块id -->
+		<result column="MODEL_URL" property="modelUrl" /><!--模块连接地址 -->
+		<result column="MODEL_DATETIME" property="modelDatetime" /><!-- -->
+		<result column="MODEL_ICON" property="modelIcon" /><!--模块图标 -->
+		<result column="MODEL_SORT" property="modelSort" /><!--模块的排序 -->
+		<result column="MODEL_ISMENU" property="modelIsMenu" /><!--模块是否是菜单 -->
+		<result column="MODEL_PARENT_IDS" property="modelParentIds" /><!--模块是否是菜单 -->
+		<result column="IS_CHILD" property="isChild" /><!--菜单类型-->
+		<result column="CHILD_NUM" property="childNum" /><!--菜单子集数量-->
+		<result column="DEPTH" property="depth" /><!--菜单层级-->
+	</resultMap>
+
+	<!--保存-->
+	<insert id="saveEntity" useGeneratedKeys="true" keyProperty="id"
+			parameterType="net.mingsoft.organization.entity.EmployeeEntity" >
+		insert into organization_employee
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+				<if test="employeeCode != null and employeeCode != ''">employee_code,</if>
+				<if test="employeeStatus != null and employeeStatus != ''">employee_status,</if>
+				<if test="employeeSex != null">employee_sex,</if>
+				<if test="employeeRoleIds != null and employeeRoleIds != ''">employee_role_ids,</if>
+				<if test="postIds != null and postIds != ''">post_ids,</if>
+				<if test="organizationId != null and organizationId != ''">organization_id,</if>
+				<if test="employeeNickName != null and employeeNickName != ''">employee_nick_name,</if>
+				<if test="employeePolitics != null and employeePolitics != ''">employee_politics,</if>
+				<if test="employeeEducation != null and employeeEducation != ''">employee_education,</if>
+				<if test="employeeBirthDate != null">employee_birth_date,</if>
+				<if test="employeePhone != null and employeePhone != ''">employee_phone,</if>
+				<if test="managerId != null and managerId>0">manager_id,</if>
+				<if test="createBy &gt; 0">create_by,</if>
+				<if test="createDate != null">create_date,</if>
+				<if test="updateBy &gt; 0">update_by,</if>
+				<if test="updateDate != null">update_date,</if>
+				<if test="del != null">del,</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+				<if test="employeeCode != null and employeeCode != ''">#{employeeCode},</if>
+				<if test="employeeStatus != null and employeeStatus != ''">#{employeeStatus},</if>
+				<if test="employeeSex != null">#{employeeSex},</if>
+				<if test="employeeRoleIds != null and employeeRoleIds != ''">#{employeeRoleIds},</if>
+				<if test="postIds != null and postIds != ''">#{postIds},</if>
+				<if test="organizationId != null and organizationId != ''">#{organizationId},</if>
+			<if test="employeeNickName != null and employeeNickName != ''">#{employeeNickName},</if>
+			<if test="employeePolitics != null and employeePolitics != ''">#{employeePolitics},</if>
+				<if test="employeeEducation != null and employeeEducation != ''">#{employeeEducation},</if>
+				<if test="employeeBirthDate != null">#{employeeBirthDate},</if>
+				<if test="employeePhone != null and employeePhone != ''">#{employeePhone},</if>
+				<if test="managerId != null and managerId>0">#{managerId},</if>
+				<if test="createBy &gt; 0">#{createBy},</if>
+				<if test="createDate != null">#{createDate},</if>
+				<if test="updateBy &gt; 0">#{updateBy},</if>
+				<if test="updateDate != null">#{updateDate},</if>
+				<if test="del != null">#{del},</if>
+		</trim>
+	</insert>
+
+		<!--更新-->
+		<update id="updateEntity" parameterType="net.mingsoft.organization.entity.EmployeeEntity">
+			update organization_employee
+			<set>
+				<if test="employeeCode != null and employeeCode != ''">employee_code=#{employeeCode},</if>
+				<if test="employeeStatus != null and employeeStatus != ''">employee_status=#{employeeStatus},</if>
+				<if test="employeeSex != null">employee_sex=#{employeeSex},</if>
+				<if test="employeeRoleIds != null and employeeRoleIds != ''">employee_role_ids=#{employeeRoleIds},</if>
+				<if test="postIds != null and postIds != ''">post_ids=#{postIds},</if>
+				<if test="organizationId != null and organizationId != ''">organization_id=#{organizationId},</if>
+				<if test="employeeNickName != null and employeeNickName != ''">employee_nick_name=#{employeeNickName},</if>
+				<if test="employeePolitics != null and employeePolitics != ''">employee_politics=#{employeePolitics},</if>
+				<if test="employeeEducation != null and employeeEducation != ''">employee_education=#{employeeEducation},</if>
+				<if test="employeeBirthDate != null">employee_birth_date=#{employeeBirthDate},</if>
+				<if test="employeePhone != null and employeePhone != ''">employee_phone=#{employeePhone},</if>
+				<if test="managerId != null and managerId>0">manager_id=#{managerId},</if>
+				<if test="createBy &gt; 0">create_by=#{createBy},</if>
+				<if test="createDate != null">create_date=#{createDate},</if>
+				<if test="updateBy &gt; 0">update_by=#{updateBy},</if>
+				<if test="updateDate != null">update_date=#{updateDate},</if>
+				<if test="del != null">del=#{del},</if>
+			</set>
+			where id = #{id}
+		</update>
+
+
+		<!--根据实体获取-->
+		<select id="getByEntity" resultMap="resultMap" parameterType="net.mingsoft.organization.entity.EmployeeEntity">
+			select organization_employee.*, manager_name, role_ids, manager_nickname, organization_post.* from organization_employee
+			left join manager on organization_employee.manager_id = manager.id
+			left join organization_post on find_in_set(organization_post.id,organization_employee.post_ids)
+			<where>
+				<if test="id != null and id != ''">and organization_employee.id=#{id}</if>
+				<if test="employeeCode != null and employeeCode != ''">and employee_code=#{employeeCode}</if>
+				<if test="employeeStatus != null and employeeStatus != ''">and employee_status=#{employeeStatus}</if>
+				<if test="employeeSex != null"> and employee_sex=#{employeeSex} </if>
+				<if test="employeeRoleIds != null and employeeRoleIds != ''">and employee_role_ids=#{employeeRoleIds}</if>
+				<if test="postIds != null and postIds != ''">and  post_ids like CONCAT(CONCAT('%',#{postIds}),'%')</if>
+				<if test="organizationId != null and organizationId != ''">and organization_id=#{organizationId}</if>
+				<if test="employeeNickName != null and employeeNickName != ''">and  employee_nick_name=#{employeeNickName}</if>
+				<if test="employeePolitics != null and employeePolitics != ''">and employee_politics=#{employeePolitics}</if>
+				<if test="employeeEducation != null and employeeEducation != ''">and employee_education=#{employeeEducation}</if>
+				<if test="employeeBirthDate != null"> and employee_birth_date=#{employeeBirthDate} </if>
+				<if test="managerId != null and managerId &gt; 0"> and manager.id=#{managerId} </if>
+				<if test="employeePhone != null and employeePhone != ''">and  employee_phone like CONCAT(CONCAT('%',#{employeePhone}),'%')</if>
+				<if test="createBy &gt; 0"> and create_by=#{createBy} </if>
+				<if test="createDate != null"> and create_date=#{createDate} </if>
+				<if test="updateBy &gt; 0"> and update_by=#{updateBy} </if>
+				<if test="updateDate != null"> and update_date=#{updateDate} </if>
+				<if test="del != null"> and organization_employee.del=#{del} </if>
+			</where>
+			limit 0,1
+		</select>
+
+
+
+
+
+		<!--查询全部-->
+		<select id="queryAll" resultMap="resultMap">
+			select * from organization_employee order by id desc
+		</select>
+
+	<select id="queryModelByRoleIds" resultMap="modelResultMap"
+			parameterType="int">
+		select
+		distinct *
+		from model
+		where id in (select MODEL_ID from role_model where
+		ROLE_ID in
+		<foreach collection="ids" index="index" item="id" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+		)
+		order by MODEL_SORT desc,model.id desc
+	</select>
+	<select id="queryListByOrganization" resultMap="resultMap">
+		select organization_employee.*, post_ids, manager_nickname from organization_employee
+		left join manager
+		on organization_employee.manager_id = manager.id
+		<where>
+			<if test="employeeCode != null and employeeCode != ''"> and employee_code=#{employeeCode}</if>
+			<if test="employeeStatus != null and employeeStatus != ''"> and employee_status=#{employeeStatus}</if>
+			<if test="employeeSex != null"> and employee_sex=#{employeeSex} </if>
+			<if test="employeeRoleIds != null and employeeRoleIds != ''"> and employee_role_ids=#{employeeRoleIds}</if>
+			<if test="managerId != null and managerId &gt; 0"> and manager.id=#{managerId} </if>
+			<if test="organizationId != null and organizationId != ''">
+				and organization_id in ((select id from organization
+				where find_in_set(#{organizationId},organization_parent_id) or id = #{organizationId}))
+			</if>
+			<if test="employeeNickName != null and employeeNickName != ''"> and employee_nick_name=#{employeeNickName}</if>
+
+			<if test="employeePolitics != null and employeePolitics != ''"> and employee_politics=#{employeePolitics}</if>
+			<if test="employeeEducation != null and employeeEducation != ''"> and employee_education=#{employeeEducation}</if>
+			<if test="employeeBirthDate != null"> and employee_birth_date=#{employeeBirthDate} </if>
+			<if test="employeePhone != null and employeePhone != ''"> and  employee_phone like CONCAT(CONCAT('%',#{employeePhone}),'%')</if>
+			<if test="createBy &gt; 0"> and create_by=#{createBy} </if>
+			<if test="createDate != null"> and create_date=#{createDate} </if>
+			<if test="updateBy &gt; 0"> and update_by=#{updateBy} </if>
+			<if test="updateDate != null"> and update_date=#{updateDate} </if>
+			and organization_employee.del=0
+			<include refid="net.mingsoft.base.dao.IBaseDao.sqlWhere"></include>
+		</where>
+		order by organization_employee.id desc
+	</select>
+    <select id="queryByIds" resultMap="resultMap">
+		select * from organization_employee
+		<where>
+			FIND_IN_SET(id,#{ids}) > 0
+			and del=0
+		</where>
+		order by id desc
+	</select>
+
+
+</mapper>

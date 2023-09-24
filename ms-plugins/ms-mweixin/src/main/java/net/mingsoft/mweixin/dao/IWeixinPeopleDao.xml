@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.mingsoft.mweixin.dao.IWeixinPeopleDao">
+	<sql id="column_list">
+		WP.WEIXIN_ID,WP.OPEN_ID,WP.PEOPLE_ID,WP.subscribe,WP.subscribe_time,WP.subscribe_scene,WP.HEADIMG_URL,
+		P.id,P.PEOPLE_PHONE,P.PEOPLE_NAME,P.PEOPLE_PASSWORD,P.PEOPLE_DATETIME,P.PEOPLE_MAIL,
+	 	PU.PEOPLE_ID,PU.PU_REAL_NAME,PU.PU_ADDRESS,PU.PU_ICON,PU.PU_NICKNAME,PU.PU_SEX,PU.PU_BIRTHDAY
+	</sql>
+	
+	<!-- 字段绑定开始 -->
+	<resultMap type="net.mingsoft.mweixin.entity.WeixinPeopleEntity" id="resultMap">
+		<!-- weixinPeopleEntity开始 -->
+		<id column="PEOPLE_ID"  property="id"/> <!--People实体中的自增长id  -->
+		<result column="WEIXIN_ID"  property="weixinId"/> <!-- 关联微信自增长ID-->
+		<result column="OPEN_ID"  property="openId"/> <!-- 用户在微信中的唯一标识 -->
+		<result column="subscribe"  property="subscribe"/><!-- 用户关注状态 -->
+		<result column="subscribe_time"  property="subscribeTime"/><!-- 用户关注时间 -->
+		<result column="subscribe_scene"  property="subscribeScene"/><!-- 用户关注来源 -->
+		<result column="HEADIMG_URL"  property="headimgUrl"/><!-- 用户头像链接地址 -->
+		<!-- weixinPeopleEntity结束 -->
+		
+		<!-- peopleUser开始 -->
+		<result column="PEOPLE_ID" property="id"/><!-- 将实体的ID属性与表的ID字段对接 -->
+		<result column="PU_REAL_NAME" property="puRealName"/><!--用户的真实名称 -->
+		<result column="PU_ADDRESS" property="puAddress"/><!-- 用户地址 -->
+		<result column="PU_ICON" property="puIcon"/><!-- 用户头像 -->
+		<result column="PU_NICKNAME" property="puNickname"/><!-- 用户昵称 -->
+		<result column="PU_SEX" property="puSex"/><!-- 用户性别0.未知;1.男;2.女 -->
+		<result column="PU_BIRTHDAY" property="puBirthday"/><!-- 用户生日 -->
+		<!-- peopleUser结束 -->
+		
+		<!-- people开始 -->
+		<result column="id" property="id"/><!-- 将实体的ID属性与表的ID字段对接 -->
+		<result column="PEOPLE_PHONE" property="peoplePhone"/><!-- 将实体的peoplePhone属性与表的peoplePhone字段对接 -->
+		<result column="PEOPLE_NAME" property="peopleName"/><!-- 将实体的peopleName属性与表的peopleName字段对接 -->
+		<result column="PEOPLE_PASSWORD" property="peoplePassword"/><!-- 将实体的peoplePwd属性与表的peoplePwd字段对接 -->
+		<result column="PEOPLE_DATETIME" property="peopleDateTime"/><!-- 将实体的peopleDateTime属性与表的peopleDateTime字段对接 -->
+		<result column="PEOPLE_MAIL" property="peopleMail"/><!-- 用户邮箱 -->
+		<!-- people结束 -->
+	</resultMap>
+	<!-- 字段绑定结束 -->
+	
+	<!-- 微信用户保存开始 -->
+	<insert id="saveEntity" useGeneratedKeys="true" keyProperty="id" parameterType="net.mingsoft.base.entity.BaseEntity">
+		insert into wx_people
+		<!-- 注入表字段 -->
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">PEOPLE_ID,</if>
+			<if test="weixinId != null">WEIXIN_ID,</if>
+			<if test="openId != null">OPEN_ID,</if>
+			<if test="subscribe != null">subscribe,</if>
+			<if test="subscribeScene != null and  subscribeScene != ''">subscribe_scene,</if>
+			<if test="subscribeTime != null">subscribe_time,</if>
+			<if test="headimgUrl != null">HEADIMG_URL</if>
+		</trim>
+		
+		<!-- 注入控制层字段 -->
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">#{id},</if>
+			<if test="weixinId != null">#{weixinId},</if>
+			<if test="openId != null">#{openId},</if>
+			<if test="subscribe != null">#{subscribe},</if>
+			<if test="subscribeScene != null and  subscribeScene != ''">#{subscribeScene},</if>
+			<if test="subscribeTime != null">#{subscribeTime},</if>
+			<if test="headimgUrl != null">#{headimgUrl}</if>
+		</trim>
+	</insert>
+	<!-- 微信用户保存结束 -->
+	
+	<!-- 更新用户信息开始 -->
+	<update id="updateEntity" parameterType="net.mingsoft.base.entity.BaseEntity">
+		update wx_people
+		<set>
+			<if test="peopleId != null and peopleId &gt; 0">PEOPLE_ID=#{peopleId},</if>
+			<if test="subscribe != null">subscribe=#{subscribe},</if>
+			<if test="subscribeScene != null and  subscribeScene != ''">subscribe_scene=#{subscribeScene},</if>
+			<if test="subscribeTime != null">subscribe_time=#{subscribeTime},</if>
+			<if test="headimgUrl != null">HEADIMG_URL=#{headimgUrl},</if>
+		</set>
+		where OPEN_ID=#{openId}
+	</update>
+	<!-- 更新用户信息结束 -->	
+	
+	<!-- 删除用户开始 -->
+	<delete id="deleteEntity" parameterType="int">
+		delete from wx_people where PEOPLE_ID = #{id}
+	</delete>
+	<!-- 删除用户结束 -->
+	
+	<select id="query" resultMap="resultMap" parameterType="net.mingsoft.mweixin.entity.WeixinPeopleEntity">
+		select <include refid="column_list"/>
+		from wx_people WP 
+		left join  people P on WP.PEOPLE_ID=P.id
+		left join people_user PU on PU.people_id=WP.PEOPLE_ID
+		<where>
+			<if test="weixinId != null">and WP.WEIXIN_ID = #{weixinId}</if>
+			<if test="openId != null and  openId != ''">and WP.open_id = #{openId}</if>
+			<if test="peopleId != null and  peopleId != ''">and WP.people_id = #{peopleId}</if>
+<!--			<if test="puNickname != null">and PU.PU_NICKNAME like concat('%',#{puNickname},'%')</if>-->
+		</where>
+		order by wp.subscribe_time desc
+	</select>
+	
+	
+	<!-- 根据应用ID和微信id查询微信用户实体列表开始 -->
+	<select id="queryList" resultMap="resultMap">
+		select <include refid="column_list"/>
+		from wx_people wp 
+		left join  people p on wp.PEOPLE_ID=p.id
+		left join people_user pu on pu.people_id=wp.PEOPLE_ID
+		where wp.WEIXIN_ID = #{weixinId}
+		<if test="orderBy != null">
+			order by ${orderBy}
+		</if>
+		<if test="order==true">asc</if>
+		<if test="order==false">desc</if>
+		limit ${pageNo*pageSize},#{pageSize}
+	</select>
+	<!-- 根据应用ID和微信id查询微信用户实体列表结束 -->
+	
+
+	
+	
+	<!-- 根据应用ID和微信id查询微信用户实体的总数 开始-->
+	<select id="queryCount" resultType="int">
+		<!--shiahbasic和 basic间进行连接查询 -->
+		select count(*)
+		from wx_people wp 
+		left join  people p on wp.PEOPLE_ID=p.id
+		left join people_user pu on pu.people_id=wp.PEOPLE_ID
+		where wp.WEIXIN_ID = #{weixinId}
+	</select>
+	<!-- 根据应用ID和微信id查询微信用户实体的总数 结束-->
+	
+	<!-- 根据自定义字段查询微信用户实体开始 -->
+	<select id="getEntity" resultMap="resultMap">
+		select <include refid="column_list"/> from wx_people wp
+		left join  people p on wp.PEOPLE_ID=p.id
+		left join people_user pu on pu.people_id=wp.PEOPLE_ID
+		where
+		<foreach item="item" index="key" collection="whereMap" open=""
+			separator="AND" close="">wp.${key} = #{item}
+		</foreach>
+	</select>
+	<!-- 根据自定义字段条件查询微信用户实体结束 -->
+	
+	<!-- 方法过期推荐使用 getByOpenId-->
+	<!-- 根据条件查询微信实体开始 -->
+	<select id="getWeixinPeopleEntity" resultMap="resultMap">
+		select <include refid="column_list"/> from wx_people wp
+		left join  people p on wp.PEOPLE_ID=p.id
+		left join people_user pu on pu.people_id=wp.PEOPLE_ID
+		<where>
+			<if test="weixinId &gt; 0">and wp.weixin_id = #{weixinId}</if>
+			<if test="openId != null">and wp.OPEN_ID = #{openId}</if>
+		</where>
+	</select>
+	<!-- 根据条件查询微信实体结束 -->
+	
+	<!-- 根据微信openId查询用户信息 -->
+	<select id="getByOpenId" resultMap="resultMap">
+		select <include refid="column_list"/> from wx_people wp
+		left join  people p on wp.PEOPLE_ID=p.id
+		left join people_user pu on pu.people_id=wp.PEOPLE_ID
+		<where>
+			<if test="openId != null">and wp.OPEN_ID = #{openId}</if>
+		</where>
+	</select>
+</mapper>

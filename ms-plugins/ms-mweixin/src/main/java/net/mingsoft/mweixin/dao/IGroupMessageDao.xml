@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.mingsoft.mweixin.dao.IGroupMessageDao">
+
+	<resultMap id="resultMap" type="net.mingsoft.mweixin.entity.GroupMessageEntity">
+		<id column="gm_pm_id" property="gmPmId" /><!--关联主键 -->
+		<result column="GM_SEND_TIME" property="gmSendTime" /><!--发送时间 -->
+		<result column="GM_SEND_GROUP" property="gmSendGroup" /><!--发送对象组 -->
+	</resultMap>
+
+	<!--保存-->
+	<insert id="saveEntity">
+		insert into wx_group_message
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="pmId != null and pmId &gt; 0">gm_pm_id,</if>
+			<if test="gmSendTime != null">GM_SEND_TIME,</if>
+			<if test="gmSendGroup != null and gmSendGroup != ''">GM_SEND_GROUP,</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="pmId != null and pmId &gt; 0">#{pmId},</if>
+			<if test="gmSendTime != null">#{gmSendTime},</if>
+			<if test="gmSendGroup != null and gmSendGroup != ''">#{gmSendGroup},</if>
+		</trim>
+	</insert>
+
+	<!--更新-->
+	<update id="updateEntity" parameterType="net.mingsoft.mweixin.entity.GroupMessageEntity">
+		update wx_group_message
+		<set>
+			<if test="gmSendTime != null">GM_SEND_TIME=#{gmSendTime},</if>
+			<if test="gmSendGroup != null and gmSendGroup != ''">GM_SEND_GROUP=#{gmSendGroup},</if>
+		</set>
+		where gm_pm_id = #{gmPmId}
+	</update>
+
+	<!--根据id获取-->
+	<select id="getEntity" resultMap="resultMap" parameterType="int">
+		select * from wx_group_message
+		left join wx_passive_message on wx_group_message.gm_pm_id = wx_passive_message.pm_id
+		where gm_pm_id=#{gmPmId}
+	</select>
+
+	<!--根据实体获取-->
+	<select id="getByEntity" resultMap="resultMap" parameterType="net.mingsoft.mweixin.entity.GroupMessageEntity">
+		<if test="_databaseId == 'oracle'">
+			SELECT * FROM ( SELECT TMP_PAGE.*, ROWNUM PAGEHELPER_ROW_ID FROM (
+		</if>
+		select * from wx_group_message
+		  left join wx_passive_message on wx_group_message.gm_pm_id = wx_passive_message.pm_id
+		<where>
+			<if test="pmWeixinId &gt; 0"> and PM_WEIXIN_ID=#{pmWeixinId} </if>
+			<if test="pmEventId &gt; 0"> and PM_EVENT_ID=#{pmEventId} </if>
+			<if test="pmNewsId &gt; 0"> and PM_NEWS_ID=#{pmNewsId} </if>
+			<if test="pmMessageId &gt; 0"> and PM_MESSAGE_ID=#{pmMessageId} </if>
+			<if test="pmReplyNum &gt; 0"> and PM_REPLY_NUM=#{pmReplyNum} </if>
+			<if test="pmKey != null and pmKey != ''"> and PM_KEY=#{pmKey} </if>
+			<if test="pmType != null and pmType !=''"> and PM_TYPE=#{pmType} </if>
+			<if test="pmTag != null and pmTag != ''"> and PM_TAG=#{pmTag} </if>
+			<if test="pmContent != null and pmContent != ''"> and PM_CONTENT=#{pmContent} </if>
+			<if test="pmNewType != null and pmNewType != ''"> and PM_NEW_TYPE=#{pmNewType} </if>
+			<if test="gmSendTime != null"> and GM_SEND_TIME=#{gmSendTime} </if>
+			<if test="gmSendGroup != null and gmSendGroup != ''"> and GM_SEND_GROUP=#{gmSendGroup} </if>
+		</where>
+		<if test="_databaseId == 'oracle'">
+			) TMP_PAGE) WHERE
+			PAGEHELPER_ROW_ID = 1
+		</if>
+		<if test="_databaseId == 'mysql'">
+			limit 0,1
+		</if>
+	</select>
+
+
+	<!--删除-->
+	<delete id="deleteEntity" parameterType="int">
+		delete from wx_group_message  where gm_pm_id=#{gmPmId}
+	</delete>
+
+	<!--批量删除-->
+	<delete id="delete" >
+		delete from wx_group_message
+		<where>
+			gm_pm_id  in <foreach collection="ids" item="item" index="index"
+			open="(" separator="," close=")">#{item}</foreach>
+		</where>
+	</delete>
+	<!--查询全部-->
+	<select id="queryAll" resultMap="resultMap">
+		select * from wx_group_message
+		left join wx_passive_message on wx_group_message.gm_pm_id = wx_passive_message.pm_id
+		order by gm_pm_id desc
+	</select>
+	<!--条件查询-->
+	<select id="query" resultMap="resultMap">
+		select * from wx_group_message
+		left join wx_passive_message on wx_group_message.gm_pm_id = wx_passive_message.pm_id
+		<where>
+			<if test="pmWeixinId &gt; 0"> and PM_WEIXIN_ID=#{pmWeixinId} </if>
+			<if test="pmEventId &gt; 0"> and PM_EVENT_ID=#{pmEventId} </if>
+			<if test="pmNewsId &gt; 0"> and PM_NEWS_ID=#{pmNewsId} </if>
+			<if test="pmMessageId &gt; 0"> and PM_MESSAGE_ID=#{pmMessageId} </if>
+			<if test="pmReplyNum &gt; 0"> and PM_REPLY_NUM=#{pmReplyNum} </if>
+			<if test="pmKey != null and pmKey != ''"> and PM_KEY like CONCAT(CONCAT('%',#{pmKey}),'%')</if>
+			<if test="pmType != null and pmType !=''"> and PM_TYPE=#{pmType} </if>
+			<if test="pmTag != null and pmTag != ''"> and PM_TAG=#{pmTag} </if>
+			<if test="pmContent != null and pmContent != ''"> and PM_CONTENT=#{pmContent} </if>
+			<if test="pmNewType != null and pmNewType != ''"> and PM_NEW_TYPE=#{pmNewType} </if>
+			<if test="gmSendTime != null"> and GM_SEND_TIME=#{gmSendTime} </if>
+			<if test="gmSendGroup != null and gmSendGroup != ''"> and GM_SEND_GROUP=#{gmSendGroup} </if>
+		</where>
+		order by gm_pm_id desc
+	</select>
+
+</mapper>

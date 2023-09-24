@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.mingsoft.mweixin.dao.IWxDraftDao">
+
+	<resultMap id="resultMap" type="net.mingsoft.mweixin.entity.DraftEntity">
+				<result column="MEDIA_ID" property="mediaId" /><!--微信媒体id -->
+				<result column="CHILD_ARTICLE_IDS" property="childArticleIds" /><!--子图文ids -->
+				<result column="MASTER_ARTICLE_ID" property="masterArticleId" /><!--主图文id -->
+				<result column="WEIXIN_ID" property="weixinId" /><!--微信id -->
+				<result column="publish_id" property="publishId" /><!--发布id -->
+				<result column="publish_state" property="publishState" /><!--发布状态 -->
+				<result column="article_id" property="articleId" /><!--已发布的图文id -->
+	</resultMap>
+
+	<select id="query" resultMap="resultMap">
+		SELECT * FROM WX_DRAFT
+		<where>
+			DEL=0
+			<include refid="net.mingsoft.base.dao.IBaseDao.sqlWhere"></include>
+		</where>
+		 ORDER BY ID DESC
+	</select>
+
+	<!-- 查询未发布草稿列表开始 -->
+	<select id="queryDraftList" resultMap="resultMap" parameterType="net.mingsoft.mweixin.bean.DraftArticleBean">
+		select * from wx_draft dt
+		LEFT JOIN wx_article wa on wa.id = dt.master_article_id
+		where 1=1
+		<if test="weixinId != null and weixinId &gt; 0">
+			and dt.weixin_id=#{weixinId}
+		</if>
+		<if test="publishState != null">
+			and dt.publish_state=#{publishState}
+		</if>
+		<if test="masterArticle.articleTitle != null and masterArticle.articleTitle !=''">
+			and wa.article_title like CONCAT(CONCAT('%',#{masterArticle.articleTitle}),'%')
+		</if>
+		<if test="mediaId != null and mediaId !=''">and media_id=#{mediaId}</if>
+		<if test="isSync != null and isSync == 'true'.toString()"> and MEDIA_ID is not null </if>
+		<if test="isSync != null and isSync == 'false'.toString()"> and MEDIA_ID is null </if>
+		order by dt.id desc
+	</select>
+	<!-- 查询未发布草稿列表结束 -->
+
+</mapper>

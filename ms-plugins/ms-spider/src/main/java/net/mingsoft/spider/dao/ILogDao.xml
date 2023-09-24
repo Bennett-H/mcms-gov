@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.mingsoft.spider.dao.ILogDao">
+
+	<resultMap id="resultMap" type="net.mingsoft.spider.bean.LogBean">
+			<id column="id" property="id" /><!--编号 -->
+				<result column="task_id" property="taskId" /><!--任务主键 -->
+				<result column="task_name" property="taskName" /><!--任务名称 -->
+				<result column="import_table" property="importTable" /><!--任务名称 -->
+				<result column="regular_name" property="regularName" /><!--规则名称 -->
+				<result column="regular_id" property="regularId" /><!--规则主键 -->
+				<result column="imported" property="imported" /><!--是否已经导入过 -->
+				<result column="source_url" property="sourceUrl" /><!--内容链接 -->
+				<result column="content" property="content" /><!--采集内容 -->
+				<result column="create_by" property="createBy" /><!--创建人 -->
+				<result column="create_date" property="createDate" /><!--创建时间 -->
+				<result column="update_by" property="updateBy" /><!--修改人 -->
+				<result column="update_date" property="updateDate" /><!--修改时间 -->
+				<result column="del" property="del" /><!--删除标记 -->
+	</resultMap>
+
+	<!--保存-->
+	<insert id="saveEntity" useGeneratedKeys="true" keyProperty="id"
+			parameterType="net.mingsoft.spider.entity.LogEntity" >
+		insert into spider_log
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+				<if test="taskId != null ">task_id,</if>
+				<if test="regularId != null ">regular_id,</if>
+				<if test="imported != null ">imported,</if>
+				<if test="sourceUrl != null ">source_url,</if>
+				<if test="content != null ">content,</if>
+				<if test="createBy &gt; 0">create_by,</if>
+				<if test="createDate != null">create_date,</if>
+				<if test="updateBy &gt; 0">update_by,</if>
+				<if test="updateDate != null">update_date,</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+				<if test="taskId != null ">#{taskId},</if>
+				<if test="regularId != null ">#{regularId},</if>
+				<if test="imported != null ">#{imported},</if>
+				<if test="sourceUrl != null ">#{sourceUrl},</if>
+				<if test="content != null ">#{content},</if>
+				<if test="createBy &gt; 0">#{createBy},</if>
+				<if test="createDate != null">#{createDate},</if>
+				<if test="updateBy &gt; 0">#{updateBy},</if>
+				<if test="updateDate != null">#{updateDate},</if>
+		</trim>
+	</insert>
+
+		<!--更新-->
+		<update id="updateEntity" parameterType="net.mingsoft.spider.entity.LogEntity">
+			update spider_log
+			<set>
+				<if test="taskId != null ">task_id=#{taskId},</if>
+				<if test="regularId != null ">regular_id=#{regularId},</if>
+				<if test="imported != null ">imported=#{imported},</if>
+				<if test="sourceUrl != null ">source_url=#{sourceUrl},</if>
+				<if test="content != null ">content=#{content},</if>
+				<if test="createBy &gt; 0">create_by=#{createBy},</if>
+				<if test="createDate != null">create_date=#{createDate},</if>
+				<if test="updateBy &gt; 0">update_by=#{updateBy},</if>
+				<if test="updateDate != null">update_date=#{updateDate},</if>
+			</set>
+			where id = #{id}
+		</update>
+
+		<!--根据id获取-->
+		<select id="getEntity" resultMap="resultMap" parameterType="int">
+		SELECT
+			spider_log.*, spider_task.task_name,
+			spider_task.import_table,
+			spider_task_regular.regular_name
+		FROM
+			spider_log
+		LEFT JOIN spider_task ON spider_log.task_id = spider_task.id
+		LEFT JOIN spider_task_regular ON spider_log.regular_id = spider_task_regular.id
+		where spider_log.id=#{id}
+		</select>
+
+		<!--根据实体获取-->
+		<select id="getByEntity" resultMap="resultMap" parameterType="net.mingsoft.spider.entity.LogEntity">
+			SELECT
+			spider_log.*, spider_task.task_name,
+			spider_task.import_table,
+			spider_task_regular.regular_name
+			FROM
+			spider_log
+			LEFT JOIN spider_task ON spider_log.task_id = spider_task.id
+			LEFT JOIN spider_task_regular ON spider_log.regular_id = spider_task_regular.id
+			<where>
+				spider_log.del = 0
+				<if test="taskId != null and taskId != ''">and spider_log.task_id=#{taskId}</if>
+				<if test="regularId != null and regularId != ''">and spider_log.regular_id=#{regularId}</if>
+				<if test="imported != null and imported != ''">and imported=#{imported}</if>
+				<if test="sourceUrl != null and sourceUrl != ''">and source_url=#{sourceUrl}</if>
+				<if test="content != null and content != ''">and content=#{content}</if>
+				<if test="createBy &gt; 0"> and spider_log.create_by=#{createBy} </if>
+				<if test="createDate != null"> and spider_log.create_date=#{createDate} </if>
+				<if test="updateBy &gt; 0"> and spider_log.update_by=#{updateBy} </if>
+				<if test="updateDate != null"> and spider_log.update_date=#{updateDate} </if>
+			</where>
+			limit 0,1
+		</select>
+
+
+		<!--删除-->
+		<delete id="deleteEntity" parameterType="int">
+			delete from spider_log  where id=#{id}
+		</delete>
+
+		<!--批量删除-->
+		<delete id="delete" >
+			delete from spider_log
+			<where>
+				id  in <foreach collection="ids" item="item" index="index"
+										 open="(" separator="," close=")">#{item}</foreach>
+			</where>
+		</delete>
+		<!--查询全部-->
+		<select id="queryAll" resultMap="resultMap">
+			select * from spider_log order by create_date desc
+		</select>
+	<!--条件查询-->
+	<select id="query" resultMap="resultMap">
+		SELECT
+		spider_log.*, spider_task.task_name,
+		spider_task.import_table,
+		spider_task_regular.regular_name
+		FROM
+		spider_log
+		LEFT JOIN spider_task ON spider_log.task_id = spider_task.id
+		LEFT JOIN spider_task_regular ON spider_log.regular_id = spider_task_regular.id
+		<where>
+		    spider_log.del = 0
+			<if test="taskId != null and taskId != ''"> and spider_log.task_id=#{taskId}</if>
+			<if test="taskName != null and taskName != ''"> and task_name like CONCAT(CONCAT('%',#{taskName}),'%')</if>
+			<if test="regularName != null and regularName != ''"> and regular_name like CONCAT(CONCAT('%',#{regularName}),'%')</if>
+			<if test="regularId != null and regularId != ''"> and spider_log.regular_id=#{regularId}</if>
+			<if test="imported != null and imported != ''"> and imported=#{imported}</if>
+			<if test="sourceUrl != null and sourceUrl != ''"> and source_url=#{sourceUrl}</if>
+			<if test="createBy &gt; 0"> and spider_log.create_by=#{createBy} </if>
+			<if test="createDate != null">
+				<if test="_databaseId == 'mysql'">
+					and TO_DAYS(spider_log.create_date) = TO_DAYS(#{createDate})
+				</if>
+				<if test="_databaseId == 'oracle'">
+					and TO_CHAR(spider_log.create_date,'yyyy-mm-dd') = TO_CHAR(#{createDate},'yyyy-mm-dd')
+				</if>
+			</if>
+			<if test="updateBy &gt; 0"> and spider_log.update_by=#{updateBy} </if>
+			<if test="updateDate != null"> and spider_log.update_date=#{updateDate} </if>
+			<include refid="net.mingsoft.base.dao.IBaseDao.sqlWhere"></include>
+		</where>
+		order by spider_log.create_date desc
+	</select>
+
+</mapper>

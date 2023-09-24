@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.mingsoft.mweixin.dao.IQrCodeDao">
+
+	<resultMap id="resultMap" type="net.mingsoft.mweixin.entity.QrCodeEntity">
+		<result column="WEIXIN_ID" property="weixinId" /><!--微信编号 -->
+		<result column="QC_SCENE_STR" property="qcSceneStr" /><!--场景值id(名称) -->
+		<result column="QC_ACTION_NAME" property="qcActionName" /><!--二维码类型 -->
+		<result column="QC_EXPIRE_SECONDS" property="qcExpireSeconds" /><!--二维码有效期 -->
+		<result column="QC_BEAN_NAME" property="qcBeanName" /><!--实现类bean名称 -->
+	</resultMap>
+
+	<select id="query" resultMap="resultMap">
+		SELECT * FROM WX_QR_CODE
+		<where>
+			DEL=0
+			<include refid="net.mingsoft.base.dao.IBaseDao.sqlWhere"></include>
+		</where>
+		ORDER BY ID DESC
+	</select>
+
+</mapper>
