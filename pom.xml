@@ -133,6 +133,52 @@
 				<version>${ms.version}</version>
 			</dependency>
 
+			<dependency>
+				<groupId>net.mingsoft</groupId>
+				<artifactId>ms-file</artifactId>
+				<version>${ms.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.mingsoft</groupId>
+				<artifactId>ms-id</artifactId>
+				<version>${ms.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.mingsoft</groupId>
+				<artifactId>ms-impexp</artifactId>
+				<version>${ms.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.mingsoft</groupId>
+				<artifactId>ms-morganization</artifactId>
+				<version>${ms.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.mingsoft</groupId>
+				<artifactId>ms-mweixin</artifactId>
+				<version>${ms.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.mingsoft</groupId>
+				<artifactId>ms-qa</artifactId>
+				<version>${ms.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.mingsoft</groupId>
+				<artifactId>ms-site</artifactId>
+				<version>${ms.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.mingsoft</groupId>
+				<artifactId>ms-spider</artifactId>
+				<version>${ms.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.mingsoft</groupId>
+				<artifactId>ms-statistics</artifactId>
+				<version>${ms.version}</version>
+			</dependency>
+
 		</dependencies>
 	</dependencyManagement>
 	<build>

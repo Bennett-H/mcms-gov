@@ -17,6 +17,15 @@
     </properties>
     <modules>
         <module>ms-ad</module>
+        <module>ms-file</module>
+        <module>ms-id</module>
+        <module>ms-impexp</module>
+        <module>ms-morganization</module>
+        <module>ms-mweixin</module>
+        <module>ms-qa</module>
+        <module>ms-site</module>
+        <module>ms-spider</module>
+        <module>ms-statistics</module>
     </modules>
     <dependencies>
         <dependency>
