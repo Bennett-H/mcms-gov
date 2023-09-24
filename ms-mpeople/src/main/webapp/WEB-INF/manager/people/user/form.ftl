@@ -588,11 +588,13 @@
             }
             var that = this;
 
-            //加载自定义模型，modelName：模型名称，linkId：主表ID
-            ms.mdiy.model.extend("peopleUserModel", {"modelName":"扩展会员信息"},{ linkId: this.form.peopleId },true).then(function(obj) {
+            this.$nextTick(function () {
+              //加载自定义模型，modelName：模型名称，linkId：主表ID
+              ms.mdiy.model.extend("peopleUserModel", {"modelName":"扩展会员信息"},{ linkId: this.form.peopleId },true).then(function(obj) {
                 //赋值
                 that.peopleUserModel = obj;
-            });
+              });
+            })
 
         }
     });

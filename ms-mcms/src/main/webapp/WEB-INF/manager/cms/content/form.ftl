@@ -397,7 +397,7 @@
                                     :on-remove="contentImghandleRemove"
                                     :file-list="form.contentImg"
                                     :auto-upload="false"
-                                    :limit="1"
+                                    :limit="2"
                                     accept="image/*"
                                     list-type="picture-card"
                                     style="display:inline;">
@@ -405,7 +405,7 @@
                                 <div slot="tip" class="ms-form-tip">
                                     标签：<a href="http://doc.mingsoft.net/mcms/biao-qian/wen-zhang-lie-biao-ms-arclist.html"
                                           target="_blank">${'$'}{field.litpic}</a><br/>
-                                    提示：最多上传10张图片，文章缩略图,支持jpg格式；多图情况下，{@ms:file field.litpic/}会只取第一张缩略图，其他用法参考文档arclist标签
+                                    提示：最多上传2张图片，文章缩略图,支持jpg格式；多图情况下，{@ms:file field.litpic/}会只取第一张缩略图，其他用法参考文档arclist标签
                                 </div>
                             </el-upload>
                         </el-form-item>
