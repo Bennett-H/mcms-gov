@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<meta name="renderer" content="webkit|ie-comp|ie-stand" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta http-equiv="Cache-Control" content="no-transform"/>
+<meta name="applicable-device" content="pc">
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+<title>${field.title}-{ms:global.name/}</title>
+<meta name="keywords" content="${field.keyword}">
+<meta name="description" content="${field.descrip}">
+<link rel="stylesheet" href="/{ms:global.style/}css/animate.min.css">
+<link rel="stylesheet" href="/{ms:global.style/}css/swiper.min.css">
+<link rel="stylesheet" href="/{ms:global.style/}css/style.css">
+<script src="/{ms:global.style/}js/jquery.min.js"></script>
+<script src="/{ms:global.style/}js/wow.min.js"></script>
+<script src="/{ms:global.style/}js/swiper.min.js"></script>
+<script src="/{ms:global.style/}js/style.js"></script>
+</head>
+<body>
+<#include "head.htm" />
+{ms:channel type='parent'}<div class="banner-sub" style="background-image: url({@ms:file field.typelitpic/});"></div>{/ms:channel}
+<#include "ss.htm" />
+<div class="section-sub">
+  <div class="container">
+    <div class="yunu-curmbs"> <span>您的位置：</span> <a href="/" class="ms-channel-path-index"> 首页 </a>{ms:channel type="path"}     >> <a href={ms:global.html/}${field.typelink} class="ms-channel-path-link">         ${field.typetitle}  </a>     {/ms:channel}</div>
+    <div class="ct2 clearfix">
+      <div class="ct2-sd" style="float: right;">
+        <div class="panel-sd">
+          <div class="tit">{ms:channel type='parent'}${field.typetitle}{/ms:channel}</div>
+          <ul class="lanmu">
+            <#if field.typeleaf == 0>
+    {ms:channel type='son'}
+
+            <li <#if field.typeid == typeid || (ids?has_content && ids?split(",")?seq_contains(field.typeid.toString()))>class="active"
+</#if>> <#if field.childsize &gt; 0><i class="arr"></i>
+</#if> <a href="<#if field.type==3>{ms:global.html/}${field.typeurl}<#else>{ms:global.html/}${field.typelink}</#if>">${field.typetitle}</a>
+            <#if field.childsize &gt; 0>
+              <div class="lanmu-box">
+                {ms:channel}  
+                <p><a href="<#if field.type==3>{ms:global.html/}${field.typeurl}<#else>{ms:global.html/}${field.typelink}</#if>">${field.typetitle}</a></p>
+                {/ms:channel}
+              </div>
+              
+</#if>
+            </li>
+            
+{/ms:channel}
+<#else>
+    {ms:channel type='level'}
+
+            <li <#if field.typeid == typeid || (ids?has_content && ids?split(",")?seq_contains(field.typeid.toString()))>class="active"
+</#if>> <#if field.childsize &gt; 0><i class="arr"></i>
+</#if> <a href="<#if field.type==3>{ms:global.html/}${field.typeurl}<#else>{ms:global.html/}${field.typelink}</#if>">${field.typetitle}</a>
+            <#if field.childsize &gt; 0>
+              <div class="lanmu-box">
+                {ms:channel}  
+                <p><a href="<#if field.type==3>{ms:global.html/}${field.typeurl}<#else>{ms:global.html/}${field.typelink}</#if>">${field.typetitle}</a></p>
+                {/ms:channel}
+              </div>
+              
+</#if>
+            </li>
+            
+{/ms:channel}
+</#if>
+          </ul>
+        </div>
+        <div class="yunu-contact-z1">
+          <p> 咨询热线 </p>
+          <span> 488-888-8888 </span> </div>
+      </div>
+      <div class="ct2-mn" style="float: left;">
+        <div class="yunu-infocontent">
+          <div class="yunu-infocontent-title">
+            <h1>${field.title}</h1>
+            <p> <span>作者：${field.author}</span> <span>时间：${field.date?string("yyyy-MM-dd")}</span><span>点击：${field.hit}次</span> </p>
+          </div>
+          <div class="yunu-infocontent-desc">信息摘要：
+            <p>${field.descrip}</p>
+          </div>
+          <div class="yunu-infocontent-body">
+            ${field.content}
+          </div>
+          <div class="yunu-infocontent-rem">
+            <h4>【相关推荐】</h4>
+            <ul>
+              {ms:arclist size=4}
+              <li> <a href="{ms:global.html/}${field.link}"  title="${field.title}"><span>了解更多</span>${field.title}</a> </li>
+              {/ms:arclist}
+            </ul>
+          </div>
+          <ul class="yunu-infocontent-epx">
+            <li><span>上一条</span><a href="<#if pre.link !=''>{ms:global.html/}${pre.link}<#else>javascript:;</#if>"><em>查看详情 +</em>${pre.title}</a> </li>
+            <li><span>下一条</span><a href="<#if next.link !=''>{ms:global.html/}${next.link}<#else>javascript:;</#if>"><em>查看详情 +</em>${next.title}</a> </li>
+          </ul>
+          <div class="yunu-infocontent-return"> <a href="{ms:global.html/}${field.typelink}" class="more">返回列表</a> </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<#include "foot.htm" />
+</body>
+</html>

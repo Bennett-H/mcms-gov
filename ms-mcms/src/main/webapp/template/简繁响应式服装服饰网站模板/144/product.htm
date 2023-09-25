@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit|ie-comp|ie-stand" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta http-equiv="Cache-Control" content="no-transform"/>
+<meta name="applicable-device" content="pc,wap">
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+<title>${field.title}-{ms:global.name/}</title>
+<meta name="keywords" content="${field.keyword}">
+<meta name="description" content="${field.descrip}">
+<link rel="stylesheet" href="/{ms:global.style/}css/animate.min.css">
+<link rel="stylesheet" href="/{ms:global.style/}css/swiper.min.css">
+<link rel="stylesheet" href="/{ms:global.style/}css/style.css">
+<script src="/{ms:global.style/}js/jquery.min.js"></script>
+<script src="/{ms:global.style/}js/wow.min.js"></script>
+<script src="/{ms:global.style/}js/swiper.min.js"></script>
+<script src="/{ms:global.style/}js/style.js"></script>
+</head>
+<body>
+<#include "head.htm" />
+{ms:channel type='parent'}<div class="banner-sub" style="background-image: url({@ms:file field.typelitpic/});"></div>{/ms:channel}
+<#include "ss.htm" />
+<div class="section-sub">
+  <div class="container">
+    <div class="yunu-curmbs"> <span>您的位置：</span> <a href="/" class="ms-channel-path-index"> 首页 </a>{ms:channel type="path"}     >> <a href={ms:global.html/}${field.typelink} class="ms-channel-path-link">         ${field.typetitle}  </a>     {/ms:channel} </div>
+    <div class="ct2 clearfix">
+      <#include "left.htm" />
+      <div class="ct2-mn">
+        <div class="yunu-showcase clearfix">
+          <div class="pc-slide">
+            <div class="view">
+              <div class="swiper-container swiper-container-horizontal">
+                <div class="swiper-wrapper">
+                  <#if field.litpic?has_content >
+<#list field.litpic?eval as img>
+
+                  <div class="swiper-slide">
+                    <div class="img-center"><img src="${img.path}" rel="${img.path}" class="jqzoom" alt="[pics:title]"></div>
+                  </div>
+                  </#list>
+</#if>
+                </div>
+              </div>
+            </div>
+            <div class="preview"> <a class="arrow-left" href="javascript:;"></a> <a class="arrow-right" href="javascript:;"></a>
+              <div class="swiper-container swiper-container-horizontal">
+                <div class="swiper-wrapper">
+                  <#if field.litpic?has_content >
+<#list field.litpic?eval as img>
+
+                  <div class="swiper-slide">
+                    <div class="img-center"><img src="${img.path}"></div>
+                  </div>
+                  </#list>
+</#if>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="yunu-showcase-info">
+            <h1 class="protit">${field.title}</h1>
+            <p>${field.descrip}</p>
+            <div class="tel"><a href="javascript:;" class="btn1">在线询盘</a>全国热线<br>488-888-8888</div>
+          </div>
+        </div>
+        <div class="zd-pro1">
+          <h4>女职业裙装 选择某某服饰</h4>
+          <small>FEMALE PROFESSIONAL DRESS CHOOSE MOUMOU CLOTHING</small>
+          <p>100件起订+免费打样+绣印</p>
+        </div>
+        <div class="yunu-title-1"> <span>产品介绍</span> </div>
+        <div class="yunu-infocontent-body">
+          ${field.content}
+        </div>
+        <div class="yunu-title-2">参考尺寸</div>
+        <div class="zd-cs">
+          自定义拓展字段
+        </div>
+        <div class="yunu-title-2">定制流程</div>
+        <ul class="agent_process zd-pro3 clearfix">
+          <li> <img src="/{ms:global.style/}images/p1.png"><span>浏览网站</span><em>01</em> </li>
+          <li> <img src="/{ms:global.style/}images/p2.png"><span>业务沟通</span><em>02</em> </li>
+          <li> <img src="/{ms:global.style/}images/p3.png"><span>方案设计</span><em>03</em> </li>
+          <li> <img src="/{ms:global.style/}images/p4.png"><span>面料确认</span><em>04</em> </li>
+          <li> <img src="/{ms:global.style/}images/p5.png"><span>价格核算</span><em>05</em> </li>
+          <li> <img src="/{ms:global.style/}images/p6.png"><span>协议认可</span><em>06</em> </li>
+          <li> <img src="/{ms:global.style/}images/p7.png"><span>样板制作</span><em>07</em> </li>
+          <li> <img src="/{ms:global.style/}images/p8.png"><span>样板试穿确认</span><em>08</em> </li>
+          <li> <img src="/{ms:global.style/}images/p9.png"><span>批量生产</span><em>09</em> </li>
+          <li> <img src="/{ms:global.style/}images/p10.png"><span>包装送货</span><em>10</em> </li>
+          <li> <img src="/{ms:global.style/}images/p11.png"><span>验收付款</span><em>11</em> </li>
+          <li> <img src="/{ms:global.style/}images/p12.png"><span>售后服务</span><em>12</em> </li>
+        </ul>
+        <div class="yunu-title-2">联系我们</div>
+        <dl class="contact-2 zd-pro4 clearfix">
+          <dt class="img-center"><img src="/{ms:global.style/}images/contact-2.jpg" alt=""></dt>
+          <dd>
+            <h4>某某公司</h4>
+            <p class="i1">联系电话：18888888888</p>
+            <i></i>
+            <p class="i2">座机号码：488-888-8888</p>
+            <i></i>
+            <p class="i3">联系邮箱：123456789@qq.com</p>
+            <i></i>
+            <p class="i4">联系地址：北京市天安门</p>
+          </dd>
+        </dl>
+        <div class="yunu-title-1"> <span>热品推荐</span> </div>
+        <ul class="list-2 list-2_1 clearfix">
+          {ms:arclist size=4}
+          <li><a href="{ms:global.html/}${field.link}" title="${field.title}">
+            <div class="m img-center"><img src="{@ms:file field.litpic/}" alt="${field.title}"></div>
+            <div class="text">
+              <h4>${field.title}</h4>
+              <p>{@ms:len field.descrip 40 /}</p>
+            </div>
+            </a> </li>
+          {/ms:arclist}
+        </ul>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>
+<#include "foot.htm" />
+<script src="/{ms:global.style/}js/jquery.imagezoom.min.js"></script> 
+<script>
+    if ($(window).width() > 767) {
+        $('.jqzoom').imagezoom();
+    }
+
+    $('.preview .swiper-slide').eq(0).addClass('active-nav');
+
+    var viewSwiper = new Swiper('.view .swiper-container', {
+        on: {
+            slideChangeTransitionStart: function() {
+                updateNavPosition()
+            }
+        }
+    });
+    $('.view .arrow-left,.preview .arrow-left').on('click', function(e) {
+        e.preventDefault();
+        if (viewSwiper.activeIndex === 0) {
+            viewSwiper.slideTo(viewSwiper.slides.length - 1, 1000);
+            return
+        }
+        viewSwiper.slidePrev();
+    });
+    $('.view .arrow-right,.preview .arrow-right').on('click', function(e) {
+        e.preventDefault();
+        if (viewSwiper.activeIndex === viewSwiper.slides.length - 1) {
+            viewSwiper.slideTo(0, 1000);
+            return
+        }
+        viewSwiper.slideNext();
+    });
+    var previewSwiper = new Swiper('.preview .swiper-container', {
+        //visibilityFullFit: true,
+        slidesPerView: 3,
+        allowTouchMove: false,
+        spaceBetween: 5,
+        on: {
+            tap: function() {
+                viewSwiper.slideTo(previewSwiper.clickedIndex)
+            }
+        }
+    });
+    function updateNavPosition() {
+        $('.preview .active-nav').removeClass('active-nav');
+        var activeNav = $('.preview .swiper-slide').eq(viewSwiper.activeIndex).addClass('active-nav');
+        if (!activeNav.hasClass('swiper-slide-visible')) {
+            if (activeNav.index() > previewSwiper.activeIndex) {
+                var thumbsPerNav = Math.floor(previewSwiper.width / activeNav.width()) - 1;
+                previewSwiper.slideTo(activeNav.index() - thumbsPerNav);
+            } else {
+                previewSwiper.slideTo(activeNav.index());
+            }
+        }
+    }
+</script>
+<div id="message">
+  <div class="messagebg"></div>
+  <div class="m-content">
+    <div class="m-message">
+      <form id="myform1" action="/pb314/?message/" enctype="multipart/form-data" method="post" onsubmit="return check(this)">
+        <label> <span>留言标题：</span>
+          <input class="inp protitle" type="text" name="titles" value="">
+        </label>
+        <label> <span>你的姓名：</span>
+          <input class="inp" type="text" name="name" value="">
+        </label>
+        <label> <span>联系手机：</span>
+          <input class="inp" type="tel" name="phone" id="utel" value="">
+        </label>
+        <label> <span>电子邮箱：</span>
+          <input class="inp" type="email" name="email" id="email" value="">
+        </label>
+        <label> <span>联系地址：</span>
+          <input class="inp" type="text" name="address" value="">
+        </label>
+        <label class="mes"> <span>留言内容：</span>
+          <textarea name="yuanwang"></textarea>
+        </label>
+        <label  class="code clearfix"> <span>验证码：</span>
+          <input type="text" name="checkcode" id="vdcode">
+          <img src="/pb314/code.do" onclick="this.src='/pb314/code.do?t='+Math.round(Math.random()*10);" id="vdimgck" style="height:35px; width:100px;cursor:pointer;"/> </label>
+        <div class="btn-1">
+          <input class="focus" type="submit" value="提交">
+          <input type="reset" value="重置">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+    var inptext = $('.protit').html();
+    $('.btn1').click(function(){
+        $('#message').css({
+            "transform":"scale(1)",
+            "transition":".5s"
+        });
+        $('.protitle').val(inptext);
+    })
+    $('.messagebg').click(function(){
+        $('#message').css({
+            "transform":"scale(0)",
+            "transition":".5s"
+        });
+    })
+</script> 
+<script src="/{ms:global.style/}js/app.js"></script>
+</body>
+</html>

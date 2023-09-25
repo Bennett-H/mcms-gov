@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<meta name="renderer" content="webkit|ie-comp|ie-stand" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta http-equiv="Cache-Control" content="no-transform"/>
+<meta name="applicable-device" content="pc">
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+<title>${field.typetitle}</title>
+<meta name="keywords" content="${field.typekeyword}">
+<meta name="description" content="${field.typedescrip}">
+<link rel="stylesheet" href="/{ms:global.style/}css/animate.min.css">
+<link rel="stylesheet" href="/{ms:global.style/}css/swiper.min.css">
+<link rel="stylesheet" href="/{ms:global.style/}css/style.css">
+<script src="/{ms:global.style/}js/jquery.min.js"></script>
+<script src="/{ms:global.style/}js/wow.min.js"></script>
+<script src="/{ms:global.style/}js/swiper.min.js"></script>
+<script src="/{ms:global.style/}js/style.js"></script>
+</head>
+<body>
+<#include "head.htm" />
+{ms:channel type='parent'}<div class="banner-sub" style="background-image: url({@ms:file field.typelitpic/});"></div>{/ms:channel}
+<#include "ss.htm" />
+<div class="section-sub">
+  <div class="container">
+    <div class="yunu-curmbs"> <span>您的位置：</span> <a href="/" class="ms-channel-path-index"> 首页 </a>{ms:channel type="path"}     >> <a href={ms:global.html/}${field.typelink} class="ms-channel-path-link">         ${field.typetitle}  </a>     {/ms:channel} </div>
+    <div class="yunu-menu-inner clearfix"> 
+    <#if field.typeleaf == 0>
+    {ms:channel type='son'}
+
+    <a href='<#if field.type==3>{ms:global.html/}${field.typeurl}<#else>{ms:global.html/}${field.typelink}</#if>' <#if field.typeid == typeid || (ids?has_content && ids?split(",")?seq_contains(field.typeid.toString()))>class="active"
+</#if>><span>${field.typetitle}</span></a> 
+    
+{/ms:channel}
+<#else>
+    {ms:channel type='level'}
+
+    <a href='<#if field.type==3>{ms:global.html/}${field.typeurl}<#else>{ms:global.html/}${field.typelink}</#if>' <#if field.typeid == typeid || (ids?has_content && ids?split(",")?seq_contains(field.typeid.toString()))>class="active"
+</#if>><span>${field.typetitle}</span></a> 
+    
+{/ms:channel}
+</#if>
+    </div>
+    <div class="section-title"> <strong>定制实力</strong>
+      <p>T恤衫定制，就选某某服饰</p>
+    </div>
+    <ul class="dzsl clearfix">
+      <li>
+        <div class="wrap">
+          <div class="img-cover"><span style="background-image: url(/{ms:global.style/}images/dz-1.jpg);"></span></div>
+          <div class="text"> <span>01</span>
+            <h4>生产规模<small>10000㎡生产厂房，集开发、设计、生产、销售为一体</small></h4>
+            <p>强大的生产能力，具备年生产各类型服装100万套；<br />
+              10000平方米厂房，百万销量，海内外客户共同选择。</p>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="wrap">
+          <div class="img-cover"><span style="background-image: url(/{ms:global.style/}images/dz-2.jpg);"></span></div>
+          <div class="text"> <span>02</span>
+            <h4>技术实力<small>引进233+台国外进口设备，严苛质量</small></h4>
+            <p>配备经验丰富研发设计团队<br />
+              CAD计算机操作系统，精确缝纫、定型</p>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="wrap">
+          <div class="img-cover"><span style="background-image: url(/{ms:global.style/}images/dz-3.jpg);"></span></div>
+          <div class="text"> <span>03</span>
+            <h4>真材实料<small>选用上等面料，赢得客户好口碑</small></h4>
+            <p>印花环保材料，抗皱缩水处理，不掉色、边缘印制平整，无锯齿，拒绝起球；<br />
+              T恤、西服、衬衫、工作服定制，荣获&ldquo;双十一见证会员&rdquo;。</p>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="wrap">
+          <div class="img-cover"><span style="background-image: url(/{ms:global.style/}images/dz-4.jpg);"></span></div>
+          <div class="text"> <span>04</span>
+            <h4>贴心服务<small>7*24H快速响应，365天质量保障，闪电发货</small></h4>
+            <p>客服团队24小时在线解答，沟通舒服畅快；<br />
+              售后1年质保服务，遇事不推脱，让您放心。</p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="section" style="padding-top: 0;">
+  <div class="container">
+    <div class="section-title"> <strong>定制品类</strong>
+      <p>款式多样，随心定制</p>
+    </div>
+    <ul class="in-prod clearfix">
+       {ms:channel type='son' typeid="1673889193738543105"}
+      <li>
+        <div class="wrap"> <a href="<#if field.type==3>{ms:global.html/}${field.typeurl}<#else>{ms:global.html/}${field.typelink}</#if>">
+          <h4>${field.typetitle}</h4>
+          <div class="img-center"><img src="{@ms:file field.typeico/}" alt="${field.typetitle}"></div>
+          </a>
+          <p> {ms:channel}   <span><a href="<#if field.type==3>{ms:global.html/}${field.typeurl}<#else>{ms:global.html/}${field.typelink}</#if>">${field.typetitle}</a></span>{/ms:channel} </p>
+        </div>
+      </li>
+      {/ms:channel}
+    </ul>
+  </div>
+</div>
+<div class="section" style="padding-top: 0;">
+  <div class="container">
+    <div class="section-title"> <strong>定制流程</strong>
+      <p>穿舒服的衣，做舒展的人</p>
+    </div>
+    <ul class="agent_process clearfix">
+      <li><img src="/{ms:global.style/}images/p1.png"><span>浏览网站</span><em>01</em></li>
+      <li><img src="/{ms:global.style/}images/p2.png"><span>业务沟通</span><em>02</em></li>
+      <li><img src="/{ms:global.style/}images/p3.png"><span>方案设计</span><em>03</em></li>
+      <li><img src="/{ms:global.style/}images/p4.png"><span>面料确认</span><em>04</em></li>
+      <li><img src="/{ms:global.style/}images/p5.png"><span>价格核算</span><em>05</em></li>
+      <li><img src="/{ms:global.style/}images/p6.png"><span>协议认可</span><em>06</em></li>
+      <li><img src="/{ms:global.style/}images/p7.png"><span>样板制作</span><em>07</em></li>
+      <li><img src="/{ms:global.style/}images/p8.png"><span>样板试穿确认</span><em>08</em></li>
+      <li><img src="/{ms:global.style/}images/p9.png"><span>批量生产</span><em>09</em></li>
+      <li><img src="/{ms:global.style/}images/p10.png"><span>包装送货</span><em>10</em></li>
+      <li><img src="/{ms:global.style/}images/p11.png"><span>验收付款</span><em>11</em></li>
+      <li><img src="/{ms:global.style/}images/p12.png"><span>售后服务</span><em>12</em></li>
+    </ul>
+  </div>
+</div>
+<div class="section" style="padding-top: 0;">
+  <div class="container">
+    <div class="section-title"> <strong>臻品案例鉴赏</strong>
+      <p>精心为您定制 · 听得见的好评</p>
+    </div>
+    <div class="in-case-menu">
+      <ul>
+         {ms:channel type='son' typeid="1673889193738543110"}
+        <li <#if field.index==1>class="active"</#if>><a href="javascript:;"><i style="background-image: url(/{ms:global.style/}images/anicofield.index.png);"></i><span>${field.typetitle}<small>${field.typeshorttitle}</small></span></a></li>
+        {/ms:channel}
+      </ul>
+      {ms:channel type='self' typeid="1673889193738543110"}<a href="{ms:global.html/}${field.typelink}" class="more"><i style="background-image: url(/{ms:global.style/}images/anico6.png);"></i><span>更多案例<small>More cases</small></span></a>{/ms:channel}</div>
+    <div class="in-case-con swiper-container">
+      <div class="swiper-wrapper">
+        {ms:channel typeid="1673889193738543110"}
+        {ms:arclist size=1}
+        <div class="swiper-slide"> <a href="{ms:global.html/}${field.link}"  title="${field.title}">
+          <div class="img-cover"><span style="background-image: url({@ms:file field.litpic/});"></span></div>
+          <dl>
+            <dt class="img-center"><img src="{@ms:file global.logo/}" alt="${field.title}"></dt>
+            <dd>
+              <h4>${field.title}</h4>
+              <p>{@ms:len field.descrip 60 /}</p>
+            </dd>
+          </dl>
+          </a> </div>
+          {/ms:arclist}
+       {/ms:channel}
+      </div>
+    </div>
+  </div>
+</div>
+<#include "foot.htm" />
+<script>
+    tabsSwiper('.in-case-menu ul', '.in-case-con');
+</script>
+</body>
+</html>

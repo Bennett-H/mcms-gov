@@ -1,0 +1,3922 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <script language="javascript" src="/sdzf/js/jquery.js"></script>
+    <script language="javascript" src="/sdzf/js/urite.min.js"></script>
+    <link href="/sdzf/css/infotag.css" type=text/css rel=stylesheet>
+    <title>站点标题，可配置</title>
+    <meta name='Maketime' content='2021-09-14 09:32:47'>
+    <meta name="SiteName" content="站点标题，可配置">
+    <meta name="keywords" content="站点关键字，可配置">
+    <meta name="description" content="站点描述，可配置">
+    <link rel="shortcut icon" type="image/x-icon" href="/upload/appLogo/1636705994665.png">
+    <link rel="stylesheet" type="text/css" href="/sdzf/css/hanweb.min.css" />
+    <link rel="stylesheet" type="text/css" href="/sdzf/css/sd_col.css" />
+    <!--引入库-->
+    <script type="text/javascript" src="/static/plugins/vue/2.6.9/vue.min.js"></script>
+    <script src="/static/plugins/element-ui/2.12.0/index.js"></script>
+    <link rel="stylesheet" href="/static/plugins/element-ui/2.12.0/index.css">
+</head>
+<body id="page_type" alt="栏目页">
+    <div id="barrierfree_container">
+        <div class="wip_bg">
+             <!-- 通用头部 -->
+<div>
+    <style type="text/css">
+        * {
+            box-sizing: border-box;
+            padding: 0px;
+            margin: 0px;
+            outline: none;
+        }
+
+        body {
+            font-family: "微软雅黑";
+        }
+
+        .wip_header_bg {
+            width: 100%;
+            height: 10px;
+            background: #245399;
+        }
+
+        .wip_header {
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .wip_header_left {
+            float: left;
+            width: 304px;
+        }
+
+        .wip_header_right {
+            float: right;
+            width: 580px;
+        }
+
+        .wip_header_li {
+            float: left;
+            font-size: 14px;
+            color: #245399;
+            line-height: 40px;
+        }
+
+        .wip_header_li a {
+            color: #245399;
+        }
+
+        .wip_header_li {
+            margin-left: 12px;
+        }
+
+        .bt-clear {
+            clear: both;
+        }
+
+        .wip_banner_bg {
+            width: 100%;
+            min-height: 140px;
+            background: #e5e8ed;
+            padding-top: 0px;
+            margin: 0px auto 0px;
+            border-bottom: 9px #b5c5d5 solid;
+        }
+
+        .wip_banner {
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+            height: 110px;
+            background: url(/sdzf/images/2010141133285686056.png) no-repeat left top;
+        }
+
+        .wip_banner .wip_from {
+            max-width: 745px;
+            width: 520px;
+            float: right;
+        }
+
+        .wip_banner .ipt_txt1 {
+            padding: 0px 21px 0px 34px;
+            border: 0px solid #245399;
+            background: transparent;
+            background: url(/sdzf/images/1910071711279493529.jpg) no-repeat center right;
+            outline: none;
+            height: 32px;
+            line-height: 32px;
+            color: #a4a4a5;
+            font-size: 16px;
+            width: 400px;
+            display: block;
+            float: left;
+            font-weight: 300;
+            border-bottom: 1px #b7c4d7 solid;
+            background: none;
+        }
+
+        .wip_banner .ipt_sear {
+            width: 100px;
+            background: #DA5445;
+            border: 0px;
+            outline: none;
+            height: 33px;
+            cursor: pointer;
+            margin: 0px;
+            padding: 0px;
+            display: block;
+            float: right;
+            margin-left: 16px;
+            font-size: 15px;
+            color: #FFFFFF;
+        }
+
+        .wip_nav {
+            min-height: 45px;
+            max-width: 1200px;
+            margin: auto;
+            padding-left: 61px;
+        }
+
+        .lan a {
+            background-image: url(/sdzf/images/1909301107300757611.png) !important;
+            color: #c92c1a !important;
+            background-position: 0px -36px !important;
+        }
+
+        .wip_nav_li:first-child {
+            width: 170px;
+        }
+
+        .wip_nav_li {
+            width: 185px;
+            height: 36px;
+            line-height: 36px;
+            float: left;
+            color: #446b9a;
+            background-repeat: no-repeat;
+            -webkit-transition: 0.2s;
+            transition: 0.2s;
+            cursor: pointer;
+            text-indent: 46px;
+        }
+
+        .wip_nav_li a {
+            color: #446b9a;
+            font-size: 19px;
+            text-decoration: none;
+            display: block;
+            cursor: pointer;
+            background-repeat: no-repeat;
+            background-position: 0px 0px;
+            width: 78%;
+            height: 36px;
+            margin: auto;
+        }
+
+        .wip_nav .t1 a {
+            background-image: url("/sdzf/images/1909301107222165143.png")
+        }
+
+        .wip_nav .t2 a {
+            background-image: url("/sdzf/images/1909301107222779552.png")
+        }
+
+        .wip_nav .t3 a {
+            background-image: url("/sdzf/images/1909301107300335633.png")
+        }
+
+        .wip_nav .t4 a {
+            background-image: url("/sdzf/images/1909301107300757611.png")
+        }
+
+        .wip_nav .t5 a {
+            background-image: url("/sdzf/images/1909301107300953715.png")
+        }
+
+        .wip_nav .t6 a {
+            background-image: url("/sdzf/images/1909301107222485814.png")
+        }
+
+        .wip_nav .t7 a {
+            background-image: url("/sdzf/images/1912301022384568191.png")
+        }
+
+        .wip_nav_li:hover a {
+            color: #c92c1a;
+            background-position: 0px -36px;
+        }
+
+
+        .wip_nav_li_hover a {
+            color: #c92c1a;
+            background-position: 0px -36px;
+        }
+
+        .toolbar_bottom {
+            margin-right: 7px !important;
+        }
+
+        .toolbar_bottom li {
+            height: 36px !important;
+        }
+
+        .name_loain a {
+            float: right;
+        }
+
+        .name_loain a:first-child {
+            max-width: 90px;
+            margin-right: 5px;
+            height: 28px;
+            line-height: 40px;
+            display: inline-block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            float: none;
+        }
+
+        @media only screen and (max-width: 1200px) {
+            .wip_nav {
+                padding-left: 0px;
+            }
+
+            .wip_nav_li:first-child {
+                width: 16.666%;
+            }
+
+            .wip_nav_li {
+                width: 16.666%;
+            }
+        }
+
+        @media only screen and (min-width: 993px) and (max-width: 1200px) {
+            .wip_nav_li {
+                width: 16.6%;
+            }
+
+            .wip_nav_li:first-child {
+                width: 13.66%;
+            }
+        }
+
+        @media only screen and (max-width: 993px) {
+
+            .wip_header_left,
+            .wip_header_right {
+                display: none;
+            }
+
+            .ipt_sear {
+                width: 18%;
+                background: #da5445;
+                text-align: center;
+                text-indent: 0px;
+                font-size: 16px;
+                margin-left: 2%;
+            }
+
+            .ipt_txt1 {
+                width: 80%;
+                background: none;
+                padding: 0px 2% 0PX 2%;
+                font-size: 15px;
+            }
+
+            .wip_nav_li:hover a {
+                background-position: 0px -25px;
+            }
+
+            .wip_nav_li_hover a {
+                background-position: 0px -25px;
+            }
+
+            .wip_nav_li {
+                width: 33%;
+                font-size: 15px;
+                background-size: 25px;
+                height: 25px;
+                line-height: 25px;
+                text-indent: 11%;
+                text-align: center;
+                margin: 0px auto 15px;
+            }
+
+            .wip_nav_li:first-child {
+                width: 33%;
+            }
+
+            .wip_nav_li a {
+                font-size: 14px;
+                height: 25px;
+                background-size: 25px;
+                background-position: 0px 0px;
+            }
+
+            .lan a {
+                background-size: 25px;
+                background-position: 0px -25px !important;
+            }
+        }
+
+        @media only screen and (max-width: 450px) {
+            .wip_banner {
+                background: url(/sdzf/images/1912301501299893546.png) no-repeat left top;
+                height: 70px;
+            }
+
+            .wip_nav_li a {
+                font-size: 12px;
+            }
+
+            .lan a {
+                background-size: 25px;
+                background-position: 0px -25px !important;
+            }
+        }
+    </style>
+
+    <script id="barrierfree" src="http://www.shandong.gov.cn/module/web/accessiblereading/load.js"></script>
+    <script language="javascript" src="http://www.shandong.gov.cn/module/jslib/gtb/language.js"></script>
+    <div class="top">
+
+        <div class="wip_header_bg" ergodic="serve">
+
+        </div>
+
+        <div class="wip_banner_bg" ergodic="serve">
+            <div class="wip_banner">
+
+                <div class="wip_header_right">
+                    <div class="bt-right" style="margin-top: 10px;">
+
+                        <div class="wip_header_li" id="localtime">
+
+                        </div>
+                        <div class="wip_header_li">
+                            <a id="zh_click_s" class="" href="javascript:zh_tran('n');">简体版</a>
+                        </div>
+                        <div class="wip_header_li">
+                            <a id="zh_click_t" class="" href="javascript:zh_tran('t');">繁体版</a>
+                        </div>
+
+                        <div class="wip_header_li">
+                            <a href="javascript:;" onclick="toggleToolBar();">无障碍阅读</a>
+                        </div>
+                        <div class="bt-clear">
+
+                        </div>
+
+                    </div>
+
+                    <form action="/mcms/search.do" class="wip_from" method="post" target="_blank" class="forma">
+                        <input type="text" value="" placeholder='请输入关键字查询' autocomplete="off" id="text" name="content_title"
+                            class="ipt_txt1">
+                        <button type="submit" class="ipt_sear" value="">一网通办</button>
+                        <div class="bt-clear">
+
+                        </div>
+                    </form>
+                    <div class="bt-clear">
+
+                    </div>
+                </div>
+            </div>
+                 <!-- 通用导航 -->
+<div class='wip_nav'>
+    <div class='wip_nav_li t1'>
+        <a href="/">
+            首页
+        </a>
+    </div>
+    <div class='wip_nav_li t2'>
+        <a href='/html/web/yaowendongtai/index.html'>
+            要闻动态	
+        </a>
+    </div>
+    <div class='wip_nav_li t3'>
+        <a href='/html/web/zhengwugongkai/index.html'>
+            政务公开	
+        </a>
+    </div>
+    <div class='wip_nav_li t4'>
+        <a href='/html/web/zhengwufuwu/index.html'>
+            政务服务	
+        </a>
+    </div>
+    <div class='wip_nav_li t5'>
+        <a href='/html/web/zhengminhudong/index.html'>
+            政民互动	
+        </a>
+    </div>
+    <div class='wip_nav_li t6'>
+        <a href='/html/web/zoujinshandong/index.html'>
+            走进山东	
+        </a>
+    </div>
+    <div class='bt-clear'></div>
+</div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function getTime() {
+            var D = new Date();
+            var year = D.getFullYear(),
+                month = D.getMonth() + 1,
+                date = D.getDate(),
+                day = D.getDay();
+            var dayStr = '星期一';
+            switch (day) {
+                case 1:
+                    break;
+                case 2:
+                    dayStr = '星期二';
+                    break;
+                case 3:
+                    dayStr = '星期三';
+                    break;
+                case 4:
+                    dayStr = '星期四';
+                    break;
+                case 5:
+                    dayStr = '星期五';
+                    break;
+                case 6:
+                    dayStr = '星期六';
+                    break;
+                case 0:
+                    dayStr = '星期日';
+                    break;
+            }
+            return year + '年' + month + '月' + date + '日 ' + dayStr;
+        }
+
+        $('#localtime').html(getTime());
+
+    </script>
+</div>
+            <div class="wip_localbg" ergodic="serve">
+                <div class="wip_local">
+                    <table cellspacing="0" cellpadding="0" border="0">
+                         <!-- 面包屑 -->
+                         <font>当前位置： </font><a href="/">首页</a>
+                         ><a href="/html/web/yaowendongtai/index.html">要闻动态</a>
+                         ><a href="/html/web/yaowendongtai/guowuyuanxinxi/index.html">国务院信息</a>
+                    </table>
+
+                </div>
+            </div>
+            <div class="wip_col" ergodic="view">
+                <div class="wip_col_left bt-left">
+                    <div class="wip_col_top">
+
+                        <a href="/html/web/yaowendongtai/guowuyuanxinxi/index.html">
+                            国务院信息
+                        </a>
+                    </div>
+
+                    <div class="tab_con_title">
+                        <ul>
+
+
+                            <div class="bt-clear">
+
+                            </div>
+                        </ul>
+                    </div>
+
+                    <div class="wip_col_listul">
+                        <ul>
+                            <div id="240818">
+                                <div class="simple_pgContainer">
+                                    <li class="wip_col_listli"> <a href="/html/web/yaowendongtai/guowuyuanxinxi/1647844114978619392.html"
+                                            target="_blank"
+                                            title="山东省人民政府公报">山东省人民政府公报</a><span>2023-04-17</span>
+                                    </li>
+                                    <li class="wip_col_listli"> <a href="/html/web/yaowendongtai/guowuyuanxinxi/1647844114735349760.html"
+                                            target="_blank"
+                                            title="新加坡总理李显龙会见王毅">新加坡总理李显龙会见王毅</a><span>2023-04-17</span>
+                                    </li>
+                                    <li class="wip_col_listli"> <a href="/html/web/yaowendongtai/guowuyuanxinxi/1647844114617909248.html"
+                                            target="_blank"
+                                            title="山东省级问政平台 问政山东">山东省级问政平台 问政山东</a><span>2023-04-17</span>
+                                    </li>
+
+                                    <table width="100%" border="0" cellpadding="0" cellspacing="0"
+                                        class="simple_pgToolbar">
+                                        <div id="app">
+                                            <el-pagination background @current-change="handleCurrentChange"
+                                                :page-size="pageSize" :current-page.sync="pageCur"
+                                                layout="prev, pager, next, jumper" :total="contentCount">
+                                            </el-pagination>
+                                        </div>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <link rel="stylesheet" type="text/css"
+                                    href="/sdzf/css/jpage.css">
+                                <script language="javascript"
+                                    src="/sdzf/js/jquery.jpage.js"></script>
+                        </ul>
+                    </div>
+                </div>
+                <div class="wip_col_right bt-right">
+                    <div id="spe_slide" style="top: 0px; right: 0px; position: relative;">
+                        <div class="rdzt">
+                            <div class="mtjj-top">
+                                <div class="mtjj-left rdzt-left">热点专题</div>
+
+
+                                <div class="mtjj-right rdzt-right"><a target="_blank" href=""><img
+                                            src="/sdzf/images/174959785678965.jpg"></a>
+                                </div>
+
+
+                                <div class="clear"></div>
+                            </div>
+                            <div id="container2" style="height: 319px;">
+                                <ul class="pic2">
+                                    <style>
+                                        .rdzt-bottom p {
+                                            height: 120px;
+                                            overflow: hidden;
+                                        }
+                                    </style>
+
+
+                                    <li style="display: list-item;">
+                                        <div class="rdzt-bottom">
+                                            <p></p>
+                                            <div class="hr15"></div>
+                                            <div class="rdzt-pic"><a target="_blank"
+                                                    href="/html/web/yaowendongtai/guowuyuanxinxi/1647844114978619392.html"><img
+                                                        src="/upload/cms/content/1631771964408.jpg"></a></div>
+                                            <div class="rdzt-ly">来源：</div>
+                                        </div>
+                                    </li>
+
+
+
+
+                                </ul>
+                                <ul id="position2">
+                                    <li class="cur2"></li>
+                                    <li class=""></li>
+                                    <li class=""></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="wip_col_right2">
+                    <div id="spe_slide2">
+                        <div class="zhuanti2">
+                                <ul class="pic2">
+                                    <style>
+                                        .rdzt-bottom p {
+                                            height: 120px;
+                                            overflow: hidden;
+                                        }
+                                    </style>
+
+<div class="rdzt" style="margin: 0 auto;">
+    <div class="mtjj-top">
+        <div class="mtjj-left rdzt-left">热点专题</div>
+
+
+        <div class="mtjj-right rdzt-right"><a target="_blank" href=""><img
+                    src="/sdzf/images/174959785678965.jpg"></a>
+        </div>
+
+
+        <div class="clear"></div>
+    </div>
+    <div id="container2" style="height: 319px;">
+        <ul class="pic2">
+            <style>
+                .rdzt-bottom p {
+                    height: 120px;
+                    overflow: hidden;
+                }
+            </style>
+
+
+            <li style="display: list-item;">
+                <div class="rdzt-bottom">
+                    <p></p>
+                    <div class="hr15"></div>
+                    <div class="rdzt-pic"><a target="_blank"
+                            href="/html/web/yaowendongtai/guowuyuanxinxi/1647844114978619392.html"><img
+                                src="/upload/cms/content/1631771964408.jpg"></a></div>
+                    <div class="rdzt-ly">来源：</div>
+                </div>
+            </li>
+
+
+
+
+        </ul>
+        <ul id="position2">
+            <li class="cur2"></li>
+            <li class=""></li>
+            <li class=""></li>
+        </ul>
+    </div>
+</div>
+                                   
+
+
+
+                                </ul>
+                            
+                            </iframe></div>
+
+
+                    </div>
+
+                </div>
+                <div class="bt-clear">
+
+                </div>
+            </div>
+            <div>
+
+
+                <meta name="viewport"
+                    content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+                    <style type="text/css">
+                        * {
+                            margin: 0px;
+                            padding: 0px;
+                            list-style: none;
+                            text-decoration: none;
+                        }
+
+                        a {
+                            outline: none;
+                        }
+
+                        a:focus {
+                            outline: none;
+                        }
+
+                        input,
+                        textarea {
+                            background: #FFFFFF;
+                        }
+
+                        img {
+                            border: 0px;
+                        }
+
+                        body {
+                            font-family: "微软雅黑" !important;
+                        }
+
+                        .bt-left {
+                            float: left;
+                        }
+
+                        .bt-right {
+                            float: right;
+                        }
+
+                        .bt-clear {
+                            clear: both;
+                        }
+
+                        .wip_footerbg {
+                            background: #FFFFFF;
+                            clear: both;
+                        }
+
+                        .wip_footerbg * {
+                            box-sizing: border-box;
+                        }
+
+                        .wip_footer_linkbg {
+                            width: 100%;
+                            margin: auto;
+                            background: #e1e4e7;
+                        }
+
+                        .wip_footer_link {
+                            height: auto;
+                        }
+
+                        .link_btnbg {
+                            height: 32px;
+                            max-width: 1200px;
+                            margin: auto;
+                        }
+
+                        .link_btn_left {
+                            float: left;
+                            width: 50%;
+                            max-width: 391px;
+                            height: 32px;
+                            background: url(/sdzf/images/1910151048106308256.png) no-repeat left center;
+                            padding-left: 32px;
+                            box-sizing: border-box;
+                        }
+
+                        .link_btn_left a {
+                            float: left;
+                            height: 32px;
+                            line-height: 32px;
+                            color: #333333;
+                            font-size: 14px;
+                            background: url(http://www.shandong.gov.cn/picture/662/1909301107219912150.png) no-repeat left;
+                            display: inline-block;
+                            padding-left: 10px;
+                            margin-right: 10px;
+                            box-sizing: border-box;
+                        }
+
+                        .link_btn_left a:first-child {
+                            background: none;
+                        }
+
+
+
+                        .hot_btn_right {
+                            float: right;
+                            width: 11.25%;
+                            max-width: 135px;
+                            height: 32px;
+                            line-height: 32px;
+                            padding-left: 30px;
+                            box-sizing: border-box;
+                            color: #324a78;
+                            font-size: 16px;
+                            border: 1px solid #c7d0dd;
+                            margin-right: 1%;
+                            background: url(http://www.shandong.gov.cn/picture/662/1910021617215329873.png) no-repeat 85% center;
+                        }
+
+                        .hot_btn_right a {
+                            color: #324a78;
+                        }
+
+                        .link_map {
+                            padding: 30px 0;
+                            display: none;
+                            margin: 0 auto;
+                            max-width: 1200px;
+                            box-sizing: border-box;
+                        }
+
+                        .link_map_ul {
+                            width: 25%;
+                            float: left;
+                            padding-left: 40px;
+                            box-sizing: border-box;
+                        }
+
+                        .link_map_ul {
+                            font-size: 18px;
+                            color: #333333;
+                            margin-bottom: 20px;
+                        }
+
+                        .link_map_ul a {
+                            color: #333333;
+                        }
+
+                        .link_map_ul ul li {
+                            line-height: 28px;
+                        }
+
+                        .link_map_ul ul li a {
+                            color: #666666;
+                            font-size: 14px;
+                        }
+
+                        .wip_footer_shipbg {
+                            width: 100%;
+                            background: #f3f3f3;
+                            min-height: 98px;
+                            border-top: #245399 solid 8px;
+                        }
+
+                        .wip_footer_ship {
+                            width: 100%;
+                            max-width: 1200px;
+                            margin: auto;
+                        }
+
+                        .wip_ship_left {
+                            float: left;
+                            width: 204px;
+                            text-align: right;
+                            padding-right: 12px;
+                            line-height: 20px;
+                            line-height: 50px;
+                            font-size: 15px;
+                            min-height: 98px;
+                            box-sizing: border-box;
+                        }
+
+                        .wip_ship_right {
+                            float: right;
+                            width: 996px;
+                        }
+
+                        .wip_ship_click {
+                            float: left;
+                            width: 180px;
+                            text-indent: 10px;
+                            line-height: 30px;
+                            height: 30px;
+                            font-size: 13px;
+                            background: #FFFFFF;
+                            border: #e5e5e5 1px solid;
+                            margin-top: 10px;
+                            font-weight: bold;
+                            margin-left: 24px;
+                            box-sizing: border-box;
+                        }
+
+                        .wip_ship_click:first-child {
+                            margin-left: 0px;
+                        }
+
+                        .wip_ship_click a {
+                            color: #274f94;
+                        }
+
+                        .select_ul {
+                            display: none;
+                            border: 1px solid #999;
+                            position: absolute;
+                            bottom: 30px;
+                            width: 100%;
+                            max-height: 310px;
+                            overflow-y: auto;
+                            z-index: 2;
+                            box-sizing: border-box;
+                        }
+
+                        .select_1,
+                        .select_2,
+                        .select_3,
+                        .select_4,
+                        .select_5 {
+                            float: left;
+                            width: 180px;
+                            text-indent: 10px;
+                            line-height: 30px;
+                            height: 30px;
+                            font-size: 13px;
+                            background: #FFFFFF;
+                            border: #e5e5e5 1px solid;
+                            box-sizing: border-box;
+                            margin-top: 10px;
+                            margin-left: 24px;
+                            position: relative;
+                        }
+
+                        .select_1 {
+                            margin-left: 0px;
+                        }
+
+                        .select_span {
+                            background: #FFFFFF url(http://www.shandong.gov.cn/picture/662/1909301107221046767.png) no-repeat 160px center;
+                            color: #777777;
+                            font-size: 14px;
+                            display: block;
+                            height: 30px;
+                            line-height: 30px;
+                            overflow: hidden;
+                            padding-right: 20px;
+                        }
+
+                        .select_li {
+                            height: 28px;
+                            line-height: 28px;
+                            padding-left: 4px;
+                            background: #fff;
+                            overflow: hidden;
+                            white-space: nowrap;
+                            box-sizing: border-box;
+                        }
+
+                        .select_li a {
+                            color: #000;
+                            display: block;
+                        }
+
+                        .select_li:hover {
+                            background: #666666;
+                        }
+
+                        .select_li:hover a {
+                            background: #666666;
+                        }
+
+                        .wip_footer_con {
+                            width: 100%;
+                            margin: auto;
+                            max-width: 800px;
+                            padding-top: 23px;
+                            min-height: 135px;
+                            box-sizing: border-box;
+                        }
+
+                        .wip_footer_con_right {
+                            width: 100px;
+                            float: right;
+                            display: block;
+                        }
+
+                        .wip_footer_con_right img {
+                            width: 100px;
+                            height: 50px;
+                        }
+
+                        .wip_footer_con_left {
+                            width: 100px;
+                            float: left;
+                        }
+
+                        .wip_footer_con_center {
+                            width: 600px;
+                            float: left;
+                            text-align: center;
+                        }
+
+                        .wip_footer_con_center p {
+                            color: #666666;
+                            line-height: 25px;
+                            height: 25px;
+                            font-size: 12px;
+                            width: 100%;
+                            margin: 0px auto;
+                        }
+
+                        .wip_footer_con_center p a {
+                            color: #666666;
+                            display: inline-block;
+                        }
+
+                        .wip_footer_con_center .p {
+                            width: 300px;
+                            margin: auto;
+                            height: 25px;
+                        }
+
+                        .wip_footer_con_center .p a {
+                            display: block;
+                            float: left;
+                            color: #666666;
+                            line-height: 25px;
+                            font-size: 12px;
+                            background: url(http://www.shandong.gov.cn/picture/662/1909301107219912150.png) no-repeat left center;
+                            padding-left: 13px;
+                            margin-left: 13px;
+                            box-sizing: border-box;
+                        }
+
+                        .wip_footer_con_center .p a:first-child {
+                            background: none;
+                            margin-left: 0px;
+                        }
+
+                        .tupian {
+                            display: none;
+                            width: 140px;
+                            height: 140px;
+                            top: -141px;
+                            z-index: 2;
+                            left: 275px;
+                            position: absolute;
+                        }
+
+                        .weixin {
+                            display: block;
+                        }
+
+                        .wei2:hover .tupian {
+                            display: block;
+                        }
+
+                        .wei1:hover .tupian1 {
+                            display: block;
+                        }
+
+                        .tupian1 {
+                            display: none;
+                            width: 140px;
+                            height: 140px;
+                            top: -141px;
+                            z-index: 2;
+                            left: 115px;
+                            position: absolute;
+                        }
+
+                        .sdjiucuo {
+                            cursor: pointer;
+                            position: fixed;
+                            bottom: 0;
+                            right: 25px;
+                            z-index: 100;
+                            width: 320px;
+                            height: 100px;
+                        }
+
+                        .sdjiucuo a {
+                            position: absolute;
+                            display: block;
+                        }
+
+                        .sdjiucuo a:first-child {
+                            z-index: 102;
+                            width: 20px;
+                            height: 20px;
+                            text-align: center;
+                            right: 0px;
+                            font-size: 20px;
+                            color: #FFFFFF;
+                        }
+
+                        .sdjiucuo img {
+                            width: 100%;
+                        }
+
+                        .sdjiucuo4 {
+                            position: fixed;
+                            bottom: 324px;
+                            right: 25px;
+                            z-index: 100;
+                            cursor: pointer;
+                            width: 320px;
+                            height: 100px;
+                        }
+
+                        .sdjiucuo4 a {
+                            position: absolute;
+                            display: block;
+                        }
+
+                        .sdjiucuo4 a:first-child {
+                            z-index: 102;
+                            width: 20px;
+                            height: 20px;
+                            text-align: center;
+                            right: 0px;
+                            font-size: 20px;
+                            color: #FFFFFF;
+                        }
+
+                        .sdjiucuo4 img {
+                            width: 100%;
+                        }
+
+                        .sdjiucuo3 {
+                            position: fixed;
+                            bottom: 213px;
+                            right: 25px;
+                            z-index: 100;
+                            cursor: pointer;
+                            width: 320px;
+                            height: 100px;
+                        }
+
+                        .sdjiucuo3 a {
+                            position: absolute;
+                            display: block;
+                        }
+
+                        .sdjiucuo3 a:first-child {
+                            z-index: 102;
+                            width: 20px;
+                            height: 20px;
+                            text-align: center;
+                            right: 0px;
+                            font-size: 20px;
+                            color: #FFFFFF;
+                        }
+
+                        .sdjiucuo3 img {
+                            width: 100%;
+                        }
+
+                        .sdjiucuo2 {
+                            position: fixed;
+                            bottom: 110px;
+                            right: 25px;
+                            z-index: 100;
+                            cursor: pointer;
+                            width: 320px;
+                            height: 100px;
+                        }
+
+                        .sdjiucuo2 a {
+                            position: absolute;
+                            display: block;
+                        }
+
+                        .sdjiucuo2 a:first-child {
+                            z-index: 102;
+                            width: 20px;
+                            height: 20px;
+                            text-align: center;
+                            right: 0px;
+                            font-size: 20px;
+                            color: #FFFFFF;
+                        }
+
+                        .sdjiucuo2 img {
+                            width: 100%;
+                        }
+
+                        .loginbg {
+                            position: relative;
+                            margin-right: 5px;
+                            float: left;
+                        }
+
+                        .loginbg a {
+                            cursor: pointer;
+                        }
+
+                        .grfr {
+                            display: none;
+                            width: 75px;
+                            position: absolute;
+                            color: #245399;
+                            background: #FFFFFF;
+                            height: 54px;
+                            position: absolute;
+                            left: -9px;
+                        }
+
+                        .grfr a {
+                            color: #245399;
+                            font-size: 13px;
+                            line-height: 27px;
+                            display: block;
+                            text-align: center;
+                            float: none;
+                        }
+
+                        .grfr a:first-child {
+                            color: #245399;
+                            font-size: 13px;
+                            line-height: 27px;
+                            display: block;
+                            float: none;
+                            margin-right: 0px;
+                        }
+
+                        .regbg {
+                            position: relative;
+                            float: left;
+                        }
+
+                        .regbg a {
+                            cursor: pointer;
+                        }
+
+                        .gfzc {
+                            display: none;
+                            width: 75px;
+                            position: absolute;
+                            color: #245399;
+                            background: #FFFFFF;
+                            height: 54px;
+                            position: absolute;
+                            right: 0px;
+                        }
+
+                        .gfzc a {
+                            color: #245399;
+                            font-size: 13px;
+                            line-height: 27px;
+                            display: block;
+                            text-align: center;
+                            float: none;
+                        }
+
+                        .gfzc a:first-child {
+                            color: #245399;
+                            font-size: 13px;
+                            line-height: 27px;
+                            display: block;
+                            float: none;
+                            margin-right: 0px;
+                        }
+
+                        @media only screen and (max-width: 1200px) {
+                            .wip_footerpc .wip_ship_left {
+                                width: 15%;
+                            }
+
+                            .wip_footerpc .wip_ship_right {
+                                width: 85%;
+                            }
+
+                            .wip_footerpc .wip_ship_click {
+                                width: 19%;
+                                margin-left: 1.25%;
+                            }
+
+                            .wip_footerpc .wip_ship_click:first-child {
+                                width: 19%;
+                                margin-left: 0%;
+                            }
+
+                            .wip_footerpc .select_2,
+                            .wip_footerpc .select_3,
+                            .wip_footerpc .select_4 {
+                                width: 19%;
+                                margin-left: 1.25%;
+                            }
+
+                            .wip_footerpc .select_span {
+                                background-image: none;
+                            }
+
+                            .wip_footerpc .select_1 {
+                                width: 19%;
+                                margin-left: 0%;
+                            }
+
+                            .wip_footerpc .wip_footer_shipbg {
+                                height: auto;
+                            }
+
+                            .hot_btn_right {
+                                padding-left: 15px;
+                            }
+                        }
+
+                        @media only screen and (max-width: 900px) {
+                            .hidesmallfooter {
+                                display: none;
+                            }
+
+                            .wip_footer_con_center {
+                                width: 100%;
+                            }
+                        }
+
+                        @media only screen and (max-width: 450px) {
+                            .sdjiucuo {
+                                width: 150px;
+                                height: 47px;
+                            }
+
+                            .sdjiucuo2 {
+                                width: 150px;
+                                height: 47px;
+                                bottom: 50px;
+                            }
+
+                            .sdjiucuo a:first-child {
+                                font-size: 12px;
+                                width: 12px;
+                                height: 12px;
+                            }
+
+                            .sdjiucuo2 a:first-child {
+                                font-size: 12px;
+                                width: 12px;
+                                height: 12px;
+                            }
+
+                            .sdjiucuo3 {
+                                width: 150px;
+                                height: 47px;
+                                bottom: 103px;
+                            }
+
+                            .sdjiucuo4 {
+                                width: 150px;
+                                height: 47px;
+                                bottom: 103px;
+                            }
+
+                            .sdjiucuo a:first-child {
+                                font-size: 12px;
+                                width: 12px;
+                                height: 12px;
+                            }
+
+                            .sdjiucuo3 a:first-child {
+                                font-size: 12px;
+                                width: 12px;
+                                height: 12px;
+                            }
+
+                            .sdjiucuo4 a:first-child {
+                                font-size: 12px;
+                                width: 12px;
+                                height: 12px;
+                            }
+                        }
+
+                        .name_out {
+                            cursor: pointer;
+                        }
+
+                        .nameout {
+                            cursor: pointer;
+                        }
+
+
+                        .wip_sxjk,
+                        .yjjy {
+                            cursor: pointer;
+                        }
+
+                        .wip_sxjk a {
+                            cursor: pointer;
+                        }
+
+                        DIV.digg input[type="submit"] {
+                            height: 25px !important;
+                        }
+
+
+                        .lft {
+                            float: left;
+                        }
+
+                        .rig {
+                            float: right;
+                        }
+
+                        .clearfix {
+                            clear: both;
+                            line-height: 0;
+                            height: 0;
+                            font-size: 0;
+                        }
+
+                        ul {
+                            margin-bottom: 0;
+                        }
+
+                        .hr5,
+                        .hr10,
+                        .hr20,
+                        .hr30,
+                        .hr40,
+                        .hr50 {
+                            line-height: 0;
+                            font-size: 0;
+                            clear: both;
+                        }
+
+                        .hr5 {
+                            height: 5px;
+                        }
+
+                        .hr10 {
+                            height: 10px;
+                        }
+
+                        .hr20 {
+                            height: 20px;
+                        }
+
+                        .hr30 {
+                            height: 30px;
+                        }
+
+                        .hr40 {
+                            height: 40px;
+                        }
+
+                        .hr50 {
+                            height: 50px;
+                        }
+
+                        .clear {
+                            clear: both;
+                            line-height: 0;
+                            font-size: 0;
+                            height: 0;
+                        }
+
+                        a:hover {
+                            text-decoration: none;
+                        }
+
+                        .cont {
+                            position: relative;
+                        }
+
+                        .pane_lft {
+                            width: 855px;
+                            float: left;
+                        }
+
+                        .pane_rig {
+                            width: 315px;
+                            float: right;
+                        }
+
+                        ul,
+                        li,
+                        dl,
+                        ol,
+                        dt,
+                        dd {
+                            margin: 0;
+                            padding: 0;
+                            list-style: none;
+                        }
+
+                        .list_a5 ul li {
+                            border-bottom: 1px #dcdcdc solid;
+                            padding: 18px;
+                            clear: both;
+                        }
+
+                        .list_a5 ul li .inner {}
+
+                        .list_a5 ul li img {
+                            display: block;
+                            float: left;
+                            position: relative;
+                            z-index: 100;
+                            margin-right: 10px;
+                            _margin-right: 5px;
+                        }
+
+                        .list_a5 ul li.curr {
+                            background: #f9fafa;
+                        }
+
+                        .list_a5 ul li .tit {
+                            padding-right: 80px;
+                            padding-top: 0;
+                            margin-top: 0;
+                            line-height: 28px;
+                        }
+
+                        *+html .list_a5 ul li .tit {
+                            display: inline-block;
+                            margin-top: -20px;
+                        }
+
+                        .list_a5 ul li .tit a {
+                            font-size: 18px;
+                            color: #000;
+                        }
+
+                        .list_a5 ul li .txt {
+                            color: #999999;
+                            font-size: 12px;
+                        }
+
+                        .list_a5 ul li .txt span.cdate {
+                            background: url("img/ico_date.png") 0 center no-repeat;
+                            padding: 0 24px 0 20px;
+                        }
+
+                        .list_a5 ul li .space {
+                            height: 22px;
+                        }
+
+                        .list_a5 ul li.curr .space div {
+                            display: block;
+                        }
+
+                        .icoshare {
+                            background: url("img/ico_share.png") no-repeat;
+                            width: 24px;
+                            height: 22px;
+                            display: block;
+                            float: right;
+                        }
+
+                        .tablist {
+                            padding: 0 0 7px 0;
+                        }
+
+                        .tablist .item {
+                            display: inline-block;
+                            zoom: 1;
+                            position: relative;
+                            font-size: 18px;
+                            line-height: 40px;
+                            height: 44px;
+                            padding: 0 28px;
+                            background: url("img/tab_line4.png") no-repeat left 0;
+                        }
+
+                        .tablist .item a {
+                            color: #999999;
+                        }
+
+                        *html .tablist .item {
+                            float: left;
+                        }
+
+                        *+html .tablist .item {
+                            float: left;
+                        }
+
+                        .tablist .curr {
+                            margin: 0 38px 0 0;
+                            background: url("img/arrow-down3.png") no-repeat center 0;
+                        }
+
+                        .tablist .curr a {
+                            color: #ffffff;
+                        }
+
+                        .mtjj-left {
+                            float: left;
+                            padding-left: 32px;
+                            color: #c31f0b;
+                            font-size: 22px;
+                            line-height: 48px;
+                            background: url(/sdzf/images/sdzfw-20161127-11_25.jpg) no-repeat left 15px;
+                        }
+
+                        .rdzt-left {
+                            background: url(/sdzf/images/1910141858474654821.png) no-repeat left 20px;
+                            line-height: 58px;
+                        }
+
+                        .mtjj-right {
+                            float: right;
+                            line-height: 48px;
+                        }
+
+                        .rdzt-right {
+                            line-height: 50px;
+                        }
+
+                        #container2 ul {
+                            padding: 0;
+                        }
+
+                        #container2 {
+                            position: relative;
+                            width: 100%;
+                            height: 287px;
+                        }
+
+                        .pic2 li {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            display: none;
+                        }
+
+                        #position2 li {
+                            width: 12px;
+                            height: 12px;
+                            margin: 0 2px;
+                            display: inline-block
+                        }
+
+                        *html #position2 li {
+                            float: left;
+                            display: block;
+                        }
+
+                        *+html #position2 li {
+                            float: left;
+                            display: block;
+                        }
+
+                        .arrow2 {
+                            cursor: pointer;
+                            display: none;
+                            line-height: 39px;
+                            text-align: center;
+                            font-size: 36px;
+                            font-weight: bold;
+                            width: 40px;
+                            height: 40px;
+                            position: absolute;
+                            z-index: 2;
+                            top: 50%;
+                            margin-top: -20px;
+                            background-color: RGBA(0, 0, 0, .3);
+                            color: #fff;
+                        }
+
+                        .arrow2:hover {
+                            background-color: RGBA(0, 0, 0, .7);
+                        }
+
+                        #container2:hover .arrow2 {
+                            display: block;
+                        }
+
+                        .zwyw-context {
+                            display: none;
+                        }
+
+                        /*share*/
+                        .list_a5 .bdshare-button-style0-16 .bds_more {
+                            background: url("img/ico_share.png") no-repeat;
+                            width: 24px;
+                            height: 22px;
+                            display: block;
+                            float: right;
+                        }
+
+                        .lx-text {
+                            margin-top: 8px;
+                            font-size: 14px;
+                            line-height: 24px;
+                            max-height: 48px;
+                            _height: expression(this.scrollHeight > 48 ? "48px" : "auto");
+                            overflow: hidden;
+                            padding-right: 80px;
+                        }
+
+                        .lx-text a {
+                            color: #666;
+                        }
+
+                        .rdzt-left {
+                            background: url(/sdzf/images/1910141858474654821.png) no-repeat left 20px;
+                            line-height: 58px;
+                        }
+
+                        .rdzt-right {
+                            line-height: 50px;
+                        }
+
+                        .rdzt-bottom p {
+                            margin-top: 10px;
+                            font-size: 14px;
+                            line-height: 24px;
+                            color: #666666;
+                            margin-bottom: 10px;
+                        }
+
+                        .rdzt-pic {
+                            width: 100%;
+                            height: 125px;
+                            padding-top: 15px;
+                            border-top: 1px dashed #dcdcdc;
+                        }
+
+                        .rdzt-pic img {
+                            width: 100%;
+                            height: auto;
+                        }
+
+                        .rdzt-ly {
+                            font-size: 14px;
+                            color: #5f7fa6;
+                            line-height: 38px;
+                            height: 38px
+                        }
+
+                        #position2 {
+                            position: absolute;
+                            bottom: -20px;
+                            left: 115px;
+                            margin: 0;
+                            text-align: center;
+                        }
+
+                        .rdzt {
+                            height: 400px;
+                            padding-left: 18px;
+                            padding-right: 18px;
+                            border: 1px solid #dcdcdc;
+                            background-color: #f8f7f7;
+                        }
+
+                        @media screen and (max-width:500px) {
+                            #position2 {
+                                left: 40%;
+                            }
+                        }
+                    </style>
+                             <style type="text/css">
+                                * {
+                                    margin: 0px;
+                                    padding: 0px;
+                                    list-style: none;
+                                    text-decoration: none;
+                                }
+            
+                                a {
+                                    outline: none;
+                                }
+            
+                                a:focus {
+                                    outline: none;
+                                }
+            
+                                input,
+                                textarea {
+                                    background: #FFFFFF;
+                                }
+            
+                                img {
+                                    border: 0px;
+                                }
+            
+                                body {
+                                    font-family: "微软雅黑" !important;
+                                }
+            
+                                .bt-left {
+                                    float: left;
+                                }
+            
+                                .bt-right {
+                                    float: right;
+                                }
+            
+                                .bt-clear {
+                                    clear: both;
+                                }
+            
+                                .wip_footerbg {
+                                    background: #FFFFFF;
+                                    clear: both;
+                                }
+            
+                                .wip_footerbg * {
+                                    box-sizing: border-box;
+                                }
+            
+                                .wip_footer_linkbg {
+                                    width: 100%;
+                                    margin: auto;
+                                    background: #e1e4e7;
+                                }
+            
+                                .wip_footer_link {
+                                    height: auto;
+                                }
+            
+                                .link_btnbg {
+                                    height: 32px;
+                                    max-width: 1200px;
+                                    margin: auto;
+                                }
+            
+                                .link_btn_left {
+                                    float: left;
+                                    width: 50%;
+                                    max-width: 391px;
+                                    height: 32px;
+                                    background: url(http://www.shandong.gov.cn/picture/662/1910151048106308256.png) no-repeat left center;
+                                    padding-left: 32px;
+                                    box-sizing: border-box;
+                                }
+            
+                                .link_btn_left a {
+                                    float: left;
+                                    height: 32px;
+                                    line-height: 32px;
+                                    color: #333333;
+                                    font-size: 14px;
+                                    background: url(http://www.shandong.gov.cn/picture/662/1909301107219912150.png) no-repeat left;
+                                    display: inline-block;
+                                    padding-left: 10px;
+                                    margin-right: 10px;
+                                    box-sizing: border-box;
+                                }
+            
+                                .link_btn_left a:first-child {
+                                    background: none;
+                                }
+            
+            
+            
+                                .hot_btn_right {
+                                    float: right;
+                                    width: 11.25%;
+                                    max-width: 135px;
+                                    height: 32px;
+                                    line-height: 32px;
+                                    padding-left: 30px;
+                                    box-sizing: border-box;
+                                    color: #324a78;
+                                    font-size: 16px;
+                                    border: 1px solid #c7d0dd;
+                                    margin-right: 1%;
+                                    background: url(http://www.shandong.gov.cn/picture/662/1910021617215329873.png) no-repeat 85% center;
+                                }
+            
+                                .hot_btn_right a {
+                                    color: #324a78;
+                                }
+            
+                                .link_map {
+                                    padding: 30px 0;
+                                    display: none;
+                                    margin: 0 auto;
+                                    max-width: 1200px;
+                                    box-sizing: border-box;
+                                }
+            
+                                .link_map_ul {
+                                    width: 25%;
+                                    float: left;
+                                    padding-left: 40px;
+                                    box-sizing: border-box;
+                                }
+            
+                                .link_map_ul {
+                                    font-size: 18px;
+                                    color: #333333;
+                                    margin-bottom: 20px;
+                                }
+            
+                                .link_map_ul a {
+                                    color: #333333;
+                                }
+            
+                                .link_map_ul ul li {
+                                    line-height: 28px;
+                                }
+            
+                                .link_map_ul ul li a {
+                                    color: #666666;
+                                    font-size: 14px;
+                                }
+            
+                                .wip_footer_shipbg {
+                                    width: 100%;
+                                    background: #f3f3f3;
+                                    min-height: 98px;
+                                    border-top: #245399 solid 8px;
+                                }
+            
+                                .wip_footer_ship {
+                                    width: 100%;
+                                    max-width: 1200px;
+                                    margin: auto;
+                                }
+            
+                                .wip_ship_left {
+                                    float: left;
+                                    width: 204px;
+                                    text-align: right;
+                                    padding-right: 12px;
+                                    line-height: 20px;
+                                    line-height: 50px;
+                                    font-size: 15px;
+                                    min-height: 98px;
+                                    box-sizing: border-box;
+                                }
+            
+                                .wip_ship_right {
+                                    float: right;
+                                    width: 996px;
+                                }
+            
+                                .wip_ship_click {
+                                    float: left;
+                                    width: 180px;
+                                    text-indent: 10px;
+                                    line-height: 30px;
+                                    height: 30px;
+                                    font-size: 13px;
+                                    background: #FFFFFF;
+                                    border: #e5e5e5 1px solid;
+                                    margin-top: 10px;
+                                    font-weight: bold;
+                                    margin-left: 24px;
+                                    box-sizing: border-box;
+                                }
+            
+                                .wip_ship_click:first-child {
+                                    margin-left: 0px;
+                                }
+            
+                                .wip_ship_click a {
+                                    color: #274f94;
+                                }
+            
+                                .select_ul {
+                                    display: none;
+                                    border: 1px solid #999;
+                                    position: absolute;
+                                    bottom: 30px;
+                                    width: 100%;
+                                    max-height: 310px;
+                                    overflow-y: auto;
+                                    z-index: 2;
+                                    box-sizing: border-box;
+                                }
+            
+                                .select_1,
+                                .select_2,
+                                .select_3,
+                                .select_4,
+                                .select_5 {
+                                    float: left;
+                                    width: 180px;
+                                    text-indent: 10px;
+                                    line-height: 30px;
+                                    height: 30px;
+                                    font-size: 13px;
+                                    background: #FFFFFF;
+                                    border: #e5e5e5 1px solid;
+                                    box-sizing: border-box;
+                                    margin-top: 10px;
+                                    margin-left: 24px;
+                                    position: relative;
+                                }
+            
+                                .select_1 {
+                                    margin-left: 0px;
+                                }
+            
+                                .select_span {
+                                    background: #FFFFFF url(http://www.shandong.gov.cn/picture/662/1909301107221046767.png) no-repeat 160px center;
+                                    color: #777777;
+                                    font-size: 14px;
+                                    display: block;
+                                    height: 30px;
+                                    line-height: 30px;
+                                    overflow: hidden;
+                                    padding-right: 20px;
+                                }
+            
+                                .select_li {
+                                    height: 28px;
+                                    line-height: 28px;
+                                    padding-left: 4px;
+                                    background: #fff;
+                                    overflow: hidden;
+                                    white-space: nowrap;
+                                    box-sizing: border-box;
+                                }
+            
+                                .select_li a {
+                                    color: #000;
+                                    display: block;
+                                }
+            
+                                .select_li:hover {
+                                    background: #666666;
+                                }
+            
+                                .select_li:hover a {
+                                    background: #666666;
+                                }
+            
+                                .wip_footer_con {
+                                    width: 100%;
+                                    margin: auto;
+                                    max-width: 800px;
+                                    padding-top: 23px;
+                                    min-height: 135px;
+                                    box-sizing: border-box;
+                                }
+            
+                                .wip_footer_con_right {
+                                    width: 100px;
+                                    float: right;
+                                    display: block;
+                                }
+            
+                                .wip_footer_con_right img {
+                                    width: 100px;
+                                    height: 50px;
+                                }
+            
+                                .wip_footer_con_left {
+                                    width: 100px;
+                                    float: left;
+                                }
+            
+                                .wip_footer_con_center {
+                                    width: 600px;
+                                    float: left;
+                                    text-align: center;
+                                }
+            
+                                .wip_footer_con_center p {
+                                    color: #666666;
+                                    line-height: 25px;
+                                    height: 25px;
+                                    font-size: 12px;
+                                    width: 100%;
+                                    margin: 0px auto;
+                                }
+            
+                                .wip_footer_con_center p a {
+                                    color: #666666;
+                                    display: inline-block;
+                                }
+            
+                                .wip_footer_con_center .p {
+                                    width: 300px;
+                                    margin: auto;
+                                    height: 25px;
+                                }
+            
+                                .wip_footer_con_center .p a {
+                                    display: block;
+                                    float: left;
+                                    color: #666666;
+                                    line-height: 25px;
+                                    font-size: 12px;
+                                    background: url(http://www.shandong.gov.cn/picture/662/1909301107219912150.png) no-repeat left center;
+                                    padding-left: 13px;
+                                    margin-left: 13px;
+                                    box-sizing: border-box;
+                                }
+            
+                                .wip_footer_con_center .p a:first-child {
+                                    background: none;
+                                    margin-left: 0px;
+                                }
+            
+                                .tupian {
+                                    display: none;
+                                    width: 140px;
+                                    height: 140px;
+                                    top: -141px;
+                                    z-index: 2;
+                                    left: 275px;
+                                    position: absolute;
+                                }
+            
+                                .weixin {
+                                    display: block;
+                                }
+            
+                                .wei2:hover .tupian {
+                                    display: block;
+                                }
+            
+                                .wei1:hover .tupian1 {
+                                    display: block;
+                                }
+            
+                                .tupian1 {
+                                    display: none;
+                                    width: 140px;
+                                    height: 140px;
+                                    top: -141px;
+                                    z-index: 2;
+                                    left: 115px;
+                                    position: absolute;
+                                }
+            
+                                .sdjiucuo {
+                                    cursor: pointer;
+                                    position: fixed;
+                                    bottom: 0;
+                                    right: 25px;
+                                    z-index: 100;
+                                    width: 320px;
+                                    height: 100px;
+                                }
+            
+                                .sdjiucuo a {
+                                    position: absolute;
+                                    display: block;
+                                }
+            
+                                .sdjiucuo a:first-child {
+                                    z-index: 102;
+                                    width: 20px;
+                                    height: 20px;
+                                    text-align: center;
+                                    right: 0px;
+                                    font-size: 20px;
+                                    color: #FFFFFF;
+                                }
+            
+                                .sdjiucuo img {
+                                    width: 100%;
+                                }
+            
+                                .sdjiucuo4 {
+                                    position: fixed;
+                                    bottom: 324px;
+                                    right: 25px;
+                                    z-index: 100;
+                                    cursor: pointer;
+                                    width: 320px;
+                                    height: 100px;
+                                }
+            
+                                .sdjiucuo4 a {
+                                    position: absolute;
+                                    display: block;
+                                }
+            
+                                .sdjiucuo4 a:first-child {
+                                    z-index: 102;
+                                    width: 20px;
+                                    height: 20px;
+                                    text-align: center;
+                                    right: 0px;
+                                    font-size: 20px;
+                                    color: #FFFFFF;
+                                }
+            
+                                .sdjiucuo4 img {
+                                    width: 100%;
+                                }
+            
+                                .sdjiucuo3 {
+                                    position: fixed;
+                                    bottom: 213px;
+                                    right: 25px;
+                                    z-index: 100;
+                                    cursor: pointer;
+                                    width: 320px;
+                                    height: 100px;
+                                }
+            
+                                .sdjiucuo3 a {
+                                    position: absolute;
+                                    display: block;
+                                }
+            
+                                .sdjiucuo3 a:first-child {
+                                    z-index: 102;
+                                    width: 20px;
+                                    height: 20px;
+                                    text-align: center;
+                                    right: 0px;
+                                    font-size: 20px;
+                                    color: #FFFFFF;
+                                }
+            
+                                .sdjiucuo3 img {
+                                    width: 100%;
+                                }
+            
+                                .sdjiucuo2 {
+                                    position: fixed;
+                                    bottom: 110px;
+                                    right: 25px;
+                                    z-index: 100;
+                                    cursor: pointer;
+                                    width: 320px;
+                                    height: 100px;
+                                }
+            
+                                .sdjiucuo2 a {
+                                    position: absolute;
+                                    display: block;
+                                }
+            
+                                .sdjiucuo2 a:first-child {
+                                    z-index: 102;
+                                    width: 20px;
+                                    height: 20px;
+                                    text-align: center;
+                                    right: 0px;
+                                    font-size: 20px;
+                                    color: #FFFFFF;
+                                }
+            
+                                .sdjiucuo2 img {
+                                    width: 100%;
+                                }
+            
+                                .loginbg {
+                                    position: relative;
+                                    margin-right: 5px;
+                                    float: left;
+                                }
+            
+                                .loginbg a {
+                                    cursor: pointer;
+                                }
+            
+                                .grfr {
+                                    display: none;
+                                    width: 75px;
+                                    position: absolute;
+                                    color: #245399;
+                                    background: #FFFFFF;
+                                    height: 54px;
+                                    position: absolute;
+                                    left: -9px;
+                                }
+            
+                                .grfr a {
+                                    color: #245399;
+                                    font-size: 13px;
+                                    line-height: 27px;
+                                    display: block;
+                                    text-align: center;
+                                    float: none;
+                                }
+            
+                                .grfr a:first-child {
+                                    color: #245399;
+                                    font-size: 13px;
+                                    line-height: 27px;
+                                    display: block;
+                                    float: none;
+                                    margin-right: 0px;
+                                }
+            
+                                .regbg {
+                                    position: relative;
+                                    float: left;
+                                }
+            
+                                .regbg a {
+                                    cursor: pointer;
+                                }
+            
+                                .gfzc {
+                                    display: none;
+                                    width: 75px;
+                                    position: absolute;
+                                    color: #245399;
+                                    background: #FFFFFF;
+                                    height: 54px;
+                                    position: absolute;
+                                    right: 0px;
+                                }
+            
+                                .gfzc a {
+                                    color: #245399;
+                                    font-size: 13px;
+                                    line-height: 27px;
+                                    display: block;
+                                    text-align: center;
+                                    float: none;
+                                }
+            
+                                .gfzc a:first-child {
+                                    color: #245399;
+                                    font-size: 13px;
+                                    line-height: 27px;
+                                    display: block;
+                                    float: none;
+                                    margin-right: 0px;
+                                }
+            
+                                @media only screen and (max-width: 1200px) {
+                                    .wip_footerpc .wip_ship_left {
+                                        width: 15%;
+                                    }
+            
+                                    .wip_footerpc .wip_ship_right {
+                                        width: 85%;
+                                    }
+            
+                                    .wip_footerpc .wip_ship_click {
+                                        width: 19%;
+                                        margin-left: 1.25%;
+                                    }
+            
+                                    .wip_footerpc .wip_ship_click:first-child {
+                                        width: 19%;
+                                        margin-left: 0%;
+                                    }
+            
+                                    .wip_footerpc .select_2,
+                                    .wip_footerpc .select_3,
+                                    .wip_footerpc .select_4 {
+                                        width: 19%;
+                                        margin-left: 1.25%;
+                                    }
+            
+                                    .wip_footerpc .select_span {
+                                        background-image: none;
+                                    }
+            
+                                    .wip_footerpc .select_1 {
+                                        width: 19%;
+                                        margin-left: 0%;
+                                    }
+            
+                                    .wip_footerpc .wip_footer_shipbg {
+                                        height: auto;
+                                    }
+            
+                                    .hot_btn_right {
+                                        padding-left: 15px;
+                                    }
+                                }
+            
+                                @media only screen and (max-width: 900px) {
+                                    .hidesmallfooter {
+                                        display: none;
+                                    }
+            
+                                    .wip_footer_con_center {
+                                        width: 100%;
+                                    }
+                                }
+            
+                                @media only screen and (max-width: 450px) {
+                                    .sdjiucuo {
+                                        width: 150px;
+                                        height: 47px;
+                                    }
+            
+                                    .sdjiucuo2 {
+                                        width: 150px;
+                                        height: 47px;
+                                        bottom: 50px;
+                                    }
+            
+                                    .sdjiucuo a:first-child {
+                                        font-size: 12px;
+                                        width: 12px;
+                                        height: 12px;
+                                    }
+            
+                                    .sdjiucuo2 a:first-child {
+                                        font-size: 12px;
+                                        width: 12px;
+                                        height: 12px;
+                                    }
+            
+                                    .sdjiucuo3 {
+                                        width: 150px;
+                                        height: 47px;
+                                        bottom: 103px;
+                                    }
+            
+                                    .sdjiucuo4 {
+                                        width: 150px;
+                                        height: 47px;
+                                        bottom: 103px;
+                                    }
+            
+                                    .sdjiucuo a:first-child {
+                                        font-size: 12px;
+                                        width: 12px;
+                                        height: 12px;
+                                    }
+            
+                                    .sdjiucuo3 a:first-child {
+                                        font-size: 12px;
+                                        width: 12px;
+                                        height: 12px;
+                                    }
+            
+                                    .sdjiucuo4 a:first-child {
+                                        font-size: 12px;
+                                        width: 12px;
+                                        height: 12px;
+                                    }
+                                }
+            
+                                .name_out {
+                                    cursor: pointer;
+                                }
+            
+                                .nameout {
+                                    cursor: pointer;
+                                }
+            
+            
+                                .wip_sxjk,
+                                .yjjy {
+                                    cursor: pointer;
+                                }
+            
+                                .wip_sxjk a {
+                                    cursor: pointer;
+                                }
+            
+                                DIV.digg input[type="submit"] {
+                                    height: 25px !important;
+                                }
+                            </style>
+
+                    <!-- 通用底部 -->
+<div class="wip_footerbg wip_footerpc" ergodic="serve">
+    <div class="link_btnbg hidesmallfooter">
+        <div class="link_btn_left" style="position:relative;">
+            <a href="http://www.gov.cn/" target="_blank">
+                中央人民政府
+            </a>
+            <a href="" style="cursor: default;" class="wei1">
+                <span style="font-size:14px;">爱山东APP</span>
+            </a>
+            <a href="" target="_blank">
+                政务微博
+            </a>
+            <a href="" target="_blank">
+                <span style="font-size:14px;">政务微信</span>
+            </a>
+
+        </div>
+
+        <div class="hot_btn_right link_btn_nav" style="border: 1px solid #bac5d5;">
+            <a>
+                深度导航
+            </a>
+        </div>
+        <div class="hot_btn_right" style="background: none;border: 1px solid #bac5d5;border-bottom: 0px;">
+            <a class="wip_sxjk" href="" target="_blank">
+                我的足迹
+            </a>
+        </div>
+
+        <div class="bt-clear">
+
+        </div>
+    </div>
+
+    <div class="wip_footer_linkbg hidesmallfooter">
+        <div class="link_map">
+                            <ul class="link_map_ul">
+                    <li>
+                        <a href="/html/web/yaowendongtai/index.html">要闻动态</a>
+                    </li>
+                    <ul class="link_map_ul_ul">
+                        <li>
+                            <a target="_blank" href="/html/web/yaowendongtai/jinriguanzhu/index.html">今日关注</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/html/web/yaowendongtai/shengneiyaowen/index.html">省内要闻</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/html/web/yaowendongtai/guowuyuanxinxi/index.html">国务院信息</a>
+                        </li>
+                    </ul>
+                </ul>
+                    <ul class="link_map_ul">
+                        <li>
+                            <a href="/html/web/zhengwugongkai/index.html">政务公开</a>
+                        </li>
+                        <ul class="link_map_ul_ul">
+                            <li>
+                                <a target="_blank" href="/html/web/zhengwugongkai/zhengfuxinxigongkaizhinan/index.html">政府信息公开指南</a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="/html/web/zhengwugongkai/zhengfuxinxigongkaizhidu/index.html">政府信息公开制度</a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="/html/web/zhengwugongkai/fadingzhudonggongkaineirong/index.html">法定主动公开内容</a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="/html/web/zhengwugongkai/zhengfuxinxigongkainianbao/index.html">政府信息公开年报</a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="/html/web/zhengwugongkai/zhengfuxinxiyishenqinggongkai/index.html">政府信息依申请公开</a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="/html/web/zhengwugongkai/zhengcewenjian/index.html">政策文件</a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="/html/web/zhengwugongkai/zhengcejiedu/index.html">政策解读</a>
+                            </li>
+                        </ul>
+                    </ul>
+                        <ul class="link_map_ul">
+                            <li>
+                                <a href="/html/web/zhengminhudong/index.html">政民互动</a>
+                            </li>
+                            <ul class="link_map_ul_ul">
+                            </ul>
+                        </ul>
+                            <ul class="link_map_ul">
+                                <li>
+                                    <a href="/html/web/zoujinshandong/index.html">走进山东</a>
+                                </li>
+                                <ul class="link_map_ul_ul">
+                                </ul>
+                            </ul>
+            <div class="bt-clear">
+            </div>
+        </div>
+    </div>
+
+    <div class="wip_footer_shipbg bt-clear hidesmallfooter">
+        <div class="wip_footer_ship">
+            <div class="wip_ship_left">
+                网站导航
+            </div>
+            <div class="wip_ship_right">
+                <div class="wip_ship_click" style="margin-left:0px;">
+                    <a href="http://www.sdrd.gov.cn/" target="_blank">
+                        山东省人大常委会
+                    </a>
+                </div>
+                <div class="wip_ship_click">
+                    <a href="http://www.sdzx.gov.cn/" target="_blank">
+                        政协山东省委员会
+                    </a>
+                </div>
+                <div class="wip_ship_click">
+                    <a href="http://www.sdjj.gov.cn/" target="_blank">
+                        山东省监察委员会
+                    </a>
+                </div>
+                <div class="wip_ship_click">
+                    <a href="http://sdcourt.gov.cn/" target="_blank">
+                        山东省高级人民法院
+                    </a>
+                </div>
+                <div class="wip_ship_click">
+                    <a href="http://www.sdjcy.gov.cn/" target="_blank">
+                        山东省人民检察院
+                    </a>
+                </div>
+                <div class="select_1">
+                    <span class="select_span">国家部委网站</span>
+
+                    <ul class="select_ul">
+
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.mfa.gov.cn/">外交部</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.mod.gov.cn/">国防部</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.ndrc.gov.cn/">国家发展和改革委员会</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.moe.gov.cn/">教育部</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.most.gov.cn/">科学技术部</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.miit.gov.cn/">工业和信息化部</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.seac.gov.cn/">国家民族事务委员会</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.mps.gov.cn/">公安部</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.mca.gov.cn/">民政部</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.moj.gov.cn/">司法部</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.mof.gov.cn/">财政部</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.mohrss.gov.cn/">人力资源和社会保障部</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.mnr.gov.cn/">自然资源部</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.mee.gov.cn/">生态环境部</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.mohurd.gov.cn/">住房和城乡建设部</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.mot.gov.cn/">交通运输部</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.mwr.gov.cn/">水利部</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.moa.gov.cn/">农业农村部</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.mofcom.gov.cn/">商务部</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.mct.gov.cn/">文化和旅游部</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.nhc.gov.cn">国家卫生健康委员会</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.mva.gov.cn/">退役军人事务部</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.mem.gov.cn/">应急管理部</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.pbc.gov.cn/">人民银行</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.audit.gov.cn/">审计署</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.moe.gov.cn/jyb_sy/China_Language/">国家语言文字工作委员会</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.cnsa.gov.cn/">国家航天局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.caea.gov.cn/">国家原子能机构</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://nnsa.mee.gov.cn/">国家核安全局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.sasac.gov.cn/">国务院国有资产监督管理委员会</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.customs.gov.cn">海关总署</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.chinatax.gov.cn/">国家税务总局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.samr.gov.cn/">国家市场监督管理总局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.nrta.gov.cn/">国家广播电视总局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.sport.gov.cn/">国家体育总局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.stats.gov.cn/">国家统计局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.cidca.gov.cn/">国家国际发展合作署</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.nhsa.gov.cn/">国家医疗保障局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.counsellor.gov.cn/">国务院参事室</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.ggj.gov.cn/">国家机关事务管理局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.cnca.gov.cn">国家认证认可监督管理委员会</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.sac.gov.cn/">国家标准化管理委员会</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.ncac.gov.cn/">国家新闻出版署（国家版权局）</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.sara.gov.cn/" target="_blank">国家宗教事务局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.hmo.gov.cn/">国务院港澳事务办公室</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank"
+                                href="http://www.gov.cn/guoqing/2018-06/22/content_5300522.htm">国务院研究室</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.gqb.gov.cn/">国务院侨务办公室</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.gwytb.gov.cn/">国务院台湾事务办公室</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.cac.gov.cn/">国家互联网信息办公室</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.scio.gov.cn/index.htm">国务院新闻办公室</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://203.192.6.89/xhs/">新华通讯社</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.cas.ac.cn/">中国科学院</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://cass.cssn.cn/">中国社会科学院</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.cae.cn/">中国工程院</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.drc.gov.cn/">国务院发展研究中心</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.cnr.cn/">中央广播电视总台</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.cma.gov.cn/">中国气象局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank"
+                                href="http://www.cbirc.gov.cn/cn/view/pages/index/index.html">中国银行保险监督管理委员会</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.csrc.gov.cn/pub/newsite/">中国证券监督管理委员会</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.ccps.gov.cn/" target="_blank">国家行政学院</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.gjxfj.gov.cn/">国家信访局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.chinagrain.gov.cn/index.html">国家粮食和物资储备局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.nea.gov.cn/">国家能源局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.sastind.gov.cn/">国家国防科技工业局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.tobacco.gov.cn/html/">国家烟草专卖局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.mps.gov.cn/n2254996/">国家移民管理局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.forestry.gov.cn/">国家林业和草原局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.nra.gov.cn/">国家铁路局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.caac.gov.cn/index.html">中国民用航空局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.spb.gov.cn/">国家邮政局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.ncha.gov.cn/">国家文物局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.satcm.gov.cn/">国家中医药管理局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.chinacoal-safety.gov.cn/">国家煤矿安全监察局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.safe.gov.cn/">国家外汇管理局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.nmpa.gov.cn/WS04/CL2042/">国家药品监督管理局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="https://www.cnipa.gov.cn/">国家知识产权局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank">出入境管理局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.forestry.gov.cn/">国家公园管理局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.scs.gov.cn/">国家公务员局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.saac.gov.cn/">国家档案局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.gjbmj.gov.cn/">国家保密局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.oscca.gov.cn/">国家密码管理局</a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="select_2">
+                    <span class="select_span">各省区市政府网站</span>
+
+                    <ul class="select_ul">
+
+                        <li class="select_li">
+                            <a href="http://www.beijing.gov.cn/" target="_blank">北京</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.tj.gov.cn/" target="_blank">天津</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.hebei.gov.cn/" target="_blank">河北</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.shanxi.gov.cn/" target="_blank">山西</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.nmg.gov.cn/" target="_blank">内蒙古</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.ln.gov.cn/" target="_blank">辽宁</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.jl.gov.cn/" target="_blank">吉林</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.hlj.gov.cn/" target="_blank">黑龙江</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.shanghai.gov.cn/" target="_blank">上海</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.jiangsu.gov.cn/" target="_blank">江苏</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.zj.gov.cn/" target="_blank">浙江</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.ah.gov.cn/" target="_blank">安徽</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.fujian.gov.cn/" target="_blank">福建</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.jiangxi.gov.cn/" target="_blank">江西</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.shandong.gov.cn/" target="_blank">山东</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.henan.gov.cn/" target="_blank">河南</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.hubei.gov.cn/" target="_blank">湖北</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.hunan.gov.cn/" target="_blank">湖南</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.gd.gov.cn/" target="_blank">广东</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.gxzf.gov.cn/" target="_blank">广西</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.hainan.gov.cn/" target="_blank">海南</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.cq.gov.cn/" target="_blank">重庆</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.sc.gov.cn/" target="_blank">四川</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.guizhou.gov.cn/" target="_blank">贵州</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.yn.gov.cn/" target="_blank">云南</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.xizang.gov.cn/" target="_blank">西藏</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.shaanxi.gov.cn/" target="_blank">陕西</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.gansu.gov.cn/" target="_blank">甘肃</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.qh.gov.cn/" target="_blank">青海</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.nx.gov.cn/" target="_blank">宁夏</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.xinjiang.gov.cn/" target="_blank">新疆</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.gov.hk/" target="_blank">香港</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.gov.mo/" target="_blank">澳门</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank">台湾</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.xjbt.gov.cn/" target="_blank">新疆生产建设兵团</a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="select_3">
+                    <span class="select_span">省政府部门网站</span>
+
+                    <ul class="select_ul">
+
+                        <li class="select_li">
+                            <a href="http://fgw.shandong.gov.cn/" target="_blank">山东省发展和改革委员会</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://edu.shandong.gov.cn/" target="_blank">山东省教育厅</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://kjt.shandong.gov.cn/" target="_blank">山东省科学技术厅</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://gxt.shandong.gov.cn/" target="_blank">山东省工业和信息化厅</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://mzw.shandong.gov.cn/" target="_blank">山东省民族宗教事务委员会</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://gat.shandong.gov.cn/" target="_blank">山东省公安厅</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://mzt.shandong.gov.cn/" target="_blank">山东省民政厅</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://sft.shandong.gov.cn/index.shtml" target="_blank">山东省司法厅</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://czt.shandong.gov.cn/" target="_blank">山东省财政厅</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://hrss.shandong.gov.cn/" target="_blank">山东省人力资源和社会保障厅</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://dnr.shandong.gov.cn/" target="_blank">山东省自然资源厅</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://sthj.shandong.gov.cn/" target="_blank">山东省生态环境厅</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://zjt.shandong.gov.cn/" target="_blank">山东省住房和城乡建设厅</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://jtt.shandong.gov.cn/" target="_blank">山东省交通运输厅</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://wr.shandong.gov.cn/" target="_blank">山东省水利厅</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://nync.shandong.gov.cn/" target="_blank">山东省农业农村厅</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://commerce.shandong.gov.cn/" target="_blank">山东省商务厅</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://whhly.shandong.gov.cn/" target="_blank">山东省文化和旅游厅</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://wsjkw.shandong.gov.cn/" target="_blank">山东省卫生健康委员会</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://dva.shandong.gov.cn/" target="_blank">山东省退役军人事务厅</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://yjt.shandong.gov.cn/" target="_blank">山东省应急管理厅</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://audit.shandong.gov.cn/" target="_blank">山东省审计厅</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://wb.shandong.gov.cn/" target="_blank">山东省人民政府外事办公室</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://gzw.shandong.gov.cn/" target="_blank">山东省人民政府国有资产监督管理委员会</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://amr.shandong.gov.cn/" target="_blank">山东省市场监督管理局</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://gd.shandong.gov.cn/" target="_blank">山东省广播电视局</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://ty.shandong.gov.cn/" target="_blank">山东省体育局</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://tjj.shandong.gov.cn/" target="_blank">山东省统计局</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://ybj.shandong.gov.cn/" target="_blank">山东省医疗保障局</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://jgswj.shandong.gov.cn/" target="_blank">山东省机关事务管理局</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://rfb.shandong.gov.cn/" target="_blank">山东省人民防空办公室</a>
+                        </li>
+
+                        <li class="select_li">
+                            <a href="http://dfjrjgj.shandong.gov.cn/" target="_blank">山东省地方金融监督管理局</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://bdb.shandong.gov.cn/" target="_blank">山东省大数据局</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://xfj.shandong.gov.cn/" target="_blank">山东省信访局</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://nyj.shandong.gov.cn/" target="_blank">山东省能源局</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://lscb.shandong.gov.cn/" target="_blank">山东省粮食和物资储备局</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://jyj.shandong.gov.cn/" target="_blank">山东省监狱管理局</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://hyj.shandong.gov.cn/" target="_blank">山东省海洋局</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://xm.shandong.gov.cn/" target="_blank">山东省畜牧兽医局</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://mpa.shandong.gov.cn/" target="_blank">山东省药品监督管理局</a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="select_4">
+                    <span class="select_span">市县部门网站</span>
+
+                    <ul class="select_ul">
+
+                        <li class="select_li" style="font-weight:bold;">
+                            <a href="http://www.jinan.gov.cn/" target="_blank">济南市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.lixia.gov.cn/" target="_blank">历下区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.shizhong.gov.cn/" target="_blank">市中区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.huaiyin.gov.cn/" target="_blank">槐荫区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.tianqiao.gov.cn/" target="_blank">天桥区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.licheng.gov.cn" target="_blank">历城区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.jncq.gov.cn/" target="_blank">长清区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.jnzq.gov.cn/" target="_blank">章丘区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.jiyang.gov.cn/" target="_blank">济阳区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.laiwu.gov.cn/" target="_blank">莱芜区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.gangcheng.gov.cn/" target="_blank">钢城区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.pingyin.gov.cn/" target="_blank">平阴县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.shanghe.gov.cn/" target="_blank">商河县</a>
+                        </li>
+                        <li class="select_li" style="font-weight:bold;">
+                            <a href="http://www.qingdao.gov.cn/" target="_blank">青岛市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.qdsn.gov.cn/" target="_blank">市南区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://shibei.qingdao.gov.cn/" target="_blank">市北区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.huangdao.gov.cn/n10/index.html" target="_blank">黄岛区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.laoshan.gov.cn/" target="_blank">崂山区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.qdlc.gov.cn/" target="_blank">李沧区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.chengyang.gov.cn/" target="_blank">城阳区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.jimo.gov.cn/" target="_blank">即墨区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.jiaozhou.gov.cn/" target="_blank">胶州市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.pingdu.gov.cn/" target="_blank">平度市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.laixi.gov.cn/" target="_blank">莱西市</a>
+                        </li>
+                        <li class="select_li" style="font-weight:bold;">
+                            <a href="http://www.zibo.gov.cn/" target="_blank">淄博市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.zichuan.gov.cn/" target="_blank">淄川区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.zhangdian.gov.cn/" target="_blank">张店区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.boshan.gov.cn/" target="_blank">博山区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.linzi.gov.cn/" target="_blank">临淄区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.zhoucun.gov.cn/" target="_blank">周村区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.huantai.gov.cn/" target="_blank">桓台县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.gaoqing.gov.cn/" target="_blank">高青县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.yiyuan.gov.cn//" target="_blank">沂源县</a>
+                        </li>
+                        <li class="select_li" style="font-weight:bold;">
+                            <a href="http://www.zaozhuang.gov.cn/" target="_blank">枣庄市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.zzszq.gov.cn/" target="_blank">市中区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.xuecheng.gov.cn/" target="_blank">薛城区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.ycq.gov.cn/" target="_blank">峄城区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.tez.gov.cn/" target="_blank">台儿庄区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.shanting.gov.cn/" target="_blank">山亭区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.tengzhou.gov.cn/" target="_blank">滕州市</a>
+                        </li>
+                        <li class="select_li" style="font-weight:bold;">
+                            <a href="http://www.dongying.gov.cn/" target="_blank">东营市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.dyq.gov.cn/" target="_blank">东营区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.hekou.gov.cn/" target="_blank">河口区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.kenli.gov.cn/" target="_blank">垦利区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.lijin.gov.cn/" target="_blank">利津县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.guangrao.gov.cn/" target="_blank">广饶县</a>
+                        </li>
+                        <li class="select_li" style="font-weight:bold;">
+                            <a href="http://www.yantai.gov.cn/" target="_blank">烟台市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.zhifu.gov.cn/" target="_blank">芝罘区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.ytfushan.gov.cn/" target="_blank">福山区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.muping.gov.cn/" target="_blank">牟平区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.ytlaishan.gov.cn/" target="_blank">莱山区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.penglai.gov.cn/" target="_blank">蓬莱区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.longkou.gov.cn/" target="_blank">龙口市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.laiyang.gov.cn/" target="_blank">莱阳市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.laizhou.gov.cn/" target="_blank">莱州市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.zhaoyuan.gov.cn/" target="_blank">招远市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.sdqixia.gov.cn/" target="_blank">栖霞市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.haiyang.gov.cn/" target="_blank">海阳市</a>
+                        </li>
+                        <li class="select_li" style="font-weight:bold;">
+                            <a href="http://www.weifang.gov.cn/" target="_blank">潍坊市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.weicheng.gov.cn/" target="_blank">潍城区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.hanting.gov.cn/" target="_blank">寒亭区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.fangzi.gov.cn/" target="_blank">坊子区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.kuiwen.gov.cn/" target="_blank">奎文区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.qingzhou.gov.cn/" target="_blank">青州市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.zhucheng.gov.cn/" target="_blank">诸城市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.shouguang.gov.cn/" target="_blank">寿光市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.anqiu.gov.cn/" target="_blank">安丘市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.gaomi.gov.cn/" target="_blank">高密市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.changyi.gov.cn/" target="_blank">昌邑市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.linqu.gov.cn/" target="_blank">临朐县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.changle.gov.cn/" target="_blank">昌乐县</a>
+                        </li>
+                        <li class="select_li" style="font-weight:bold;">
+                            <a href="http://www.jining.gov.cn/" target="_blank">济宁市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.rencheng.gov.cn/" target="_blank">任城区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.yanzhou.gov.cn/" target="_blank">兖州区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.qufu.gov.cn/" target="_blank">曲阜市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.zoucheng.gov.cn/" target="_blank">邹城市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.weishan.gov.cn/" target="_blank">微山县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.yutai.gov.cn/" target="_blank">鱼台县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.jinxiang.gov.cn/" target="_blank">金乡县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.jiaxiang.gov.cn/" target="_blank">嘉祥县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.wenshang.gov.cn/" target="_blank">汶上县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.sishui.gov.cn/" target="_blank">泗水县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.liangshan.gov.cn/" target="_blank">梁山县</a>
+                        </li>
+                        <li class="select_li" style="font-weight:bold;">
+                            <a href="http://www.taian.gov.cn/" target="_blank">泰安市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.sdtaishan.gov.cn/" target="_blank">泰山区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.daiyue.gov.cn/" target="_blank">岱岳区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.xintai.gov.cn/" target="_blank">新泰市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.feicheng.gov.cn/" target="_blank">肥城市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.ny.gov.cn/" target="_blank">宁阳县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.dongping.gov.cn/" target="_blank">东平县</a>
+                        </li>
+                        <li class="select_li" style="font-weight:bold;">
+                            <a href="http://www.weihai.gov.cn/" target="_blank">威海市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.huancui.gov.cn/" target="_blank">环翠区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.wendeng.gov.cn/" target="_blank">文登区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.rongcheng.gov.cn/" target="_blank">荣成市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.rushan.gov.cn/" target="_blank">乳山市</a>
+                        </li>
+                        <li class="select_li" style="font-weight:bold;">
+                            <a href="http://www.rizhao.gov.cn/" target="_blank">日照市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.rzdonggang.gov.cn/" target="_blank">东港区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.rzlanshan.gov.cn/" target="_blank">岚山区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.wulian.gov.cn/" target="_blank">五莲县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.juxian.gov.cn/" target="_blank">莒县</a>
+                        </li>
+                        <li class="select_li" style="font-weight:bold;">
+                            <a href="http://www.linyi.gov.cn/" target="_blank">临沂市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.lyls.gov.cn/" target="_blank">兰山区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.luozhuang.gov.cn/" target="_blank">罗庄区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.hedong.gov.cn/" target="_blank">河东区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.yinan.gov.cn/" target="_blank">沂南县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.tancheng.gov.cn/" target="_blank">郯城县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.yishui.gov.cn/" target="_blank">沂水县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.lanling.gov.cn/" target="_blank">兰陵县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.feixian.gov.cn/" target="_blank">费县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.pingyi.gov.cn/" target="_blank">平邑县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.junan.gov.cn/" target="_blank">莒南县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.mengyin.gov.cn/" target="_blank">蒙阴县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.linshu.gov.cn/" target="_blank">临沭县</a>
+                        </li>
+                        <li class="select_li" style="font-weight:bold;">
+                            <a href="http://www.dezhou.gov.cn/" target="_blank">德州市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.decheng.gov.cn/" target="_blank">德城区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.dzlc.gov.cn/" target="_blank">陵城区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.laoling.gov.cn/" target="_blank">乐陵市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.yuchengshi.gov.cn/" target="_blank">禹城市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.sdningjin.gov.cn/" target="_blank">宁津县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.qingyun.gov.cn/" target="_blank">庆云县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.linyixian.gov.cn/" target="_blank">临邑县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.qihe.gov.cn/" target="_blank">齐河县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.zgpingyuan.gov.cn/" target="_blank">平原县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.xiajin.gov.cn/" target="_blank">夏津县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.wucheng.gov.cn/" target="_blank">武城县</a>
+                        </li>
+                        <li class="select_li" style="font-weight:bold;">
+                            <a href="http://www.liaocheng.gov.cn/" target="_blank">聊城市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.dongchangfu.gov.cn/" target="_blank">东昌府区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.chiping.gov.cn/" target="_blank">茌平区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.linqing.gov.cn/" target="_blank">临清市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.yanggu.gov.cn/" target="_blank">阳谷县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.sdsx.gov.cn/" target="_blank">莘县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.sdde.gov.cn/" target="_blank">东阿县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.guanxian.gov.cn/" target="_blank">冠县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.gaotang.gov.cn/" target="_blank">高唐县</a>
+                        </li>
+                        <li class="select_li" style="font-weight:bold;">
+                            <a href="http://www.binzhou.gov.cn/" target="_blank">滨州市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.bincheng.gov.cn/" target="_blank">滨城区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.zhanhua.gov.cn/" target="_blank">沾化区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.zouping.gov.cn/" target="_blank">邹平市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.huimin.gov.cn/" target="_blank">惠民县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.yangxin.gov.cn/" target="_blank">阳信县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.wudi.gov.cn/" target="_blank">无棣县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.boxing.gov.cn/" target="_blank">博兴县</a>
+                        </li>
+                        <li class="select_li" style="font-weight:bold;">
+                            <a href="http://www.heze.gov.cn/" target="_blank">菏泽市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.mudan.gov.cn/" target="_blank">牡丹区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.dingtao.gov.cn/" target="_blank">定陶区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.caoxian.gov.cn/" target="_blank">曹县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.shanxian.gov.cn/" target="_blank">单县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.chengwu.gov.cn/" target="_blank">成武县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.juye.gov.cn/" target="_blank">巨野县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.cnyc.gov.cn/" target="_blank">郓城县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.juancheng.gov.cn/" target="_blank">鄄城县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.dmzf.gov.cn/" target="_blank">东明县</a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="select_4">
+                    <span class="select_span">其他网站</span>
+
+                    <ul class="select_ul">
+
+                        <li class="select_li">
+                            <a href="http://www.sdsqw.cn/" target="_blank">山东省情网</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://shandong.chinatax.gov.cn" target="_blank">国家税务总局山东省税务局</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://credit.shandong.gov.cn/" target="_blank">信用中国（山东）</a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="bt-clear">
+
+                </div>
+            </div>
+            <div class="bt-clear">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="wip_footer_con">
+        <div class="wip_footer_con_left hidesmallfooter">
+
+            <span id="_ideConac"><a href="" target="_blank"><img src="/sdzf/images/red.png"></a></span>
+        </div>
+        <div class="wip_footer_con_center ">
+            <p class="p">
+                <a href="/html/web/guanyuwomen/wangzhanditu/index.html">
+                    网站地图
+                </a>
+                <a href="/html/web/guanyuwomen/guanyuwomen1440522970341179393/index.html">
+                    关于我们
+                </a>
+                <a href="/html/web/guanyuwomen/lianxiwomen/index.html">
+                    联系我们
+                </a>
+                <a href="/html/web/guanyuwomen/wangzhanshengming/index.html">
+                    网站声明
+                </a>
+            </p>
+            <p>
+                站点版权信息，可配置
+            </p>
+            <p>
+                政府网站标识码：3700000071
+                <a target='_blank'>鲁ICP备05051451号 </a>
+                <a target='_blank' href='' style="width: 198px;">
+                    <img src="/sdzf/images/1910011236531315944.png" /> 鲁公网安备
+                    37010202001156号
+                </a>
+            </p>
+            <div class="bt-clear" style="clear: both;">
+
+            </div>
+        </div>
+        <div class="wip_footer_con_right hidesmallfooter">
+            <span id='_span_jiucuo'>
+                <img src="/sdzf/images/jiucuo.png" />
+            </span>
+        </div>
+
+        <div class="bt-clear">
+
+        </div>
+    </div>
+
+</div>
+                <script>
+                    var app = new Vue({
+                        el: '#app',
+                        data: {
+                            //当前页数
+                            pageCur: 1,
+                    //每页文章条数
+                    pageSize: 10,
+                    //页数总数
+                    pageTotal: 1,
+                    //内容总数
+                    contentCount: 3
+                        },
+                    methods: {
+                        handleCurrentChange: function(val) {
+                            if (val == 1) { //首页
+                                location.href = "/html/web//yaowendongtai/guowuyuanxinxi/index.html";
+                            } else { //其他页面 list-页码.html
+                                location.href = "/html/web//yaowendongtai/guowuyuanxinxi/list-" + val + ".html";
+                            }
+                        }
+                    }
+                    })
+                </script>
+                <script type="text/javascript">
+                    $(function () {
+                        $('body').click(function () {
+                            $(".select_ul").hide()
+                        })
+
+                        function select(obj) {
+                            $("." + obj).click(function () {
+                                stopPropagation();
+
+                                if ($(this).children(".select_ul").is(":hidden")) {
+                                    $(".select_ul").hide()
+                                    $(this).children(".select_ul").show();
+
+                                } else {
+
+                                    $(this).children(".select_ul").hide();
+                                }
+
+                            })
+                            $("." + obj).find(".select_li").click(function () {
+                                $(this).parents("." + obj).find(".select_span").html($(this).text())
+                                stopPropagation();
+                                $(".select_ul").hide()
+
+                            })
+                        }
+                        select("select_1")
+                        select("select_2")
+                        select("select_3")
+                        select("select_4")
+                        select("select_5")
+
+                        function stopPropagation(e) {
+                            e = window.event || e;
+                            if (document.all) {
+                                e.cancelBubble = true;
+                            } else {
+                                e.stopPropagation();
+                            }
+
+                        }
+
+                    })
+                </script>
+                <script type="text/javascript">
+                    $(".hot_wenzhang").click(function (event) {
+                        $(".link_map").hide();
+                        event.preventDefault && event.preventDefault();
+                        this.start = this.start || 0;
+                        var s = this;
+                        if (this.start === 0) {
+                            this.start = 1;
+                            $(".banner_remen").slideToggle(function () {
+                                s.start = 0;
+                            });
+                        }
+                        return 0;
+                    });
+                </script>
+                <script type="text/javascript">
+                    $(".link_btn_nav").click(function (event) {
+                        $(".banner_remen").hide()
+                        event.preventDefault && event.preventDefault();
+                        this.start = this.start || 0;
+                        var s = this;
+
+                        if (this.start === 0) {
+                            this.start = 1;
+                            $(".link_map").slideToggle(function () {
+                                s.start = 0;
+                            });
+                        }
+                        return 0;
+                    });
+                </script>
+
+                <script type="text/javascript">
+                    var local = window.location.href;
+                    var result = encodeURIComponent(local);
+                    console.log("9999" + result);
+                    // debugger
+                    var logingrhref = '' + result +
+                        '&type=1';
+                    var loginfrhref = '' + result +
+                        '&type=2';
+
+                    $.ajax({
+                        url: 'http://www.shandong.gov.cn//api-gateway/jpaas-juspace-web-sdywtb/front/sso/kyisLogin',
+                        type: 'GET',
+                        cache: false,
+                        xhrFields: {
+                            withCredentials: true
+                        },
+                        crossDomain: true,
+                        dataType: 'jsonp',
+                        jsonp: 'jsonpCallback',
+                        jsonpCallback: 'successCallback',
+                        success: function (datasrc) {
+                            console.log(datasrc);
+                            if (datasrc.usertype == 2) {
+                                $(".sheiyaoban").attr("href", "http://www.shandong.gov.cn/api-gateway/jpaas-jiq-web-sdywtb/front/item/fr_index")
+                            } else {
+                                $(".sheiyaoban").attr("href", "http://www.shandong.gov.cn/api-gateway/jpaas-jiq-web-sdywtb/front/item/gr_index")
+                            }
+                            if (datasrc.success == false) {
+                                $(".name_loain").html(
+                                    "<div  class='loginbg' onmouseover=loginshow(); onmouseleave=loginhide();><a>登录</a><div class='grfr'><a class='login1'>个人登录</a><a class='login2'>法人登录</a></div></div><div class='regbg' onmouseover=regshow(); onmouseleave=reghide();><a>注册</a> <div class='gfzc'><a href=''>个人注册</a><a href=''>单位注册</a></div></div><div class='bt-clear'></div>"
+                                )
+
+                                $(".login1").attr("href", logingrhref)
+                                $(".login2").attr("href", loginfrhref)
+                            } else {
+                                $(".name_loain").html(
+                                    "<a target='_blank' href=''>" + datasrc.loginname +
+                                    "</a> <a class='nameout' onclick='tuc()'> 退出</a>")
+                                $(".denglu").eq(1).hide();
+                                $(".denglu").eq(0).html(
+                                    "<a target='_blank' href=''>" + datasrc.loginname +
+                                    "</a>")
+
+                                $(".zhuce").eq(1).hide();
+                                $(".zhuce").eq(0).html("<a class='nameout'> 退出</a> ")
+                                $(".zwfw_login").children().hide()
+                                $(".zwfw_login").html(
+                                    "<a class='zwfw_login_aaa' target='_blank' href=''>您好," + datasrc.loginname +
+                                    "</a> <a class='nameout' onclick='tuc()'> 退出</a>")
+
+
+
+                            }
+                        },
+                    })
+
+                    function tuc() {
+                        console.log(1)
+                        $.ajax({
+                            url: "http://www.shandong.gov.cn/api-gateway/jpaas-juspace-web-sdywtb/front/sso/logout",
+                            type: "get",
+                            dataType: 'jsonp',
+                            success: function () {
+                                // document.location.reload();
+                            }
+                        })
+                        $.ajax({
+                            type: "get",
+                            url: "" + new Date().getTime(),
+                            async: true,
+                            dataType: 'json',
+                            xhrFields: {
+                                withCredentials: true
+                            },
+                            success: function (dataout) {
+
+                                var ifbsrc = '' + dataout.params.tokenSno;
+                                var ifra = '<iframe src="http://search.shandong.gov.cn/logout" style="display: none;"></iframe>';
+
+                                $.ajax({
+                                    type: "get",
+                                    async: true,
+                                    dataType: 'json',
+                                    url: '' + dataout.params.tokenSno
+
+                                })
+
+                                $(".ifb").attr("src", ifbsrc)
+                                $("body").append(ifra)
+
+                            }
+                        });
+
+                        $.ajax({
+                            url: 'http://www.shandong.gov.cn/center/member/login/logoutToYwt.do',
+                            type: 'get',
+                            dataType: 'json',
+                            xhrFields: {
+                                withCredentials: true
+                            },
+                            success: function (dataout) {
+                                $(".name_loain").html(
+                                    "<div  class='loginbg' onmouseover=loginshow(); onmouseleave=loginhide();><a>登录</a><div class='grfr'><a class='login1'>个人登录</a><a class='login2'>法人登录</a></div></div><div class='regbg' onmouseover=regshow(); onmouseleave=reghide();><a>注册</a> <div class='gfzc'><a href=''>个人注册</a><a href=''>单位注册</a></div></div><div class='bt-clear'></div>"
+                                )
+                                $(".login1").attr("href", logingrhref)
+                                $(".login2").attr("href", loginfrhref)
+                                document.location.reload();
+                                $(".zwfw_login").html();
+                                $(".zwfw_login").children().show()
+                                $(".zwfw_login").children("zwfw_login_aaa").hide()
+                                $(".denglu").eq(1).show();
+                                $(".zhuce").eq(1).show();
+                                location.href =
+                                    '' +
+                                    dataout.params.usertype
+                                $.ajax({
+                                    url: "http://search.shandong.gov.cn/logout",
+                                    type: "get",
+                                    dataType: 'json',
+                                    success: function () {
+                                    }
+                                })
+                            }
+                        })
+                    }
+
+                    function loginshow() {
+                        $('.grfr').show();
+                    }
+
+                    function loginhide() {
+                        $('.grfr').hide();
+                    }
+
+                    function regshow() {
+                        $('.gfzc').show();
+                    }
+
+                    function reghide() {
+                        $('.gfzc').hide();
+                    }
+                </script>
+
+                <script language='javascript' src='http://www.shandong.gov.cn/script/0/2008072133178312.js'></script>
+                <script type='text/javascript'>
+                    $('.wip_sxjk').click(function () {
+                        var indexsj = $(this).index();
+                        var dataljscr = $(this).attr('datalj')
+                        var result = encodeURIComponent(dataljscr);
+                        $.ajax({
+                            url: '' + new Date().getTime(),
+                            type: 'get',
+                            dataType: 'json',
+                            success: function (dataticket) {
+
+                                if (dataticket.code == 400) {
+                                    $.ajax({
+                                        url: 'http://www.shandong.gov.cn/center/member/login/setFlag.do',
+                                        type: 'get',
+                                        datatype: 'json',
+                                        success: function () {
+                                            window.open('' + result +
+                                                '&type=1');
+                                        }
+                                    })
+                                } else {
+
+                                    if (dataljscr.indexOf('gat.shandong.gov.cn') > -1) {
+                                        dataljscr = '' + new Base64().encode(dataljscr);
+                                    }
+                                    if (dataljscr.indexOf('?') > -1) {
+                                        window.open(dataljscr + '&ticket=' + dataticket.params.ticket);
+                                    } else {
+                                        window.open(dataljscr + '?ticket=' + dataticket.params.ticket);
+
+                                    }
+                                }
+                            }
+
+                        })
+                    })
+                </script>
+
+                <div class='sdjiucuo' style='display: none;'>
+                    <a class="close_jc">x</a>
+                    <a href='' target='_blank'><img src='http://www.shandong.gov.cn/picture/662/1912311408006854853.jpg'
+                            border='0'></a>
+                </div>
+
+                <script type="text/javascript">
+                    $(".sdjiucuo4 .close_jc").click(function () {
+                        $(".sdjiucuo4").hide();
+                    })
+                    $(".sdjiucuo3 .close_jc").click(function () {
+                        $(".sdjiucuo3").hide();
+                    })
+                    $(".sdjiucuo2 .close_jc").click(function () {
+                        $(".sdjiucuo2").hide();
+                    })
+
+                    var name = true;
+
+                    $(".sdjiucuo .close_jc").click(function () {
+                        $(this).parent(".sdjiucuo").hide();
+                        name == false;
+                        setInfo(false)
+                    })
+
+                    function setInfo(name) {
+                        var storage = window.sessionStorage;
+                        storage.setItem('name', name);
+                    }
+                </script>
+                <!--  juba埋点开始 -->
+                <script type="text/javascript">
+                    // juba埋点结束 
+                    // 访问统计 
+                    var _hmt = _hmt || [];
+                    (function () {
+                        var hm = document.createElement("script")
+                        hm.src = "";
+                        var s = document.getElementsByTagName("script")[0];
+                        s.parentNode.insertBefore(hm, s);
+                    })();
+  //访问统计结束
+                </script>
+
+
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var wwheight = $("window").height();
+        $(window).scroll(function () {
+            var topvals = $(document).scrollTop();
+            if (topvals > 290) {
+                $("#spe_slide").css({
+                    "top": parseInt(topvals - 238),
+                    "right": 0,
+                    "position": "absolute"
+                })
+            } else {
+                $("#spe_slide").css({
+                    "top": 0,
+                    "right": 0,
+                    "position": "relative"
+                })
+            }
+        })
+    </script>
+</body>
+
+</html>

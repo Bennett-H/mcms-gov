@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<meta name="renderer" content="webkit|ie-comp|ie-stand" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta http-equiv="Cache-Control" content="no-transform"/>
+<meta name="applicable-device" content="pc">
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+<title>{ms:global.name/}</title>
+<meta name="keywords" content="{ms:global.keyword/}">
+<meta name="description" content="{ms:global.descrip/}">
+
+<link rel="stylesheet" href="/{ms:global.style/}css/animate.min.css">
+<link rel="stylesheet" href="/{ms:global.style/}css/swiper.min.css">
+<link rel="stylesheet" href="/{ms:global.style/}css/style.css">
+<script src="/{ms:global.style/}js/jquery.min.js"></script>
+<script src="/{ms:global.style/}js/wow.min.js"></script>
+<script src="/{ms:global.style/}js/swiper.min.js"></script>
+<script src="/{ms:global.style/}js/style.js"></script>
+</head>
+<body>
+<#include "head.htm" />
+<div class="swiper-container banner">
+  <div class="swiper-wrapper">
+    {ms:arclist typeid="1673889193738543133" flag='f' size=10}
+    <div class="swiper-slide" style="background-image: url({@ms:file field.litpic/});"></div>
+    {/ms:arclist}  
+  </div>
+  <div class="swiper-pagination"></div>
+</div>
+<#include "ss.htm" />
+<div class="section">
+  <div class="section-title wow fadeInUp" style="z-index: 1;position: relative;"> <strong>T恤/工作服定制实力</strong>
+    <p>T恤衫定制，就选某某服饰</p>
+  </div>
+  <div class="in-shili">
+    <div class="item">
+      <div class="container">
+        <div class="wrap">
+          <h4>生产规模<small>Production scale</small></h4>
+          <div class="desc">T恤定制3天出货，工艺多样化！</div>
+          <p>强大的生产能力，具备年生产各类型服装100万套；</p>
+          <p>10000平方米厂房，百万销量，海内外客户共同选择。</p>
+          <ul class="clearfix">
+            <li>
+              <div class="img-cover"><span style="background-image: url(/{ms:global.style/}images/ys1-1.jpg)"></span></div>
+            </li>
+            <li>
+              <div class="img-cover"><span style="background-image: url(/{ms:global.style/}images/ys1-2.jpg)"></span></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="container">
+        <div class="wrap">
+          <h4>技术实力<small>Technical Strength</small></h4>
+          <div class="desc">工厂自营，严苛质量，布料第三方检测！</div>
+          <p>配备服装研发设计团队</p>
+          <p>CAD计算机操作系统，精确缝纫、定型</p>
+          <ul class="clearfix">
+            <li>
+              <div class="img-cover"><span style="background-image: url(/{ms:global.style/}images/ys2-1.jpg)"></span></div>
+            </li>
+            <li>
+              <div class="img-cover"><span style="background-image: url(/{ms:global.style/}images/ys2-2.jpg)"></span></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="container">
+        <div class="wrap">
+          <h4>真材实料<small>Real Stuff</small></h4>
+          <div class="desc">拒绝偷工减料，赢得客户好口碑！</div>
+          <p>印花环保材料，抗皱缩水处理，不掉色、边缘印制平整，无锯齿，拒绝起球；</p>
+          <p>T恤、西服、衬衫、工作服定。</p>
+          <ul class="clearfix">
+            <li>
+              <div class="img-cover"><span style="background-image: url(/{ms:global.style/}images/ys3-1.jpg)"></span></div>
+            </li>
+            <li>
+              <div class="img-cover"><span style="background-image: url(/{ms:global.style/}images/ys3-2.jpg)"></span></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="container">
+        <div class="wrap">
+          <h4>贴心服务<small>Caring Service</small></h4>
+          <div class="desc">7*24H快速响应，400天质量保障，3天闪电发货</div>
+          <p>客服团队24小时在线解答，沟通舒服畅快；</p>
+          <p>售后400天质保服务，遇事不推脱，让您放心。</p>
+          <ul class="clearfix">
+            <li>
+              <div class="img-cover"><span style="background-image: url(/{ms:global.style/}images/ys4-1.jpg)"></span></div>
+            </li>
+            <li>
+              <div class="img-cover"><span style="background-image: url(/{ms:global.style/}images/ys4-2.jpg)"></span></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="section">
+  <div class="container">
+    <div class="section-title wow fadeInUp"> <strong>T恤/工作服产品展示</strong>
+      <p>款式多样 · 随心定制工作服</p>
+    </div>
+    <ul class="in-prod clearfix">
+       {ms:channel type='son' typeid="1673889193738543105" size='4'}
+      <li>
+        <div class="wrap"> <a href="<#if field.type==3>{ms:global.html/}${field.typeurl}<#else>{ms:global.html/}${field.typelink}</#if>">
+          <h4>${field.typetitle}</h4>
+          <div class="img-center"><img src="{@ms:file field.typeico/}" alt="${field.typetitle}"></div>
+          </a>
+          <p> {ms:channel}   <span><a href="<#if field.type==3>{ms:global.html/}${field.typeurl}<#else>{ms:global.html/}${field.typelink}</#if>">${field.typetitle}</a></span>{/ms:channel} </p>
+        </div>
+      </li>
+      {/ms:channel}
+    </ul>
+    <div class="in-line"></div>
+    <div class="in-custom clearfix">
+      <div class="in-custom-right">
+        <h4>某某服饰定制</h4>
+        <div class="img-center"><img src="/{ms:global.style/}images/cpimg.jpg" alt="上门量身定做 · 设计">
+          <p>上门量身定做 · 设计</p>
+        </div>
+      </div>
+      <div class="in-custom-left">
+        <ul>
+          {ms:arclist typeid="1673889193738543105" size=4}
+          <li> <a href="{ms:global.html/}${field.link}"  title="${field.title}">
+            <div class="img-cover"><span style="background-image: url({@ms:file field.litpic/});"></span></div>
+            <div class="text">
+              <h4>${field.title}</h4>
+              <small>POLO T-SHIRT</small> </div>
+            </a> </li>
+          {/ms:arclist}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="section bg1">
+  <div class="container">
+    <div class="section-title wow fadeInUp"> <strong>某某服饰产品特点</strong>
+      <p>穿舒服的衣 · 做舒展的人</p>
+    </div>
+    <div class="in-tedian-con swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div class="in-tedian-img clearfix">
+            <div class="in-tedian-left">
+              <div class="img-center"><img src="/{ms:global.style/}images/xvs1.jpg" alt=""></div>
+              <div class="text">
+                <h4>某某服饰品牌 · 不褪色</h4>
+                <p>满足不同印花需求，保障服装设计清晰</p>
+              </div>
+            </div>
+            <div class="in-tedian-right">
+              <div class="img-center"> <img src="/{ms:global.style/}images/vs1.jpg" alt=""> </div>
+              <div class="text">
+                <h4>其他产品品牌产品对比</h4>
+                <p>衣物面目全非，能染到其他衣服上陷入“如何防止衣服褪色”的困惑</p>
+              </div>
+            </div>
+            <div class="vs"></div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="in-tedian-img clearfix">
+            <div class="in-tedian-left">
+              <div class="img-center"><img src="/{ms:global.style/}images/xvs2.jpg" alt=""></div>
+              <div class="text">
+                <h4>某某服饰品牌 · 不缩水</h4>
+                <p>直接做缩水处理，各种面料混合使用，后期缩水率高达80%以上</p>
+              </div>
+            </div>
+            <div class="in-tedian-right">
+              <div class="img-center"> <img src="/{ms:global.style/}images/vs2.jpg" alt=""> </div>
+              <div class="text">
+                <h4>其他产品品牌产品对比</h4>
+                <p>直接做缩水处理，各种面料混合使用，后期缩水率高达80%以上</p>
+              </div>
+            </div>
+            <div class="vs"></div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="in-tedian-img clearfix">
+            <div class="in-tedian-left">
+              <div class="img-center"><img src="/{ms:global.style/}images/xvs3.jpg" alt=""></div>
+              <div class="text">
+                <h4>某某服饰品牌 · 不起球</h4>
+                <p>严选健康环保各类服装面料无有害物质，达到国家检验标准</p>
+              </div>
+            </div>
+            <div class="in-tedian-right">
+              <div class="img-center"> <img src="/{ms:global.style/}images/vs3.jpg" alt=""> </div>
+              <div class="text">
+                <h4>其他产品品牌产品对比</h4>
+                <p>选用成本较低的面料，粗糙不规整，用户长期穿容易出现过敏红肿等现象</p>
+              </div>
+            </div>
+            <div class="vs"></div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="in-tedian-img clearfix">
+            <div class="in-tedian-left">
+              <div class="img-center"><img src="/{ms:global.style/}images/xvs4.jpg" alt=""></div>
+              <div class="text">
+                <h4>某某服饰品牌 · 抗褶皱</h4>
+                <p>微弹免烫更舒适，更易于打理，经过长期着装，拉起线来平直、均匀</p>
+              </div>
+            </div>
+            <div class="in-tedian-right">
+              <div class="img-center"> <img src="/{ms:global.style/}images/vs4.jpg" alt=""> </div>
+              <div class="text">
+                <h4>其他产品品牌产品对比</h4>
+                <p>上身效果差别大，洗过之后褶皱衣品档次不匹配个人形象</p>
+              </div>
+            </div>
+            <div class="vs"></div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="in-tedian-img clearfix">
+            <div class="in-tedian-left">
+              <div class="img-center"><img src="/{ms:global.style/}images/xvs5.jpg" alt=""></div>
+              <div class="text">
+                <h4>某某服饰品牌 · 多款式</h4>
+                <p>支持各种LOGO，图案，尺寸，颜色，风格定制，全方位满足新时代需求</p>
+              </div>
+            </div>
+            <div class="in-tedian-right">
+              <div class="img-center"> <img src="/{ms:global.style/}images/vs4.jpg" alt=""> </div>
+              <div class="text">
+                <h4>其他产品品牌产品对比</h4>
+                <p>款式单一，库存不足，未能及时提供企业团体批发定制要求</p>
+              </div>
+            </div>
+            <div class="vs"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ul class="in-tedian-menu">
+      <li class="active"> <a href="javascript:;"> <strong>01</strong>不褪色 </a> </li>
+      <li> <a href="javascript:;"> <strong>02</strong>不缩水 </a> </li>
+      <li> <a href="javascript:;"> <strong>03</strong>不起球 </a> </li>
+      <li> <a href="javascript:;"> <strong>04</strong>抗褶皱 </a> </li>
+      <li> <a href="javascript:;"> <strong>05</strong>多款式 </a> </li>
+    </ul>
+  </div>
+</div>
+<div class="section clearfix">
+  <div class="container">
+    <div class="section-title wow fadeInUp"> <strong>某某臻品案例鉴赏</strong>
+      <p>精心为您定制 · 听得见的好评</p>
+    </div>
+    <div class="in-case-menu">
+      <ul>
+         {ms:channel type='son' typeid="1673889193738543110"}
+        <li <#if field.index==1>class="active"</#if>><a href="javascript:;"><i style="background-image: url(/{ms:global.style/}images/anico${field.index}.png);"></i><span>${field.typetitle}<small>${field.typeshorttitle}</small></span></a></li>
+        {/ms:channel}
+      </ul>
+      {ms:channel type='self' typeid="1673889193738543110"}<a href="{ms:global.html/}${field.typelink}" class="more"><i style="background-image: url(/{ms:global.style/}images/anico6.png);"></i><span>更多案例<small>More cases</small></span></a>{/ms:channel}</div>
+    <div class="in-case-con swiper-container">
+      <div class="swiper-wrapper">
+        {ms:channel typeid="1673889193738543110"}
+        {ms:arclist size=1}
+        <div class="swiper-slide"> <a href="{ms:global.html/}${field.link}"  title="${field.title}">
+          <div class="img-cover"><span style="background-image: url({@ms:file field.litpic/});"></span></div>
+          <dl>
+            <dt class="img-center"><img src="{@ms:file global.logo/}" alt="${field.title}"></dt>
+            <dd>
+              <h4>${field.title}</h4>
+              <p>{@ms:len field.descrip 60 /}</p>
+            </dd>
+          </dl>
+          </a> </div>
+          {/ms:arclist}
+       {/ms:channel}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="section" style="background-color: #f6f6f6;">
+  <div class="container">
+    <div class="section-title wow fadeInUp"> <strong>新闻进行时</strong>
+      <p>聚焦某某动态 · 获取服装方向</p>
+    </div>
+    <ul class="in-news-menu">
+       {ms:channel type='son' typeid="1673889193738543114"}
+      <li <#if field.index==1>class="active"</#if>><a href="javascript:;">${field.typetitle}</a></li>
+      {/ms:channel}
+    </ul>
+    <div class="in-news-con swiper-container">
+      <div class="swiper-wrapper">
+        {ms:channel typeid="1673889193738543114"}
+        <div class="swiper-slide">
+          
+          <div class="in-news-left"> 
+          {ms:arclist size=1}
+          <a href="{ms:global.html/}${field.link}"  title="${field.title}" class="top">
+            <div class="img-cover"><span style="background-image: url({@ms:file field.litpic/});"></span></div>
+            <div class="text">
+              <h4><span>${field.date?string("yyyy-MM-dd")}</span><i>热门</i>${field.title}</h4>
+              <p>{@ms:len field.descrip 40 /}</p>
+            </div>
+            </a>
+             {/ms:arclist}
+            <ul class="bottom">
+              {ms:arclist size=2}
+              <li><a href="{ms:global.html/}${field.link}" title="${field.title}">${field.title}</a></li>
+              {/ms:arclist}
+            </ul>
+          </div>
+         
+          <div class="in-news-right">
+            <ul class="top">
+              {ms:arclist size=2}
+              <li> <a href="{ms:global.html/}${field.link}"  title="${field.title}">
+                <div class="img-cover"><span style="background-image: url({@ms:file field.litpic/});"></span></div>
+                <div class="text">
+                  <h4>${field.title}</h4>
+                  <p>{@ms:len field.descrip 56 /}</p>
+                </div>
+                </a> </li>
+                {/ms:arclist}
+            </ul>
+            <ul class="bottom">
+              {ms:arclist size=3}
+              <li><a href="{ms:global.html/}${field.link}"  title="${field.title}"><span>${field.date?string("yyyy-MM-dd")}</span>${field.title}</a></li>
+              {/ms:arclist}
+            </ul>
+          </div>
+        </div>
+        {/ms:channel}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="section">
+  <div class="container">
+    <div class="section-title wow fadeInUp"> <strong>走进某某服饰</strong>
+      <p>别出心裁、因你精致</p>
+    </div>
+    {ms:channel type='self' typeid="1673889193738543104"}
+    <dl class="in-about">
+      <dt class="img-center"><a href="{ms:global.html/}${field.typelink}"><img src="/{ms:global.style/}images/ab.jpg" alt="公司简介"></a></dt>
+      <dd>
+        <h4>某某公司</h4>
+        {ms:data dataid="1673889195659534336"}
+        <p>{@ms:len field.descrip 300 /}</p>
+          {/ms:data}
+        <a href="{ms:global.html/}${field.typelink}" class="more">查看详情</a> </dd>
+    </dl>
+    {/ms:channel}
+  </div>
+</div>
+<div class="section" style="padding-top: 0;">
+  <div class="container">
+    <div class="style-link">
+      <h4>友情链接 <small>/ LINKS</small></h4>
+      <ul class="clearfix">
+        <a href="https://www.baidu.com" target="_blank">百度 </a><a href="https://www.qq.com" target="_blank">腾讯网 </a><a href="https://www.sina.com.cn/" target="_blank">新浪网 </a><a href="http://store.mingsoft.net/#/detail?id=317&type=plugin" target="_blank">MStore友情链接插件 </a>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="in-ftys">
+  <div class="container">
+    <ul>
+      <li>
+        <p class="i1">免费提供设计/免费提供样品<br>
+          免费上门量体/免费送货到家</p>
+      </li>
+      <li>
+        <p class="i2">七天内快速提供<br>
+          多套应用方案</p>
+      </li>
+      <li>
+        <p class="i3">T恤 西服 衬衫 工作服定制<br>
+          荣获多项荣誉</p>
+      </li>
+      <li>
+        <p class="i4">15年丰富的工作服<br>
+          定制经验</p>
+      </li>
+    </ul>
+  </div>
+</div>
+<#include "foot.htm" />
+<script>
+    var banner = new Swiper('.banner', {
+        autoplay: true,
+        navigation: {
+            prevEl: '.banner .swiper-button-prev',
+            nextEl: '.banner .swiper-button-next'
+        },
+        pagination: {
+            el: '.banner .swiper-pagination',
+            clickable: true
+        },
+        on: {
+            init: function (swiper) {
+                var slide = this.slides.eq(0);
+                slide.addClass('ani-slide');
+            },
+            transitionStart: function () {
+                for (i = 0; i < this.slides.length; i++) {
+                    var slide = this.slides.eq(i);
+                    slide.removeClass('ani-slide');
+                }
+            },
+            transitionEnd: function () {
+                var slide = this.slides.eq(this.activeIndex);
+                slide.addClass('ani-slide');
+
+            },
+        }
+    });
+
+    tabsSwiper('.in-tedian-menu', '.in-tedian-con');
+    tabsSwiper('.in-case-menu ul', '.in-case-con');
+    tabsSwiper('.in-news-menu', '.in-news-con');
+    $('.nav li:first').addClass('active');
+</script>
+</body>
+</html>

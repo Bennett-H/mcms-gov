@@ -1,0 +1,1157 @@
+<div class="wip_footerbg wip_footerpc" ergodic="serve">
+    <div class="link_btnbg hidesmallfooter">
+        <div class="link_btn_left" style="position:relative;">
+            <a href="http://www.gov.cn/" target="_blank">
+                中央人民政府
+            </a>
+            <a href="" style="cursor: default;" class="wei1">
+                <span style="font-size:14px;">爱山东APP</span>
+            </a>
+            <a href="" target="_blank">
+                政务微博
+            </a>
+            <a href="" target="_blank">
+                <span style="font-size:14px;">政务微信</span>
+            </a>
+
+        </div>
+
+        <div class="hot_btn_right link_btn_nav" style="border: 1px solid #bac5d5;">
+            <a>
+                深度导航
+            </a>
+        </div>
+        <div class="hot_btn_right" style="background: none;border: 1px solid #bac5d5;border-bottom: 0px;">
+            <a class="wip_sxjk" href="" target="_blank">
+                我的足迹
+            </a>
+        </div>
+
+        <div class="bt-clear">
+
+        </div>
+    </div>
+
+    <div class="wip_footer_linkbg hidesmallfooter">
+        <div class="link_map">
+            {ms:channel type = 'nav' flag = 'nav'}
+            <#if field.typetitle=='要闻动态'>
+                <ul class="link_map_ul">
+                    <li>
+                        <a href="{ms:global.url/}${field.typelink}">${field.typetitle}</a>
+                    </li>
+                    <ul class="link_map_ul_ul">
+                        {ms:channel type = 'son'}
+                        <li>
+                            <a target="_blank" href="{ms:global.url/}${field.typelink}">${field.typetitle}</a>
+                        </li>
+                        {/ms:channel}
+                    </ul>
+                </ul>
+                <#elseif field.typetitle=='政务公开'>
+                    <ul class="link_map_ul">
+                        <li>
+                            <a href="{ms:global.url/}${field.typelink}">${field.typetitle}</a>
+                        </li>
+                        <ul class="link_map_ul_ul">
+                            {ms:channel type = 'son'}
+                            <li>
+                                <a target="_blank" href="{ms:global.url/}${field.typelink}">${field.typetitle}</a>
+                            </li>
+                            {/ms:channel}
+                        </ul>
+                    </ul>
+                    <#elseif field.typetitle=='政民互动'>
+                        <ul class="link_map_ul">
+                            <li>
+                                <a href="{ms:global.url/}${field.typelink}">${field.typetitle}</a>
+                            </li>
+                            <ul class="link_map_ul_ul">
+                                {ms:channel type = 'son'}
+                                <li>
+                                    <a target="_blank" href="{ms:global.url/}${field.typelink}">${field.typetitle}</a>
+                                </li>
+                                {/ms:channel}
+                            </ul>
+                        </ul>
+                        <#elseif field.typetitle=='走进山东'>
+                            <ul class="link_map_ul">
+                                <li>
+                                    <a href="{ms:global.url/}${field.typelink}">${field.typetitle}</a>
+                                </li>
+                                <ul class="link_map_ul_ul">
+                                    {ms:channel type = 'son'}
+                                    <li>
+                                        <a target="_blank"
+                                            href="{ms:global.url/}${field.typelink}">${field.typetitle}</a>
+                                    </li>
+                                    {/ms:channel}
+                                </ul>
+                            </ul>
+            </#if>
+            {/ms:channel}
+            <div class="bt-clear">
+            </div>
+        </div>
+    </div>
+
+    <div class="wip_footer_shipbg bt-clear hidesmallfooter">
+        <div class="wip_footer_ship">
+            <div class="wip_ship_left">
+                网站导航
+            </div>
+            <div class="wip_ship_right">
+                <div class="wip_ship_click" style="margin-left:0px;">
+                    <a href="http://www.sdrd.gov.cn/" target="_blank">
+                        山东省人大常委会
+                    </a>
+                </div>
+                <div class="wip_ship_click">
+                    <a href="http://www.sdzx.gov.cn/" target="_blank">
+                        政协山东省委员会
+                    </a>
+                </div>
+                <div class="wip_ship_click">
+                    <a href="http://www.sdjj.gov.cn/" target="_blank">
+                        山东省监察委员会
+                    </a>
+                </div>
+                <div class="wip_ship_click">
+                    <a href="http://sdcourt.gov.cn/" target="_blank">
+                        山东省高级人民法院
+                    </a>
+                </div>
+                <div class="wip_ship_click">
+                    <a href="http://www.sdjcy.gov.cn/" target="_blank">
+                        山东省人民检察院
+                    </a>
+                </div>
+                <div class="select_1">
+                    <span class="select_span">国家部委网站</span>
+
+                    <ul class="select_ul">
+
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.mfa.gov.cn/">外交部</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.mod.gov.cn/">国防部</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.ndrc.gov.cn/">国家发展和改革委员会</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.moe.gov.cn/">教育部</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.most.gov.cn/">科学技术部</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.miit.gov.cn/">工业和信息化部</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.seac.gov.cn/">国家民族事务委员会</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.mps.gov.cn/">公安部</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.mca.gov.cn/">民政部</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.moj.gov.cn/">司法部</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.mof.gov.cn/">财政部</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.mohrss.gov.cn/">人力资源和社会保障部</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.mnr.gov.cn/">自然资源部</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.mee.gov.cn/">生态环境部</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.mohurd.gov.cn/">住房和城乡建设部</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.mot.gov.cn/">交通运输部</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.mwr.gov.cn/">水利部</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.moa.gov.cn/">农业农村部</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.mofcom.gov.cn/">商务部</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.mct.gov.cn/">文化和旅游部</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.nhc.gov.cn">国家卫生健康委员会</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.mva.gov.cn/">退役军人事务部</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.mem.gov.cn/">应急管理部</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.pbc.gov.cn/">人民银行</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.audit.gov.cn/">审计署</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.moe.gov.cn/jyb_sy/China_Language/">国家语言文字工作委员会</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.cnsa.gov.cn/">国家航天局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.caea.gov.cn/">国家原子能机构</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://nnsa.mee.gov.cn/">国家核安全局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.sasac.gov.cn/">国务院国有资产监督管理委员会</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.customs.gov.cn">海关总署</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.chinatax.gov.cn/">国家税务总局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.samr.gov.cn/">国家市场监督管理总局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.nrta.gov.cn/">国家广播电视总局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.sport.gov.cn/">国家体育总局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.stats.gov.cn/">国家统计局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.cidca.gov.cn/">国家国际发展合作署</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.nhsa.gov.cn/">国家医疗保障局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.counsellor.gov.cn/">国务院参事室</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.ggj.gov.cn/">国家机关事务管理局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.cnca.gov.cn">国家认证认可监督管理委员会</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.sac.gov.cn/">国家标准化管理委员会</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.ncac.gov.cn/">国家新闻出版署（国家版权局）</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.sara.gov.cn/" target="_blank">国家宗教事务局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.hmo.gov.cn/">国务院港澳事务办公室</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank"
+                                href="http://www.gov.cn/guoqing/2018-06/22/content_5300522.htm">国务院研究室</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.gqb.gov.cn/">国务院侨务办公室</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.gwytb.gov.cn/">国务院台湾事务办公室</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.cac.gov.cn/">国家互联网信息办公室</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.scio.gov.cn/index.htm">国务院新闻办公室</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://203.192.6.89/xhs/">新华通讯社</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.cas.ac.cn/">中国科学院</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://cass.cssn.cn/">中国社会科学院</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.cae.cn/">中国工程院</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.drc.gov.cn/">国务院发展研究中心</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.cnr.cn/">中央广播电视总台</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.cma.gov.cn/">中国气象局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank"
+                                href="http://www.cbirc.gov.cn/cn/view/pages/index/index.html">中国银行保险监督管理委员会</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.csrc.gov.cn/pub/newsite/">中国证券监督管理委员会</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.ccps.gov.cn/" target="_blank">国家行政学院</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.gjxfj.gov.cn/">国家信访局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.chinagrain.gov.cn/index.html">国家粮食和物资储备局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.nea.gov.cn/">国家能源局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.sastind.gov.cn/">国家国防科技工业局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.tobacco.gov.cn/html/">国家烟草专卖局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.mps.gov.cn/n2254996/">国家移民管理局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.forestry.gov.cn/">国家林业和草原局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.nra.gov.cn/">国家铁路局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.caac.gov.cn/index.html">中国民用航空局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.spb.gov.cn/">国家邮政局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.ncha.gov.cn/">国家文物局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.satcm.gov.cn/">国家中医药管理局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.chinacoal-safety.gov.cn/">国家煤矿安全监察局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.safe.gov.cn/">国家外汇管理局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.nmpa.gov.cn/WS04/CL2042/">国家药品监督管理局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="https://www.cnipa.gov.cn/">国家知识产权局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank">出入境管理局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.forestry.gov.cn/">国家公园管理局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.scs.gov.cn/">国家公务员局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.saac.gov.cn/">国家档案局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.gjbmj.gov.cn/">国家保密局</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank" href="http://www.oscca.gov.cn/">国家密码管理局</a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="select_2">
+                    <span class="select_span">各省区市政府网站</span>
+
+                    <ul class="select_ul">
+
+                        <li class="select_li">
+                            <a href="http://www.beijing.gov.cn/" target="_blank">北京</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.tj.gov.cn/" target="_blank">天津</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.hebei.gov.cn/" target="_blank">河北</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.shanxi.gov.cn/" target="_blank">山西</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.nmg.gov.cn/" target="_blank">内蒙古</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.ln.gov.cn/" target="_blank">辽宁</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.jl.gov.cn/" target="_blank">吉林</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.hlj.gov.cn/" target="_blank">黑龙江</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.shanghai.gov.cn/" target="_blank">上海</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.jiangsu.gov.cn/" target="_blank">江苏</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.zj.gov.cn/" target="_blank">浙江</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.ah.gov.cn/" target="_blank">安徽</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.fujian.gov.cn/" target="_blank">福建</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.jiangxi.gov.cn/" target="_blank">江西</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.shandong.gov.cn/" target="_blank">山东</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.henan.gov.cn/" target="_blank">河南</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.hubei.gov.cn/" target="_blank">湖北</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.hunan.gov.cn/" target="_blank">湖南</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.gd.gov.cn/" target="_blank">广东</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.gxzf.gov.cn/" target="_blank">广西</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.hainan.gov.cn/" target="_blank">海南</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.cq.gov.cn/" target="_blank">重庆</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.sc.gov.cn/" target="_blank">四川</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.guizhou.gov.cn/" target="_blank">贵州</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.yn.gov.cn/" target="_blank">云南</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.xizang.gov.cn/" target="_blank">西藏</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.shaanxi.gov.cn/" target="_blank">陕西</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.gansu.gov.cn/" target="_blank">甘肃</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.qh.gov.cn/" target="_blank">青海</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.nx.gov.cn/" target="_blank">宁夏</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.xinjiang.gov.cn/" target="_blank">新疆</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.gov.hk/" target="_blank">香港</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.gov.mo/" target="_blank">澳门</a>
+                        </li>
+                        <li class="select_li">
+                            <a target="_blank">台湾</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.xjbt.gov.cn/" target="_blank">新疆生产建设兵团</a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="select_3">
+                    <span class="select_span">省政府部门网站</span>
+
+                    <ul class="select_ul">
+
+                        <li class="select_li">
+                            <a href="http://fgw.shandong.gov.cn/" target="_blank">山东省发展和改革委员会</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://edu.shandong.gov.cn/" target="_blank">山东省教育厅</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://kjt.shandong.gov.cn/" target="_blank">山东省科学技术厅</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://gxt.shandong.gov.cn/" target="_blank">山东省工业和信息化厅</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://mzw.shandong.gov.cn/" target="_blank">山东省民族宗教事务委员会</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://gat.shandong.gov.cn/" target="_blank">山东省公安厅</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://mzt.shandong.gov.cn/" target="_blank">山东省民政厅</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://sft.shandong.gov.cn/index.shtml" target="_blank">山东省司法厅</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://czt.shandong.gov.cn/" target="_blank">山东省财政厅</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://hrss.shandong.gov.cn/" target="_blank">山东省人力资源和社会保障厅</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://dnr.shandong.gov.cn/" target="_blank">山东省自然资源厅</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://sthj.shandong.gov.cn/" target="_blank">山东省生态环境厅</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://zjt.shandong.gov.cn/" target="_blank">山东省住房和城乡建设厅</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://jtt.shandong.gov.cn/" target="_blank">山东省交通运输厅</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://wr.shandong.gov.cn/" target="_blank">山东省水利厅</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://nync.shandong.gov.cn/" target="_blank">山东省农业农村厅</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://commerce.shandong.gov.cn/" target="_blank">山东省商务厅</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://whhly.shandong.gov.cn/" target="_blank">山东省文化和旅游厅</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://wsjkw.shandong.gov.cn/" target="_blank">山东省卫生健康委员会</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://dva.shandong.gov.cn/" target="_blank">山东省退役军人事务厅</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://yjt.shandong.gov.cn/" target="_blank">山东省应急管理厅</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://audit.shandong.gov.cn/" target="_blank">山东省审计厅</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://wb.shandong.gov.cn/" target="_blank">山东省人民政府外事办公室</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://gzw.shandong.gov.cn/" target="_blank">山东省人民政府国有资产监督管理委员会</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://amr.shandong.gov.cn/" target="_blank">山东省市场监督管理局</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://gd.shandong.gov.cn/" target="_blank">山东省广播电视局</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://ty.shandong.gov.cn/" target="_blank">山东省体育局</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://tjj.shandong.gov.cn/" target="_blank">山东省统计局</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://ybj.shandong.gov.cn/" target="_blank">山东省医疗保障局</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://jgswj.shandong.gov.cn/" target="_blank">山东省机关事务管理局</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://rfb.shandong.gov.cn/" target="_blank">山东省人民防空办公室</a>
+                        </li>
+
+                        <li class="select_li">
+                            <a href="http://dfjrjgj.shandong.gov.cn/" target="_blank">山东省地方金融监督管理局</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://bdb.shandong.gov.cn/" target="_blank">山东省大数据局</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://xfj.shandong.gov.cn/" target="_blank">山东省信访局</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://nyj.shandong.gov.cn/" target="_blank">山东省能源局</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://lscb.shandong.gov.cn/" target="_blank">山东省粮食和物资储备局</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://jyj.shandong.gov.cn/" target="_blank">山东省监狱管理局</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://hyj.shandong.gov.cn/" target="_blank">山东省海洋局</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://xm.shandong.gov.cn/" target="_blank">山东省畜牧兽医局</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://mpa.shandong.gov.cn/" target="_blank">山东省药品监督管理局</a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="select_4">
+                    <span class="select_span">市县部门网站</span>
+
+                    <ul class="select_ul">
+
+                        <li class="select_li" style="font-weight:bold;">
+                            <a href="http://www.jinan.gov.cn/" target="_blank">济南市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.lixia.gov.cn/" target="_blank">历下区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.shizhong.gov.cn/" target="_blank">市中区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.huaiyin.gov.cn/" target="_blank">槐荫区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.tianqiao.gov.cn/" target="_blank">天桥区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.licheng.gov.cn" target="_blank">历城区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.jncq.gov.cn/" target="_blank">长清区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.jnzq.gov.cn/" target="_blank">章丘区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.jiyang.gov.cn/" target="_blank">济阳区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.laiwu.gov.cn/" target="_blank">莱芜区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.gangcheng.gov.cn/" target="_blank">钢城区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.pingyin.gov.cn/" target="_blank">平阴县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.shanghe.gov.cn/" target="_blank">商河县</a>
+                        </li>
+                        <li class="select_li" style="font-weight:bold;">
+                            <a href="http://www.qingdao.gov.cn/" target="_blank">青岛市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.qdsn.gov.cn/" target="_blank">市南区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://shibei.qingdao.gov.cn/" target="_blank">市北区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.huangdao.gov.cn/n10/index.html" target="_blank">黄岛区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.laoshan.gov.cn/" target="_blank">崂山区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.qdlc.gov.cn/" target="_blank">李沧区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.chengyang.gov.cn/" target="_blank">城阳区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.jimo.gov.cn/" target="_blank">即墨区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.jiaozhou.gov.cn/" target="_blank">胶州市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.pingdu.gov.cn/" target="_blank">平度市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.laixi.gov.cn/" target="_blank">莱西市</a>
+                        </li>
+                        <li class="select_li" style="font-weight:bold;">
+                            <a href="http://www.zibo.gov.cn/" target="_blank">淄博市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.zichuan.gov.cn/" target="_blank">淄川区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.zhangdian.gov.cn/" target="_blank">张店区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.boshan.gov.cn/" target="_blank">博山区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.linzi.gov.cn/" target="_blank">临淄区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.zhoucun.gov.cn/" target="_blank">周村区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.huantai.gov.cn/" target="_blank">桓台县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.gaoqing.gov.cn/" target="_blank">高青县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.yiyuan.gov.cn//" target="_blank">沂源县</a>
+                        </li>
+                        <li class="select_li" style="font-weight:bold;">
+                            <a href="http://www.zaozhuang.gov.cn/" target="_blank">枣庄市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.zzszq.gov.cn/" target="_blank">市中区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.xuecheng.gov.cn/" target="_blank">薛城区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.ycq.gov.cn/" target="_blank">峄城区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.tez.gov.cn/" target="_blank">台儿庄区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.shanting.gov.cn/" target="_blank">山亭区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.tengzhou.gov.cn/" target="_blank">滕州市</a>
+                        </li>
+                        <li class="select_li" style="font-weight:bold;">
+                            <a href="http://www.dongying.gov.cn/" target="_blank">东营市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.dyq.gov.cn/" target="_blank">东营区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.hekou.gov.cn/" target="_blank">河口区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.kenli.gov.cn/" target="_blank">垦利区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.lijin.gov.cn/" target="_blank">利津县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.guangrao.gov.cn/" target="_blank">广饶县</a>
+                        </li>
+                        <li class="select_li" style="font-weight:bold;">
+                            <a href="http://www.yantai.gov.cn/" target="_blank">烟台市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.zhifu.gov.cn/" target="_blank">芝罘区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.ytfushan.gov.cn/" target="_blank">福山区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.muping.gov.cn/" target="_blank">牟平区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.ytlaishan.gov.cn/" target="_blank">莱山区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.penglai.gov.cn/" target="_blank">蓬莱区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.longkou.gov.cn/" target="_blank">龙口市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.laiyang.gov.cn/" target="_blank">莱阳市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.laizhou.gov.cn/" target="_blank">莱州市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.zhaoyuan.gov.cn/" target="_blank">招远市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.sdqixia.gov.cn/" target="_blank">栖霞市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.haiyang.gov.cn/" target="_blank">海阳市</a>
+                        </li>
+                        <li class="select_li" style="font-weight:bold;">
+                            <a href="http://www.weifang.gov.cn/" target="_blank">潍坊市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.weicheng.gov.cn/" target="_blank">潍城区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.hanting.gov.cn/" target="_blank">寒亭区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.fangzi.gov.cn/" target="_blank">坊子区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.kuiwen.gov.cn/" target="_blank">奎文区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.qingzhou.gov.cn/" target="_blank">青州市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.zhucheng.gov.cn/" target="_blank">诸城市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.shouguang.gov.cn/" target="_blank">寿光市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.anqiu.gov.cn/" target="_blank">安丘市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.gaomi.gov.cn/" target="_blank">高密市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.changyi.gov.cn/" target="_blank">昌邑市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.linqu.gov.cn/" target="_blank">临朐县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.changle.gov.cn/" target="_blank">昌乐县</a>
+                        </li>
+                        <li class="select_li" style="font-weight:bold;">
+                            <a href="http://www.jining.gov.cn/" target="_blank">济宁市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.rencheng.gov.cn/" target="_blank">任城区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.yanzhou.gov.cn/" target="_blank">兖州区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.qufu.gov.cn/" target="_blank">曲阜市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.zoucheng.gov.cn/" target="_blank">邹城市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.weishan.gov.cn/" target="_blank">微山县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.yutai.gov.cn/" target="_blank">鱼台县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.jinxiang.gov.cn/" target="_blank">金乡县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.jiaxiang.gov.cn/" target="_blank">嘉祥县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.wenshang.gov.cn/" target="_blank">汶上县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.sishui.gov.cn/" target="_blank">泗水县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.liangshan.gov.cn/" target="_blank">梁山县</a>
+                        </li>
+                        <li class="select_li" style="font-weight:bold;">
+                            <a href="http://www.taian.gov.cn/" target="_blank">泰安市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.sdtaishan.gov.cn/" target="_blank">泰山区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.daiyue.gov.cn/" target="_blank">岱岳区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.xintai.gov.cn/" target="_blank">新泰市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.feicheng.gov.cn/" target="_blank">肥城市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.ny.gov.cn/" target="_blank">宁阳县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.dongping.gov.cn/" target="_blank">东平县</a>
+                        </li>
+                        <li class="select_li" style="font-weight:bold;">
+                            <a href="http://www.weihai.gov.cn/" target="_blank">威海市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.huancui.gov.cn/" target="_blank">环翠区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.wendeng.gov.cn/" target="_blank">文登区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.rongcheng.gov.cn/" target="_blank">荣成市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.rushan.gov.cn/" target="_blank">乳山市</a>
+                        </li>
+                        <li class="select_li" style="font-weight:bold;">
+                            <a href="http://www.rizhao.gov.cn/" target="_blank">日照市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.rzdonggang.gov.cn/" target="_blank">东港区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.rzlanshan.gov.cn/" target="_blank">岚山区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.wulian.gov.cn/" target="_blank">五莲县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.juxian.gov.cn/" target="_blank">莒县</a>
+                        </li>
+                        <li class="select_li" style="font-weight:bold;">
+                            <a href="http://www.linyi.gov.cn/" target="_blank">临沂市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.lyls.gov.cn/" target="_blank">兰山区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.luozhuang.gov.cn/" target="_blank">罗庄区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.hedong.gov.cn/" target="_blank">河东区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.yinan.gov.cn/" target="_blank">沂南县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.tancheng.gov.cn/" target="_blank">郯城县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.yishui.gov.cn/" target="_blank">沂水县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.lanling.gov.cn/" target="_blank">兰陵县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.feixian.gov.cn/" target="_blank">费县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.pingyi.gov.cn/" target="_blank">平邑县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.junan.gov.cn/" target="_blank">莒南县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.mengyin.gov.cn/" target="_blank">蒙阴县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.linshu.gov.cn/" target="_blank">临沭县</a>
+                        </li>
+                        <li class="select_li" style="font-weight:bold;">
+                            <a href="http://www.dezhou.gov.cn/" target="_blank">德州市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.decheng.gov.cn/" target="_blank">德城区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.dzlc.gov.cn/" target="_blank">陵城区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.laoling.gov.cn/" target="_blank">乐陵市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.yuchengshi.gov.cn/" target="_blank">禹城市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.sdningjin.gov.cn/" target="_blank">宁津县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.qingyun.gov.cn/" target="_blank">庆云县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.linyixian.gov.cn/" target="_blank">临邑县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.qihe.gov.cn/" target="_blank">齐河县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.zgpingyuan.gov.cn/" target="_blank">平原县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.xiajin.gov.cn/" target="_blank">夏津县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.wucheng.gov.cn/" target="_blank">武城县</a>
+                        </li>
+                        <li class="select_li" style="font-weight:bold;">
+                            <a href="http://www.liaocheng.gov.cn/" target="_blank">聊城市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.dongchangfu.gov.cn/" target="_blank">东昌府区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.chiping.gov.cn/" target="_blank">茌平区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.linqing.gov.cn/" target="_blank">临清市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.yanggu.gov.cn/" target="_blank">阳谷县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.sdsx.gov.cn/" target="_blank">莘县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.sdde.gov.cn/" target="_blank">东阿县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.guanxian.gov.cn/" target="_blank">冠县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.gaotang.gov.cn/" target="_blank">高唐县</a>
+                        </li>
+                        <li class="select_li" style="font-weight:bold;">
+                            <a href="http://www.binzhou.gov.cn/" target="_blank">滨州市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.bincheng.gov.cn/" target="_blank">滨城区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.zhanhua.gov.cn/" target="_blank">沾化区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.zouping.gov.cn/" target="_blank">邹平市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.huimin.gov.cn/" target="_blank">惠民县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.yangxin.gov.cn/" target="_blank">阳信县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.wudi.gov.cn/" target="_blank">无棣县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.boxing.gov.cn/" target="_blank">博兴县</a>
+                        </li>
+                        <li class="select_li" style="font-weight:bold;">
+                            <a href="http://www.heze.gov.cn/" target="_blank">菏泽市</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.mudan.gov.cn/" target="_blank">牡丹区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.dingtao.gov.cn/" target="_blank">定陶区</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.caoxian.gov.cn/" target="_blank">曹县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.shanxian.gov.cn/" target="_blank">单县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.chengwu.gov.cn/" target="_blank">成武县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.juye.gov.cn/" target="_blank">巨野县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.cnyc.gov.cn/" target="_blank">郓城县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.juancheng.gov.cn/" target="_blank">鄄城县</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://www.dmzf.gov.cn/" target="_blank">东明县</a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="select_4">
+                    <span class="select_span">其他网站</span>
+
+                    <ul class="select_ul">
+
+                        <li class="select_li">
+                            <a href="http://www.sdsqw.cn/" target="_blank">山东省情网</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://shandong.chinatax.gov.cn" target="_blank">国家税务总局山东省税务局</a>
+                        </li>
+                        <li class="select_li">
+                            <a href="http://credit.shandong.gov.cn/" target="_blank">信用中国（山东）</a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="bt-clear">
+
+                </div>
+            </div>
+            <div class="bt-clear">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="wip_footer_con">
+        <div class="wip_footer_con_left hidesmallfooter">
+
+            <span id="_ideConac"><a href="" target="_blank"><img src="{ms:global.host/}/{ms:global.style/}/images/red.png"></a></span>
+        </div>
+        <div class="wip_footer_con_center ">
+            <p class="p">
+                {ms:channel typeid="1647844113875517456" type = 'son' }
+                <a href="{ms:global.url/}${field.typelink}">
+                    ${field.typetitle}
+                </a>
+                {/ms:channel}
+            </p>
+            <p>
+                {ms:global.copyright/}
+            </p>
+            <p>
+                政府网站标识码：3700000071
+                <a target='_blank'>鲁ICP备05051451号 </a>
+                <a target='_blank' href='' style="width: 198px;">
+                    <img src="{ms:global.host/}/{ms:global.style/}/images/1910011236531315944.png" /> 鲁公网安备
+                    37010202001156号
+                </a>
+            </p>
+            <div class="bt-clear" style="clear: both;">
+
+            </div>
+        </div>
+        <div class="wip_footer_con_right hidesmallfooter">
+            <span id='_span_jiucuo'>
+                <img src="{ms:global.host/}/{ms:global.style/}/images/jiucuo.png" />
+            </span>
+        </div>
+
+        <div class="bt-clear">
+
+        </div>
+    </div>
+
+</div>

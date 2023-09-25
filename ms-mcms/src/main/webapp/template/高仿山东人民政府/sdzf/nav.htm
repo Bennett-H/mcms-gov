@@ -1,0 +1,15 @@
+<div class='wip_nav'>
+    <div class='wip_nav_li t1'>
+        <a href="{ms:global.host/}">
+            首页
+        </a>
+    </div>
+    {ms:channel type = 'nav' flag = 'nav'}
+    <div class='wip_nav_li t${field.index + 1}'>
+        <a href='{ms:global.url/}${field.typelink}'>
+            ${field.typetitle}	
+        </a>
+    </div>
+   {/ms:channel}
+    <div class='bt-clear'></div>
+</div>

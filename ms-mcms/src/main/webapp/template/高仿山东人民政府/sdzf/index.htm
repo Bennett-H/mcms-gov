@@ -1,0 +1,2498 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{ms:global.name/}</title>
+    <meta name='Maketime' content='2021-09-14 14:33:47'>
+    <meta name="SiteName" content="{ms:global.name/}">
+    <meta name="keywords" content="{ms:global.keyword/}">
+    <meta name="description" content="{ms:global.descrip/}">
+    <meta http-equiv="X-UA-Compatible" content="IE=9" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name='WebId' content='410'>
+    <script language="javascript" src="{ms:global.host/}/{ms:global.style/}/js/jquery.js"></script>
+    <script language="javascript" src="{ms:global.host/}/{ms:global.style/}/js/urite.min.js"></script>
+    <link href="{ms:global.host/}/{ms:global.style/}/css/infotag.css" type=text/css rel=stylesheet>
+    <link rel="shortcut icon" type="image/x-icon" href="{@ms:file global.logo/}">
+    <link rel="stylesheet" href="{ms:global.host/}/{ms:global.style/}/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{ms:global.host/}/{ms:global.style/}/css/hanweb.css" />
+    <link rel="stylesheet" href="{ms:global.host/}/{ms:global.style/}/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{ms:global.host/}/{ms:global.style/}/css/lbt.css" />
+    <link rel="stylesheet" href="{ms:global.host/}/{ms:global.style/}/css/tiny.css">
+    <script src="{ms:global.host/}/{ms:global.style/}/js/jquery-1.8.3.js" language="JavaScript"
+        type="text/javascript"></script>
+    <script src="{ms:global.host/}/{ms:global.style/}/js/jquery.superslide.2.1.1.js" type="text/javascript"
+        charset="utf-8"></script>
+    <script src="{ms:global.host/}/{ms:global.style/}/js/jquery.superslide.2.1.3.js" type="text/javascript"
+        charset="UTF-8"></script>
+    <script src="{ms:global.host/}/{ms:global.style/}/js/jq_scroll.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{ms:global.host/}/{ms:global.style/}/js/indexnewjs.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body id="page_type" alt="综合页">
+    <div id="barrierfree_container">
+        <!--选项卡-->
+        <script>
+            function setTab(name, cursel, n) {
+                for (i = 1; i <= n; i++) {
+                    var menu = document.getElementById(name + i);
+                    var con = document.getElementById("con-" + name + "-" + i);
+                    var gd = document.getElementById("more-" + name + "-" + i);
+                    menu.className = i == cursel ? "current" : "";
+                    con.style.display = i == cursel ? "block" : "none";
+                }
+            }
+        </script>
+
+        <!--主体部分-->
+        <script type='text/javascript'>
+            if (typeof wondersLog != 'undefined') {
+                var sdywtb = 'sdywtb';
+                wondersLog.init(sdywtb);
+            }
+        </script>
+
+        <style type='text/css'>
+            @media screen and (max-width: 768px) {
+                .bs_nav1 {
+                    height: 95px !important;
+                }
+            }
+
+            .bs_nav1 {
+                height: 75px;
+            }
+
+            * {
+                box-sizing: border-box;
+                padding: 0px;
+                margin: 0px;
+            }
+
+            body {
+                font-family: '微软雅黑' !important;
+            }
+
+            ul,
+            ol,
+            li {
+                padding: 0px;
+                margin: 0px;
+                list-style: none;
+            }
+
+            a {
+                text-decoration: none;
+            }
+
+            select,
+            input {
+                vertical-align: middle;
+            }
+
+            a:hover {
+                text-decoration: none;
+            }
+
+            a:focus {
+                text-decoration: none;
+            }
+
+            .art_con div,
+            p,
+            img {
+                max-width: 100% !important;
+            }
+
+            table {
+                max-width: 100% !important;
+                border-spacing: 0;
+            }
+
+            .wip_art_con img {
+                border: 0px !important;
+                vertical-align: middle;
+                max-width: 100% !important;
+            }
+
+            .bt-left {
+                float: left;
+            }
+
+            .bt-right {
+                float: right;
+            }
+
+            .bt-clear {
+                clear: both;
+            }
+
+            .clearfix:after {
+                content: '.';
+                display: block;
+                clear: both;
+                font-size: 0px;
+                height: 0px;
+            }
+
+            .toolbar_bottom li {
+                line-height: 16px !important;
+            }
+
+            .toolbar_bottom {
+                right: 348px !important;
+            }
+
+            .toolbar_top li {
+                font-size: 16px !important;
+            }
+
+            .top {
+                position: relative;
+            }
+
+            .top_logo {
+                width: 100%;
+                height: 220px;
+                background: url({ms:global.host/}/{ms:global.style/}/images/1912301107019931354.png) no-repeat center 0px;
+                position: absolute;
+                top: 0px;
+            }
+
+            .wip_header_bg {
+                width: 100%;
+                height: 40px;
+                background: #245399;
+            }
+
+            .wip_header {
+                width: 100%;
+                max-width: 1200px;
+                margin: auto;
+            }
+
+            .wip_header_left {
+                float: left;
+                width: 306px;
+                z-index: 3;
+                position: relative;
+            }
+
+            .wip_header_right {
+                float: right;
+                z-index: 3;
+                position: relative;
+            }
+
+            .wip_header_li {
+                float: left;
+                font-size: 14px;
+                color: #FFFFFF;
+                line-height: 40px;
+            }
+
+            .wip_header_li a {
+                color: #FFFFFF;
+            }
+
+            .wip_header_li {
+                margin-left: 15px;
+            }
+
+            .bt-clear {
+                clear: both;
+            }
+
+            .wip_banner_bg {
+                width: 100%;
+                background: url({ms:global.host/}/{ms:global.style/}/images/1910071045117251411.jpg) no-repeat center top;
+                padding-top: 195px;
+                padding-bottom: 0px;
+                margin: 0px auto 0px;
+                overflow: hidden;
+            }
+
+            .wip_banner {
+                width: 100%;
+                max-width: 1200px;
+                margin: auto;
+                height: 45px;
+            }
+
+            .wip_banner .wip_from {
+                max-width: 745px;
+                margin-left: 300px;
+            }
+
+            .wip_banner .ipt_txt1 {
+                padding: 0px 65px 0px 15px;
+                border: 1px solid #245399;
+                background: #ffffff url({ms:global.host/}/{ms:global.style/}/images/1909301107301438710.png) no-repeat 540px center;
+                outline: none;
+                height: 45px;
+                line-height: 45px;
+                color: #5076a1;
+                font-size: 16px;
+                width: 590px;
+                display: block;
+                float: left;
+                background: #ffffff;
+            }
+
+            .wip_banner .ipt_sear {
+                width: 100px;
+                background: #DA5445;
+                border: 0px;
+                outline: none;
+                height: 45px;
+                line-height: 45px;
+                color: #FFFFFF;
+                font-size: 15px;
+                text-align: center;
+                cursor: pointer;
+                margin: 0px;
+                padding: 0px;
+                display: block;
+                float: left;
+                margin-left: 16px;
+            }
+
+            .wip_nav {
+                min-height: 86px;
+                line-height: 86px;
+                max-width: 1200px;
+                padding-left: 88px;
+                margin: auto;
+                padding-top: 30px;
+            }
+
+            .wip_nav_li {
+                width: 185px;
+                height: 36px;
+                line-height: 36px;
+                float: left;
+                color: #446b9a;
+                background-repeat: no-repeat;
+                -webkit-transition: 0.2s;
+                transition: 0.2s;
+                cursor: pointer;
+                text-indent: 46px;
+            }
+
+            .wip_nav_li:first-child {
+                width: 170px;
+            }
+
+            .wip_nav_li a {
+                color: #446b9a;
+                font-size: 19px;
+                text-decoration: none;
+                display: block;
+                cursor: pointer;
+                background-repeat: no-repeat;
+            }
+
+            .wip_nav_li:hover a {
+                background-position: 0px -36px;
+            }
+
+            .wip_nav_li:hover a {
+                color: #c92c1a;
+            }
+
+            .wip_nav_li_hover a {
+                color: #c92c1a;
+                background-position: 0px -36px;
+            }
+
+            .shouji_jiandang {
+                display: none;
+            }
+
+            .wip_nav .t1 a {
+                background-image: url('{ms:global.host/}/{ms:global.style/}/images/1909301107222165143.png')
+            }
+
+            .wip_nav .t2 a {
+                background-image: url('{ms:global.host/}/{ms:global.style/}/images/1909301107222779552.png')
+            }
+
+            .wip_nav .t3 a {
+                background-image: url('{ms:global.host/}/{ms:global.style/}/images/1909301107300335633.png')
+            }
+
+            .wip_nav .t4 a {
+                background-image: url('{ms:global.host/}/{ms:global.style/}/images/1909301107300757611.png')
+            }
+
+            .wip_nav .t5 a {
+                background-image: url('{ms:global.host/}/{ms:global.style/}/images/1909301107300953715.png')
+            }
+
+            .wip_nav .t6 a {
+                background-image: url('{ms:global.host/}/{ms:global.style/}/images/1909301107222485814.png')
+            }
+
+            .wip_nav .t7 a {
+                background-image: url('{ms:global.host/}/{ms:global.style/}/images/1912301022384568191.png')
+            }
+
+            @media screen and (max-width: 1200px) {
+                .wip_banner .wip_from {
+                    margin: auto;
+                    width: 98%;
+                }
+
+                .wip_nav {
+                    padding-left: 0px;
+                }
+
+                .wip_nav_li a {
+                    width: 78%;
+                    margin: auto;
+                }
+
+                .wip_nav_li:first-child a {
+                    width: 68%;
+                    margin: auto;
+                }
+            }
+
+            @media screen and (max-width: 992px) {
+
+                .wip_banner_bg {
+                    background-size: cover;
+                }
+
+                .wip_nav {
+                    width: 95%;
+                    margin: auto;
+                }
+
+                .wip_nav_li {
+                    width: 33%;
+                    margin-bottom: 20px;
+                    height: 25px;
+                    line-height: 25px;
+                    text-indent: 11%;
+                    text-align: center;
+                }
+
+                .wip_nav_li:first-child {
+                    width: 33%;
+                }
+
+                .wip_nav_li a {
+                    height: 25px;
+                    width: 67%;
+                    font-size: 1.2em;
+                    background-size: 25px;
+                    margin: auto;
+                    background-position: 0px -0px;
+                }
+
+                .wip_nav_li_hover a {
+                    background-position: 0px -25px;
+                }
+
+                .wip_nav_li:hover a {
+                    background-position: 0px -25px;
+                }
+
+                .wip_banner .ipt_txt1 {
+                    width: 80%;
+                    background: none;
+                    padding: 0px 2% 0PX 2%;
+                    font-size: 15px;
+                    height: 2.5em;
+                    line-height: 2.5em;
+                    box-sizing: border-box;
+                }
+
+                .wip_banner .ipt_sear {
+                    width: 18%;
+                    background: #da5445;
+                    text-align: center;
+                    text-indent: 0px;
+                    font-size: 14px;
+                    margin-left: 2%;
+                    height: 2.7em;
+                    line-height: 2.7em;
+                }
+
+                .wip_header_left,
+                .wip_header_right {
+                    display: none;
+                }
+
+                .wip_nav {
+                    padding-top: 10px;
+                    padding-left: 0px;
+                }
+
+                .shouji_jiandang {
+                    display: none;
+                }
+            }
+
+            @media only screen and (min-width: 993px) and (max-width: 1200px) {
+                .wip_nav_li {
+                    width: 16.66%;
+                }
+
+                .wip_nav_li:first-child {
+                    width: 16.66%;
+                }
+
+                .wip_banner .wip_from {
+                    margin: auto;
+                }
+
+                .shouji_jiandang {
+                    display: none;
+                }
+            }
+
+            @media only screen and (max-width: 500px) {
+                .wip_nav_li a {
+                    width: 100%;
+                    font-size: 14px;
+                }
+
+                .top_logo {
+                    background: url({ms:global.host/}/{ms:global.style/}/images/1912310915155659776.png) no-repeat center 4px;
+                    /* margin-top: 40px; */
+                }
+
+                .wip_banner .ipt_txt1 {
+                    width: 68%;
+                }
+
+                .wip_banner .ipt_sear {
+                    width: 30%;
+                }
+
+                .wip_nav_li:first-child a {
+                    width: 100%;
+                }
+
+                .shouji_jiandang {
+                    width: 100%;
+                    height: 40px;
+                    display: block;
+                }
+
+                @media only screen and (max-width: 350px) {
+                    .wip_nav_li a {
+                        font-size: 16px;
+                    }
+
+                    .shouji_jiandang {
+                        width: 100%;
+                        height: 40px;
+                        display: block;
+                    }
+                }
+
+
+                #name_out {
+                    display: inline-block;
+                    cursor: pointer;
+                }
+            }
+
+            .center1_title {
+                display: block;
+                color: #666666;
+                font-size: 31px;
+                font-weight: bold;
+                height: auto;
+                line-height: 56px;
+                text-align: center;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                /*white-space: nowrap;*/
+                text-align: left;
+                width: auto;
+                margin: auto;
+                text-align: center;
+            }
+
+            .center1_box {
+                text-align: center !important;
+                font-size: 18px;
+            }
+        </style>
+        <!-- 简繁体 -->
+        <script id='barrierfree' src='http://www.shandong.gov.cn/module/web/accessiblereading/load.js'></script>
+        <script language='javascript' src='http://www.shandong.gov.cn/module/jslib/gtb/language.js'></script>
+        <div class='top'>
+            <div class='wip_header_bg' ergodic='serve'>
+                <div class='wip_header'>
+                    <div class='wip_header_left'>
+                        <div class='wip_header_li' id='localtime'>
+
+                        </div>
+                        <div class='wip_header_li' style='margin-right: 20px;'>
+                            <a href='http://app.www.gov.cn/download/Chinese.html' target='_blank'>
+                                国务院客户端
+                            </a>
+                        </div>
+                        <div class='bt-clear'>
+
+                        </div>
+                    </div>
+                    <div class='wip_header_right'>
+                        <div class='wip_header_li'>
+                            <!-- <span class='jft_a' style='cursor: pointer;'>繁体版</span> -->
+                        </div>
+                        <div class="wip_header_li">
+                            <a id="zh_click_s" class="" href="javascript:zh_tran('n');">简体版</a>
+                        </div>
+                        <div class="wip_header_li">
+                            <a id="zh_click_t" class="" href="javascript:zh_tran('t');">繁体版</a>
+                        </div>
+
+                        <div class='wip_header_li'>
+                            <a href='javascript:;' onclick='toggleToolBar();'>无障碍阅读</a>
+                        </div>
+                        <div class='wip_header_li'>
+                            <a href='' target='_blank'>
+                                智能机器人
+                            </a>
+                        </div>
+                        <div class='wip_header_li name_loain'>
+                        </div>
+                    </div>
+                    <div class='bt-clear'>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class='wip_banner_bg' ergodic='serve'>
+                <div class='wip_banner'>
+                    <form action='{ms:global.host/}/mcms/search.do' class='wip_from' method='get' target='_blank' class='forma'
+                        onsubmit='return  checkFormguolv()'>
+
+                        <input type='text' value="" placeholder='请输入关键字查询' autocomplete='off' id='text' name='content_title'
+                            class='ipt_txt1'>
+                        <button type='submit' class='ipt_sear' value=''>
+
+                           搜索
+
+                        </button>
+                        <div class='bt-clear'>
+
+                        </div>
+                    </form>
+                </div>
+                <!-- 通用导航 -->
+                <#include "nav.htm">
+
+            </div>
+            <div class='top_logo'>
+
+            </div>
+        </div>
+        <script type='text/javascript'>
+            function getTime() {
+                var D = new Date();
+                var year = D.getFullYear(),
+                    month = D.getMonth() + 1,
+                    date = D.getDate(),
+                    day = D.getDay();
+                var dayStr = '星期一';
+                switch (day) {
+                    case 1:
+                        break;
+                    case 2:
+                        dayStr = '星期二';
+                        break;
+                    case 3:
+                        dayStr = '星期三';
+                        break;
+                    case 4:
+                        dayStr = '星期四';
+                        break;
+                    case 5:
+                        dayStr = '星期五';
+                        break;
+                    case 6:
+                        dayStr = '星期六';
+                        break;
+                    case 0:
+                        dayStr = '星期日';
+                        break;
+                }
+                return year + '年' + month + '月' + date + '日 ' + dayStr;
+            }
+
+            $('#localtime').html(getTime());
+
+        </script>
+
+        <script type='text/javascript'>
+            var navli = $('.wip_nav_li')
+            var windowUrl = location.pathname;
+
+            navli.each(function () {
+                var t = $(this).find('a').attr('href')
+                windowUrl2 = '' + windowUrl;
+                if (t == windowUrl2) {
+                    $(this).addClass('wip_nav_li_hover').siblings().removeClass('wip_nav_li_hover')
+                }
+            })
+        </script>
+
+        <script type='text/javascript'>
+            var i = 0;
+            $('.jft_a').click(function () {
+                console.log('触发事件');
+                i++;
+                if (i % 2 != 0) {
+                    $(this).attr('id', 'zh_click_t')
+                    $(this).text('简体版')
+                    window.open("javascript:zh_tran('t');", '_self')
+
+                } else {
+                    $(this).attr('id', 'zh_click_s')
+                    $(this).text('繁体版')
+                    window.open("javascript:zh_tran('n');", '_self')
+                }
+
+            })
+        </script>
+
+        <div class="zo">
+            <div class="zoz">
+                <div class="zoz1">
+                    <!-- 标题 -->
+                    <div class="center1" ergodic="view" style="height: auto;">
+                        <style type="text/css">
+
+                        </style>
+
+                        <!-- 头条 -->
+                        {ms:arclist flag = 'h' size=1 }
+                        <div class="center1_title">
+                            <img src="{ms:global.host/}/{ms:global.style/}/images/toutiao_03.png"
+                                style="display:none;" />
+                            <a href="{ms:global.url/}${field.link}" target="_blank"
+                                title="${field.title}">
+                                ${field.title}
+                            </a>
+                        </div>
+                        <div class="center1_box">
+                            <a class="bt-left-cen"
+                                href="{ms:global.url/}${field.link}" target="_blank">
+
+                            </a>
+                        </div>
+                        {/ms:arclist}
+                    </div>
+                    <!-- 标题 -->
+                    <!--第一部分-->
+                    <div class="first">
+                        <!--轮播图-->
+                        <script type="text/javascript">
+                            jQuery(".slideBox").slide({
+                                mainCell: ".bd ul",
+                                effect: "left",
+                                autoPlay: true
+                            });
+                        </script>
+                        <div id="slideBox" class="slideBox" ergodic="view">
+                            <div class="hd">
+                                <ul>
+                                    <li class="on"></li>
+                                    <li class=""></li>
+                                    <li class=""></li>
+                                    <li class=""></li>
+                                    <li class=""></li>
+                                    <li class=""></li>
+                                </ul>
+                            </div>
+                            <div class="bd">
+                                <ul style="top: -136px;">
+                                    {ms:arclist flag = 'f' size=6 }
+                                    <li style="">
+                                        <a href="{ms:global.url/}${field.link}"
+                                            target="_blank" title="${field.title}"><img
+                                                src="{ms:global.host/}/{@ms:file field.litpic/}"
+                                                class="img-responsive" width="100%"></a>
+                                        <div class="lbText">
+                                            <a href="{ms:global.url/}${field.link}"
+                                                title="${field.title}" target="_blank">${field.title}</a>
+                                        </div>
+                                    </li>
+                                    {/ms:arclist}
+                                </ul>
+                            </div>
+                            <script>
+                                jQuery(".slideBox").slide({
+                                    mainCell: ".bd ul",
+                                    autoPlay: true,
+                                    delayTime: 5000
+
+                                });
+                                /* 图片滚动效果 */
+                                $(".mr_frbox").slide({
+                                    titCell: "",
+                                    mainCell: ".mr_frUl ul",
+                                    autoPage: true,
+                                    effect: "leftLoop",
+                                    autoPlay: true,
+                                    vis: 4
+                                });
+                            </script>
+
+                        </div>
+
+                        <script>
+                            jQuery(".slideBox").slide({
+                                mainCell: ".bd ul",
+                                autoPlay: true
+                            });
+                            /* 图片滚动效果 */
+                            $(".mr_frbox").slide({
+                                titCell: "",
+                                mainCell: ".mr_frUl ul",
+                                autoPage: true,
+                                effect: "leftLoop",
+                                autoPlay: true,
+                                vis: 4
+                            });
+                        </script>
+                        <!--选项卡-->
+                        <div class="xuan" ergodic="view">
+                            <ul class="xuandao">
+                            {ms:channel flag = 'nav' type = 'nav'}
+                                <#if field.typetitle == '要闻动态'>
+                                {ms:channel type = 'son'}
+                                <li id="one${field.index}" onmouseover="setTab('one',${field.index},3)" class="<#if field.index ==1 >current</#if>"><a
+                                        href="{ms:global.url/}${field.typelink}">${field.typetitle}</a></li></span>
+                                {/ms:channel}
+                            </ul>
+                                </#if>
+                            <#if field.typetitle == '要闻动态'>
+                            {ms:channel type = 'son'}
+                            <#if field.typetitle == '今日关注'>
+                              <!-- 今日关注 -->
+                            <ul class="xuandao2" id="con-one-1">
+                                {ms:arclist  size=8 }
+                                <li>
+                                    <a href="{ms:global.url/}${field.link}"
+                                        target="_blank" title="${field.title}">
+                                        ${field.title}
+                                    </a>
+                                    <span>
+                                        <i style="font-style: normal;display: inline;" class="timeyear">${field.date?string("yyyy-MM-dd")}
+                                    </span>
+                                </li>
+                                {/ms:arclist}
+                            </ul>
+                            <!-- 省内要闻 -->
+                            <#elseif field.typetitle == '省内要闻'>
+                            <ul class="xuandao2" id="con-one-2" style="display: none;">
+                                {ms:arclist  size=8 }
+                                <li>
+                                    <a href="{ms:global.url/}${field.link}"
+                                        target="_blank" title="${field.title}">
+                                        ${field.title}
+                                    </a>
+                                    <span>
+                                        <i style="font-style: normal;display: inline;" class="timeyear">${field.date?string("yyyy-MM-dd")}
+                                    </span>
+                                </li>
+                                {/ms:arclist}
+                            </ul>
+                            <!-- 国务院信息 -->
+                            <#elseif field.typetitle == '国务院信息'>
+                            <ul class="xuandao2" id="con-one-3" style="display: none;height: 352px;">
+                                <ul class='govpushinfo150203'>
+                                    {ms:arclist  size=8 }
+                                    <li><a href='{ms:global.url/}${field.link}'
+                                            target='_blank'>  ${field.title}</a><span>${field.date?string("yyyy-MM-dd")}</span>
+                                    </li>
+                                    {/ms:arclist}
+                                </ul>
+                                <style>
+                                    .govpushinfo150203 {
+                                        height: 342px;
+                                        overflow: hidden;
+                                    }
+
+                                    .govpushinfo150203 li {
+                                        width: 100%;
+                                        height: 44px;
+                                        line-height: 44px;
+                                        margin-right: 15px;
+                                    }
+
+                                    .govpushinfo150203 li a {
+                                        float: left;
+                                        text-overflow: ellipsis;
+                                        white-space: nowrap;
+                                        overflow: hidden;
+                                        font-size: 16px;
+                                        text-decoration: none;
+                                        color: #333333;
+                                        font-family: "微软雅黑";
+                                        height: 44px;
+                                        line-height: 44px;
+                                        width: 380px;
+                                    }
+
+                                    .govpushinfo150203 li .text:hover {
+                                        color: #ff0000;
+                                    }
+
+                                    .govpushinfo150203 li span {
+                                        font-size: 16px;
+                                        color: #797979;
+                                        float: right;
+                                        height: 44px;
+                                        line-height: 44px;
+                                    }
+                                </style>
+                                <script>
+                                    $(function () {
+                                        for (i = 0; i < $('.govpushinfo150203>li a').length; i++) {
+                                            var title = $(".govpushinfo150203>li a:eq(" + i + ")").text();
+                                            $(".govpushinfo150203>li a:eq(" + i + ")").attr("title", title);
+                                        }
+                                    });
+                                </script>
+                            </ul>
+                            </#if>
+                            {/ms:channel}
+                            </#if>
+                            {/ms:channel} 
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--第二部分-->
+        <div class="bannertu" style="position:relative;" ergodic="view">
+            <div class="bannertu1">
+                <div class="wenzi">
+                    <p><a href="" target="_blank"
+                            style="font-size:40px;color:#365f9f;font-weight:bold;line-height:73px;width:100%;">一网通办</a>
+                    </p>
+                    <p style="font-size:15px;">实施主体<a target="_blank" style="color:#5b95e3;"><span>52831</span></a>个  
+                        接入事项总数<a target="_blank" style="color:#5b95e3;"><span>2676276</span></a>项  依申请事项<a
+                            target="_blank" style="color:#5b95e3;"><span>1729064</span></a>项</p>
+
+                </div>
+                <ul>
+                    <span class="zi">全国一体化在线政务服务平台</span>
+                    <li class="denglu">
+                        <a class="login1">个人登录</a>
+                    </li>
+                    <li class="denglu">
+                        <a class="login2">法人登录</a>
+                    </li>
+                    <li class="zhuce">
+                        <a>个人注册</a>
+                    </li>
+                    <li class="zhuce">
+                        <a>法人注册</a>
+                    </li>
+
+
+                </ul>
+
+            </div>
+        </div>
+        <div class="bt-clear"></div>
+        <!--第二部分-->
+        <!-- 第三部分 -->
+        <div class="bg zoz" ergodic="view">
+            <div style="margin-left:0;" class="list_hover">
+                <i class="ion1"></i>
+                <span> <a
+                        href="">个人服务</a></span>
+                <p>
+                    <a href="" class="don1">生育收养</a>
+                    <a href="" class="don1">教育科研</a>
+                    <a href="" class="don1">就业创业</a>
+                </p>
+                <a href=""
+                    class="quanbu">查看全部</a>
+            </div>
+
+            <div>
+                <i class="ion2"></i>
+                <span><a
+                        href="">法人服务</a></span>
+                <p>
+                    <a class="don1" href="">设立变更</a>
+                    <a href="" class="don1 ">准营准办</a>
+                    <a href="" class="don1 ">资质认证</a>
+                </p>
+                <a href=""
+                    class="quanbu ">查看全部</a>
+            </div>
+            <div>
+                <i class="ion3"></i>
+                <span><a href="">特色服务</a></span>
+                <p>
+                    <i class="mon"></i>
+                    <a href="" target="_blank" class="don1" style="margin-left:0">复产复工</a></a>
+                    <i class="mon"></i>
+                    <a href="javascript:void(0);" onclick="yyyz()" class="don1">一业一证</a></a>
+                    <i class="mon"></i>
+                    <a href="" class="don1">问政山东</a></a>
+                </p>
+                <a href="" class="quanbu">查看全部</a>
+            </div>
+            <style type="text/css">
+                .ui-zdqh-container {
+                    box-sizing: border-box;
+                }
+            </style>
+            <div>
+                <i class="ion4"></i>
+                <span><a href="">主题集成服务</a></span>
+                <p style="width:250px;">
+                    <a href="" target="_blank" class="don1"
+                        style="margin-left:0;line-height:16px;display:inline-block;width:75%;text-align:left;margin-bottom:0 !important;float:left;">企业开办全程网办（含各类企业及个体工商户、农民专业合作社）</a>
+                    <a href=""
+                        class="don1" target="_blank" style="float:right;margin-left:0;">一件事</a>
+                </p>
+                <a class="quanbu" href=""
+                    style="cursor:pointer;">查看全部</a>
+            </div>
+        </div>
+        <div class="bt-clear"></div>
+        <!-- 第三部分 -->
+        <!-- 第四部分 -->
+        <div class="four zoz bt-clear">
+            <div class="four1 bt-left" ergodic="view">
+                <ul>
+                    <li><a class="sheiyaoban"
+                            href=""><i
+                                class="bon2"></i><span>我要办</span></a></li>
+                    <style>
+                        .bon2 {
+                            background: url({ms:global.host/}/{ms:global.style/}/images/b9934e95f7454f92924cefc1086bffb4.png);
+                            width: 24px;
+                            height: 21px;
+                            display: block;
+                            float: left;
+                            margin: 30px 30px 0 42px;
+                        }
+                    </style>
+                    <li class="whowantcha"><a href=""><i class="bon3"></i><span>我要查</span></a>
+                    </li>
+                    <style>
+                        .bon3 {
+                            background: url({ms:global.host/}/{ms:global.style/}/images/59a5ce470ec744d6b18adfb7dcefa8c1.png);
+                            width: 23px;
+                            height: 22px;
+                            display: block;
+                            float: left;
+                            margin: 30px 30px 0 42px;
+                        }
+                    </style>
+                    <li><a  href="">
+                            <i class="bon1"></i>
+                            <span>我要问</span></a>
+                    </li>
+                    <style>
+                        .four1 ul li:first-child a {
+                            border-top: none !important;
+                            line-height: 82px;
+                        }
+
+                        .bon1 {
+                            background: url({ms:global.host/}/{ms:global.style/}/images/1910081141303591537.png);
+                            width: 22px;
+                            height: 20px;
+                            display: block;
+                            float: left;
+                            margin: 30px 30px 0 42px;
+                            ;
+                        }
+
+                        .four1 ul li:hover {
+                            background-color: #365f9f;
+                        }
+
+                        .four1 ul li:hover span {
+                            color: #fff;
+                        }
+
+                        @media screen and (min-width: 1200px) {
+                            .four1 ul li {
+                                height: 82px;
+                                line-height: 82px;
+                            }
+
+                            .four1 {
+
+                                height: auto;
+                                background-color: #4872b0;
+                            }
+                        }
+
+                        @media screen and (max-width: 996px) {
+                            .four1 ul li {
+                                height: 20%;
+                                line-height: 137px;
+
+                            }
+
+                            .four1 ul {
+                                height: 686px;
+                            }
+
+                            .four1 ul li a {
+                                line-height: 137px;
+                                height: 100%;
+                                padding-top: 28px;
+                            }
+                        }
+                    </style>
+                    <li><a href="" class="wip_sxjk"><i class="bon4"></i><span>我要评</span></a></li>
+                    <style>
+                        .bon4 {
+                            background: url({ms:global.host/}/{ms:global.style/}/images/6978852f98d44b24863bbe04ee0ee601.png);
+                            width: 23px;
+                            height: 22px;
+                            display: block;
+                            float: left;
+                            margin: 30px 30px 0 42px;
+                        }
+                    </style>
+                    <li style="display:none;"><a style="cursor:default;" title="建设中"><i
+                                class="bon5"></i><span>全链条服务</span></a></li>
+                    <style>
+                        .bon5 {
+                            background: url({ms:global.host/}/{ms:global.style/}/images/4ee4cd273c224210af335d4975661147.png) no-repeat;
+                            width: 23px;
+                            height: 22px;
+                            display: block;
+                            float: left;
+                            margin: 30px 30px 0 42px;
+                        }
+                    </style>
+
+                    <!-- 我要督查 -->
+                    <li><a href=""><i class="bon6"></i><span>我要督</span></a></li>
+                    <style>
+                        .four {}
+
+                        .four1 {}
+
+                        .four1 ul li {
+                            height: 82px;
+                            line-height: 82px;
+                        }
+
+                        .four1 ul li:first-child a {
+                            border-top: none !important;
+                            line-height: 82px;
+                        }
+
+                        .bon1 {
+                            background: url({ms:global.host/}/{ms:global.style/}/images/1910081141303591537.png);
+                            width: 22px;
+                            height: 20px;
+                            display: block;
+                            float: left;
+                            margin: 30px 30px 0 42px;
+                            ;
+                        }
+
+                        .four1 ul li:hover {
+                            background-color: #365f9f;
+                        }
+
+                        .four1 ul li:hover span {
+                            color: #fff;
+                        }
+
+                        .bon2 {
+                            background: url({ms:global.host/}/{ms:global.style/}/images/b9934e95f7454f92924cefc1086bffb4.png);
+                            width: 24px;
+                            height: 21px;
+                            display: block;
+                            float: left;
+                            margin: 30px 30px 0 42px;
+                        }
+
+                        .bon4 {
+                            background: url({ms:global.host/}/{ms:global.style/}/images/6978852f98d44b24863bbe04ee0ee601.png);
+                            width: 23px;
+                            height: 22px;
+                            display: block;
+                            float: left;
+                            margin: 30px 30px 0 42px;
+                        }
+
+                        .bon6 {
+                            background: url({ms:global.host/}/{ms:global.style/}/images/1912301528095483101.png) no-repeat;
+                            width: 23px;
+                            height: 22px;
+                            display: block;
+                            float: left;
+                            margin: 30px 30px 0 42px;
+                        }
+
+                        .four2 ul li {}
+
+                        @media screen and (min-width: 1200px) {
+                            .four1 {
+
+                                height: auto;
+                                background-color: #4872b0;
+                            }
+
+                            .four1 ul li {
+                                height: 82px;
+                                line-height: 82px;
+                            }
+                        }
+
+                        @media screen and (max-width: 996px) {
+                            .four1 ul li {
+                                height: 20%;
+                                line-height: 137px;
+
+                            }
+
+                            .four1 ul {
+                                height: 686px;
+                            }
+
+                            .four1 ul li a {
+                                line-height: 137px;
+                            }
+                        }
+
+                        @media screen and (max-width: 889px) {
+                            .four1 ul li {
+                                height: 96px;
+                                line-height: 96px;
+
+                            }
+
+                            .four {
+                                height: 1200px;
+                            }
+
+                            .four1 ul {
+                                height: 480px;
+                            }
+
+                            .four1 {
+                                height: 480px;
+                            }
+
+                            .four1 ul li a {
+                                line-height: 96px;
+                                padding-top: 8px;
+                            }
+                        }
+
+                        @media screen and (max-width: 500px) {
+                            .four1 {
+                                height: auto;
+                            }
+
+                            .four {
+                                height: 1476px;
+                            }
+                        }
+                    </style>
+                </ul>
+            </div>
+            <div class="four2" ergodic="view">
+                <!-- 图片轮转 -->
+                <div class="lunbo-box">
+                    <div class="picScroll-left">
+                        <!-- 左右箭头 -->
+                        <div class="hd">
+                            <a class="next">
+                                <img src="{ms:global.host/}/{ms:global.style/}/images/right.png">
+                            </a>
+
+                            <a class="prev">
+                                <img src="{ms:global.host/}/{ms:global.style/}/images/left.png">
+                            </a>
+
+                        </div>
+                        <div class="bd">
+                            <ul class="picList">
+                                <li style="width: 228px;">
+                                    <div class="pic"><a href=""
+                                            title="疫情防控服务区"><img
+                                                src="{ms:global.host/}/{ms:global.style/}/images/11.jpg" /></a></div>
+                                    <div class="title"><a></a></div>
+                                </li>
+                                <li style="width: 228px;">
+                                    <div class="pic"><a href=""
+                                            title="小微企业和个体工商户专区"><img
+                                                src="{ms:global.host/}/{ms:global.style/}/images/22.jpg" /></a></div>
+                                    <div class="title"><a></a></div>
+                                </li>
+                                <li style="width: 228px;">
+                                    <div class="pic"><a href=""
+                                            target="_blank" title="政策服务中央厨房"><img
+                                                src="{ms:global.host/}/{ms:global.style/}/images/2009180933384412401.jpg" /></a>
+                                    </div>
+                                    <div class="title"><a></a></div>
+                                </li>
+                                <li style="width: 228px;">
+                                    <div class="pic">
+                                        <a href="" title="“跨省通办”服务专区">
+                                            <img
+                                                src="{ms:global.host/}/{ms:global.style/}/images/2011100934055849373.jpg">
+                                        </a>
+                                    </div>
+                                    <div class="title"><a></a></div>
+                                </li>
+                                <li style="width: 228px;">
+                                    <div class="pic"><a href="" target="_blank" title="山东省不动产登记“一网通办平台（试运行）”"><img
+                                                src="{ms:global.host/}/{ms:global.style/}/images/2010201020185779618.jpg"></a>
+                                    </div>
+                                    <div class="title"><a></a></div>
+                                </li>
+
+                                <li style="width: 228px;">
+                                    <div class="pic"><a href="" target="_blank" title="企业诉讼“接诉即办”平台"><img
+                                                src="{ms:global.host/}/{ms:global.style/}/images/2009181036034499062.jpg"></a>
+                                    </div>
+                                    <div class="title"><a></a></div>
+                                </li>
+                                <li style="width: 228px;">
+                                    <div class="pic"><a href="" target="_blank" title="山东省非税收入统缴平台"><img
+                                                src="{ms:global.host/}/{ms:global.style/}/images/2009181036034753673.jpg"></a>
+                                    </div>
+                                    <div class="title"><a></a></div>
+                                </li>
+
+
+                            </ul>
+                        </div>
+                    </div>
+
+                    <script type="text/javascript">
+                        jQuery(".picScroll-left").slide({
+                            titCell: ".hd ul",
+                            mainCell: ".bd ul",
+                            autoPage: true,
+                            effect: "left",
+                            autoPlay: true,
+                            vis: 4,
+                            trigger: "click"
+                        });
+                    </script>
+
+                </div>
+
+                <ul class="lm9-list">
+                    <li class="lm9-1">
+                        <a href="" target="_blank" title="公积金查询"><i></i>公积金查询</a>
+                    </li>
+                    <li class="lm9-2">
+                        <a href="" target="_blank" title="社保查询"><i></i>社保查询</a>
+                    </li>
+                    <li class="lm9-3">
+                        <a href="" target="_blank" title="交通违法罚款缴纳"><i></i>交通违法罚款缴纳</a>
+                    </li>
+                    <li class="lm9-4">
+                        <a href="" target="_blank"
+                            title="不动产登记水气热协办信息（水气热机构专用）"><i></i>不动产登记水气热协办信息（水气...</a>
+                    </li>
+                    <li class="lm9-5">
+                        <a href="" target="_blank" title="居住证申领（不领、换领）"><i></i>居住证申领（补领、换领）</a>
+                    </li>
+                    <li class="lm9-6">
+                        <a href="" target="_blank" title="购房入户"><i></i>购房入户</a>
+                    </li>
+                    <li class="lm9-7">
+                        <a href="" target="_blank"
+                            title="住房保障申请"><i></i>住房保障申请</a>
+                    </li>
+                    <li class="lm9-11">
+                        <a href="" target="_blank"
+                            title="就业登记"><i></i>就业登记</a>
+                    </li>
+                    <li class="lm9-12">
+                        <a href="" target="_blank" title="亲属关系证明"><i></i>亲属关系证明</a>
+                    </li>
+                    <li class="lm9-8">
+                        <a href="" target="_blank" title="公司设立登记"><i></i>公司设立登记</a>
+                    </li>
+                    <li class="lm9-9">
+                        <a href="" target="_blank" title="公司变更登记"><i></i>公司变更登记</a>
+                    </li>
+                    <li class="lm9-10">
+                        <a href="" target="_blank" title="外商投资企业设立登记"><i></i>外商投资企业设立登记</a>
+                    </li>
+
+                    <div class="bt-clear"></div>
+                </ul>
+                <div class="bt-clear"></div>
+            </div>
+            <div class="bt-clear"></div>
+        </div>
+        <div class="bt-clear"></div>
+        <!-- 第四部分 -->
+
+        <!-- 第五部分 -->
+        <div class="bg2 zoz bt-clear">
+            <div class="box1 bt-left" ergodic="view">
+                {ms:channel typeid="1647844113875517441" type='self'}
+                <div class="bg2_title"><a href="{ms:global.url/}${field.typelink}" target="_blank"><img
+                            src="{ms:global.host/}/{ms:global.style/}/images/hong.png"
+                            style="margin-right:15px;margin-bottom:5px;">${field.typetitle}</a></div>
+                <div class="bg2_box1 bt-left">
+                    <ul>
+                        {ms:channel type = 'son'}
+                        <#if field.typetitle != '政策文件' && field.typetitle != '政策解读'>
+                        <li><a target="_blank" href="{ms:global.url/}${field.typelink}"><img
+                                    src="{ms:global.host/}/{ms:global.style/}/images/zhinan${field.index}.png"><span>${field.typetitle}</span></a>
+                        </li>
+                        </#if>
+                        {/ms:channel}
+                    </ul>
+                </div>
+            
+                <div class="bg2_box2 bt-left">
+                    <div class="list_2 bt-left">
+                        <div class="title_box clearfix">
+                            <!--选项卡1-->
+                            <div class="menu_box bt-left" style="width:100%;">
+                                {ms:channel type = 'son'}
+                                <#if field.typetitle == '政策文件'>
+                                <span class="on"><a href="{ms:global.url/}${field.typelink}">${field.typetitle}</a></span>
+                                <#elseif field.typetitle == '政策解读'>
+                                <span class=""><a href="{ms:global.url/}${field.typelink}">${field.typetitle}</a></a></span>
+                                </#if>
+                                {/ms:channel}
+                            </div>
+                        </div>
+                 
+                        <div class="list_box">
+                            {ms:channel type = 'son'}
+                            <#if field.typetitle == '政策文件'>
+                            <ul class="list" style="display: block;height:245px;">
+                                {ms:arclist size=6 }
+                                <li>
+                                    <a href="{ms:global.url/}${field.link}"
+                                        title="${field.title}" class="clearfix" target="_blank">
+                                        <div class="text ele bt-left">
+                                            ${field.title}
+                                        </div>
+                                        <div class="time bt-right">
+                                            <span class="timeyear">
+                                                ${field.date?string("yyyy-MM-dd")}
+                                        </div>
+                                    </a>
+                                </li>
+                                {/ms:arclist}
+                            </ul>
+                            <#elseif field.typetitle == '政策解读'>
+                            <ul class="list" style="display:none;height:245px;">
+                                {ms:arclist size=6 }
+                                <li>
+                                    <a href="{ms:global.url/}${field.link}"
+                                        title=" ${field.title}" class="clearfix" target="_blank">
+                                        <div class="text ele bt-left">
+                                            ${field.title}
+                                        </div>
+                                        <div class="time bt-right">
+                                            <span class="timeyear">
+                                                ${field.date?string("yyyy-MM-dd")}
+                                        </div>
+                                    </a>
+                                </li>
+                                {/ms:arclist}
+                            </ul>
+                            </#if>
+                            {/ms:channel}
+                        </div>
+                    </div>
+                </div>
+                {/ms:channel}
+            </div>
+            <div class="box2 bt-right" ergodic="view">
+                {ms:channel typeid="1647844113875517443" type = 'self'}
+                <div class="bg3_title"><a href="{ms:global.url/}${field.typelink}"><img
+                            src="{ms:global.host/}/{ms:global.style/}/images/hong.png"
+                            style="margin-right:15px;margin-bottom:5px;">${field.typetitle}</a></div>
+                <ul>
+                    <style>
+                        .box2 ul li img {
+                            margin-right: 11px;
+                        }
+
+                        .xfck {
+                            float: right;
+                            width: 180px;
+                            line-height: 21px;
+                            margin-top: 35px;
+                            text-align: center;
+                        }
+
+                        .zx_zf {
+                            float: right;
+                            width: 180px;
+                            text-align: center;
+                        }
+                    </style>
+                    <li>
+                        <a href=""
+                            title="省长信箱（网上信访受理窗口）"><img
+                                src="{ms:global.host/}/{ms:global.style/}/images/2103261411599063746.png">
+                            <div class="xfck">
+                                <p>省长信箱</p>
+                                <p>（网上信访受理窗口）</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href=""
+                            title="办事咨询"><img
+                                src="{ms:global.host/}/{ms:global.style/}/images/2103261412053429794.png">
+                            <div class="zx_zf">办事咨询</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" target="_blank" title="网站专访"><img
+                                src="{ms:global.host/}/{ms:global.style/}/images/2103261412100816120.png">
+                            <div class="zx_zf">网站专访</div>
+                        </a>
+                    </li>
+
+                </ul>
+                {/ms:channel}
+            </div>
+        </div>
+        <div class="bt-clear"></div>
+        <!-- 第五部分 -->
+        <!-- 第六部分 -->
+        <div class="bg3 zoz ergodic=" view " bt-clear" bg3 zoz bt-clear>
+            <ul>
+                {ms:arclist flag = 'p' size=4}
+                <li><a href="{ms:global.url/}${field.link}" target=_blank
+                        title="第二轮中央生态环境保护督察在山东"><img
+                            src="{ms:global.host/}/{@ms:file field.litpic/}" style="width: 282px;height: 82px;"></a></li>
+                {/ms:arclist}
+            </ul>
+        </div>
+        <div class="bt-clear"></div>
+        <!-- 第六部分 -->
+
+        <div class="">
+            {ms:arclist typeid="1647844113875517448"}
+            <#if field.title == '满意度调查'>
+            <div class="sdjiucuo3" style="bottom: 160px; width: 160px; left: 10px;">
+                <a class="close_jc">x</a>
+                <img src="{ms:global.host/}/{@ms:file field.litpic/}" border="0"
+                    style="width: 160px; height: 243px;">
+            </div>
+            <#else>
+            <div class="sdjiucuo2" style="bottom: 390px; width: 90px; right: 10px;">
+                <a class="close_jc">x</a>
+                <a href="" target="_blank"><img
+                        src="{ms:global.host/}/{@ms:file field.litpic/}" border="0"
+                        style="width: 90px; height: 443px;"></a>
+            </div>
+            </#if>
+            {/ms:arclist}
+            <style type="text/css">
+             .sdjiucuo2 {
+                    position: fixed;
+                    bottom: 390px;
+                    right: 10px;
+                    z-index: 100;
+                    cursor: pointer;
+                    width: 90px;
+                    height: 100px;
+                }
+                .sdjiucuo3 {
+                    position: fixed;
+                    bottom: 390px;
+                    left: 10px;
+                    z-index: 100;
+                    cursor: pointer;
+                    width: 90px;
+                    height: 100px;
+                }
+            </style>
+
+            <meta name="viewport"
+                content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+            <style type="text/css">
+                * {
+                    margin: 0px;
+                    padding: 0px;
+                    list-style: none;
+                    text-decoration: none;
+                }
+
+                a {
+                    outline: none;
+                }
+
+                a:focus {
+                    outline: none;
+                }
+
+                input,
+                textarea {
+                    background: #FFFFFF;
+                }
+
+                img {
+                    border: 0px;
+                }
+
+                body {
+                    font-family: Microsoft YaHei !important;
+                }
+
+                .bt-left {
+                    float: left;
+                }
+
+                .bt-right {
+                    float: right;
+                }
+
+                .bt-clear {
+                    clear: both;
+                }
+
+                .wip_footerbg {
+                    background: #FFFFFF;
+                    clear: both;
+                }
+
+                .wip_footerbg * {
+                    box-sizing: border-box;
+                }
+
+                .wip_footer_linkbg {
+                    width: 100%;
+                    margin: auto;
+                    background: #e1e4e7;
+                }
+
+                .wip_footer_link {
+                    height: auto;
+                }
+
+                .link_btnbg {
+                    height: 32px;
+                    max-width: 1200px;
+                    margin: auto;
+                }
+
+                .link_btn_left {
+                    float: left;
+                    width: 50%;
+                    max-width: 391px;
+                    height: 32px;
+                    background: url({ms:global.host/}/{ms:global.style/}/images/1910151048106308256.png) no-repeat left center;
+                    padding-left: 32px;
+                    box-sizing: border-box;
+                }
+
+                .link_btn_left a {
+                    float: left;
+                    height: 32px;
+                    line-height: 32px;
+                    color: #333333;
+                    font-size: 14px;
+                    background: url({ms:global.host/}/{ms:global.style/}/images/1909301107219912150.png) no-repeat left;
+                    display: inline-block;
+                    padding-left: 10px;
+                    margin-right: 10px;
+                    box-sizing: border-box;
+                }
+
+                .link_btn_left a:first-child {
+                    background: none;
+                }
+
+
+                .hot_btn_right {
+                    float: right;
+                    width: 11.25%;
+                    max-width: 135px;
+                    height: 32px;
+                    line-height: 32px;
+                    padding-left: 30px;
+                    box-sizing: border-box;
+                    color: #324a78;
+                    font-size: 16px;
+                    border: 1px solid #c7d0dd;
+                    margin-right: 1%;
+                    background: url({ms:global.host/}/{ms:global.style/}/images/1910021617215329873.png) no-repeat 85% center;
+                }
+
+                .hot_btn_right a {
+                    color: #324a78;
+                }
+
+                .link_map {
+                    padding: 30px 0;
+                    display: none;
+                    margin: 0 auto;
+                    max-width: 1200px;
+                    box-sizing: border-box;
+                }
+
+                .link_map_ul {
+                    width: 25%;
+                    float: left;
+                    padding-left: 40px;
+                    box-sizing: border-box;
+                }
+
+                .link_map_ul {
+                    font-size: 18px;
+                    color: #333333;
+                    margin-bottom: 20px;
+                }
+
+                .link_map_ul a {
+                    color: #333333;
+                }
+
+                .link_map_ul ul li {
+                    line-height: 28px;
+                }
+
+                .link_map_ul ul li a {
+                    color: #666666;
+                    font-size: 14px;
+                }
+
+                .wip_footer_shipbg {
+                    width: 100%;
+                    background: #f3f3f3;
+                    min-height: 98px;
+                    border-top: #245399 solid 8px;
+                }
+
+                .wip_footer_ship {
+                    width: 100%;
+                    max-width: 1200px;
+                    margin: auto;
+                }
+
+                .wip_ship_left {
+                    float: left;
+                    width: 204px;
+                    text-align: right;
+                    padding-right: 12px;
+                    line-height: 20px;
+                    line-height: 50px;
+                    font-size: 15px;
+                    min-height: 98px;
+                    box-sizing: border-box;
+                }
+
+                .wip_ship_right {
+                    float: right;
+                    width: 996px;
+                }
+
+                .wip_ship_click {
+                    float: left;
+                    width: 180px;
+                    text-indent: 10px;
+                    line-height: 30px;
+                    height: 30px;
+                    font-size: 13px;
+                    background: #FFFFFF;
+                    border: #e5e5e5 1px solid;
+                    margin-top: 10px;
+                    font-weight: bold;
+                    margin-left: 24px;
+                    box-sizing: border-box;
+                }
+
+                .wip_ship_click:first-child {
+                    margin-left: 0px;
+                }
+
+                .wip_ship_click a {
+                    color: #274f94;
+                }
+
+                .select_ul {
+                    display: none;
+                    border: 1px solid #999;
+                    position: absolute;
+                    bottom: 30px;
+                    width: 100%;
+                    max-height: 310px;
+                    overflow-y: auto;
+                    z-index: 2;
+                    box-sizing: border-box;
+                }
+
+                .select_1,
+                .select_2,
+                .select_3,
+                .select_4,
+                .select_5 {
+                    float: left;
+                    width: 180px;
+                    text-indent: 10px;
+                    line-height: 30px;
+                    height: 30px;
+                    font-size: 13px;
+                    background: #FFFFFF;
+                    border: #e5e5e5 1px solid;
+                    box-sizing: border-box;
+                    margin-top: 10px;
+                    margin-left: 24px;
+                    position: relative;
+                }
+
+                .select_1 {
+                    margin-left: 0px;
+                }
+
+                .select_span {
+                    background: #FFFFFF url({ms:global.host/}/{ms:global.style/}/images/1909301107221046767.png) no-repeat 160px center;
+                    color: #777777;
+                    font-size: 14px;
+                    display: block;
+                    height: 30px;
+                    line-height: 30px;
+                    overflow: hidden;
+                    padding-right: 20px;
+                }
+
+                .select_li {
+                    height: 28px;
+                    line-height: 28px;
+                    padding-left: 4px;
+                    background: #fff;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    box-sizing: border-box;
+                }
+
+                .select_li a {
+                    color: #000;
+                    display: block;
+                }
+
+                .select_li:hover {
+                    background: #666666;
+                }
+
+                .select_li:hover a {
+                    background: #666666;
+                }
+
+                .wip_footer_con {
+                    width: 100%;
+                    margin: auto;
+                    max-width: 800px;
+                    padding-top: 23px;
+                    min-height: 135px;
+                    box-sizing: border-box;
+                }
+
+                .wip_footer_con_right {
+                    width: 100px;
+                    float: right;
+                    display: block;
+                }
+
+                .wip_footer_con_right img {
+                    width: 100px;
+                    height: 50px;
+                }
+
+                .wip_footer_con_left {
+                    width: 100px;
+                    float: left;
+                }
+
+                .wip_footer_con_center {
+                    width: 600px;
+                    float: left;
+                    text-align: center;
+                }
+
+                .wip_footer_con_center p {
+                    color: #666666;
+                    line-height: 25px;
+                    height: 25px;
+                    font-size: 12px;
+                    width: 100%;
+                    margin: 0px auto;
+                }
+
+                .wip_footer_con_center p a {
+                    color: #666666;
+                    display: inline-block;
+                }
+
+                .wip_footer_con_center .p {
+                    width: 300px;
+                    margin: auto;
+                    height: 25px;
+                }
+
+                .wip_footer_con_center .p a {
+                    display: block;
+                    float: left;
+                    color: #666666;
+                    line-height: 25px;
+                    font-size: 12px;
+                    background: url({ms:global.host/}/{ms:global.style/}/images/1909301107219912150.png) no-repeat left center;
+                    padding-left: 13px;
+                    margin-left: 13px;
+                    box-sizing: border-box;
+                }
+
+                .wip_footer_con_center .p a:first-child {
+                    background: none;
+                    margin-left: 0px;
+                }
+
+                .tupian {
+                    display: none;
+                    width: 140px;
+                    height: 140px;
+                    top: -141px;
+                    z-index: 2;
+                    left: 275px;
+                    position: absolute;
+                }
+
+                .weixin {
+                    display: block;
+                }
+
+                .wei2:hover .tupian {
+                    display: block;
+                }
+
+                .wei1:hover .tupian1 {
+                    display: block;
+                }
+
+                .tupian1 {
+                    display: none;
+                    width: 140px;
+                    height: 140px;
+                    top: -141px;
+                    z-index: 2;
+                    left: 115px;
+                    position: absolute;
+                }
+
+                .sdjiucuo {
+                    cursor: pointer;
+                    position: fixed;
+                    bottom: 0;
+                    right: 25px;
+                    z-index: 100;
+                    width: 320px;
+                    height: 100px;
+                }
+
+                .sdjiucuo a {
+                    position: absolute;
+                    display: block;
+                }
+
+                .sdjiucuo a:first-child {
+                    z-index: 102;
+                    width: 20px;
+                    height: 20px;
+                    text-align: center;
+                    right: 0px;
+                    font-size: 20px;
+                    color: #FFFFFF;
+                }
+
+                .sdjiucuo img {
+                    width: 100%;
+                }
+
+                .sdjiucuo4 {
+                    position: fixed;
+                    bottom: 324px;
+                    right: 25px;
+                    z-index: 100;
+                    cursor: pointer;
+                    width: 320px;
+                    height: 100px;
+                }
+
+                .sdjiucuo4 a {
+                    position: absolute;
+                    display: block;
+                }
+
+                .sdjiucuo4 a:first-child {
+                    z-index: 102;
+                    width: 20px;
+                    height: 20px;
+                    text-align: center;
+                    right: 0px;
+                    font-size: 20px;
+                    color: #FFFFFF;
+                }
+
+                .sdjiucuo4 img {
+                    width: 100%;
+                }
+
+                .sdjiucuo3 {
+                    position: fixed;
+                    bottom: 213px;
+                    right: 25px;
+                    z-index: 100;
+                    cursor: pointer;
+                    width: 320px;
+                    height: 100px;
+                }
+
+                .sdjiucuo3 a {
+                    position: absolute;
+                    display: block;
+                }
+
+                .sdjiucuo3 a:first-child {
+                    z-index: 102;
+                    width: 20px;
+                    height: 20px;
+                    text-align: center;
+                    right: 0px;
+                    font-size: 20px;
+                    color: #FFFFFF;
+                }
+
+                .sdjiucuo3 img {
+                    width: 100%;
+                }
+
+                .sdjiucuo2 {
+                    position: fixed;
+                    bottom: 110px;
+                    right: 25px;
+                    z-index: 100;
+                    cursor: pointer;
+                    width: 320px;
+                    height: 100px;
+                }
+
+                .sdjiucuo2 a {
+                    position: absolute;
+                    display: block;
+                }
+
+                .sdjiucuo2 a:first-child {
+                    z-index: 102;
+                    width: 20px;
+                    height: 20px;
+                    text-align: center;
+                    right: 0px;
+                    font-size: 20px;
+                    color: #FFFFFF;
+                }
+
+                .sdjiucuo2 img {
+                    width: 100%;
+                }
+
+                .loginbg {
+                    position: relative;
+                    margin-right: 5px;
+                    float: left;
+                }
+
+                .loginbg a {
+                    cursor: pointer;
+                }
+
+                .grfr {
+                    display: none;
+                    width: 75px;
+                    position: absolute;
+                    color: #245399;
+                    background: #FFFFFF;
+                    height: 54px;
+                    position: absolute;
+                    left: -9px;
+                }
+
+                .grfr a {
+                    color: #245399;
+                    font-size: 13px;
+                    line-height: 27px;
+                    display: block;
+                    text-align: center;
+                    float: none;
+                }
+
+                .grfr a:first-child {
+                    color: #245399;
+                    font-size: 13px;
+                    line-height: 27px;
+                    display: block;
+                    float: none;
+                    margin-right: 0px;
+                }
+
+                .regbg {
+                    position: relative;
+                    float: left;
+                }
+
+                .regbg a {
+                    cursor: pointer;
+                }
+
+                .gfzc {
+                    display: none;
+                    width: 75px;
+                    position: absolute;
+                    color: #245399;
+                    background: #FFFFFF;
+                    height: 54px;
+                    position: absolute;
+                    right: 0px;
+                }
+
+                .gfzc a {
+                    color: #245399;
+                    font-size: 13px;
+                    line-height: 27px;
+                    display: block;
+                    text-align: center;
+                    float: none;
+                }
+
+                .gfzc a:first-child {
+                    color: #245399;
+                    font-size: 13px;
+                    line-height: 27px;
+                    display: block;
+                    float: none;
+                    margin-right: 0px;
+                }
+
+                @media only screen and (max-width: 1200px) {
+                    .wip_footerpc .wip_ship_left {
+                        width: 15%;
+                    }
+
+                    .wip_footerpc .wip_ship_right {
+                        width: 85%;
+                    }
+
+                    .wip_footerpc .wip_ship_click {
+                        width: 19%;
+                        margin-left: 1.25%;
+                    }
+
+                    .wip_footerpc .wip_ship_click:first-child {
+                        width: 19%;
+                        margin-left: 0%;
+                    }
+
+                    .wip_footerpc .select_2,
+                    .wip_footerpc .select_3,
+                    .wip_footerpc .select_4 {
+                        width: 19%;
+                        margin-left: 1.25%;
+                    }
+
+                    .wip_footerpc .select_span {
+                        background-image: none;
+                    }
+
+                    .wip_footerpc .select_1 {
+                        width: 19%;
+                        margin-left: 0%;
+                    }
+
+                    .wip_footerpc .wip_footer_shipbg {
+                        height: auto;
+                    }
+
+                    .hot_btn_right {
+                        padding-left: 15px;
+                    }
+                }
+
+                @media only screen and (max-width: 900px) {
+                    .hidesmallfooter {
+                        display: none;
+                    }
+
+                    .wip_footer_con_center {
+                        width: 100%;
+                    }
+                }
+
+                @media only screen and (max-width: 450px) {
+                    .sdjiucuo {
+                        width: 150px;
+                        height: 47px;
+                    }
+
+                    .sdjiucuo2 {
+                        width: 150px;
+                        height: 47px;
+                        bottom: 50px;
+                    }
+
+                    .sdjiucuo a:first-child {
+                        font-size: 12px;
+                        width: 12px;
+                        height: 12px;
+                    }
+
+                    .sdjiucuo2 a:first-child {
+                        font-size: 12px;
+                        width: 12px;
+                        height: 12px;
+                    }
+
+                    .sdjiucuo3 {
+                        width: 150px;
+                        height: 47px;
+                        bottom: 103px;
+                    }
+
+                    .sdjiucuo4 {
+                        width: 150px;
+                        height: 47px;
+                        bottom: 103px;
+                    }
+
+                    .sdjiucuo a:first-child {
+                        font-size: 12px;
+                        width: 12px;
+                        height: 12px;
+                    }
+
+                    .sdjiucuo3 a:first-child {
+                        font-size: 12px;
+                        width: 12px;
+                        height: 12px;
+                    }
+
+                    .sdjiucuo4 a:first-child {
+                        font-size: 12px;
+                        width: 12px;
+                        height: 12px;
+                    }
+                }
+
+                .name_out {
+                    cursor: pointer;
+                }
+
+                .nameout {
+                    cursor: pointer;
+                }
+
+
+                .wip_sxjk,
+                .yjjy {
+                    cursor: pointer;
+                }
+
+                .wip_sxjk a {
+                    cursor: pointer;
+                }
+
+                DIV.digg input[type="submit"] {
+                    height: 25px !important;
+                }
+            </style>
+            <!-- 通用底部 -->
+            <#include "footer.htm">
+                <iframe class="ifb" style="display: none;"></iframe>
+                <script type="text/javascript">
+                    $(function () {
+                        $('body').click(function () {
+                            $(".select_ul").hide()
+                        })
+
+                        function select(obj) {
+                            $("." + obj).click(function () {
+                                stopPropagation();
+
+                                if ($(this).children(".select_ul").is(":hidden")) {
+                                    $(".select_ul").hide()
+                                    $(this).children(".select_ul").show();
+
+                                } else {
+
+                                    $(this).children(".select_ul").hide();
+                                }
+
+                            })
+                            $("." + obj).find(".select_li").click(function () {
+                                $(this).parents("." + obj).find(".select_span").html($(this).text())
+                                stopPropagation();
+                                $(".select_ul").hide()
+
+                            })
+                        }
+                        select("select_1")
+                        select("select_2")
+                        select("select_3")
+                        select("select_4")
+                        select("select_5")
+
+                        function stopPropagation(e) {
+                            e = window.event || e;
+                            if (document.all) {
+                                e.cancelBubble = true;
+                            } else {
+                                e.stopPropagation();
+                            }
+
+                        }
+
+                    })
+                </script>
+                <script type="text/javascript">
+                    $(".hot_wenzhang").click(function (event) {
+                        $(".link_map").hide();
+                        event.preventDefault && event.preventDefault();
+                        this.start = this.start || 0;
+                        var s = this;
+                        if (this.start === 0) {
+                            this.start = 1;
+                            $(".banner_remen").slideToggle(function () {
+                                s.start = 0;
+                            });
+                        }
+                        return 0;
+                    });
+                </script>
+                <script type="text/javascript">
+                    $(".link_btn_nav").click(function (event) {
+                        $(".banner_remen").hide()
+                        event.preventDefault && event.preventDefault();
+                        this.start = this.start || 0;
+                        var s = this;
+
+                        if (this.start === 0) {
+                            this.start = 1;
+                            $(".link_map").slideToggle(function () {
+                                s.start = 0;
+                            });
+                        }
+                        return 0;
+                    });
+                </script>
+                <script type="text/javascript">
+                    $(".sdjiucuo4 .close_jc").click(function () {
+                        $(".sdjiucuo4").hide();
+                    })
+                    $(".sdjiucuo3 .close_jc").click(function () {
+                        $(".sdjiucuo3").hide();
+                    })
+                    $(".sdjiucuo2 .close_jc").click(function () {
+                        $(".sdjiucuo2").hide();
+                    })
+
+                    var name = true;
+
+                    $(".sdjiucuo .close_jc").click(function () {
+                        $(this).parent(".sdjiucuo").hide();
+                        name == false;
+                        setInfo(false)
+                    })
+
+                    function setInfo(name) {
+                        var storage = window.sessionStorage;
+                        storage.setItem('name', name);
+                    }
+                </script>
+                <!--  juba埋点开始 -->
+                <script type="text/javascript">
+                    // juba埋点结束 
+                    // 访问统计 
+                    var _hmt = _hmt || [];
+                    (function () {
+                        var hm = document.createElement("script")
+                        hm.src = "https://hm.baidu.com/hm.js?3147c565b4637bb1f8c07a562a3c6cb7";
+                        var s = document.getElementsByTagName("script")[0];
+                        s.parentNode.insertBefore(hm, s);
+                    })();
+  //访问统计结束
+                </script>
+                <script type="text/javascript">
+                    var i = 0;
+                    $(".picker-hall-collapse-toggle").click(function () {
+                        i++;
+                        if (i % 2 != 0) {
+                            $(".picker-hall-window").css({
+                                "height": "600px"
+                            }, 600);
+                            $(this).text("收起")
+                        } else {
+                            $(".picker-hall-window").css({
+                                "height": "330px"
+                            }, 600);
+                            $(this).text("显示更多")
+                        }
+                    })
+
+                </script>
+                <script type='text/javascript'>
+                    var Base64 = {
+                        _keyStr: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",
+                        encode: function (e) {
+                            var t = "";
+                            var n, r, i, s, o, u, a;
+                            var f = 0;
+                            e = Base64._utf8_encode(e);
+                            while (f < e.length) {
+                                n = e.charCodeAt(f++);
+                                r = e.charCodeAt(f++);
+                                i = e.charCodeAt(f++);
+                                s = n >> 2;
+                                o = (n & 3) << 4 | r >> 4;
+                                u = (r & 15) << 2 | i >> 6;
+                                a = i & 63;
+                                if (isNaN(r)) {
+                                    u = a = 64
+                                } else if (isNaN(i)) {
+                                    a = 64
+                                }
+                                t = t + this._keyStr.charAt(s) + this._keyStr.charAt(o) + this._keyStr.charAt(u) + this._keyStr.charAt(a)
+                            }
+                            return t
+                        },
+                        decode: function (e) {
+                            var t = "";
+                            var n, r, i;
+                            var s, o, u, a;
+                            var f = 0;
+                            e = e.replace(/[^A-Za-z0-9+/=]/g, "")
+                            while (f < e.length) {
+                                s = this._keyStr.indexOf(e.charAt(f++));
+                                o = this._keyStr.indexOf(e.charAt(f++));
+                                u = this._keyStr.indexOf(e.charAt(f++));
+                                a = this._keyStr.indexOf(e.charAt(f++));
+                                n = s << 2 | o >> 4;
+                                r = (o & 15) << 4 | u >> 2;
+                                i = (u & 3) << 6 | a;
+                                t = t + String.fromCharCode(n);
+                                if (u != 64) {
+                                    t = t + String.fromCharCode(r)
+                                }
+                                if (a != 64) {
+                                    t = t + String.fromCharCode(i)
+                                }
+                            }
+                            t = Base64._utf8_decode(t);
+                            return t
+                        },
+                        _utf8_encode: function (e) {
+                            e = e.replace(/rn/g, "n")
+                            var t = "";
+                            for (var n = 0; n < e.length; n++) {
+                                var r = e.charCodeAt(n);
+                                if (r < 128) {
+                                    t += String.fromCharCode(r)
+                                } else if (r > 127 && r < 2048) {
+                                    t += String.fromCharCode(r >> 6 | 192);
+                                    t += String.fromCharCode(r & 63 | 128)
+                                } else {
+                                    t += String.fromCharCode(r >> 12 | 224);
+                                    t += String.fromCharCode(r >> 6 & 63 | 128);
+                                    t += String.fromCharCode(r & 63 | 128)
+                                }
+                            }
+                            return t
+                        },
+                        _utf8_decode: function (e) {
+                            var t = "";
+                            var n = 0;
+                            var r = c1 = c2 = 0;
+                            while (n < e.length) {
+                                r = e.charCodeAt(n);
+                                if (r < 128) {
+                                    t += String.fromCharCode(r);
+                                    n++
+                                } else if (r > 191 && r < 224) {
+                                    c2 = e.charCodeAt(n + 1);
+                                    t += String.fromCharCode((r & 31) << 6 | c2 & 63);
+                                    n += 2
+                                } else {
+                                    c2 = e.charCodeAt(n + 1);
+                                    c3 = e.charCodeAt(n + 2);
+                                    t += String.fromCharCode((r & 15) << 12 | (c2 & 63) << 6 | c3 & 63);
+                                    n += 3
+                                }
+                            }
+                            return t
+                        }
+                    }
+                </script>
+
+
+        </div>
+    </div>
+</body>
+<script>
+    // 选项卡一
+    var more = $("#more1");
+    var title = $(".menu_box span")
+    $(".list_2 .menu_box span").hover(function () {
+        $(this).addClass("on").siblings().removeClass("on");
+        $(".list_2 .menu_box_1>a").eq($(this).index()).show().siblings().hide();
+        $(".list_2 .list_box>ul").eq($(this).index()).show().siblings().hide();
+    });
+</script>
+<script type="text/javascript">
+    var heightauto = $(".xuan").height();
+    $(".slideBox").css("height", heightauto)
+</script>
+<script type="text/javascript">
+    $(".guan").click(function () {
+        $(this).parent().hide();
+    })
+</script>
+<script type="text/javascript">
+    $(".bg>div").eq(0).addClass("list_hover0")
+    $(".bg>div").hover(function () {
+        $(".bg>div").attr('class', '');
+        var indexbg = $(this).index();
+        $(this).addClass("list_hover" + indexbg)
+    })
+</script>
+
+<script type="text/javascript">
+    $("#scrollDiv").Scroll({
+        line: 1,
+        speed: 500,
+        timer: 3000,
+        up: "but_up",
+        down: "but_down"
+    });
+</script>
+
+</html>

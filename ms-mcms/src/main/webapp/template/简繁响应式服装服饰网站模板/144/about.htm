@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<meta name="renderer" content="webkit|ie-comp|ie-stand" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta http-equiv="Cache-Control" content="no-transform"/>
+<meta name="applicable-device" content="pc">
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+<title>${field.typetitle}</title>
+<meta name="keywords" content="${field.typekeyword}">
+<meta name="description" content="${field.typedescrip}">
+<link rel="stylesheet" href="/{ms:global.style/}css/animate.min.css">
+<link rel="stylesheet" href="/{ms:global.style/}css/swiper.min.css">
+<link rel="stylesheet" href="/{ms:global.style/}css/style.css">
+<script src="/{ms:global.style/}js/jquery.min.js"></script>
+<script src="/{ms:global.style/}js/wow.min.js"></script>
+<script src="/{ms:global.style/}js/swiper.min.js"></script>
+<script src="/{ms:global.style/}js/style.js"></script>
+</head>
+<body>
+<#include "head.htm" />
+{ms:channel type='parent'}<div class="banner-sub" style="background-image: url({@ms:file field.typelitpic/});"></div>{/ms:channel}
+<#include "ss.htm" />
+<div class="section-sub">
+  <div class="container">
+    <div class="yunu-curmbs"> <span>您的位置：</span> <a href="/" class="ms-channel-path-index"> 首页 </a>{ms:channel type="path"}     >> <a href={ms:global.html/}${field.typelink} class="ms-channel-path-link">         ${field.typetitle}  </a>     {/ms:channel} </div>
+    <div class="yunu-menu-inner clearfix"> 
+    <#if field.typeleaf == 0>
+    {ms:channel type='son'}
+
+    <a href='<#if field.type==3>{ms:global.html/}${field.typeurl}<#else>{ms:global.html/}${field.typelink}</#if>' <#if field.typeid == typeid || (ids?has_content && ids?split(",")?seq_contains(field.typeid.toString()))>class="active"
+</#if>><span>${field.typetitle}</span></a> 
+    
+{/ms:channel}
+<#else>
+    {ms:channel type='level'}
+
+    <a href='<#if field.type==3>{ms:global.html/}${field.typeurl}<#else>{ms:global.html/}${field.typelink}</#if>' <#if field.typeid == typeid || (ids?has_content && ids?split(",")?seq_contains(field.typeid.toString()))>class="active"
+</#if>><span>${field.typetitle}</span></a> 
+    
+{/ms:channel}
+</#if>
+    </div>
+    <div class="section-title"> <strong>公司简介</strong>
+      <p>T恤衫定制，就选某某服饰</p>
+    </div>
+    <dl class="about-1 clearfix">
+      <dt class="img-center"><img src="/{ms:global.style/}images/about-1.jpg" alt=""></dt>
+      <dd>
+        <h4> 刺绣+免费寄样+快速出货</h4>
+         {ms:data dataid="1673889195659534336"}
+        <p>${field.content}</p>
+        {/ms:data}
+        <p>&nbsp; </p>
+        <div class="tips"> 款式多样，随心定制！</div>
+      </dd>
+    </dl>
+  </div>
+</div>
+<div class="banner-sub" style="background-image: url(/{ms:global.style/}images/about-3.jpg);"></div>
+<div class="section">
+  <div class="container">
+    <div class="section-title"> <strong>公司实力</strong>
+      <p>别出心裁、因你精致</p>
+    </div>
+    <div class="about-2">
+      <p> 公司现有员工：500多人，设计、技术管理人员：80多人。韶关及广州两处厂房总面积约10000㎡。拥有缝纫、裁剪、锁钉、水洗、缩水、整定型等各种制衣设备，经济技术力量深厚，配有CAD计算机系统，形成了集开发设计、生产、销售为一体的完整体系。具备年生产各类型服装100万套的生产能力。面向全新的二十一世纪，我们将继续秉承&ldquo;每天提高一点&rdquo;的工作理念，继续为客户提供准确、高效、贴心的服务。</p>
+      <div class="img-center"> </div>
+    </div>
+  </div>
+</div>
+<#include "foot.htm" />
+</body>
+</html>

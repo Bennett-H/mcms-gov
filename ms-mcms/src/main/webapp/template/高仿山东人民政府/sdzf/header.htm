@@ -1,0 +1,405 @@
+<div>
+    <style type="text/css">
+        * {
+            box-sizing: border-box;
+            padding: 0px;
+            margin: 0px;
+            outline: none;
+        }
+
+        body {
+            font-family: "微软雅黑";
+        }
+
+        .wip_header_bg {
+            width: 100%;
+            height: 10px;
+            background: #245399;
+        }
+
+        .wip_header {
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .wip_header_left {
+            float: left;
+            width: 304px;
+        }
+
+        .wip_header_right {
+            float: right;
+            width: 580px;
+        }
+
+        .wip_header_li {
+            float: left;
+            font-size: 14px;
+            color: #245399;
+            line-height: 40px;
+        }
+
+        .wip_header_li a {
+            color: #245399;
+        }
+
+        .wip_header_li {
+            margin-left: 12px;
+        }
+
+        .bt-clear {
+            clear: both;
+        }
+
+        .wip_banner_bg {
+            width: 100%;
+            min-height: 140px;
+            background: #e5e8ed;
+            padding-top: 0px;
+            margin: 0px auto 0px;
+            border-bottom: 9px #b5c5d5 solid;
+        }
+
+        .wip_banner {
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+            height: 110px;
+            background: url({ms:global.host/}/{ms:global.style/}/images/2010141133285686056.png) no-repeat left top;
+        }
+
+        .wip_banner .wip_from {
+            max-width: 745px;
+            width: 520px;
+            float: right;
+        }
+
+        .wip_banner .ipt_txt1 {
+            padding: 0px 21px 0px 34px;
+            border: 0px solid #245399;
+            background: transparent;
+            background: url({ms:global.host/}/{ms:global.style/}/images/1910071711279493529.jpg) no-repeat center right;
+            outline: none;
+            height: 32px;
+            line-height: 32px;
+            color: #a4a4a5;
+            font-size: 16px;
+            width: 400px;
+            display: block;
+            float: left;
+            font-weight: 300;
+            border-bottom: 1px #b7c4d7 solid;
+            background: none;
+        }
+
+        .wip_banner .ipt_sear {
+            width: 100px;
+            background: #DA5445;
+            border: 0px;
+            outline: none;
+            height: 33px;
+            cursor: pointer;
+            margin: 0px;
+            padding: 0px;
+            display: block;
+            float: right;
+            margin-left: 16px;
+            font-size: 15px;
+            color: #FFFFFF;
+        }
+
+        .wip_nav {
+            min-height: 45px;
+            max-width: 1200px;
+            margin: auto;
+            padding-left: 61px;
+        }
+
+        .lan a {
+            background-image: url({ms:global.host/}/{ms:global.style/}/images/1909301107300757611.png) !important;
+            color: #c92c1a !important;
+            background-position: 0px -36px !important;
+        }
+
+        .wip_nav_li:first-child {
+            width: 170px;
+        }
+
+        .wip_nav_li {
+            width: 185px;
+            height: 36px;
+            line-height: 36px;
+            float: left;
+            color: #446b9a;
+            background-repeat: no-repeat;
+            -webkit-transition: 0.2s;
+            transition: 0.2s;
+            cursor: pointer;
+            text-indent: 46px;
+        }
+
+        .wip_nav_li a {
+            color: #446b9a;
+            font-size: 19px;
+            text-decoration: none;
+            display: block;
+            cursor: pointer;
+            background-repeat: no-repeat;
+            background-position: 0px 0px;
+            width: 78%;
+            height: 36px;
+            margin: auto;
+        }
+
+        .wip_nav .t1 a {
+            background-image: url("{ms:global.host/}/{ms:global.style/}/images/1909301107222165143.png")
+        }
+
+        .wip_nav .t2 a {
+            background-image: url("{ms:global.host/}/{ms:global.style/}/images/1909301107222779552.png")
+        }
+
+        .wip_nav .t3 a {
+            background-image: url("{ms:global.host/}/{ms:global.style/}/images/1909301107300335633.png")
+        }
+
+        .wip_nav .t4 a {
+            background-image: url("{ms:global.host/}/{ms:global.style/}/images/1909301107300757611.png")
+        }
+
+        .wip_nav .t5 a {
+            background-image: url("{ms:global.host/}/{ms:global.style/}/images/1909301107300953715.png")
+        }
+
+        .wip_nav .t6 a {
+            background-image: url("{ms:global.host/}/{ms:global.style/}/images/1909301107222485814.png")
+        }
+
+        .wip_nav .t7 a {
+            background-image: url("{ms:global.host/}/{ms:global.style/}/images/1912301022384568191.png")
+        }
+
+        .wip_nav_li:hover a {
+            color: #c92c1a;
+            background-position: 0px -36px;
+        }
+
+
+        .wip_nav_li_hover a {
+            color: #c92c1a;
+            background-position: 0px -36px;
+        }
+
+        .toolbar_bottom {
+            margin-right: 7px !important;
+        }
+
+        .toolbar_bottom li {
+            height: 36px !important;
+        }
+
+        .name_loain a {
+            float: right;
+        }
+
+        .name_loain a:first-child {
+            max-width: 90px;
+            margin-right: 5px;
+            height: 28px;
+            line-height: 40px;
+            display: inline-block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            float: none;
+        }
+
+        @media only screen and (max-width: 1200px) {
+            .wip_nav {
+                padding-left: 0px;
+            }
+
+            .wip_nav_li:first-child {
+                width: 16.666%;
+            }
+
+            .wip_nav_li {
+                width: 16.666%;
+            }
+        }
+
+        @media only screen and (min-width: 993px) and (max-width: 1200px) {
+            .wip_nav_li {
+                width: 16.6%;
+            }
+
+            .wip_nav_li:first-child {
+                width: 13.66%;
+            }
+        }
+
+        @media only screen and (max-width: 993px) {
+
+            .wip_header_left,
+            .wip_header_right {
+                display: none;
+            }
+
+            .ipt_sear {
+                width: 18%;
+                background: #da5445;
+                text-align: center;
+                text-indent: 0px;
+                font-size: 16px;
+                margin-left: 2%;
+            }
+
+            .ipt_txt1 {
+                width: 80%;
+                background: none;
+                padding: 0px 2% 0PX 2%;
+                font-size: 15px;
+            }
+
+            .wip_nav_li:hover a {
+                background-position: 0px -25px;
+            }
+
+            .wip_nav_li_hover a {
+                background-position: 0px -25px;
+            }
+
+            .wip_nav_li {
+                width: 33%;
+                font-size: 15px;
+                background-size: 25px;
+                height: 25px;
+                line-height: 25px;
+                text-indent: 11%;
+                text-align: center;
+                margin: 0px auto 15px;
+            }
+
+            .wip_nav_li:first-child {
+                width: 33%;
+            }
+
+            .wip_nav_li a {
+                font-size: 14px;
+                height: 25px;
+                background-size: 25px;
+                background-position: 0px 0px;
+            }
+
+            .lan a {
+                background-size: 25px;
+                background-position: 0px -25px !important;
+            }
+        }
+
+        @media only screen and (max-width: 450px) {
+            .wip_banner {
+                background: url({ms:global.host/}/{ms:global.style/}/images/1912301501299893546.png) no-repeat left top;
+                height: 70px;
+            }
+
+            .wip_nav_li a {
+                font-size: 12px;
+            }
+
+            .lan a {
+                background-size: 25px;
+                background-position: 0px -25px !important;
+            }
+        }
+    </style>
+
+    <script id="barrierfree" src="http://www.shandong.gov.cn/module/web/accessiblereading/load.js"></script>
+    <script language="javascript" src="http://www.shandong.gov.cn/module/jslib/gtb/language.js"></script>
+    <div class="top">
+
+        <div class="wip_header_bg" ergodic="serve">
+
+        </div>
+
+        <div class="wip_banner_bg" ergodic="serve">
+            <div class="wip_banner">
+
+                <div class="wip_header_right">
+                    <div class="bt-right" style="margin-top: 10px;">
+
+                        <div class="wip_header_li" id="localtime">
+
+                        </div>
+                        <div class="wip_header_li">
+                            <a id="zh_click_s" class="" href="javascript:zh_tran('n');">简体版</a>
+                        </div>
+                        <div class="wip_header_li">
+                            <a id="zh_click_t" class="" href="javascript:zh_tran('t');">繁体版</a>
+                        </div>
+
+                        <div class="wip_header_li">
+                            <a href="javascript:;" onclick="toggleToolBar();">无障碍阅读</a>
+                        </div>
+                        <div class="bt-clear">
+
+                        </div>
+
+                    </div>
+
+                    <form action="{ms:global.host/}/mcms/search.do" class="wip_from" method="post" target="_blank" class="forma">
+                        <input type="text" value="" placeholder='请输入关键字查询' autocomplete="off" id="text" name="content_title"
+                            class="ipt_txt1">
+                        <button type="submit" class="ipt_sear" value="">一网通办</button>
+                        <div class="bt-clear">
+
+                        </div>
+                    </form>
+                    <div class="bt-clear">
+
+                    </div>
+                </div>
+            </div>
+                 <!-- 通用导航 -->
+                 <#include "nav.htm">
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function getTime() {
+            var D = new Date();
+            var year = D.getFullYear(),
+                month = D.getMonth() + 1,
+                date = D.getDate(),
+                day = D.getDay();
+            var dayStr = '星期一';
+            switch (day) {
+                case 1:
+                    break;
+                case 2:
+                    dayStr = '星期二';
+                    break;
+                case 3:
+                    dayStr = '星期三';
+                    break;
+                case 4:
+                    dayStr = '星期四';
+                    break;
+                case 5:
+                    dayStr = '星期五';
+                    break;
+                case 6:
+                    dayStr = '星期六';
+                    break;
+                case 0:
+                    dayStr = '星期日';
+                    break;
+            }
+            return year + '年' + month + '月' + date + '日 ' + dayStr;
+        }
+
+        $('#localtime').html(getTime());
+
+    </script>
+</div>

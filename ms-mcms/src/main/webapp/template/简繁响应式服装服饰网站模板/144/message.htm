@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<meta name="renderer" content="webkit|ie-comp|ie-stand" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta http-equiv="Cache-Control" content="no-transform"/>
+<meta name="applicable-device" content="pc">
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+<title>${field.typetitle}</title>
+<meta name="keywords" content="${field.typekeyword}">
+<meta name="description" content="${field.typedescrip}">
+<link rel="stylesheet" href="/{ms:global.style/}css/animate.min.css">
+<link rel="stylesheet" href="/{ms:global.style/}css/swiper.min.css">
+<link rel="stylesheet" href="/{ms:global.style/}css/style.css">
+<script src="/{ms:global.style/}js/jquery.min.js"></script>
+<script src="/{ms:global.style/}js/wow.min.js"></script>
+<script src="/{ms:global.style/}js/swiper.min.js"></script>
+<script src="/{ms:global.style/}js/style.js"></script>
+  <!--引入vue库-->
+  <script type="text/javascript" src="/static/plugins/vue/2.6.9/vue.min.js"></script>
+  <!--引入element-ui库-->
+
+  <script src="${base}/static/plugins/element-ui/2.15.8/index.min.js"></script>
+  <link rel="stylesheet" href="/static/plugins/element-ui/2.15.8/theme-chalk/index.min.css">
+
+  <!--网络请求框架-->
+  <script src="/static/plugins/axios/0.18.0/axios.min.js"></script>
+  <script src="/static/plugins/qs/6.6.0/qs.min.js"></script>
+  <script src="/static/plugins/ms/2.0/ms.umd.js"></script>
+  <script src="/static/plugins/ms/2.0/ms-el-form.umd.js"></script>
+  <!-- 引入自定义库 -->
+  <script>
+    ms.base = "{ms:global.contextpath/}";
+  </script>
+  <script src="/static/mdiy/index.js"></script>
+</head>
+<body>
+<#include "head.htm" />
+{ms:channel type='parent'}<div class="banner-sub" style="background-image: url({@ms:file field.typelitpic/});"></div>{/ms:channel}
+<#include "ss.htm" />
+<div class="section-sub">
+  <div class="container">
+    <div class="yunu-curmbs"> <span>您的位置：</span> <a href="/" class="ms-channel-path-index"> 首页 </a>{ms:channel type="path"}     >> <a href={ms:global.html/}${field.typelink} class="ms-channel-path-link">         ${field.typetitle}  </a>     {/ms:channel} </div>
+    <div class="yunu-menu-inner clearfix"> 
+    <#if field.typeleaf == 0>
+    {ms:channel type='son'}
+
+    <a href='<#if field.type==3>{ms:global.html/}${field.typeurl}<#else>{ms:global.html/}${field.typelink}</#if>' <#if field.typeid == typeid || (ids?has_content && ids?split(",")?seq_contains(field.typeid.toString()))>class="active"
+</#if>><span>${field.typetitle}</span></a> 
+    
+{/ms:channel}
+<#else>
+    {ms:channel type='level'}
+
+    <a href='<#if field.type==3>{ms:global.html/}${field.typeurl}<#else>{ms:global.html/}${field.typelink}</#if>' <#if field.typeid == typeid || (ids?has_content && ids?split(",")?seq_contains(field.typeid.toString()))>class="active"
+</#if>><span>${field.typetitle}</span></a> 
+    
+{/ms:channel}
+</#if>
+    </div>
+    <div class="yunu-message">
+      <form id="myform1" ref="myform1">
+        <div class="form-group">
+          <label class="form-label"><span>*</span>姓名：</label>
+          <div class="form-content">
+            <input type="text" v-model="form.username" name="contacts" class="form-control" placeholder="请填写您的姓名，以便于我方给您回复" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label"><span>*</span>手机号码：</label>
+          <div class="form-content">
+            <input type="tel" v-model="form.mobile" name="mobile" class="form-control" placeholder="请填写您的手机号码，填写后我司将**时间与您通过电话取得联系" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label"><span>*</span>电子邮件：</label>
+          <div class="form-content">
+            <input type="email" v-model="form.email" name="email" class="form-control" placeholder="请填写您的电子邮件，填写后我司将通过电子邮件给您回复" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label"><span>*</span>留言内容：</label>
+          <div class="form-content">
+            <textarea class="form-control" v-model="form.content" name="content" rows="5" placeholder="请真实详尽填写留言内容" required></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label"></label>
+          <div class="form-content">
+            <button type="submit" @click="save" class="form-submit">提交</button>
+            <button type="reset" @click="clear" class="form-button" style="margin-left: 20px;">清除</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<#include "foot.htm" />
+</body>
+<script>
+  var myform1 = new Vue({
+    el: '#myform1',
+
+    data: function () {
+      return {
+        form: {
+          modelName: '',
+          // 名字
+          username: '',
+          // 邮箱
+          email:'',
+          // 电话
+          mobile: '',
+          // 留言
+          content: ''
+        }
+      }
+    },
+    methods: {
+      clear: function (e) {
+        e.preventDefault();//阻止默认事件跳转
+        var that = this;
+        that.form = {
+          username: '',
+          email:'',
+          mobile: '',
+          content: '',
+          biaoti:''
+        }//提交后清空表单
+      },
+      save: function (e) {
+        e.preventDefault();//阻止默认事件跳转
+        var that = this;
+        if (!that.form.username) {
+          that.$notify({
+            title: '失败',
+            type: 'info',
+            message: '请输入您的姓名!'
+          });
+          return;
+        }
+        if (!(/^([0-9]{3,4}-)?[0-9]{7,8}$|^\d{3,4}-\d{3,4}-\d{3,4}$|^1[0-9]{10}$/ .test(that.form.mobile))) {
+          that.$notify({
+            title: '失败',
+            type: 'info',
+            message: '联系电话格式不对!'
+          });
+          return;
+        }
+        if(!(/^[a-zA-Z0-9]+([-_.][a-zA-Z0-9]+)*@[a-zA-Z0-9]+([-_.][a-zA-Z0-9]+)*\.[a-z]{2,}$/) .test(that.form.email)){
+          that.$notify({
+            title: '失败',
+            type: 'info',
+            message: '邮箱格式不对!'
+          });
+          return;
+        }
+        if (!that.form.content) {
+          that.$notify({
+            title: '失败',
+            type: 'info',
+            message: '请输入您的留言！'
+          });
+          return;
+        }
+        that.form.modelName = '在线留言';
+        ms.http.post("/mdiy/form/data/save.do", that.form).then(function (res) {
+          if (res.result) {
+            that.$notify({
+              title: '成功',
+              type: 'success',
+              message: '感谢您的留言!'
+            });
+            that.form = {
+              username: '',
+              email:'',
+              mobile: '',
+              content: ''
+            }//提交后清空表单
+          } else {
+            that.$notify({
+              title: '失败',
+              message: res.msg,
+              type: 'warning'
+            });
+          }
+        })
+      }
+    }
+  })
+</script>
+</html>

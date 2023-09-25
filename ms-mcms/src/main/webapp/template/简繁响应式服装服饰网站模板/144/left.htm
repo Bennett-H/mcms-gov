@@ -1,0 +1,46 @@
+<div class="ct2-sd">
+        <div class="panel-sd">
+          <div class="tit">{ms:channel type='parent'}${field.typetitle}{/ms:channel}</div>
+          <ul class="lanmu">
+            <#if field.typeleaf == 0>
+    {ms:channel type='son'}
+
+            <li <#if field.typeid == typeid || (ids?has_content && ids?split(",")?seq_contains(field.typeid.toString()))>class="active"
+</#if>> <#if field.childsize &gt; 0><i class="arr"></i>
+</#if> <a href="<#if field.type==3>{ms:global.html/}${field.typeurl}<#else>{ms:global.html/}${field.typelink}</#if>">${field.typetitle}</a>
+            <#if field.childsize &gt; 0>
+              <div class="lanmu-box">
+                {ms:channel}  
+                <p><a href="<#if field.type==3>{ms:global.html/}${field.typeurl}<#else>{ms:global.html/}${field.typelink}</#if>">${field.typetitle}</a></p>
+                {/ms:channel}
+              </div>
+              
+</#if>
+            </li>
+            
+{/ms:channel}
+<#else>
+    {ms:channel type='level'}
+
+            <li <#if field.typeid == typeid || (ids?has_content && ids?split(",")?seq_contains(field.typeid.toString()))>class="active"
+</#if>> <#if field.childsize &gt; 0><i class="arr"></i>
+</#if> <a href="<#if field.type==3>{ms:global.html/}${field.typeurl}<#else>{ms:global.html/}${field.typelink}</#if>">${field.typetitle}</a>
+            <#if field.childsize &gt; 0>
+              <div class="lanmu-box">
+                {ms:channel}  
+                <p><a href="<#if field.type==3>{ms:global.html/}${field.typeurl}<#else>{ms:global.html/}${field.typelink}</#if>">${field.typetitle}</a></p>
+                {/ms:channel}
+              </div>
+              
+</#if>
+            </li>
+            
+{/ms:channel}
+</#if>
+          </ul>
+        </div>
+        <img src="/{ms:global.style/}images/tels.jpg" style="display: block;width: 100%;height: auto;" alt="">
+        <div class="yunu-contact-z2">
+          <p>全国服务热线</p>
+          <span>488-888-8888</span> </div>
+      </div>

@@ -1,0 +1,2320 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <script language="javascript" src="{ms:global.host/}/{ms:global.style/}/js/jquery.js"></script>
+    <script language="javascript" src="{ms:global.host/}/{ms:global.style/}/js/urite.min.js"></script>
+    <link href="{ms:global.host/}/{ms:global.style/}/css/infotag.css" type=text/css rel=stylesheet>
+    <title>{ms:global.name/}</title>
+    <meta name='Maketime' content='2021-09-14 09:32:47'>
+    <meta name="SiteName" content="{ms:global.name/}">
+    <meta name="keywords" content="{ms:global.keyword/}">
+    <meta name="description" content="{ms:global.descrip/}">
+    <link rel="shortcut icon" type="image/x-icon" href="{@ms:file global.logo/}">
+    <link rel="stylesheet" type="text/css" href="{ms:global.host/}/{ms:global.style/}/css/hanweb.min.css" />
+    <link rel="stylesheet" type="text/css" href="{ms:global.host/}/{ms:global.style/}/css/sd_col.css" />
+    <!--引入库-->
+    <script type="text/javascript" src="{ms:global.host/}/static/plugins/vue/2.6.9/vue.min.js"></script>
+    <script src="{ms:global.host/}/static/plugins/element-ui/2.12.0/index.js"></script>
+    <link rel="stylesheet" href="{ms:global.host/}/static/plugins/element-ui/2.12.0/index.css">
+</head>
+<body id="page_type" alt="栏目页">
+    <div id="barrierfree_container">
+        <div class="wip_bg">
+             <!-- 通用头部 -->
+             <#include "header.htm">
+            <div class="wip_localbg" ergodic="serve">
+                <div class="wip_local">
+                    <table cellspacing="0" cellpadding="0" border="0">
+                         <!-- 面包屑 -->
+                         <font>当前位置： </font><a href="{ms:global.host/}">首页</a>
+                         {ms:channel type="path" }
+                         ><a href="{ms:global.url/}${field.typelink}">${field.typetitle}</a>
+                         {/ms:channel}
+                    </table>
+
+                </div>
+            </div>
+            <div class="wip_col" ergodic="view">
+                <div class="wip_col_left bt-left">
+                    <div class="wip_col_top">
+
+                        <a href="{ms:global.url/}${field.typelink}">
+                            ${field.typetitle}
+                        </a>
+                    </div>
+
+                    <div class="tab_con_title">
+                        <ul>
+
+
+                            <div class="bt-clear">
+
+                            </div>
+                        </ul>
+                    </div>
+
+                    <div class="wip_col_listul">
+                        <ul>
+                            <div id="240818">
+                                <div class="simple_pgContainer">
+                                    {ms:arclist size=10 ispaging=true}
+                                    <li class="wip_col_listli"> <a href="{ms:global.url/}${field.link}"
+                                            target="_blank"
+                                            title="${field.title}">${field.title}</a><span>${field.date?string("yyyy-MM-dd")}</span>
+                                    </li>
+                                    {/ms:arclist}
+
+                                    <table width="100%" border="0" cellpadding="0" cellspacing="0"
+                                        class="simple_pgToolbar">
+                                        <div id="app">
+                                            <el-pagination background @current-change="handleCurrentChange"
+                                                :page-size="pageSize" :current-page.sync="pageCur"
+                                                layout="prev, pager, next, jumper" :total="contentCount">
+                                            </el-pagination>
+                                        </div>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <link rel="stylesheet" type="text/css"
+                                    href="{ms:global.host/}/{ms:global.style/}/css/jpage.css">
+                                <script language="javascript"
+                                    src="{ms:global.host/}/{ms:global.style/}/js/jquery.jpage.js"></script>
+                        </ul>
+                    </div>
+                </div>
+                <div class="wip_col_right bt-right">
+                    <div id="spe_slide" style="top: 0px; right: 0px; position: relative;">
+                        <div class="rdzt">
+                            <div class="mtjj-top">
+                                {ms:arclist size=1}
+                                <div class="mtjj-left rdzt-left">热点专题</div>
+
+
+                                <div class="mtjj-right rdzt-right"><a target="_blank" href=""><img
+                                            src="{ms:global.host/}/{ms:global.style/}/images/174959785678965.jpg"></a>
+                                </div>
+
+
+                                <div class="clear"></div>
+                            </div>
+                            <div id="container2" style="height: 319px;">
+                                <ul class="pic2">
+                                    <style>
+                                        .rdzt-bottom p {
+                                            height: 120px;
+                                            overflow: hidden;
+                                        }
+                                    </style>
+
+
+                                    <li style="display: list-item;">
+                                        <div class="rdzt-bottom">
+                                            <p>${field.descrip}</p>
+                                            <div class="hr15"></div>
+                                            <div class="rdzt-pic"><a target="_blank"
+                                                    href="{ms:global.url/}${field.link}"><img
+                                                        src="{ms:global.host/}/{@ms:file field.litpic/}"></a></div>
+                                            <div class="rdzt-ly">来源：${field.source}</div>
+                                        </div>
+                                    </li>
+
+                                    {/ms:arclist}
+
+
+
+                                </ul>
+                                <ul id="position2">
+                                    <li class="cur2"></li>
+                                    <li class=""></li>
+                                    <li class=""></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="wip_col_right2">
+                    <div id="spe_slide2">
+                        <div class="zhuanti2">
+                                <ul class="pic2">
+                                    <style>
+                                        .rdzt-bottom p {
+                                            height: 120px;
+                                            overflow: hidden;
+                                        }
+                                    </style>
+
+<div class="rdzt" style="margin: 0 auto;">
+    <div class="mtjj-top">
+        {ms:arclist size=1}
+        <div class="mtjj-left rdzt-left">热点专题</div>
+
+
+        <div class="mtjj-right rdzt-right"><a target="_blank" href=""><img
+                    src="{ms:global.host/}/{ms:global.style/}/images/174959785678965.jpg"></a>
+        </div>
+
+
+        <div class="clear"></div>
+    </div>
+    <div id="container2" style="height: 319px;">
+        <ul class="pic2">
+            <style>
+                .rdzt-bottom p {
+                    height: 120px;
+                    overflow: hidden;
+                }
+            </style>
+
+
+            <li style="display: list-item;">
+                <div class="rdzt-bottom">
+                    <p>${field.descrip}</p>
+                    <div class="hr15"></div>
+                    <div class="rdzt-pic"><a target="_blank"
+                            href="{ms:global.url/}${field.link}"><img
+                                src="{ms:global.host/}/{@ms:file field.litpic/}"></a></div>
+                    <div class="rdzt-ly">来源：${field.source}</div>
+                </div>
+            </li>
+
+            {/ms:arclist}
+
+
+
+        </ul>
+        <ul id="position2">
+            <li class="cur2"></li>
+            <li class=""></li>
+            <li class=""></li>
+        </ul>
+    </div>
+</div>
+                                   
+
+
+
+                                </ul>
+                            
+                            </iframe></div>
+
+
+                    </div>
+
+                </div>
+                <div class="bt-clear">
+
+                </div>
+            </div>
+            <div>
+
+
+                <meta name="viewport"
+                    content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+                    <style type="text/css">
+                        * {
+                            margin: 0px;
+                            padding: 0px;
+                            list-style: none;
+                            text-decoration: none;
+                        }
+
+                        a {
+                            outline: none;
+                        }
+
+                        a:focus {
+                            outline: none;
+                        }
+
+                        input,
+                        textarea {
+                            background: #FFFFFF;
+                        }
+
+                        img {
+                            border: 0px;
+                        }
+
+                        body {
+                            font-family: "微软雅黑" !important;
+                        }
+
+                        .bt-left {
+                            float: left;
+                        }
+
+                        .bt-right {
+                            float: right;
+                        }
+
+                        .bt-clear {
+                            clear: both;
+                        }
+
+                        .wip_footerbg {
+                            background: #FFFFFF;
+                            clear: both;
+                        }
+
+                        .wip_footerbg * {
+                            box-sizing: border-box;
+                        }
+
+                        .wip_footer_linkbg {
+                            width: 100%;
+                            margin: auto;
+                            background: #e1e4e7;
+                        }
+
+                        .wip_footer_link {
+                            height: auto;
+                        }
+
+                        .link_btnbg {
+                            height: 32px;
+                            max-width: 1200px;
+                            margin: auto;
+                        }
+
+                        .link_btn_left {
+                            float: left;
+                            width: 50%;
+                            max-width: 391px;
+                            height: 32px;
+                            background: url({ms:global.host/}/{ms:global.style/}/images/1910151048106308256.png) no-repeat left center;
+                            padding-left: 32px;
+                            box-sizing: border-box;
+                        }
+
+                        .link_btn_left a {
+                            float: left;
+                            height: 32px;
+                            line-height: 32px;
+                            color: #333333;
+                            font-size: 14px;
+                            background: url(http://www.shandong.gov.cn/picture/662/1909301107219912150.png) no-repeat left;
+                            display: inline-block;
+                            padding-left: 10px;
+                            margin-right: 10px;
+                            box-sizing: border-box;
+                        }
+
+                        .link_btn_left a:first-child {
+                            background: none;
+                        }
+
+
+
+                        .hot_btn_right {
+                            float: right;
+                            width: 11.25%;
+                            max-width: 135px;
+                            height: 32px;
+                            line-height: 32px;
+                            padding-left: 30px;
+                            box-sizing: border-box;
+                            color: #324a78;
+                            font-size: 16px;
+                            border: 1px solid #c7d0dd;
+                            margin-right: 1%;
+                            background: url(http://www.shandong.gov.cn/picture/662/1910021617215329873.png) no-repeat 85% center;
+                        }
+
+                        .hot_btn_right a {
+                            color: #324a78;
+                        }
+
+                        .link_map {
+                            padding: 30px 0;
+                            display: none;
+                            margin: 0 auto;
+                            max-width: 1200px;
+                            box-sizing: border-box;
+                        }
+
+                        .link_map_ul {
+                            width: 25%;
+                            float: left;
+                            padding-left: 40px;
+                            box-sizing: border-box;
+                        }
+
+                        .link_map_ul {
+                            font-size: 18px;
+                            color: #333333;
+                            margin-bottom: 20px;
+                        }
+
+                        .link_map_ul a {
+                            color: #333333;
+                        }
+
+                        .link_map_ul ul li {
+                            line-height: 28px;
+                        }
+
+                        .link_map_ul ul li a {
+                            color: #666666;
+                            font-size: 14px;
+                        }
+
+                        .wip_footer_shipbg {
+                            width: 100%;
+                            background: #f3f3f3;
+                            min-height: 98px;
+                            border-top: #245399 solid 8px;
+                        }
+
+                        .wip_footer_ship {
+                            width: 100%;
+                            max-width: 1200px;
+                            margin: auto;
+                        }
+
+                        .wip_ship_left {
+                            float: left;
+                            width: 204px;
+                            text-align: right;
+                            padding-right: 12px;
+                            line-height: 20px;
+                            line-height: 50px;
+                            font-size: 15px;
+                            min-height: 98px;
+                            box-sizing: border-box;
+                        }
+
+                        .wip_ship_right {
+                            float: right;
+                            width: 996px;
+                        }
+
+                        .wip_ship_click {
+                            float: left;
+                            width: 180px;
+                            text-indent: 10px;
+                            line-height: 30px;
+                            height: 30px;
+                            font-size: 13px;
+                            background: #FFFFFF;
+                            border: #e5e5e5 1px solid;
+                            margin-top: 10px;
+                            font-weight: bold;
+                            margin-left: 24px;
+                            box-sizing: border-box;
+                        }
+
+                        .wip_ship_click:first-child {
+                            margin-left: 0px;
+                        }
+
+                        .wip_ship_click a {
+                            color: #274f94;
+                        }
+
+                        .select_ul {
+                            display: none;
+                            border: 1px solid #999;
+                            position: absolute;
+                            bottom: 30px;
+                            width: 100%;
+                            max-height: 310px;
+                            overflow-y: auto;
+                            z-index: 2;
+                            box-sizing: border-box;
+                        }
+
+                        .select_1,
+                        .select_2,
+                        .select_3,
+                        .select_4,
+                        .select_5 {
+                            float: left;
+                            width: 180px;
+                            text-indent: 10px;
+                            line-height: 30px;
+                            height: 30px;
+                            font-size: 13px;
+                            background: #FFFFFF;
+                            border: #e5e5e5 1px solid;
+                            box-sizing: border-box;
+                            margin-top: 10px;
+                            margin-left: 24px;
+                            position: relative;
+                        }
+
+                        .select_1 {
+                            margin-left: 0px;
+                        }
+
+                        .select_span {
+                            background: #FFFFFF url(http://www.shandong.gov.cn/picture/662/1909301107221046767.png) no-repeat 160px center;
+                            color: #777777;
+                            font-size: 14px;
+                            display: block;
+                            height: 30px;
+                            line-height: 30px;
+                            overflow: hidden;
+                            padding-right: 20px;
+                        }
+
+                        .select_li {
+                            height: 28px;
+                            line-height: 28px;
+                            padding-left: 4px;
+                            background: #fff;
+                            overflow: hidden;
+                            white-space: nowrap;
+                            box-sizing: border-box;
+                        }
+
+                        .select_li a {
+                            color: #000;
+                            display: block;
+                        }
+
+                        .select_li:hover {
+                            background: #666666;
+                        }
+
+                        .select_li:hover a {
+                            background: #666666;
+                        }
+
+                        .wip_footer_con {
+                            width: 100%;
+                            margin: auto;
+                            max-width: 800px;
+                            padding-top: 23px;
+                            min-height: 135px;
+                            box-sizing: border-box;
+                        }
+
+                        .wip_footer_con_right {
+                            width: 100px;
+                            float: right;
+                            display: block;
+                        }
+
+                        .wip_footer_con_right img {
+                            width: 100px;
+                            height: 50px;
+                        }
+
+                        .wip_footer_con_left {
+                            width: 100px;
+                            float: left;
+                        }
+
+                        .wip_footer_con_center {
+                            width: 600px;
+                            float: left;
+                            text-align: center;
+                        }
+
+                        .wip_footer_con_center p {
+                            color: #666666;
+                            line-height: 25px;
+                            height: 25px;
+                            font-size: 12px;
+                            width: 100%;
+                            margin: 0px auto;
+                        }
+
+                        .wip_footer_con_center p a {
+                            color: #666666;
+                            display: inline-block;
+                        }
+
+                        .wip_footer_con_center .p {
+                            width: 300px;
+                            margin: auto;
+                            height: 25px;
+                        }
+
+                        .wip_footer_con_center .p a {
+                            display: block;
+                            float: left;
+                            color: #666666;
+                            line-height: 25px;
+                            font-size: 12px;
+                            background: url(http://www.shandong.gov.cn/picture/662/1909301107219912150.png) no-repeat left center;
+                            padding-left: 13px;
+                            margin-left: 13px;
+                            box-sizing: border-box;
+                        }
+
+                        .wip_footer_con_center .p a:first-child {
+                            background: none;
+                            margin-left: 0px;
+                        }
+
+                        .tupian {
+                            display: none;
+                            width: 140px;
+                            height: 140px;
+                            top: -141px;
+                            z-index: 2;
+                            left: 275px;
+                            position: absolute;
+                        }
+
+                        .weixin {
+                            display: block;
+                        }
+
+                        .wei2:hover .tupian {
+                            display: block;
+                        }
+
+                        .wei1:hover .tupian1 {
+                            display: block;
+                        }
+
+                        .tupian1 {
+                            display: none;
+                            width: 140px;
+                            height: 140px;
+                            top: -141px;
+                            z-index: 2;
+                            left: 115px;
+                            position: absolute;
+                        }
+
+                        .sdjiucuo {
+                            cursor: pointer;
+                            position: fixed;
+                            bottom: 0;
+                            right: 25px;
+                            z-index: 100;
+                            width: 320px;
+                            height: 100px;
+                        }
+
+                        .sdjiucuo a {
+                            position: absolute;
+                            display: block;
+                        }
+
+                        .sdjiucuo a:first-child {
+                            z-index: 102;
+                            width: 20px;
+                            height: 20px;
+                            text-align: center;
+                            right: 0px;
+                            font-size: 20px;
+                            color: #FFFFFF;
+                        }
+
+                        .sdjiucuo img {
+                            width: 100%;
+                        }
+
+                        .sdjiucuo4 {
+                            position: fixed;
+                            bottom: 324px;
+                            right: 25px;
+                            z-index: 100;
+                            cursor: pointer;
+                            width: 320px;
+                            height: 100px;
+                        }
+
+                        .sdjiucuo4 a {
+                            position: absolute;
+                            display: block;
+                        }
+
+                        .sdjiucuo4 a:first-child {
+                            z-index: 102;
+                            width: 20px;
+                            height: 20px;
+                            text-align: center;
+                            right: 0px;
+                            font-size: 20px;
+                            color: #FFFFFF;
+                        }
+
+                        .sdjiucuo4 img {
+                            width: 100%;
+                        }
+
+                        .sdjiucuo3 {
+                            position: fixed;
+                            bottom: 213px;
+                            right: 25px;
+                            z-index: 100;
+                            cursor: pointer;
+                            width: 320px;
+                            height: 100px;
+                        }
+
+                        .sdjiucuo3 a {
+                            position: absolute;
+                            display: block;
+                        }
+
+                        .sdjiucuo3 a:first-child {
+                            z-index: 102;
+                            width: 20px;
+                            height: 20px;
+                            text-align: center;
+                            right: 0px;
+                            font-size: 20px;
+                            color: #FFFFFF;
+                        }
+
+                        .sdjiucuo3 img {
+                            width: 100%;
+                        }
+
+                        .sdjiucuo2 {
+                            position: fixed;
+                            bottom: 110px;
+                            right: 25px;
+                            z-index: 100;
+                            cursor: pointer;
+                            width: 320px;
+                            height: 100px;
+                        }
+
+                        .sdjiucuo2 a {
+                            position: absolute;
+                            display: block;
+                        }
+
+                        .sdjiucuo2 a:first-child {
+                            z-index: 102;
+                            width: 20px;
+                            height: 20px;
+                            text-align: center;
+                            right: 0px;
+                            font-size: 20px;
+                            color: #FFFFFF;
+                        }
+
+                        .sdjiucuo2 img {
+                            width: 100%;
+                        }
+
+                        .loginbg {
+                            position: relative;
+                            margin-right: 5px;
+                            float: left;
+                        }
+
+                        .loginbg a {
+                            cursor: pointer;
+                        }
+
+                        .grfr {
+                            display: none;
+                            width: 75px;
+                            position: absolute;
+                            color: #245399;
+                            background: #FFFFFF;
+                            height: 54px;
+                            position: absolute;
+                            left: -9px;
+                        }
+
+                        .grfr a {
+                            color: #245399;
+                            font-size: 13px;
+                            line-height: 27px;
+                            display: block;
+                            text-align: center;
+                            float: none;
+                        }
+
+                        .grfr a:first-child {
+                            color: #245399;
+                            font-size: 13px;
+                            line-height: 27px;
+                            display: block;
+                            float: none;
+                            margin-right: 0px;
+                        }
+
+                        .regbg {
+                            position: relative;
+                            float: left;
+                        }
+
+                        .regbg a {
+                            cursor: pointer;
+                        }
+
+                        .gfzc {
+                            display: none;
+                            width: 75px;
+                            position: absolute;
+                            color: #245399;
+                            background: #FFFFFF;
+                            height: 54px;
+                            position: absolute;
+                            right: 0px;
+                        }
+
+                        .gfzc a {
+                            color: #245399;
+                            font-size: 13px;
+                            line-height: 27px;
+                            display: block;
+                            text-align: center;
+                            float: none;
+                        }
+
+                        .gfzc a:first-child {
+                            color: #245399;
+                            font-size: 13px;
+                            line-height: 27px;
+                            display: block;
+                            float: none;
+                            margin-right: 0px;
+                        }
+
+                        @media only screen and (max-width: 1200px) {
+                            .wip_footerpc .wip_ship_left {
+                                width: 15%;
+                            }
+
+                            .wip_footerpc .wip_ship_right {
+                                width: 85%;
+                            }
+
+                            .wip_footerpc .wip_ship_click {
+                                width: 19%;
+                                margin-left: 1.25%;
+                            }
+
+                            .wip_footerpc .wip_ship_click:first-child {
+                                width: 19%;
+                                margin-left: 0%;
+                            }
+
+                            .wip_footerpc .select_2,
+                            .wip_footerpc .select_3,
+                            .wip_footerpc .select_4 {
+                                width: 19%;
+                                margin-left: 1.25%;
+                            }
+
+                            .wip_footerpc .select_span {
+                                background-image: none;
+                            }
+
+                            .wip_footerpc .select_1 {
+                                width: 19%;
+                                margin-left: 0%;
+                            }
+
+                            .wip_footerpc .wip_footer_shipbg {
+                                height: auto;
+                            }
+
+                            .hot_btn_right {
+                                padding-left: 15px;
+                            }
+                        }
+
+                        @media only screen and (max-width: 900px) {
+                            .hidesmallfooter {
+                                display: none;
+                            }
+
+                            .wip_footer_con_center {
+                                width: 100%;
+                            }
+                        }
+
+                        @media only screen and (max-width: 450px) {
+                            .sdjiucuo {
+                                width: 150px;
+                                height: 47px;
+                            }
+
+                            .sdjiucuo2 {
+                                width: 150px;
+                                height: 47px;
+                                bottom: 50px;
+                            }
+
+                            .sdjiucuo a:first-child {
+                                font-size: 12px;
+                                width: 12px;
+                                height: 12px;
+                            }
+
+                            .sdjiucuo2 a:first-child {
+                                font-size: 12px;
+                                width: 12px;
+                                height: 12px;
+                            }
+
+                            .sdjiucuo3 {
+                                width: 150px;
+                                height: 47px;
+                                bottom: 103px;
+                            }
+
+                            .sdjiucuo4 {
+                                width: 150px;
+                                height: 47px;
+                                bottom: 103px;
+                            }
+
+                            .sdjiucuo a:first-child {
+                                font-size: 12px;
+                                width: 12px;
+                                height: 12px;
+                            }
+
+                            .sdjiucuo3 a:first-child {
+                                font-size: 12px;
+                                width: 12px;
+                                height: 12px;
+                            }
+
+                            .sdjiucuo4 a:first-child {
+                                font-size: 12px;
+                                width: 12px;
+                                height: 12px;
+                            }
+                        }
+
+                        .name_out {
+                            cursor: pointer;
+                        }
+
+                        .nameout {
+                            cursor: pointer;
+                        }
+
+
+                        .wip_sxjk,
+                        .yjjy {
+                            cursor: pointer;
+                        }
+
+                        .wip_sxjk a {
+                            cursor: pointer;
+                        }
+
+                        DIV.digg input[type="submit"] {
+                            height: 25px !important;
+                        }
+
+
+                        .lft {
+                            float: left;
+                        }
+
+                        .rig {
+                            float: right;
+                        }
+
+                        .clearfix {
+                            clear: both;
+                            line-height: 0;
+                            height: 0;
+                            font-size: 0;
+                        }
+
+                        ul {
+                            margin-bottom: 0;
+                        }
+
+                        .hr5,
+                        .hr10,
+                        .hr20,
+                        .hr30,
+                        .hr40,
+                        .hr50 {
+                            line-height: 0;
+                            font-size: 0;
+                            clear: both;
+                        }
+
+                        .hr5 {
+                            height: 5px;
+                        }
+
+                        .hr10 {
+                            height: 10px;
+                        }
+
+                        .hr20 {
+                            height: 20px;
+                        }
+
+                        .hr30 {
+                            height: 30px;
+                        }
+
+                        .hr40 {
+                            height: 40px;
+                        }
+
+                        .hr50 {
+                            height: 50px;
+                        }
+
+                        .clear {
+                            clear: both;
+                            line-height: 0;
+                            font-size: 0;
+                            height: 0;
+                        }
+
+                        a:hover {
+                            text-decoration: none;
+                        }
+
+                        .cont {
+                            position: relative;
+                        }
+
+                        .pane_lft {
+                            width: 855px;
+                            float: left;
+                        }
+
+                        .pane_rig {
+                            width: 315px;
+                            float: right;
+                        }
+
+                        ul,
+                        li,
+                        dl,
+                        ol,
+                        dt,
+                        dd {
+                            margin: 0;
+                            padding: 0;
+                            list-style: none;
+                        }
+
+                        .list_a5 ul li {
+                            border-bottom: 1px #dcdcdc solid;
+                            padding: 18px;
+                            clear: both;
+                        }
+
+                        .list_a5 ul li .inner {}
+
+                        .list_a5 ul li img {
+                            display: block;
+                            float: left;
+                            position: relative;
+                            z-index: 100;
+                            margin-right: 10px;
+                            _margin-right: 5px;
+                        }
+
+                        .list_a5 ul li.curr {
+                            background: #f9fafa;
+                        }
+
+                        .list_a5 ul li .tit {
+                            padding-right: 80px;
+                            padding-top: 0;
+                            margin-top: 0;
+                            line-height: 28px;
+                        }
+
+                        *+html .list_a5 ul li .tit {
+                            display: inline-block;
+                            margin-top: -20px;
+                        }
+
+                        .list_a5 ul li .tit a {
+                            font-size: 18px;
+                            color: #000;
+                        }
+
+                        .list_a5 ul li .txt {
+                            color: #999999;
+                            font-size: 12px;
+                        }
+
+                        .list_a5 ul li .txt span.cdate {
+                            background: url("img/ico_date.png") 0 center no-repeat;
+                            padding: 0 24px 0 20px;
+                        }
+
+                        .list_a5 ul li .space {
+                            height: 22px;
+                        }
+
+                        .list_a5 ul li.curr .space div {
+                            display: block;
+                        }
+
+                        .icoshare {
+                            background: url("img/ico_share.png") no-repeat;
+                            width: 24px;
+                            height: 22px;
+                            display: block;
+                            float: right;
+                        }
+
+                        .tablist {
+                            padding: 0 0 7px 0;
+                        }
+
+                        .tablist .item {
+                            display: inline-block;
+                            zoom: 1;
+                            position: relative;
+                            font-size: 18px;
+                            line-height: 40px;
+                            height: 44px;
+                            padding: 0 28px;
+                            background: url("img/tab_line4.png") no-repeat left 0;
+                        }
+
+                        .tablist .item a {
+                            color: #999999;
+                        }
+
+                        *html .tablist .item {
+                            float: left;
+                        }
+
+                        *+html .tablist .item {
+                            float: left;
+                        }
+
+                        .tablist .curr {
+                            margin: 0 38px 0 0;
+                            background: url("img/arrow-down3.png") no-repeat center 0;
+                        }
+
+                        .tablist .curr a {
+                            color: #ffffff;
+                        }
+
+                        .mtjj-left {
+                            float: left;
+                            padding-left: 32px;
+                            color: #c31f0b;
+                            font-size: 22px;
+                            line-height: 48px;
+                            background: url({ms:global.host/}/{ms:global.style/}/images/sdzfw-20161127-11_25.jpg) no-repeat left 15px;
+                        }
+
+                        .rdzt-left {
+                            background: url({ms:global.host/}/{ms:global.style/}/images/1910141858474654821.png) no-repeat left 20px;
+                            line-height: 58px;
+                        }
+
+                        .mtjj-right {
+                            float: right;
+                            line-height: 48px;
+                        }
+
+                        .rdzt-right {
+                            line-height: 50px;
+                        }
+
+                        #container2 ul {
+                            padding: 0;
+                        }
+
+                        #container2 {
+                            position: relative;
+                            width: 100%;
+                            height: 287px;
+                        }
+
+                        .pic2 li {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            display: none;
+                        }
+
+                        #position2 li {
+                            width: 12px;
+                            height: 12px;
+                            margin: 0 2px;
+                            display: inline-block
+                        }
+
+                        *html #position2 li {
+                            float: left;
+                            display: block;
+                        }
+
+                        *+html #position2 li {
+                            float: left;
+                            display: block;
+                        }
+
+                        .arrow2 {
+                            cursor: pointer;
+                            display: none;
+                            line-height: 39px;
+                            text-align: center;
+                            font-size: 36px;
+                            font-weight: bold;
+                            width: 40px;
+                            height: 40px;
+                            position: absolute;
+                            z-index: 2;
+                            top: 50%;
+                            margin-top: -20px;
+                            background-color: RGBA(0, 0, 0, .3);
+                            color: #fff;
+                        }
+
+                        .arrow2:hover {
+                            background-color: RGBA(0, 0, 0, .7);
+                        }
+
+                        #container2:hover .arrow2 {
+                            display: block;
+                        }
+
+                        .zwyw-context {
+                            display: none;
+                        }
+
+                        /*share*/
+                        .list_a5 .bdshare-button-style0-16 .bds_more {
+                            background: url("img/ico_share.png") no-repeat;
+                            width: 24px;
+                            height: 22px;
+                            display: block;
+                            float: right;
+                        }
+
+                        .lx-text {
+                            margin-top: 8px;
+                            font-size: 14px;
+                            line-height: 24px;
+                            max-height: 48px;
+                            _height: expression(this.scrollHeight > 48 ? "48px" : "auto");
+                            overflow: hidden;
+                            padding-right: 80px;
+                        }
+
+                        .lx-text a {
+                            color: #666;
+                        }
+
+                        .rdzt-left {
+                            background: url({ms:global.host/}/{ms:global.style/}/images/1910141858474654821.png) no-repeat left 20px;
+                            line-height: 58px;
+                        }
+
+                        .rdzt-right {
+                            line-height: 50px;
+                        }
+
+                        .rdzt-bottom p {
+                            margin-top: 10px;
+                            font-size: 14px;
+                            line-height: 24px;
+                            color: #666666;
+                            margin-bottom: 10px;
+                        }
+
+                        .rdzt-pic {
+                            width: 100%;
+                            height: 125px;
+                            padding-top: 15px;
+                            border-top: 1px dashed #dcdcdc;
+                        }
+
+                        .rdzt-pic img {
+                            width: 100%;
+                            height: auto;
+                        }
+
+                        .rdzt-ly {
+                            font-size: 14px;
+                            color: #5f7fa6;
+                            line-height: 38px;
+                            height: 38px
+                        }
+
+                        #position2 {
+                            position: absolute;
+                            bottom: -20px;
+                            left: 115px;
+                            margin: 0;
+                            text-align: center;
+                        }
+
+                        .rdzt {
+                            height: 400px;
+                            padding-left: 18px;
+                            padding-right: 18px;
+                            border: 1px solid #dcdcdc;
+                            background-color: #f8f7f7;
+                        }
+
+                        @media screen and (max-width:500px) {
+                            #position2 {
+                                left: 40%;
+                            }
+                        }
+                    </style>
+                             <style type="text/css">
+                                * {
+                                    margin: 0px;
+                                    padding: 0px;
+                                    list-style: none;
+                                    text-decoration: none;
+                                }
+            
+                                a {
+                                    outline: none;
+                                }
+            
+                                a:focus {
+                                    outline: none;
+                                }
+            
+                                input,
+                                textarea {
+                                    background: #FFFFFF;
+                                }
+            
+                                img {
+                                    border: 0px;
+                                }
+            
+                                body {
+                                    font-family: "微软雅黑" !important;
+                                }
+            
+                                .bt-left {
+                                    float: left;
+                                }
+            
+                                .bt-right {
+                                    float: right;
+                                }
+            
+                                .bt-clear {
+                                    clear: both;
+                                }
+            
+                                .wip_footerbg {
+                                    background: #FFFFFF;
+                                    clear: both;
+                                }
+            
+                                .wip_footerbg * {
+                                    box-sizing: border-box;
+                                }
+            
+                                .wip_footer_linkbg {
+                                    width: 100%;
+                                    margin: auto;
+                                    background: #e1e4e7;
+                                }
+            
+                                .wip_footer_link {
+                                    height: auto;
+                                }
+            
+                                .link_btnbg {
+                                    height: 32px;
+                                    max-width: 1200px;
+                                    margin: auto;
+                                }
+            
+                                .link_btn_left {
+                                    float: left;
+                                    width: 50%;
+                                    max-width: 391px;
+                                    height: 32px;
+                                    background: url(http://www.shandong.gov.cn/picture/662/1910151048106308256.png) no-repeat left center;
+                                    padding-left: 32px;
+                                    box-sizing: border-box;
+                                }
+            
+                                .link_btn_left a {
+                                    float: left;
+                                    height: 32px;
+                                    line-height: 32px;
+                                    color: #333333;
+                                    font-size: 14px;
+                                    background: url(http://www.shandong.gov.cn/picture/662/1909301107219912150.png) no-repeat left;
+                                    display: inline-block;
+                                    padding-left: 10px;
+                                    margin-right: 10px;
+                                    box-sizing: border-box;
+                                }
+            
+                                .link_btn_left a:first-child {
+                                    background: none;
+                                }
+            
+            
+            
+                                .hot_btn_right {
+                                    float: right;
+                                    width: 11.25%;
+                                    max-width: 135px;
+                                    height: 32px;
+                                    line-height: 32px;
+                                    padding-left: 30px;
+                                    box-sizing: border-box;
+                                    color: #324a78;
+                                    font-size: 16px;
+                                    border: 1px solid #c7d0dd;
+                                    margin-right: 1%;
+                                    background: url(http://www.shandong.gov.cn/picture/662/1910021617215329873.png) no-repeat 85% center;
+                                }
+            
+                                .hot_btn_right a {
+                                    color: #324a78;
+                                }
+            
+                                .link_map {
+                                    padding: 30px 0;
+                                    display: none;
+                                    margin: 0 auto;
+                                    max-width: 1200px;
+                                    box-sizing: border-box;
+                                }
+            
+                                .link_map_ul {
+                                    width: 25%;
+                                    float: left;
+                                    padding-left: 40px;
+                                    box-sizing: border-box;
+                                }
+            
+                                .link_map_ul {
+                                    font-size: 18px;
+                                    color: #333333;
+                                    margin-bottom: 20px;
+                                }
+            
+                                .link_map_ul a {
+                                    color: #333333;
+                                }
+            
+                                .link_map_ul ul li {
+                                    line-height: 28px;
+                                }
+            
+                                .link_map_ul ul li a {
+                                    color: #666666;
+                                    font-size: 14px;
+                                }
+            
+                                .wip_footer_shipbg {
+                                    width: 100%;
+                                    background: #f3f3f3;
+                                    min-height: 98px;
+                                    border-top: #245399 solid 8px;
+                                }
+            
+                                .wip_footer_ship {
+                                    width: 100%;
+                                    max-width: 1200px;
+                                    margin: auto;
+                                }
+            
+                                .wip_ship_left {
+                                    float: left;
+                                    width: 204px;
+                                    text-align: right;
+                                    padding-right: 12px;
+                                    line-height: 20px;
+                                    line-height: 50px;
+                                    font-size: 15px;
+                                    min-height: 98px;
+                                    box-sizing: border-box;
+                                }
+            
+                                .wip_ship_right {
+                                    float: right;
+                                    width: 996px;
+                                }
+            
+                                .wip_ship_click {
+                                    float: left;
+                                    width: 180px;
+                                    text-indent: 10px;
+                                    line-height: 30px;
+                                    height: 30px;
+                                    font-size: 13px;
+                                    background: #FFFFFF;
+                                    border: #e5e5e5 1px solid;
+                                    margin-top: 10px;
+                                    font-weight: bold;
+                                    margin-left: 24px;
+                                    box-sizing: border-box;
+                                }
+            
+                                .wip_ship_click:first-child {
+                                    margin-left: 0px;
+                                }
+            
+                                .wip_ship_click a {
+                                    color: #274f94;
+                                }
+            
+                                .select_ul {
+                                    display: none;
+                                    border: 1px solid #999;
+                                    position: absolute;
+                                    bottom: 30px;
+                                    width: 100%;
+                                    max-height: 310px;
+                                    overflow-y: auto;
+                                    z-index: 2;
+                                    box-sizing: border-box;
+                                }
+            
+                                .select_1,
+                                .select_2,
+                                .select_3,
+                                .select_4,
+                                .select_5 {
+                                    float: left;
+                                    width: 180px;
+                                    text-indent: 10px;
+                                    line-height: 30px;
+                                    height: 30px;
+                                    font-size: 13px;
+                                    background: #FFFFFF;
+                                    border: #e5e5e5 1px solid;
+                                    box-sizing: border-box;
+                                    margin-top: 10px;
+                                    margin-left: 24px;
+                                    position: relative;
+                                }
+            
+                                .select_1 {
+                                    margin-left: 0px;
+                                }
+            
+                                .select_span {
+                                    background: #FFFFFF url(http://www.shandong.gov.cn/picture/662/1909301107221046767.png) no-repeat 160px center;
+                                    color: #777777;
+                                    font-size: 14px;
+                                    display: block;
+                                    height: 30px;
+                                    line-height: 30px;
+                                    overflow: hidden;
+                                    padding-right: 20px;
+                                }
+            
+                                .select_li {
+                                    height: 28px;
+                                    line-height: 28px;
+                                    padding-left: 4px;
+                                    background: #fff;
+                                    overflow: hidden;
+                                    white-space: nowrap;
+                                    box-sizing: border-box;
+                                }
+            
+                                .select_li a {
+                                    color: #000;
+                                    display: block;
+                                }
+            
+                                .select_li:hover {
+                                    background: #666666;
+                                }
+            
+                                .select_li:hover a {
+                                    background: #666666;
+                                }
+            
+                                .wip_footer_con {
+                                    width: 100%;
+                                    margin: auto;
+                                    max-width: 800px;
+                                    padding-top: 23px;
+                                    min-height: 135px;
+                                    box-sizing: border-box;
+                                }
+            
+                                .wip_footer_con_right {
+                                    width: 100px;
+                                    float: right;
+                                    display: block;
+                                }
+            
+                                .wip_footer_con_right img {
+                                    width: 100px;
+                                    height: 50px;
+                                }
+            
+                                .wip_footer_con_left {
+                                    width: 100px;
+                                    float: left;
+                                }
+            
+                                .wip_footer_con_center {
+                                    width: 600px;
+                                    float: left;
+                                    text-align: center;
+                                }
+            
+                                .wip_footer_con_center p {
+                                    color: #666666;
+                                    line-height: 25px;
+                                    height: 25px;
+                                    font-size: 12px;
+                                    width: 100%;
+                                    margin: 0px auto;
+                                }
+            
+                                .wip_footer_con_center p a {
+                                    color: #666666;
+                                    display: inline-block;
+                                }
+            
+                                .wip_footer_con_center .p {
+                                    width: 300px;
+                                    margin: auto;
+                                    height: 25px;
+                                }
+            
+                                .wip_footer_con_center .p a {
+                                    display: block;
+                                    float: left;
+                                    color: #666666;
+                                    line-height: 25px;
+                                    font-size: 12px;
+                                    background: url(http://www.shandong.gov.cn/picture/662/1909301107219912150.png) no-repeat left center;
+                                    padding-left: 13px;
+                                    margin-left: 13px;
+                                    box-sizing: border-box;
+                                }
+            
+                                .wip_footer_con_center .p a:first-child {
+                                    background: none;
+                                    margin-left: 0px;
+                                }
+            
+                                .tupian {
+                                    display: none;
+                                    width: 140px;
+                                    height: 140px;
+                                    top: -141px;
+                                    z-index: 2;
+                                    left: 275px;
+                                    position: absolute;
+                                }
+            
+                                .weixin {
+                                    display: block;
+                                }
+            
+                                .wei2:hover .tupian {
+                                    display: block;
+                                }
+            
+                                .wei1:hover .tupian1 {
+                                    display: block;
+                                }
+            
+                                .tupian1 {
+                                    display: none;
+                                    width: 140px;
+                                    height: 140px;
+                                    top: -141px;
+                                    z-index: 2;
+                                    left: 115px;
+                                    position: absolute;
+                                }
+            
+                                .sdjiucuo {
+                                    cursor: pointer;
+                                    position: fixed;
+                                    bottom: 0;
+                                    right: 25px;
+                                    z-index: 100;
+                                    width: 320px;
+                                    height: 100px;
+                                }
+            
+                                .sdjiucuo a {
+                                    position: absolute;
+                                    display: block;
+                                }
+            
+                                .sdjiucuo a:first-child {
+                                    z-index: 102;
+                                    width: 20px;
+                                    height: 20px;
+                                    text-align: center;
+                                    right: 0px;
+                                    font-size: 20px;
+                                    color: #FFFFFF;
+                                }
+            
+                                .sdjiucuo img {
+                                    width: 100%;
+                                }
+            
+                                .sdjiucuo4 {
+                                    position: fixed;
+                                    bottom: 324px;
+                                    right: 25px;
+                                    z-index: 100;
+                                    cursor: pointer;
+                                    width: 320px;
+                                    height: 100px;
+                                }
+            
+                                .sdjiucuo4 a {
+                                    position: absolute;
+                                    display: block;
+                                }
+            
+                                .sdjiucuo4 a:first-child {
+                                    z-index: 102;
+                                    width: 20px;
+                                    height: 20px;
+                                    text-align: center;
+                                    right: 0px;
+                                    font-size: 20px;
+                                    color: #FFFFFF;
+                                }
+            
+                                .sdjiucuo4 img {
+                                    width: 100%;
+                                }
+            
+                                .sdjiucuo3 {
+                                    position: fixed;
+                                    bottom: 213px;
+                                    right: 25px;
+                                    z-index: 100;
+                                    cursor: pointer;
+                                    width: 320px;
+                                    height: 100px;
+                                }
+            
+                                .sdjiucuo3 a {
+                                    position: absolute;
+                                    display: block;
+                                }
+            
+                                .sdjiucuo3 a:first-child {
+                                    z-index: 102;
+                                    width: 20px;
+                                    height: 20px;
+                                    text-align: center;
+                                    right: 0px;
+                                    font-size: 20px;
+                                    color: #FFFFFF;
+                                }
+            
+                                .sdjiucuo3 img {
+                                    width: 100%;
+                                }
+            
+                                .sdjiucuo2 {
+                                    position: fixed;
+                                    bottom: 110px;
+                                    right: 25px;
+                                    z-index: 100;
+                                    cursor: pointer;
+                                    width: 320px;
+                                    height: 100px;
+                                }
+            
+                                .sdjiucuo2 a {
+                                    position: absolute;
+                                    display: block;
+                                }
+            
+                                .sdjiucuo2 a:first-child {
+                                    z-index: 102;
+                                    width: 20px;
+                                    height: 20px;
+                                    text-align: center;
+                                    right: 0px;
+                                    font-size: 20px;
+                                    color: #FFFFFF;
+                                }
+            
+                                .sdjiucuo2 img {
+                                    width: 100%;
+                                }
+            
+                                .loginbg {
+                                    position: relative;
+                                    margin-right: 5px;
+                                    float: left;
+                                }
+            
+                                .loginbg a {
+                                    cursor: pointer;
+                                }
+            
+                                .grfr {
+                                    display: none;
+                                    width: 75px;
+                                    position: absolute;
+                                    color: #245399;
+                                    background: #FFFFFF;
+                                    height: 54px;
+                                    position: absolute;
+                                    left: -9px;
+                                }
+            
+                                .grfr a {
+                                    color: #245399;
+                                    font-size: 13px;
+                                    line-height: 27px;
+                                    display: block;
+                                    text-align: center;
+                                    float: none;
+                                }
+            
+                                .grfr a:first-child {
+                                    color: #245399;
+                                    font-size: 13px;
+                                    line-height: 27px;
+                                    display: block;
+                                    float: none;
+                                    margin-right: 0px;
+                                }
+            
+                                .regbg {
+                                    position: relative;
+                                    float: left;
+                                }
+            
+                                .regbg a {
+                                    cursor: pointer;
+                                }
+            
+                                .gfzc {
+                                    display: none;
+                                    width: 75px;
+                                    position: absolute;
+                                    color: #245399;
+                                    background: #FFFFFF;
+                                    height: 54px;
+                                    position: absolute;
+                                    right: 0px;
+                                }
+            
+                                .gfzc a {
+                                    color: #245399;
+                                    font-size: 13px;
+                                    line-height: 27px;
+                                    display: block;
+                                    text-align: center;
+                                    float: none;
+                                }
+            
+                                .gfzc a:first-child {
+                                    color: #245399;
+                                    font-size: 13px;
+                                    line-height: 27px;
+                                    display: block;
+                                    float: none;
+                                    margin-right: 0px;
+                                }
+            
+                                @media only screen and (max-width: 1200px) {
+                                    .wip_footerpc .wip_ship_left {
+                                        width: 15%;
+                                    }
+            
+                                    .wip_footerpc .wip_ship_right {
+                                        width: 85%;
+                                    }
+            
+                                    .wip_footerpc .wip_ship_click {
+                                        width: 19%;
+                                        margin-left: 1.25%;
+                                    }
+            
+                                    .wip_footerpc .wip_ship_click:first-child {
+                                        width: 19%;
+                                        margin-left: 0%;
+                                    }
+            
+                                    .wip_footerpc .select_2,
+                                    .wip_footerpc .select_3,
+                                    .wip_footerpc .select_4 {
+                                        width: 19%;
+                                        margin-left: 1.25%;
+                                    }
+            
+                                    .wip_footerpc .select_span {
+                                        background-image: none;
+                                    }
+            
+                                    .wip_footerpc .select_1 {
+                                        width: 19%;
+                                        margin-left: 0%;
+                                    }
+            
+                                    .wip_footerpc .wip_footer_shipbg {
+                                        height: auto;
+                                    }
+            
+                                    .hot_btn_right {
+                                        padding-left: 15px;
+                                    }
+                                }
+            
+                                @media only screen and (max-width: 900px) {
+                                    .hidesmallfooter {
+                                        display: none;
+                                    }
+            
+                                    .wip_footer_con_center {
+                                        width: 100%;
+                                    }
+                                }
+            
+                                @media only screen and (max-width: 450px) {
+                                    .sdjiucuo {
+                                        width: 150px;
+                                        height: 47px;
+                                    }
+            
+                                    .sdjiucuo2 {
+                                        width: 150px;
+                                        height: 47px;
+                                        bottom: 50px;
+                                    }
+            
+                                    .sdjiucuo a:first-child {
+                                        font-size: 12px;
+                                        width: 12px;
+                                        height: 12px;
+                                    }
+            
+                                    .sdjiucuo2 a:first-child {
+                                        font-size: 12px;
+                                        width: 12px;
+                                        height: 12px;
+                                    }
+            
+                                    .sdjiucuo3 {
+                                        width: 150px;
+                                        height: 47px;
+                                        bottom: 103px;
+                                    }
+            
+                                    .sdjiucuo4 {
+                                        width: 150px;
+                                        height: 47px;
+                                        bottom: 103px;
+                                    }
+            
+                                    .sdjiucuo a:first-child {
+                                        font-size: 12px;
+                                        width: 12px;
+                                        height: 12px;
+                                    }
+            
+                                    .sdjiucuo3 a:first-child {
+                                        font-size: 12px;
+                                        width: 12px;
+                                        height: 12px;
+                                    }
+            
+                                    .sdjiucuo4 a:first-child {
+                                        font-size: 12px;
+                                        width: 12px;
+                                        height: 12px;
+                                    }
+                                }
+            
+                                .name_out {
+                                    cursor: pointer;
+                                }
+            
+                                .nameout {
+                                    cursor: pointer;
+                                }
+            
+            
+                                .wip_sxjk,
+                                .yjjy {
+                                    cursor: pointer;
+                                }
+            
+                                .wip_sxjk a {
+                                    cursor: pointer;
+                                }
+            
+                                DIV.digg input[type="submit"] {
+                                    height: 25px !important;
+                                }
+                            </style>
+
+                    <!-- 通用底部 -->
+                  <#include "footer.htm">
+                <script>
+                    var app = new Vue({
+                        el: '#app',
+                        data: {
+                            //当前页数
+                            pageCur: ${(page.cur)!1},
+                    //每页文章条数
+                    pageSize: ${ (page.size)!20 },
+                    //页数总数
+                    pageTotal: ${ (page.total)!0 },
+                    //内容总数
+                    contentCount: ${ (page.rcount)!0 }
+                        },
+                    methods: {
+                        handleCurrentChange: function(val) {
+                            if (val == 1) { //首页
+                                location.href = "{ms:global.url/}/${field.categoryPath}/index.html";
+                            } else { //其他页面 list-页码.html
+                                location.href = "{ms:global.url/}/${field.categoryPath}/list-" + val + ".html";
+                            }
+                        }
+                    }
+                    })
+                </script>
+                <script type="text/javascript">
+                    $(function () {
+                        $('body').click(function () {
+                            $(".select_ul").hide()
+                        })
+
+                        function select(obj) {
+                            $("." + obj).click(function () {
+                                stopPropagation();
+
+                                if ($(this).children(".select_ul").is(":hidden")) {
+                                    $(".select_ul").hide()
+                                    $(this).children(".select_ul").show();
+
+                                } else {
+
+                                    $(this).children(".select_ul").hide();
+                                }
+
+                            })
+                            $("." + obj).find(".select_li").click(function () {
+                                $(this).parents("." + obj).find(".select_span").html($(this).text())
+                                stopPropagation();
+                                $(".select_ul").hide()
+
+                            })
+                        }
+                        select("select_1")
+                        select("select_2")
+                        select("select_3")
+                        select("select_4")
+                        select("select_5")
+
+                        function stopPropagation(e) {
+                            e = window.event || e;
+                            if (document.all) {
+                                e.cancelBubble = true;
+                            } else {
+                                e.stopPropagation();
+                            }
+
+                        }
+
+                    })
+                </script>
+                <script type="text/javascript">
+                    $(".hot_wenzhang").click(function (event) {
+                        $(".link_map").hide();
+                        event.preventDefault && event.preventDefault();
+                        this.start = this.start || 0;
+                        var s = this;
+                        if (this.start === 0) {
+                            this.start = 1;
+                            $(".banner_remen").slideToggle(function () {
+                                s.start = 0;
+                            });
+                        }
+                        return 0;
+                    });
+                </script>
+                <script type="text/javascript">
+                    $(".link_btn_nav").click(function (event) {
+                        $(".banner_remen").hide()
+                        event.preventDefault && event.preventDefault();
+                        this.start = this.start || 0;
+                        var s = this;
+
+                        if (this.start === 0) {
+                            this.start = 1;
+                            $(".link_map").slideToggle(function () {
+                                s.start = 0;
+                            });
+                        }
+                        return 0;
+                    });
+                </script>
+
+                <script type="text/javascript">
+                    var local = window.location.href;
+                    var result = encodeURIComponent(local);
+                    console.log("9999" + result);
+                    // debugger
+                    var logingrhref = '' + result +
+                        '&type=1';
+                    var loginfrhref = '' + result +
+                        '&type=2';
+
+                    $.ajax({
+                        url: 'http://www.shandong.gov.cn//api-gateway/jpaas-juspace-web-sdywtb/front/sso/kyisLogin',
+                        type: 'GET',
+                        cache: false,
+                        xhrFields: {
+                            withCredentials: true
+                        },
+                        crossDomain: true,
+                        dataType: 'jsonp',
+                        jsonp: 'jsonpCallback',
+                        jsonpCallback: 'successCallback',
+                        success: function (datasrc) {
+                            console.log(datasrc);
+                            if (datasrc.usertype == 2) {
+                                $(".sheiyaoban").attr("href", "http://www.shandong.gov.cn/api-gateway/jpaas-jiq-web-sdywtb/front/item/fr_index")
+                            } else {
+                                $(".sheiyaoban").attr("href", "http://www.shandong.gov.cn/api-gateway/jpaas-jiq-web-sdywtb/front/item/gr_index")
+                            }
+                            if (datasrc.success == false) {
+                                $(".name_loain").html(
+                                    "<div  class='loginbg' onmouseover=loginshow(); onmouseleave=loginhide();><a>登录</a><div class='grfr'><a class='login1'>个人登录</a><a class='login2'>法人登录</a></div></div><div class='regbg' onmouseover=regshow(); onmouseleave=reghide();><a>注册</a> <div class='gfzc'><a href=''>个人注册</a><a href=''>单位注册</a></div></div><div class='bt-clear'></div>"
+                                )
+
+                                $(".login1").attr("href", logingrhref)
+                                $(".login2").attr("href", loginfrhref)
+                            } else {
+                                $(".name_loain").html(
+                                    "<a target='_blank' href=''>" + datasrc.loginname +
+                                    "</a> <a class='nameout' onclick='tuc()'> 退出</a>")
+                                $(".denglu").eq(1).hide();
+                                $(".denglu").eq(0).html(
+                                    "<a target='_blank' href=''>" + datasrc.loginname +
+                                    "</a>")
+
+                                $(".zhuce").eq(1).hide();
+                                $(".zhuce").eq(0).html("<a class='nameout'> 退出</a> ")
+                                $(".zwfw_login").children().hide()
+                                $(".zwfw_login").html(
+                                    "<a class='zwfw_login_aaa' target='_blank' href=''>您好," + datasrc.loginname +
+                                    "</a> <a class='nameout' onclick='tuc()'> 退出</a>")
+
+
+
+                            }
+                        },
+                    })
+
+                    function tuc() {
+                        console.log(1)
+                        $.ajax({
+                            url: "http://www.shandong.gov.cn/api-gateway/jpaas-juspace-web-sdywtb/front/sso/logout",
+                            type: "get",
+                            dataType: 'jsonp',
+                            success: function () {
+                                // document.location.reload();
+                            }
+                        })
+                        $.ajax({
+                            type: "get",
+                            url: "" + new Date().getTime(),
+                            async: true,
+                            dataType: 'json',
+                            xhrFields: {
+                                withCredentials: true
+                            },
+                            success: function (dataout) {
+
+                                var ifbsrc = '' + dataout.params.tokenSno;
+                                var ifra = '<iframe src="http://search.shandong.gov.cn/logout" style="display: none;"></iframe>';
+
+                                $.ajax({
+                                    type: "get",
+                                    async: true,
+                                    dataType: 'json',
+                                    url: '' + dataout.params.tokenSno
+
+                                })
+
+                                $(".ifb").attr("src", ifbsrc)
+                                $("body").append(ifra)
+
+                            }
+                        });
+
+                        $.ajax({
+                            url: 'http://www.shandong.gov.cn/center/member/login/logoutToYwt.do',
+                            type: 'get',
+                            dataType: 'json',
+                            xhrFields: {
+                                withCredentials: true
+                            },
+                            success: function (dataout) {
+                                $(".name_loain").html(
+                                    "<div  class='loginbg' onmouseover=loginshow(); onmouseleave=loginhide();><a>登录</a><div class='grfr'><a class='login1'>个人登录</a><a class='login2'>法人登录</a></div></div><div class='regbg' onmouseover=regshow(); onmouseleave=reghide();><a>注册</a> <div class='gfzc'><a href=''>个人注册</a><a href=''>单位注册</a></div></div><div class='bt-clear'></div>"
+                                )
+                                $(".login1").attr("href", logingrhref)
+                                $(".login2").attr("href", loginfrhref)
+                                document.location.reload();
+                                $(".zwfw_login").html();
+                                $(".zwfw_login").children().show()
+                                $(".zwfw_login").children("zwfw_login_aaa").hide()
+                                $(".denglu").eq(1).show();
+                                $(".zhuce").eq(1).show();
+                                location.href =
+                                    '' +
+                                    dataout.params.usertype
+                                $.ajax({
+                                    url: "http://search.shandong.gov.cn/logout",
+                                    type: "get",
+                                    dataType: 'json',
+                                    success: function () {
+                                    }
+                                })
+                            }
+                        })
+                    }
+
+                    function loginshow() {
+                        $('.grfr').show();
+                    }
+
+                    function loginhide() {
+                        $('.grfr').hide();
+                    }
+
+                    function regshow() {
+                        $('.gfzc').show();
+                    }
+
+                    function reghide() {
+                        $('.gfzc').hide();
+                    }
+                </script>
+
+                <script language='javascript' src='http://www.shandong.gov.cn/script/0/2008072133178312.js'></script>
+                <script type='text/javascript'>
+                    $('.wip_sxjk').click(function () {
+                        var indexsj = $(this).index();
+                        var dataljscr = $(this).attr('datalj')
+                        var result = encodeURIComponent(dataljscr);
+                        $.ajax({
+                            url: '' + new Date().getTime(),
+                            type: 'get',
+                            dataType: 'json',
+                            success: function (dataticket) {
+
+                                if (dataticket.code == 400) {
+                                    $.ajax({
+                                        url: 'http://www.shandong.gov.cn/center/member/login/setFlag.do',
+                                        type: 'get',
+                                        datatype: 'json',
+                                        success: function () {
+                                            window.open('' + result +
+                                                '&type=1');
+                                        }
+                                    })
+                                } else {
+
+                                    if (dataljscr.indexOf('gat.shandong.gov.cn') > -1) {
+                                        dataljscr = '' + new Base64().encode(dataljscr);
+                                    }
+                                    if (dataljscr.indexOf('?') > -1) {
+                                        window.open(dataljscr + '&ticket=' + dataticket.params.ticket);
+                                    } else {
+                                        window.open(dataljscr + '?ticket=' + dataticket.params.ticket);
+
+                                    }
+                                }
+                            }
+
+                        })
+                    })
+                </script>
+
+                <div class='sdjiucuo' style='display: none;'>
+                    <a class="close_jc">x</a>
+                    <a href='' target='_blank'><img src='http://www.shandong.gov.cn/picture/662/1912311408006854853.jpg'
+                            border='0'></a>
+                </div>
+
+                <script type="text/javascript">
+                    $(".sdjiucuo4 .close_jc").click(function () {
+                        $(".sdjiucuo4").hide();
+                    })
+                    $(".sdjiucuo3 .close_jc").click(function () {
+                        $(".sdjiucuo3").hide();
+                    })
+                    $(".sdjiucuo2 .close_jc").click(function () {
+                        $(".sdjiucuo2").hide();
+                    })
+
+                    var name = true;
+
+                    $(".sdjiucuo .close_jc").click(function () {
+                        $(this).parent(".sdjiucuo").hide();
+                        name == false;
+                        setInfo(false)
+                    })
+
+                    function setInfo(name) {
+                        var storage = window.sessionStorage;
+                        storage.setItem('name', name);
+                    }
+                </script>
+                <!--  juba埋点开始 -->
+                <script type="text/javascript">
+                    // juba埋点结束 
+                    // 访问统计 
+                    var _hmt = _hmt || [];
+                    (function () {
+                        var hm = document.createElement("script")
+                        hm.src = "";
+                        var s = document.getElementsByTagName("script")[0];
+                        s.parentNode.insertBefore(hm, s);
+                    })();
+  //访问统计结束
+                </script>
+
+
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var wwheight = $("window").height();
+        $(window).scroll(function () {
+            var topvals = $(document).scrollTop();
+            if (topvals > 290) {
+                $("#spe_slide").css({
+                    "top": parseInt(topvals - 238),
+                    "right": 0,
+                    "position": "absolute"
+                })
+            } else {
+                $("#spe_slide").css({
+                    "top": 0,
+                    "right": 0,
+                    "position": "relative"
+                })
+            }
+        })
+    </script>
+</body>
+
+</html>

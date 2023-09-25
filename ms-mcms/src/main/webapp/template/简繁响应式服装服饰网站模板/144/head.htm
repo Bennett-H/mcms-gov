@@ -1,0 +1,36 @@
+<div class="topbar">
+  <div class="container clearfix"> <span style="float: right;"> 选择语言：<a id="translateLink">繁體中文</a> <em>|</em> {ms:channel type='self' typeid="1673889193738543130"}<a href="{ms:global.html/}${field.typelink}">${field.typetitle}</a>{/ms:channel} </span> <span>您好，欢迎访问XXXX官网！</span> </div>
+</div>
+<div class="header">
+  <div class="container clearfix"> <a href="javascript:;" class="menu-btn"><span></span></a>
+    <div class="logo img-center"><a href="/" title="{ms:global.name/}"><img src="{@ms:file global.logo/}" alt="{ms:global.name/}"></a></div>
+    <div class="text"><strong><span>15年专注</span>工作服定制</strong>用心做好每一件衣服</div>
+    <div class="tel">全国咨询热线：<strong>18888888888<br>
+      488-888-8888</strong></div>
+  </div>
+  <div class="nav">
+    <div class="container">
+      <ul>
+        <li><a href="/">首页</a></li>
+         {ms:channel type='son' typeid="1673889193738543105" size='5'}
+        <li class="dropdown "><a href="<#if field.type==3>{ms:global.html/}${field.typeurl}<#else>{ms:global.html/}${field.typelink}</#if>">${field.typetitle}</a></li>
+        {/ms:channel}
+        <#assign typeid=field.typeid>
+<#assign ids=field.parentids>
+<#assign parentid=field.parentid>{ms:channel type='nav' flag='n' size='4'}  
+        <li class="dropdown "><#if field.childsize &gt; 0><i class="arr"></i>
+</#if> <a href="<#if field.type==3>{ms:global.html/}${field.typeurl}<#else>{ms:global.html/}${field.typelink}</#if>">${field.typetitle}</a>
+        <#if field.childsize &gt; 0>
+          <div class="dropdown-box">
+            {ms:channel}  
+            <p><a href="<#if field.type==3>{ms:global.html/}${field.typeurl}<#else>{ms:global.html/}${field.typelink}</#if>">${field.typetitle}</a></p>
+            {/ms:channel}
+          </div>
+          
+</#if>
+        </li>
+        {/ms:channel}
+      </ul>
+    </div>
+  </div>
+</div>

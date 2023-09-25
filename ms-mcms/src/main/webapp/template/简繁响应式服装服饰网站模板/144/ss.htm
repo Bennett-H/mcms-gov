@@ -1,0 +1,11 @@
+<div class="style-sou">
+  <div class="container clearfix">
+    <div class="hot"> <strong>热门关键词：</strong>  {ms:channel type='son' typeid="1673889193738543105" size='5'}<a href="<#if field.type==3>{ms:global.html/}${field.typeurl}<#else>{ms:global.html/}${field.typelink}</#if>">${field.typetitle}</a>{/ms:channel}</div>
+    <div class="hform">
+      <form  name="formsearch" action="/mcms/search.do"  method="post">
+        <input type="text" name="content_title" value="" placeholder="请输入关键字...">
+        <button type="submit">搜索</button>
+      </form>
+    </div>
+  </div>
+</div>
